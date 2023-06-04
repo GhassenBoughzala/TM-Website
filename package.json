@@ -39,6 +39,8 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.15",
+    "mongoose": "^6.0.14",
+    "morgan": "^1.10.0",
     "passport": "^0.6.0",
     "uuid": "^8.3.2"
   },
