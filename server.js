@@ -1,9 +1,19 @@
 const express = require("express");
+const morgan = require("morgan");
 const cors = require("cors");
-//const connectDB = require("./config/db");
-//const bodyParser = require("body-parser");
+const connectDB = require('./config/db-config');
+const bodyParser = require("body-parser");
+let path = require("path");
 
-const app = express()
+require("dotenv").config({});
+connectDB();
+
+const app = express();
+
+app.use(cors());
+app.use(express.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -17,6 +27,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 5500;
+
 app.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)

@@ -26,6 +26,7 @@
     "node": "v16.13.1"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.19.0",
     "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
@@ -38,9 +39,9 @@
     "formidable": "^2.0.1",
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^9.0.0",
-    "nodemon": "^2.0.15",
-    "mongoose": "^6.0.14",
+    "mongoose": "^6.1.11",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
     "passport": "^0.6.0",
     "uuid": "^8.3.2"
   },
