@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const { ObjectId } = mongoose.Schema;
 
 const UsersSchema = new mongoose.Schema(
   {
@@ -23,11 +24,16 @@ const UsersSchema = new mongoose.Schema(
       match: [/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/],
     },
     phone: { type: String },
+    city: { type: String },
     role: {
       type: String,
       enum: ["user", "admin"],
       default: "user",
-    }
+    },
+    booking: {
+      type: ObjectId,
+      ref: "Booking",
+    },
   },
   { timestamps: true }
 );
