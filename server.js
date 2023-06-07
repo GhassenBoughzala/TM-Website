@@ -4,16 +4,18 @@ const cors = require("cors");
 const connectDB = require('./config/db-config');
 const bodyParser = require("body-parser");
 let path = require("path");
+const authRoute = require('./controller/authUser');
 
 require("dotenv").config({});
 connectDB();
 
-const app = express();
+let app = express();
 
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use("/api/access", authRoute);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

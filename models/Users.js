@@ -21,7 +21,8 @@ const UsersSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      match: [/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/],
+      /* Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character */
+      match: [/^^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/],
     },
     phone: { type: String },
     city: { type: String },
@@ -38,7 +39,7 @@ const UsersSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-UsersShema.pre("save", async function (next) {
+UsersSchema.pre("save", async function (next) {
   try {
     if (this.isNew) {
       const salt = await bcrypt.genSalt(10);
@@ -52,7 +53,7 @@ UsersShema.pre("save", async function (next) {
   }
 });
 
-UsersShema.methods.isValidPassword = async function (password) {
+UsersSchema.methods.isValidPassword = async function (password) {
   try {
     return await bcrypt.compare(password, this.password);
   } catch (error) {

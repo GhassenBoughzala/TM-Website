@@ -39,6 +39,7 @@
     "formidable": "^2.0.1",
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^9.0.0",
+    "jwt-decode": "^3.1.2",
     "mongoose": "^6.1.11",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
