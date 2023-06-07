@@ -68,10 +68,8 @@ router.post(
   isRequestValidated,
   verifyAccessToken,
   async (req, res) => {
-    console.log(req.user);
     const { email, password } = req.body;
     try {
-      //Mail Verif
       let user = await User.findOne({ email });
       if (!user) {
         return res.status(401).json({
@@ -79,7 +77,6 @@ router.post(
           msg: "Email incorrect",
         });
       }
-      //Pass Verif
       const isMatch = await user.isValidPassword(password);
       if (!isMatch) {
         return res.status(400).json({
