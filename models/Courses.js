@@ -10,12 +10,12 @@ const CoursesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  secondDescription: {
+  price: {
     type: String,
+    requi
   },
-  prixdebut: {
-    type: String,
-    default: "",
+  priceDescription: {
+    type: String
   },
   image: {
     type: Array,
@@ -29,7 +29,6 @@ const CoursesSchema = new mongoose.Schema({
     enum: ["published", "closed"],
     default: "published",
   },
-
 });
 
 module.exports = mongoose.model("Courses", CoursesSchema);
