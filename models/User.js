@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { ObjectId } = mongoose.Schema;
 
-const UsersSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -31,15 +31,15 @@ const UsersSchema = new mongoose.Schema(
       enum: ["user", "admin"],
       default: "user",
     },
-    booking: {
+    subscription: {
       type: ObjectId,
-      ref: "Booking",
+      ref: "Subscription",
     },
   },
   { timestamps: true }
 );
 
-UsersSchema.pre("save", async function (next) {
+UserSchema.pre("save", async function (next) {
   try {
     if (this.isNew) {
       const salt = await bcrypt.genSalt(10);
@@ -53,7 +53,7 @@ UsersSchema.pre("save", async function (next) {
   }
 });
 
-UsersSchema.methods.isValidPassword = async function (password) {
+UserSchema.methods.isValidPassword = async function (password) {
   try {
     return await bcrypt.compare(password, this.password);
   } catch (error) {
@@ -62,4 +62,4 @@ UsersSchema.methods.isValidPassword = async function (password) {
   }
 };
 
-module.exports = mongoose.model("Users", UsersSchema);
+module.exports = mongoose.model("User", UserSchema);

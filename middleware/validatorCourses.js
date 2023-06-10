@@ -1,9 +1,9 @@
 const { check, validationResult } = require("express-validator");
 
-exports.validateCourses = [
+exports.validateCourse = [
   check("title").notEmpty().withMessage("title is required"),
   check("description").notEmpty().withMessage("description is required"),
-  check("price").notEmpty().withMessage("description is required"),
+  //check("price").notEmpty().withMessage("description is required"),
   check("priceDescription").notEmpty().withMessage("description is required"),
   check("image").notEmpty().withMessage("image is required")
 ];

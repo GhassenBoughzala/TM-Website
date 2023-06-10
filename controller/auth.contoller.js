@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const deco = require("jwt-decode");
-const User = require("../models/Users");
+const User = require("../models/User");
 const {
   validateSigninRequest,
   validateSignupRequest,
@@ -66,7 +66,6 @@ router.post(
   "/login",
   validateSigninRequest,
   isRequestValidated,
-  verifyAccessToken,
   async (req, res) => {
     const { email, password } = req.body;
     try {

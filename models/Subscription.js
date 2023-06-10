@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
-const BookingSchema = new mongoose.Schema({
+const SubscriptionSchema = new mongoose.Schema({
   user: {
     type: ObjectId,
-    ref: "Users",
+    ref: "User",
   },
   course: {
     type: ObjectId,
-    ref: "Courses",
+    ref: "Course",
   },
   payment: {
     type: Boolean,
@@ -26,4 +26,4 @@ const BookingSchema = new mongoose.Schema({
   
 });
 
-module.exports = mongoose.model("Booking", BookingSchema);
+module.exports = mongoose.model("Subscription", SubscriptionSchema);
