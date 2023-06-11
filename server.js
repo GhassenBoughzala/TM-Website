@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 let path = require("path");
 const authRoute = require("./controller/auth.contoller");
 const courseRoute = require("./controller/courses.controller");
+const userRoute = require("./controller/user.controller");
 
 require("dotenv").config({});
 connectDB();
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/api/access", authRoute);
 app.use("/api/courses", courseRoute);
+app.use("/api/user", userRoute);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
