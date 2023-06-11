@@ -11,14 +11,14 @@ module.exports = async function (req, res, next) {
   }
 
   try {
-    let Course = await Course.findById(courseId);
-    if (!Course) {
+    let course = await Course.findById(courseId);
+    if (!course) {
       return res.status(403).json({
         error: "Course not founded",
       });
     }
 
-    req.Course = Course;
+    req.course = course;
     next();
   } catch (error) {
     console.log(error);

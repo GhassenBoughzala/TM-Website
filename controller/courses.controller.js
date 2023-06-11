@@ -7,6 +7,8 @@ const {
   isRequestValidated,
 } = require("../middleware/validatorCourses");
 const AdminAccess = require("../middleware/adminAuth");
+const CourseId = require("../middleware/courseById");
+const courseById = require("../middleware/courseById");
 
 // @route   POST api/addcourse
 // @desc    Create Course
@@ -36,9 +38,13 @@ router.post(
         image,
         sessions,
       });
-      newCourse.save().then(() =>
-        res.status(200).json(`Course: ${newCourse.title} created successfully`)
-      );
+      newCourse
+        .save()
+        .then(() =>
+          res
+            .status(200)
+            .json(`Course: ${newCourse.title} created successfully`)
+        );
     } catch (error) {
       res.status(500).json({
         error: true,
@@ -56,6 +62,22 @@ router.get("/all", async (req, res) => {
   try {
     let courses = await Course.find({}).select("-subscription");
     res.status(200).json(courses);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: true,
+      msg: "server error",
+    });
+  }
+});
+
+// @route   GET api/:courseId
+// @desc    Get one
+// @access  Public
+router.get("/:courseId", courseById, async (req, res) => {
+  try {
+    const one = await Course.findById(req.params.courseId);
+    res.status(200).json(one);
   } catch (error) {
     console.log(error);
     res.status(500).json({
