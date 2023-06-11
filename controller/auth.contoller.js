@@ -91,7 +91,9 @@ router.post(
         if (user.role == "user") {
           res.status(200).json({ accessToken, expiresIn, refreshToken });
         } else if (user.role == "admin") {
-          res.status(200).json({ accessToken, expiresIn, refreshToken, access: true });
+          res
+            .status(200)
+            .json({ accessToken, expiresIn, refreshToken, access: true });
         }
       }
     } catch (err) {
@@ -128,15 +130,11 @@ router.post("/refresh-token", async (req, res, next) => {
     const { refreshToken } = req.body;
     if (!refreshToken) throw createError.BadRequest();
     const userId = await verifyRefreshToken(refreshToken);
-
     const accessToken = await signAccessToken(userId);
-
     var date = new Date();
     const time = deco(accessToken);
     const expiresIn = new Date(date.getHours() + time.exp * 1000);
-
     res.status(200).json({ accessToken, expiresIn });
-    //console.log({accessToken, expiresIn})
   } catch (error) {
     res.status(500).json({
       error: true,

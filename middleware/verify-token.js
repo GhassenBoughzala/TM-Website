@@ -1,6 +1,5 @@
 const JWT = require("jsonwebtoken");
 const createError = require("http-errors");
-const User = require("../models/User");
 
 module.exports = {
   signAccessToken: (userId) => {
@@ -8,7 +7,7 @@ module.exports = {
       const payload = { user: { id: userId } };
       const secret = process.env.ACCESS_TOKEN_SECRET;
       const options = {
-        expiresIn: "6h",
+        expiresIn: "4h",
         audience: userId,
       };
 
