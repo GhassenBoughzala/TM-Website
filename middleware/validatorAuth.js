@@ -5,8 +5,8 @@ exports.validateSignupRequest = [
   check("lastName").notEmpty().withMessage("Last name is required"),
   check("email").isEmail().withMessage("Valid email is required"),
   check("password")
-    .isLength({ min: 6 })
-    .withMessage("Password must be at least 6 character long"),
+    .isLength({ min: 8 })
+    .withMessage("Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character"),
 ];
 
 exports.validateSigninRequest = [

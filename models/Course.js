@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema;
 
-const CoursesSchema = new mongoose.Schema({
+const CourseSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -10,26 +11,29 @@ const CoursesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  secondDescription: {
-    type: String,
+  price: {
+    type: String
   },
-  prixdebut: {
+  priceDescription: {
     type: String,
-    default: "",
+    required: true
   },
   image: {
     type: Array,
     required: true,
   },
   sessions: {
-    type: Object,
+    type: Array,
+  },
+  subscription: {
+    type: ObjectId,
+    ref: "Subscription",
   },
   status: {
     type: String,
-    enum: ["published", "closed"],
+    enum: ["published", "confirmed"],
     default: "published",
   },
-
 });
 
-module.exports = mongoose.model("Courses", CoursesSchema);
+module.exports = mongoose.model("Course", CourseSchema);

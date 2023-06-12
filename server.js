@@ -1,10 +1,12 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const connectDB = require('./config/db-config');
+const connectDB = require("./config/db-config");
 const bodyParser = require("body-parser");
 let path = require("path");
-const authRoute = require('./controller/authUser');
+const authRoute = require("./controller/auth.contoller");
+const courseRoute = require("./controller/courses.controller");
+const userRoute = require("./controller/user.controller");
 
 require("dotenv").config({});
 connectDB();
@@ -16,6 +18,8 @@ app.use(express.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/api/access", authRoute);
+app.use("/api/courses", courseRoute);
+app.use("/api/user", userRoute);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
