@@ -7,6 +7,7 @@ let path = require("path");
 const authRoute = require("./controller/auth.contoller");
 const courseRoute = require("./controller/courses.controller");
 const userRoute = require("./controller/user.controller");
+const subsRoute = require("./controller/subscription.controller");
 
 require("dotenv").config({});
 connectDB();
@@ -17,9 +18,11 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use("/api/access", authRoute);
 app.use("/api/courses", courseRoute);
 app.use("/api/user", userRoute);
+app.use("/api/subscription", subsRoute);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

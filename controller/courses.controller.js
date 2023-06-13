@@ -5,9 +5,8 @@ const { verifyAccessToken } = require("../middleware/verify-token");
 const {
   validateCourse,
   isRequestValidated,
-} = require("../middleware/validatorCourses");
+} = require("../middleware/validators/validatorCourses");
 const AdminAccess = require("../middleware/adminAuth");
-const CourseId = require("../middleware/courseById");
 const courseById = require("../middleware/courseById");
 
 // @route   POST api/addcourse
@@ -118,10 +117,10 @@ router.delete(
   AdminAccess,
   async (req, res) => {
     try {
-      let deletedProduct = await Course.findByIdAndRemove(req.params.courseId);
+      let deleted = await Course.findByIdAndRemove(req.params.courseId);
       res.status(200).json({
         error: false,
-        msg: `${deletedProduct.title} deleted successfully`,
+        msg: `${deleted.title} deleted successfully`,
       });
     } catch (error) {
       console.log(error.message);

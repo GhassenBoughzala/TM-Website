@@ -33,7 +33,7 @@ router.put("/", verifyAccessToken, async (req, res) => {
       phone: req.body.phone,
     };
     const updated = await User.findByIdAndUpdate(req.user.id, { $set: body }, { new: true });
-    const user = await User.findBaggyId(updated.id)
+    const user = await User.findById(updated.id)
       .select("-password")
       .select("-role");
     res.status(200).json(user);

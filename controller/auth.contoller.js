@@ -6,7 +6,7 @@ const {
   validateSigninRequest,
   validateSignupRequest,
   isRequestValidated,
-} = require("../middleware/validatorAuth");
+} = require("../middleware/validators/validatorAuth");
 const {
   signAccessToken,
   signRefreshToken,
