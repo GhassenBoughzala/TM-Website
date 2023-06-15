@@ -360,6 +360,7 @@ header .header_three {
   padding-top: 60px;
   background: url('../images/body_header.png') center no-repeat;
   background-size: cover;
+  background-color: white;
 }
 
 .header_home h1,
@@ -492,17 +493,6 @@ header .header_three {
   display: flex;
   margin: 25px 30px 45px;
   justify-content: center;
-}
-
-.box_square {
-  float: left;
-  height: 15px;
-  width: 15px;
-  -o-transform: rotate(45deg);
-  -ms-transform: rotate(45deg); 
-  -moz-transform: rotate(45deg); 
-  background: var(--venice_blue);
-  -webkit-transform: rotate(45deg); 
 }
 
 /*-- footer */

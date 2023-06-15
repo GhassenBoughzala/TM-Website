@@ -2,6 +2,7 @@
   "name": "taamarbouta",
   "version": "0.0.1",
   "private": true,
+  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -9,17 +10,26 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@ant-design/icons": "latest",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@ant-design/icons": "latest",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "antd": "5.6.1",
+    "bootstrap": "^5.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^8.2.0",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11"
   },
   "eslintConfig": {
     "extends": [
@@ -38,5 +48,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:5500"
 }
