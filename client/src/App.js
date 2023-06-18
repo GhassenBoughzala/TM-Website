@@ -1,15 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import './components/Navbar.css';
 import Home from "./views/Home";
+import Navbar from "./components/Navbar";
+import { Layout, Space } from "antd";
+const { Footer } = Layout;
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route exact path="/" Component={Home}></Route>
-        <Route exact path="/home" Component={Home}></Route>
-      </Routes>
+      <Space direction="vertical" style={{ width: "100%" }} size={[0, 48]}>
+        <Layout style={{backgroundColor: "white"}}>
+          <Navbar />
+          <Routes>
+            <Route exact path="/" Component={Home}></Route>
+            <Route exact path="/home" Component={Home}></Route>
+          </Routes>
+          <Footer>Footer</Footer>
+        </Layout>
+      </Space>
     </BrowserRouter>
   );
 }

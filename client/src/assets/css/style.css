@@ -206,27 +206,7 @@ video {
   padding: 60px 50px;
 }
 
-/*---- header */
-header {
-  padding: 15px 30px;
-  background-color: white;
-}
 
-.ant-menu-light.ant-menu-horizontal > .ant-menu-item:hover::after, .ant-menu-light.ant-menu-horizontal > .ant-menu-item-active::after{
-  color: var(--venice_blue);
-  border-bottom-color: var(--lightning_yellow);
-}
-
-.ant-menu-light.ant-menu-horizontal > .ant-menu-item-selected::after {
-  border-bottom-color: var(--lightning_yellow);
-}
-
-.ant-menu-light.ant-menu-horizontal > .ant-menu-item-selected {
-  color: var(--venice_blue);
-}
-.ant-menu-horizontal {
-  border-bottom: 0;
-}
 
 /*-- navigation */
 .nav_header > li {
@@ -412,6 +392,7 @@ header .header_three {
 .category_details {
   padding: 80px 0;
   margin-top: 80px;
+  background-color: white;
 }
 
 .category_details .parag_style p {
