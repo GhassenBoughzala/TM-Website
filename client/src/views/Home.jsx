@@ -5,11 +5,15 @@ import Arabic from "../assets/images/arabic.png";
 import StudyArabic from "../assets/images/studyarabic.png";
 import Fresh from "../assets/images/french.png";
 import Libyan from "../assets/images/libyan.png";
+import Land from "../assets/images/landscape.png";
+import Ev from "../assets/images/evening_classes.png";
+import Cul from "../assets/images/culture-1.png";
+import Ex from "../assets/images/experience-1.png";
 const { Content } = Layout;
 
 export const Home = () => {
   return (
-    <Content>
+    <Content className="container-fluid">
       <div className="header_home">
         <div className="container">
           <Row>
@@ -57,8 +61,8 @@ export const Home = () => {
       </div>
       <div className="list_learn">
         <div className="container">
-          <Row gutter={24} >
-            <Col span={12}>
+          <div className="row">
+            <div className="mb-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
               <Card hoverable cover={<img alt="example" src={Arabic} />}>
                 <h2 className="montserrat_bold">Evening class</h2>
                 <div className="parag_style">
@@ -69,8 +73,8 @@ export const Home = () => {
                   </p>
                 </div>
               </Card>
-            </Col>
-            <Col span={12}>
+            </div>
+            <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
               <Card hoverable cover={<img alt="example" src={StudyArabic} />}>
                 <h2 className="montserrat_bold">
                   Study Arabic and Work Abroad
@@ -83,8 +87,8 @@ export const Home = () => {
                   </p>
                 </div>
               </Card>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
       </div>
       <div className="category_details">
@@ -117,8 +121,10 @@ export const Home = () => {
               <img alt="example" src={Libyan} className="w-100" />
             </Col>
             <Col span={16}>
-              <h2 class="title text-end">Learn different Arabic Dialects</h2>
-              <div class="parag_style">
+              <h2 className="title text-end">
+                Learn different Arabic Dialects
+              </h2>
+              <div className="parag_style">
                 <p className="text-end">
                   While formal Arabic provides an element of linguistic unity
                   throughout the Arab world, dozens of dialects are spoken ‘on
@@ -128,74 +134,51 @@ export const Home = () => {
                   dialects, also known as Darija. Our experienced teachers will
                   give you lessons and courses that are tailored to help you
                   learn Tunisian Arabic and Libyan Arabic effectively. Group
-                  classes are available in-person at our centre in Carthage,
-                  Tunis, while private classes can be taken online or in-person.
+                  classNamees are available in-person at our centre in Carthage,
+                  Tunis, while private classNamees can be taken online or
+                  in-person.
                 </p>
               </div>
             </Col>
           </div>
         </div>
       </div>
-      <div class="why_taamarbouta">
-        <div class="container">
-          <div class="row">
-            <h2 class="title title_center">Why Taa Marbouta?</h2>
-
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <a
-                href="https://taamarbouta.com/about/"
-                class="list_why_taamarbouta img_hover"
-              >
-                <div class="img_list_learn center_element">
-                  <img
-                    src="https://taamarbouta.com/wp-content/uploads/2022/09/Evening-classes.png"
-                    alt="Quality Team"
-                  />
+      <div className="why_taamarbouta">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h2 className="title title_center">Why Taa Marbouta?</h2>
+              <div className="card bg-light h-auto border-0">
+                <img className="card-img" alt="example" src={Land} />
+                <div className="card-img-overlay">
+                  <div className="row m-3 display-flex">
+                    <Col span={8} className="d-block m-auto">
+                      <img
+                        className="w-50 mx-auto d-block"
+                        src={Ev}
+                        alt="Quality Team"
+                      />
+                      <h3>Quality Team</h3>
+                    </Col>
+                    <Col span={8}>
+                      <img
+                        className="w-50 mx-auto d-block"
+                        src={Cul}
+                        alt="Quality Team"
+                      />
+                      <h3>Cultural Immersion</h3>
+                    </Col>
+                    <Col span={8}>
+                      <img
+                        className="w-50 mx-auto d-block"
+                        src={Ex}
+                        alt="Quality Team"
+                      />
+                      <h3 className="text-wrap text-md">International Work Experience</h3>
+                    </Col>
+                  </div>
                 </div>
-                <h3 class="title title_center">Quality Team</h3>
-                <div class="parag_style"></div>
-                <button class="align_all">
-                  <i class="fa-sharp fa-solid fa-plus"></i>
-                </button>
-              </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <a
-                href="https://taamarbouta.com/living-in-tunis/"
-                class="list_why_taamarbouta img_hover"
-              >
-                <div class="img_list_learn center_element">
-                  <img
-                    src="https://taamarbouta.com/wp-content/uploads/2022/09/culture-1.png"
-                    alt="Cultural Immersion"
-                  />
-                </div>
-                <h3 class="title title_center">Cultural Immersion</h3>
-                <div class="parag_style"></div>
-                <button class="align_all">
-                  <i class="fa-sharp fa-solid fa-plus"></i>
-                </button>
-              </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <a
-                href="https://taamarbouta.com/work-research-experience/"
-                class="list_why_taamarbouta img_hover"
-              >
-                <div class="img_list_learn center_element">
-                  <img
-                    src="https://taamarbouta.com/wp-content/uploads/2022/09/experience-1.png"
-                    alt="International Work Experience"
-                  />
-                </div>
-                <h3 class="title title_center">
-                  International Work Experience
-                </h3>
-                <div class="parag_style"></div>
-                <button class="align_all">
-                  <i class="fa-sharp fa-solid fa-plus"></i>
-                </button>
-              </a>
+              </div>
             </div>
           </div>
         </div>

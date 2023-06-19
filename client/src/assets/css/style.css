@@ -206,8 +206,6 @@ video {
   padding: 60px 50px;
 }
 
-
-
 /*-- navigation */
 .nav_header > li {
   float: left;
@@ -455,7 +453,7 @@ header .header_three {
 
 /*-- why_taamarbouta */
 .why_taamarbouta {
-  margin: 80px 0;
+  margin: 40px 0;
   padding: 45px 0;
 }
 
@@ -1202,4 +1200,11 @@ nav.list_compte ul li.is-active a {
 
 #payment.woocommerce-checkout-payment li input {
   width: initial;
+}
+
+.card-img {
+  opacity: 25%;
+  display: block;
+  margin: auto;
+  padding-top: 160px;
 }

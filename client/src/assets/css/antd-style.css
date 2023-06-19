@@ -17,11 +17,17 @@
 }
 
 /*---Card */
-.ant-card{
+.ant-card {
   max-height: 520px;
 }
 
-.ant-card .ant-card-cover img{
+.ant-card .ant-card-body {
+  height: 300px !important;
+  padding: 24px;
+  border-radius: 0 0 8px 8px;
+}
+
+.ant-card .ant-card-cover img {
   max-width: 300px;
   border-radius: 8px 8px 0 0;
   margin: auto;
