@@ -1,12 +1,8 @@
 import React from "react";
-import { Menu, Grid } from "antd";
-
-const { useBreakpoint } = Grid;
-
-const RightMenu = () => {
-  const { md } = useBreakpoint();
+import { Menu } from "antd";
+const RightMenu = ({mode}) => {
   return (
-    <Menu mode={md ? "horizontal" : "inline"}>
+    <Menu mode={mode}>
       <Menu.Item key="sign">Signin</Menu.Item>
       <Menu.Item key="app">Signup</Menu.Item>
     </Menu>

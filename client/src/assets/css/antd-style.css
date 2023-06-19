@@ -18,7 +18,7 @@
 
 /*---Card */
 .ant-card{
-  height: 530px;
+  max-height: 520px;
 }
 
 .ant-card .ant-card-cover img{
@@ -36,5 +36,5 @@
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 .ant-card-hoverable:hover {
-  border: 2px solid var(--lightning_yellow);
+  border: 1px solid var(--lightning_yellow);
 }

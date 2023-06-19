@@ -1,142 +1,136 @@
 /* Navbar */
-
 .navbar {
-    padding-bottom: 1px;
-    border-bottom: solid 1px white;
-    background-color: white;
-    box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.12),
-      0 6px 16px -11px rgba(0, 0, 0, 0.08);
-    top: 0;
-  }
+  padding-bottom: 1px;
+  height: 70px;
+  border-bottom: solid 1px white;
+  background-color: white;
+  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.12),
+    0 6px 16px -11px rgba(0, 0, 0, 0.08);
+  top: 0;
+  z-index: 99990;
+}
 
-  .menuCon {
-    width: calc(100% - 150px);
-    float: left;
-    background-color: white;
-  }
-  
-  .nav-header {
-    background-color: white;
-    border-bottom: 0;
-    padding: 0 4px 0 24px;
-  }
-  
-  .logo {
-    margin: 10px;
-    float: left;
-  }
-  
-  .logo .logo-header {
-    margin-left: 10px;
-    display: inline-block;
-    font-size: 20px;
-    text-transform: capitalize;
-    width: 30px;
-  }
-  
-  .navbar-menu {
-    width: calc(100% - 150px);
-    
-  }
-  .navbar-menu .ant-layout-header {
-    padding: 0 20px;
-  }
-  
-  .navbar-menu .ant-menu-horizontal {
-    border-bottom: 0;
-  }
-  
-  .navbar-menu .ant-menu-item {
-    padding-bottom: 0px;
-  }
-  
-  .navbar-menu .leftMenu {
-    float: left;
-  }
-  
-  .navbar-menu .rightMenu {
-    float: right;
-  }
-  
+.nav-header {
+  background-color: white;
+  border-bottom: 0;
+  padding: 0 4px 0 24px;
+}
+
+.logo {
+  float: left;
+}
+
+.logo .logo-header {
+  margin-left: 15px;
+  display: inline-block;
+  font-size: 20px;
+  text-transform: capitalize;
+  width: 30px;
+}
+
+.navbar-menu {
+  width: calc(100% - 60px);
+  float: left;
+}
+.navbar-menu .ant-layout-header {
+  padding: 0 20px;
+}
+
+.navbar-menu .ant-menu-horizontal {
+  border-bottom: 0;
+}
+
+.navbar-menu .ant-menu-item {
+  padding-bottom: 0px;
+}
+
+.navbar-menu .leftMenu {
+  float: left;
+}
+
+.navbar-menu .rightMenu {
+  float: right;
+}
+
+.menuButton {
+  float: right;
+  height: 32px;
+  padding: 6px;
+  margin-top: 14px;
+  display: none;
+  background: none;
+  margin-right: 10px;
+}
+.barsBtn {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--venice_blue);
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.barsBtn:after,
+.barsBtn:before {
+  content: attr(x);
+  width: 20px;
+  position: absolute;
+  top: -6px;
+  left: 0;
+  height: 2px;
+  background: var(--venice_blue);
+}
+
+.barsBtn:after {
+  top: auto;
+  bottom: -6px;
+}
+
+.ant-drawer-body {
+  padding: 0;
+}
+
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item,
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-submenu {
+  display: inline-block;
+  width: 100%;
+}
+
+.ant-drawer-body .ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
+  border-bottom-color: transparent;
+}
+
+.username {
+  display: none;
+  margin-left: 8px;
+}
+
+@media (max-width: 767px) {
   .menuButton {
-    float: right;
-    height: 32px;
-    padding: 6px;
-    margin-top: 14px;
-    display: none;
-    background: none;
+    display: block;
     margin-right: 10px;
   }
-  .barsBtn {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: var(--venice_blue);
-    position: relative;
-    margin-bottom: 5px;
-  }
-  
-  .barsBtn:after,
-  .barsBtn:before {
-    content: attr(x);
-    width: 20px;
-    position: absolute;
-    top: -6px;
-    left: 0;
-    height: 2px;
-    background: var(--venice_blue);
-  }
-  
-  .barsBtn:after {
-    top: auto;
-    bottom: -6px;
-  }
-  
-  .ant-drawer-body {
-    padding: 0;
-  }
-  
-  .ant-drawer-body .ant-menu-horizontal > .ant-menu-item,
-  .ant-drawer-body .ant-menu-horizontal > .ant-menu-submenu {
-    display: inline-block;
-    width: 100%;
-  }
-  
-  .ant-drawer-body .ant-menu-horizontal {
-    border-bottom: none;
-  }
-  
-  .ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
-    border-bottom-color: transparent;
-  }
-  
-  .username {
+
+  .leftMenu,
+  .rightMenu {
     display: none;
-    margin-left: 8px;
   }
-  
-  @media (max-width: 767px) {
-    .menuButton {
-      display: block;
-      margin-right: 10px;
-    }
-  
-    .leftMenu,
-    .rightMenu {
-      display: none;
-    }
-  
-    .logo a {
-      margin-left: -10px;
-    }
-  
-    .ant-drawer-title > .brand-font {
-      margin-bottom: 0;
-    }
-  
-    .username {
-      display: inline-block;
-    }
+
+  .logo a {
+    margin-left: -10px;
   }
-  
-  /* Navbar End */
+
+  .ant-drawer-title > .brand-font {
+    margin-bottom: 0;
+  }
+
+  .username {
+    display: inline-block;
+  }
+}
+
+/* Navbar End */

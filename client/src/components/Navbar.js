@@ -21,9 +21,39 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <Link to="/home">
+        <Link to="/">
           <img src={Logo} alt="logo" className="logo-header" />
         </Link>
+      </div>
+      <div className="navbar-menu">
+        <div className="leftMenu">
+          <LeftMenu mode={"horizontal"} />
+        </div>
+
+        <div className="rightMenu">
+          <RightMenu mode={"horizontal"} />
+        </div>
+        <Button className="menuButton" type="text" onClick={showDrawer}>
+          <span className="barsBtn"></span>
+        </Button>
+        <Drawer
+          title={"TaaMarbouta"}
+          placement="right"
+          closable={true}
+          onClose={onClose}
+          open={open}
+          style={{ zIndex: 99999 }}
+        >
+          <LeftMenu mode={"inline"} />
+          <RightMenu mode={"inline"} />
+        </Drawer>
+      </div>
+    </nav>
+    /*     <nav className="navbar">
+      <div className="logo">
+        <Link to="/">
+            <img src={Logo} alt="logo" className="logo-header" />
+          </Link>
       </div>
       <div className="navbar-menu">
         <div className="leftMenu">
@@ -45,7 +75,7 @@ const Navbar = () => {
           <RightMenu />
         </Drawer>
       </div>
-    </nav>
+    </nav> */
   );
 };
 
