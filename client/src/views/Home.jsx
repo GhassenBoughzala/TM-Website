@@ -1,6 +1,8 @@
 import React from "react";
-import HeaderHome from "../assets/images/header_home.png";
 import { Card, Col, Layout, Row } from "antd";
+import { motion } from "framer-motion";
+
+import HeaderHome from "../assets/images/header_home.png";
 import Arabic from "../assets/images/arabic.png";
 import StudyArabic from "../assets/images/studyarabic.png";
 import Fresh from "../assets/images/french.png";
@@ -12,6 +14,31 @@ import Ex from "../assets/images/experience-1.png";
 const { Content } = Layout;
 
 export const Home = () => {
+
+  const cardVariantts = {
+    offScreen: {
+      opacity: 0,
+      scale: 0.5,
+      transition: { duration: 0.8, delay: 0.2, ease: [0, 0.71, 0.2, 1.01] },
+    },
+    onScreen: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, delay: 0.2, ease: [0, 0.71, 0.2, 1.01] },
+    },
+  };
+
+  const learnVariantsCard = {
+    initial: { opacity: 0, scale: 0.5 },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8
+      },
+    },
+  };
+
   return (
     <Content className="container-fluid">
       <div className="header_home">
@@ -59,9 +86,14 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="list_learn">
+      <motion.div
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, amount: 0.8 }}
+        className="list_learn"
+      >
         <div className="container">
-          <div className="row">
+          <motion.div variants={learnVariantsCard} className="row">
             <div className="mb-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
               <Card hoverable cover={<img alt="example" src={Arabic} />}>
                 <h2 className="montserrat_bold">Evening class</h2>
@@ -88,9 +120,9 @@ export const Home = () => {
                 </div>
               </Card>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
       <div className="category_details">
         <div className="container">
           <div className="row mb-5">
@@ -116,6 +148,7 @@ export const Home = () => {
               <img alt="example" src={Fresh} className="w-100" />
             </Col>
           </div>
+
           <div className="row">
             <Col span={8}>
               <img alt="example" src={Libyan} className="w-100" />
@@ -143,10 +176,18 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="why_taamarbouta">
+      <motion.div
+        initial="offScreen"
+        whileInView="onScreen"
+        viewport={{ once: true, amount: 0.8 }}
+        className="why_taamarbouta"
+      >
         <div className="container">
           <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <motion.div
+              variants={cardVariantts}
+              className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+            >
               <h2 className="title title_center">Why Taa Marbouta?</h2>
               <div className="card bg-light h-auto border-0">
                 <img className="card-img" alt="example" src={Land} />
@@ -174,15 +215,17 @@ export const Home = () => {
                         src={Ex}
                         alt="Quality Team"
                       />
-                      <h3 className="text-wrap text-md">International Work Experience</h3>
+                      <h3 className="text-wrap text-md">
+                        International Work Experience
+                      </h3>
                     </Col>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Content>
   );
 };
