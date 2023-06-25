@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="col-lg-12 col-md-12 col-sm-12 col-xs-3 align header_one navbar">
       <div className="logo">
         <Link to="/">
           <img src={Logo} alt="logo" className="logo-header" />

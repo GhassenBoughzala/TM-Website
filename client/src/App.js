@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./views/Home";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer";
 import { Layout, Space } from "antd";
-const { Footer } = Layout;
 
 function App() {
   return (
@@ -13,8 +13,11 @@ function App() {
           <Navbar />
           <Routes>
             <Route exact path="/" Component={Home}></Route>
+            <Route exact path="/language-courses"></Route>
+            <Route exact path="/student-life"></Route>
+            <Route exact path="/about"></Route>
           </Routes>
-          <Footer>Footer</Footer>
+          <Footer/>
         </Layout>
       </Space>
     </BrowserRouter>

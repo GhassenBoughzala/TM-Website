@@ -44,3 +44,11 @@
 .ant-card-hoverable:hover {
   border: 1px solid var(--lightning_yellow);
 }
+
+.carousel-content {
+  height: '160px';
+  color: '#fff';
+  lineHeight: '160px';
+  textAlign: 'center';
+  background: '#364d79';
+}

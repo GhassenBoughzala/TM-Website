@@ -8,6 +8,7 @@
     0 6px 16px -11px rgba(0, 0, 0, 0.08);
   top: 0;
   z-index: 99990;
+  position: sticky;
 }
 
 .nav-header {

@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Col, Layout, Row } from "antd";
 import { motion } from "framer-motion";
 
+import Carousel from "../components/Carousel";
 import HeaderHome from "../assets/images/header_home.png";
 import Arabic from "../assets/images/arabic.png";
 import StudyArabic from "../assets/images/studyarabic.png";
@@ -14,7 +15,6 @@ import Ex from "../assets/images/experience-1.png";
 const { Content } = Layout;
 
 export const Home = () => {
-
   const cardVariantts = {
     offScreen: {
       opacity: 0,
@@ -34,7 +34,7 @@ export const Home = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.8
+        duration: 0.8,
       },
     },
   };
@@ -199,7 +199,7 @@ export const Home = () => {
                         src={Ev}
                         alt="Quality Team"
                       />
-                      <h3>Quality Team</h3>
+                      <h4 className="text-center blue-text">Quality Team</h4>
                     </Col>
                     <Col span={8}>
                       <img
@@ -207,7 +207,9 @@ export const Home = () => {
                         src={Cul}
                         alt="Quality Team"
                       />
-                      <h3>Cultural Immersion</h3>
+                      <h4 className="text-center blue-text">
+                        Cultural Immersion
+                      </h4>
                     </Col>
                     <Col span={8}>
                       <img
@@ -215,9 +217,9 @@ export const Home = () => {
                         src={Ex}
                         alt="Quality Team"
                       />
-                      <h3 className="text-wrap text-md">
+                      <h4 className="text-center blue-text">
                         International Work Experience
-                      </h3>
+                      </h4>
                     </Col>
                   </div>
                 </div>
@@ -226,6 +228,13 @@ export const Home = () => {
           </div>
         </div>
       </motion.div>
+      <div className="partenaire_block mb-3">
+        <div className="container">
+          <div className="row mt-5">
+            <Carousel />
+          </div>
+        </div>
+      </div>
     </Content>
   );
 };
