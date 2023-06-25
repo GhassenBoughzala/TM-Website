@@ -3,7 +3,7 @@ import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
 import { Drawer, Button } from "antd";
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/logo_footer.png";
+import Logo from "../../assets/images/logo_footer.png";
 import "./Navbar.css";
 
 const Navbar = () => {
