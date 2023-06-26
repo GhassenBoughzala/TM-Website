@@ -8,13 +8,13 @@ export const HomeFooter = () => {
   return (
     <Footer>
       <div className="container">
-        <footer className="py-5">
+        <footer className="py-1">
           <div className="row">
             <div className="col-4">
               <img src={TM} alt="Taa Marbouta" />
             </div>
 
-            <div className="col-6 offset-1">
+            <div className="col-6 offset-1 mt-5">
               <div className="contenu_footer">
                 <h2 className="averiaseriflibre_bold text-start">
                   Taa Marbouta
