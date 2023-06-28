@@ -1,0 +1,17 @@
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const USER_LOADED = 'USER_LOADED';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_LOADING_TOKEN = 'TOKEN LOADING';
+export const REFTOKEN_IS_SET = 'REFRESH TOKEN SUCCESS';
+export const REFTOKEN_ERROR = 'REFRESH TOKEN ERROR';
+export const LOGOUT = 'LOGOUT';
+export const ERROR = 'ERROR';
+export const RESEND = 'RESEND EMAIL';
+export const FORGOTPASS_REQ = 'FORGOT PASS';
+export const FORGOTPASS_FAIL = 'FORGOT PASS FAIL';
+export const RESET_PASS = 'RESET PASS';
+export const RESET_FAIL = 'RESET PASS FAIL';
