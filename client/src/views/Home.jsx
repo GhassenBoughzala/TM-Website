@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Col, Layout, Row } from "antd";
 import { motion } from "framer-motion";
 
+import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
 import HeaderHome from "../assets/images/header_home.png";
 import Arabic from "../assets/images/arabic.png";
@@ -40,6 +41,7 @@ export const Home = () => {
   };
 
   return (
+    <>
     <Content className="container-fluid">
       <div className="header_home">
         <div className="container">
@@ -236,6 +238,8 @@ export const Home = () => {
         </div>
       </div>
     </Content>
+    <Footer/>
+    </>
   );
 };
 

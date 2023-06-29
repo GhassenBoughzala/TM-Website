@@ -1,5 +1,5 @@
-import { ServerURL } from "helpers/urls";
-import setAuthToken from "helpers/authToken";
+import { ServerURL } from "../../helpers/urls";
+import setAuthToken from "../../helpers/authToken";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -9,12 +9,10 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT,
   SET_LOADING,
   ERROR,
   REFTOKEN_ERROR,
   REFTOKEN_IS_SET,
-  RESEND,
   FORGOTPASS_REQ,
   FORGOTPASS_FAIL,
   SET_LOADING_TOKEN,
@@ -117,15 +115,9 @@ export const login =
     }
   };
 
-export const logout = (OneSignalID) => async (dispatch) => {
+export const logout = () => async (dispatch) => {
   try {
     setAuthToken(localStorage.accessToken);
-    await axios
-      .put(`${ServerURL}/api/user/osid`, { OneSignalID: OneSignalID })
-      .then((res) => {
-        dispatch({ type: LOGOUT });
-      })
-      .catch((err) => console.log(err), ERROR, localStorage.clear());
   } catch (error) {
     console.log(error);
     dispatch({
@@ -162,24 +154,6 @@ export const refreshJwt =
     }
   };
 
-export const resend = () => async (dispatch) => {
-  if (localStorage.accessToken) {
-    setAuthToken(localStorage.accessToken);
-  }
-
-  try {
-    await axios.get(
-      `${ServerURL}/api/access/resend/` + localStorage.accessToken
-    );
-    dispatch({ type: RESEND });
-    dispatch(loadUser());
-  } catch (error) {
-    console.log(error);
-    dispatch({
-      type: ERROR,
-    });
-  }
-};
 
 export const forgotPass =
   ({ email }) =>
