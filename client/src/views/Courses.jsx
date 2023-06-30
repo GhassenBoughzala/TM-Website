@@ -2,10 +2,12 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getCourses } from "../redux/courses/courseActions";
+import { Card, Layout, Modal } from "antd";
+import { motion } from "framer-motion";
+
 
 import Footer from "../components/Footer";
 import Arabic from "../assets/images/arabic.png";
-import { Card, Layout, Modal } from "antd";
 const { Content } = Layout;
 
 export const Courses = ({ ...props }) => {
@@ -32,7 +34,12 @@ export const Courses = ({ ...props }) => {
             {props.courses.map((course, index) => {
               return (
                 <Fragment key={index}>
-                  <div className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                  >
                     <Card
                       loading={props.isLoading}
                       hoverable
@@ -46,12 +53,17 @@ export const Courses = ({ ...props }) => {
                         <b> {course.title}</b>
                       </h2>
                     </Card>
-                  </div>
+                  </motion.div>
                 </Fragment>
               );
             })}
           </div>
-          <Modal open={isModalOpen} onCancel={handleCancel} width={1200} footer={null}>
+          <Modal
+            open={isModalOpen}
+            onCancel={handleCancel}
+            width={1200}
+            footer={null}
+          >
             <div className="row">
               <h3 className="blue-text">{currentObj.title}</h3>
               <div className="mb-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
