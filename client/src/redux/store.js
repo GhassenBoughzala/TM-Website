@@ -7,11 +7,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import auth from "./auth/authReducer";
+import courses from "./courses/courseReducer";
 
 const intialState = {};
 
 const rootReducer = combineReducers({
   auth,
+  courses,
 });
 
 const store = createStore(

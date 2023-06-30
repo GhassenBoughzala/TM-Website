@@ -1,0 +1,3 @@
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const LOADING_FETCH = 'LOADING_FETCH';
+export const FETCH_FAIL = 'FETCH_FAIL';
