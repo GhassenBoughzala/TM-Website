@@ -1,42 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import "../assets/css/login.css";
-import Art from "../assets/images/Artboard-4-100.jpg";
+import Art from "../assets/images/Artboard-5-100.jpg";
 import Logo from "../assets/images/logo_footer.png";
-import { register } from "../redux/auth/authActions"
+import { register } from "../redux/auth/authActions";
 import { Layout, Button, Form, Input } from "antd";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 const { Content } = Layout;
 
-export const Register = () => {
-  const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: ""
-  });
+export const Register = ({ ...props }) => {
+  const ArrayOfRules = [
+    {
+      required: true,
+      message: "Please input your password !",
+    },
+    {
+      pattern:
+        /^^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      warningOnly: true,
+      message:
+        "Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character",
+    },
+  ];
 
-  const { firstName, lastName, email, password } = data;
-  const ArrayOfRules = [{
-    required: true,
-    message: "Please input your password !",
-  },
-  {
-    pattern: /^^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-    warningOnly: true,
-    message: "Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character",
-  },]
-  
-  const handleChange = (name) => (event) => {
-    setData({ ...data, [name]: event.target.value });
-  };
   const onFinish = (values) => {
     try {
-      register(values);
+      props.Register(values);
+      toast.success("Welcome");
     } catch (error) {
       console.log(error);
+      toast.error("Sign up failed !");
     }
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+  const onFinishFailed = () => {
+    toast.error("Sign up failed !");
   };
 
   return (
@@ -57,7 +55,7 @@ export const Register = () => {
                   <Form
                     className="form"
                     name="basic"
-                    layout="vertical" 
+                    layout="vertical"
                     size={"large"}
                     labelCol={{ span: 8 }}
                     style={{ maxWidth: 600 }}
@@ -79,7 +77,7 @@ export const Register = () => {
                               },
                             ]}
                           >
-                            <Input value={firstName} onChange={handleChange('firstName')} />
+                            <Input />
                           </Form.Item>
                         </div>
                       </div>
@@ -95,7 +93,7 @@ export const Register = () => {
                               },
                             ]}
                           >
-                           <Input value={lastName} onChange={handleChange('lastName')} />
+                            <Input />
                           </Form.Item>
                         </div>
                       </div>
@@ -113,7 +111,7 @@ export const Register = () => {
                             },
                           ]}
                         >
-                          <Input value={email} onChange={handleChange('email')} />
+                          <Input />
                         </Form.Item>
                       </div>
                     </div>
@@ -124,17 +122,19 @@ export const Register = () => {
                         name="password"
                         rules={ArrayOfRules}
                       >
-                        <Input.Password value={password} onChange={handleChange('password')} />
+                        <Input.Password />
                       </Form.Item>
                     </div>
                     <div className="form-outline text-center">
                       <Form.Item>
-                      <Button type="primary" htmlType="submit">
-                        Submit
-                      </Button>
-                    </Form.Item>
+                        <Button type="primary" htmlType="submit">
+                          Submit
+                        </Button>
+                      </Form.Item>
+                      <p>
+                        Already have an account? <Link to="/login">Log in</Link>{" "}
+                      </p>
                     </div>
-                    
                   </Form>
                 </div>
               </div>
@@ -150,4 +150,13 @@ export const Register = () => {
   );
 };
 
-export default Register;
+const mapActionToProps = {
+  Register: register,
+};
+
+const mapToStateProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+  isLoading: state.auth.loading,
+});
+
+export default connect(mapToStateProps, mapActionToProps)(Register);

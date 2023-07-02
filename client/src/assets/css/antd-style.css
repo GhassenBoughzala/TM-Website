@@ -59,3 +59,8 @@
 .ant-modal{
   display: block;
 }
+
+.ant-btn .ant-btn-icon{
+  display: inline-flex;
+  align-items: center;
+}

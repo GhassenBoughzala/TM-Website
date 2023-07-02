@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LeftMenu = ({ mode }) => {
   return (
-    <Menu mode={mode}>
+    <Menu mode={mode} items={""}>
       <Menu.Item key="home">
         Home
         <Link to="/" />

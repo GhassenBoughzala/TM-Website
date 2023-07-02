@@ -23,8 +23,8 @@ const intialState = {
   expiresIn: localStorage.getItem("expiresIn"),
   refreshToken: localStorage.getItem("refreshToken"),
   isAuthenticated: false,
+  codeMsg: null,
   loading: true,
-  user: [],
 };
 
 // Reducers
@@ -57,12 +57,15 @@ export default function (state = intialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
+        codeMsg: 1,
         loading: false,
       };
     case SET_LOADING:
       return {
         ...state,
         loading: true,
+        isAuthenticated: null,
+        codeMsg: null
       };
     case REFTOKEN_IS_SET:
       localStorage.setItem("accessToken", payload.accessToken);
@@ -75,6 +78,12 @@ export default function (state = intialState, action) {
       };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        codeMsg: 0
+      }
     case AUTH_ERROR:
     case REFTOKEN_ERROR:
     case RESEND:

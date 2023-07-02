@@ -1,11 +1,45 @@
-import React from "react";
-import { Layout } from "antd";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import "../assets/css/login.css";
+import { Layout, Button, Form, Input } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { connect } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import Art from "../assets/images/Artboard-4-100.jpg";
 import Logo from "../assets/images/logo_footer.png";
+import { login } from "../redux/auth/authActions";
+import usePrevious from "../helpers/usePrevious";
 const { Content } = Layout;
 
-export const Login = () => {
+export const Login = ({ ...props }) => {
+  const navigate = useNavigate();
+  const onFinish = (values) => {
+    try {
+      props.Login(values);
+    } catch (error) {
+      console.log(error);
+      toast.error("Sign up failed !");
+    }
+  };
+  const onFinishFailed = () => {
+    toast.warn("Check your fields");
+  };
+  const userExist = localStorage.getItem("user");
+
+  const prev_loading = usePrevious(props.isLoading);
+  useEffect(() => {
+    if (prev_loading && !props.isLoading) {
+      if (props.msg === 1) {
+        navigate("/");
+      }
+      if (props.msg === 0) {
+        toast.error("Failed to login");
+      }
+    }
+  }, [props.isLoading, props.isAuth]);
+
   return (
     <Content className="container-fluid">
       <section className="text-center text-lg-start">
@@ -14,64 +48,98 @@ export const Login = () => {
             <div className="col-lg-6 mb-5 mb-lg-0">
               <div className="card cascading-right">
                 <div className="card-body p-5 shadow-5 text-center">
-                  <img src={Logo} alt="TaaMarbouta" style={{ width: "10%" }} className="mb-5" />
-                  <form className="text-start">
-                    <h2 className="fw-bold mb-5 text-center">Sign up</h2>
-                    <div className="row">
-                      <div className="col-md-6 mb-4">
-                        <div className="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example1"
-                            className="form-control"
-                          />
-                          <label className="form-label" for="form3Example1">
-                            First name
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6 mb-4">
-                        <div className="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example2"
-                            className="form-control"
-                          />
-                          <label className="form-label" for="form3Example2">
-                            Last name
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="form-outline mb-4">
-                      <input
-                        type="email"
-                        id="form3Example3"
-                        className="form-control"
-                      />
-                      <label className="form-label" for="form3Example3">
-                        Email address
-                      </label>
-                    </div>
-
-                    <div className="form-outline mb-4">
-                      <input
-                        type="password"
-                        id="form3Example4"
-                        className="form-control"
-                      />
-                      <label className="form-label" for="form3Example4">
-                        Password
-                      </label>
-                    </div>
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-block mb-4"
+                  <img
+                    src={Logo}
+                    alt="TaaMarbouta"
+                    style={{ width: "12%" }}
+                    className="mb-3"
+                  />
+                  {!userExist ? (
+                    <Form
+                      className="form"
+                      name="basic"
+                      layout="vertical"
+                      size={"large"}
+                      labelCol={{ span: 8 }}
+                      style={{ maxWidth: 600 }}
+                      initialValues={{ remember: true }}
+                      onFinish={onFinish}
+                      onFinishFailed={onFinishFailed}
+                      role="form"
+                      autoComplete="off"
                     >
-                      Sign up
-                    </button>
-                  </form>
+                      <div className="row">
+                        <div className="form-outline text-start">
+                          <Form.Item
+                            label="Email"
+                            name="email"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your email !",
+                                type: "email",
+                              },
+                            ]}
+                          >
+                            <Input
+                              prefix={
+                                <UserOutlined className="site-form-item-icon" />
+                              }
+                            />
+                          </Form.Item>
+                        </div>
+                      </div>
+
+                      <div className="form-outline text-start">
+                        <Form.Item
+                          label="Password"
+                          name="password"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your Password!",
+                            },
+                          ]}
+                        >
+                          <Input.Password
+                            prefix={
+                              <LockOutlined className="site-form-item-icon" />
+                            }
+                            type="password"
+                          />
+                        </Form.Item>
+                      </div>
+                      <div className="form-outline text-center">
+                        <Form.Item>
+                          <Button
+                            //loading={props.isLoading}
+                            type="primary"
+                            htmlType="submit"
+                          >
+                            Submit
+                          </Button>
+                        </Form.Item>
+                        <p>
+                          Don’t have an account?
+                          <Link to="/register" className="mx-1">
+                            Sign up
+                          </Link>
+                        </p>
+                      </div>
+                    </Form>
+                  ) : (
+                    <>
+                      <h2> Already connected </h2>
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          navigate("/");
+                        }}
+                      >
+                        Back home
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -85,5 +153,12 @@ export const Login = () => {
     </Content>
   );
 };
-
-export default Login;
+const mapActionToProps = {
+  Login: login,
+};
+const mapToStateProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+  isLoading: state.auth.loading,
+  msg: state.auth.codeMsg,
+});
+export default connect(mapToStateProps, mapActionToProps)(Login);

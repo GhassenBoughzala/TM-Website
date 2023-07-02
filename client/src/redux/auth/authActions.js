@@ -1,8 +1,8 @@
 import { ServerURL } from "../../helpers/urls";
 import setAuthToken from "../../helpers/authToken";
 import axios from "axios";
-import { toast } from "react-toastify";
 
+import { toast } from "react-toastify";
 import {
   USER_LOADED,
   REGISTER_SUCCESS,
@@ -16,6 +16,7 @@ import {
   FORGOTPASS_REQ,
   FORGOTPASS_FAIL,
   SET_LOADING_TOKEN,
+  LOGOUT,
 } from "./authTypes";
 
 export const loadUser = () => async (dispatch) => {
@@ -40,84 +41,60 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-export const register =
-  ({ firstName, lastName, email, password }) =>
-  async (dispatch) => {
-    // Config header for axios
-    const config = { headers: { "Content-Type": "application/json" } };
-    // Set body
-    const body = JSON.stringify({
-      firstName,
-      lastName,
-      email,
-      password,
+export const register = (values) => async (dispatch) => {
+  // Config header for axios
+  const config = { headers: { "Content-Type": "application/json" } };
+  // Set body
+  const body = JSON.stringify(values);
+  dispatch({ type: SET_LOADING });
+
+  try {
+    // Response
+    const res = await axios.post(
+      `${ServerURL}/api/access/register`,
+      body,
+      config
+    );
+
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data,
     });
+    dispatch(loadUser());
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: REGISTER_FAIL });
+  }
+};
 
-    dispatch({ type: SET_LOADING });
-
-    try {
-      // Response
-      const res = await axios.post(
-        `${ServerURL}/api/access/register`,
-        body,
-        config
-      );
-
-      dispatch({
-        type: REGISTER_SUCCESS,
-        payload: res.data,
-      });
-      dispatch(loadUser());
-      toast.success("Inscription avec succès");
-      //toast.info("Vérifiez votre email pour activer votre compte");
-    } catch (err) {
-      toast.error("Inscription: Quelque chose s'est mal passé !");
-      console.log(err);
-      dispatch({ type: REGISTER_FAIL });
-    }
-  };
-
-export const login =
-  ({ email, password, OneSignalID }) =>
-  async (dispatch) => {
-    // Config header for axios
-    const config = { headers: { "Content-Type": "application/json" } };
-
-    // Set body
-    const body = JSON.stringify({
-      email,
-      password,
-      OneSignalID,
-    });
-    dispatch({ type: SET_LOADING });
-
-    try {
-      const res = await axios
-        .post(`${ServerURL}/api/access/loginuser`, body, config)
-        .catch(function (error) {
-          //console.log(error.response.data.msg);
-          toast.warn(error.response.data.msg);
-        });
+export const login = (values) => (dispatch) => {
+  
+  const config = { headers: { "Content-Type": "application/json" } };
+  const body = JSON.stringify(values);
+  dispatch({ type: SET_LOADING });
+  axios
+    .post(`${ServerURL}/api/access/login`, body, config)
+    .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-
       dispatch(loadUser());
-
-      toast.success("Connecté avec succès");
-    } catch (err) {
-      console.log(err);
-      //toast.error("Quelque chose s'est mal passé !")
+      toast.success("Welcome ");
+    })
+    .catch(() => {
       dispatch({
         type: LOGIN_FAIL,
       });
-    }
-  };
+    });
+};
 
 export const logout = () => async (dispatch) => {
   try {
     setAuthToken(localStorage.accessToken);
+    dispatch({
+      type: LOGOUT,
+    });
   } catch (error) {
     console.log(error);
     dispatch({
@@ -153,7 +130,6 @@ export const refreshJwt =
       dispatch(logout());
     }
   };
-
 
 export const forgotPass =
   ({ email }) =>

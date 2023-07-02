@@ -90,11 +90,12 @@ router.post(
         const expiresIn = new Date(date.getHours() + time.exp * 1000);
         if (user.role == "user") {
           res.status(200).json({ accessToken, expiresIn, refreshToken });
+          console.log("User logged in");
         } else if (user.role == "admin") {
-          res
-            .status(200)
-            .json({ accessToken, expiresIn, refreshToken, access: true });
+          res.status(200).json({ accessToken, expiresIn, refreshToken, access: true });
+          console.log("Admin logged in");
         }
+        
       }
     } catch (err) {
       res.status(500).json({

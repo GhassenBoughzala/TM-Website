@@ -111,7 +111,7 @@ export const Home = () => {
             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
               <Card hoverable cover={<img alt="example" src={StudyArabic} />}>
                 <h2 className="montserrat_bold">
-                  Study Arabic and Work Abroad
+                  Study Arabic
                 </h2>
                 <div className="parag_style">
                   <p>
