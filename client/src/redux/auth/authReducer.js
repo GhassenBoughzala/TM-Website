@@ -14,7 +14,8 @@ import {
   RESEND,
   FORGOTPASS_REQ,
   FORGOTPASS_FAIL,
-  SET_LOADING_TOKEN
+  SET_LOADING_TOKEN,
+  VERIF,
 } from "./authTypes";
 
 // Intial State
@@ -38,6 +39,11 @@ export default function (state = intialState, action) {
         user: payload,
         isAuthenticated: true,
         loading: false,
+      };
+    case VERIF:
+      return {
+        ...state,
+        isAuthenticated: true,
       };
     case REGISTER_SUCCESS:
       localStorage.setItem("accessToken", payload.accessToken);

@@ -17,6 +17,7 @@ import {
   FORGOTPASS_FAIL,
   SET_LOADING_TOKEN,
   LOGOUT,
+  VERIF,
 } from "./authTypes";
 
 export const loadUser = () => async (dispatch) => {
@@ -38,6 +39,15 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: ERROR,
     });
+  }
+};
+
+export const verifUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: VERIF });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: ERROR });
   }
 };
 
@@ -68,7 +78,6 @@ export const register = (values) => async (dispatch) => {
 };
 
 export const login = (values) => (dispatch) => {
-  
   const config = { headers: { "Content-Type": "application/json" } };
   const body = JSON.stringify(values);
   dispatch({ type: SET_LOADING });

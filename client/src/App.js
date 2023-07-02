@@ -12,12 +12,13 @@ import Register from "./views/Register";
 import PageNotFound from "./views/Page404";
 import Courses from "./views/Courses";
 import setAuthToken from "./helpers/authToken";
-import { refreshJwt } from "./redux/auth/authActions";
+import { refreshJwt, verifUser } from "./redux/auth/authActions";
 import decode from "jwt-decode";
 
 function App() {
   if (localStorage.accessToken) {
     setAuthToken(localStorage.accessToken);
+    store.dispatch(verifUser());
   }
 
   useEffect(() => {
@@ -26,7 +27,7 @@ function App() {
     if (accessToken) {
       const refreshToken = localStorage.getItem("refreshToken");
       const decodedToken = decode(accessToken);
-     
+
       if (decodedToken.exp * 1000 < new Date().getTime()) {
         store.dispatch(refreshJwt({ refreshToken }));
         window.location.reload();
