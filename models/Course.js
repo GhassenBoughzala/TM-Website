@@ -8,15 +8,15 @@ const CourseSchema = new mongoose.Schema({
     unique: true,
   },
   description: {
-    type: String,
+    type: Array,
     required: true,
   },
   price: {
-    type: String
+    type: String,
   },
   priceDescription: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: Array,

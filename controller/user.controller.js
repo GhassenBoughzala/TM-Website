@@ -46,4 +46,20 @@ router.put("/", verifyAccessToken, async (req, res) => {
   }
 });
 
+// @route   GET api/all
+// @desc    Get Courses
+// @access  Public
+router.get("/all", async (req, res) => {
+  try {
+    let users = await User.find({}).select("-subscription");
+    res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: true,
+      msg: "server error",
+    });
+  }
+});
+
 module.exports = router;
