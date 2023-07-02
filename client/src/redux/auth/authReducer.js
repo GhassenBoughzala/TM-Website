@@ -14,12 +14,12 @@ import {
   RESEND,
   FORGOTPASS_REQ,
   FORGOTPASS_FAIL,
-  SET_LOADING_TOKEN,
+  SET_LOADING_TOKEN
 } from "./authTypes";
 
 // Intial State
 const intialState = {
-  accessToken: localStorage.getItem("accesstoken"),
+  accessToken: localStorage.getItem("accessToken"),
   expiresIn: localStorage.getItem("expiresIn"),
   refreshToken: localStorage.getItem("refreshToken"),
   isAuthenticated: false,
@@ -65,7 +65,7 @@ export default function (state = intialState, action) {
         ...state,
         loading: true,
         isAuthenticated: null,
-        codeMsg: null
+        codeMsg: null,
       };
     case REFTOKEN_IS_SET:
       localStorage.setItem("accessToken", payload.accessToken);
@@ -82,8 +82,8 @@ export default function (state = intialState, action) {
         ...state,
         loading: false,
         isAuthenticated: false,
-        codeMsg: 0
-      }
+        codeMsg: 0,
+      };
     case AUTH_ERROR:
     case REFTOKEN_ERROR:
     case RESEND:

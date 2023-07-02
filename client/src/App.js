@@ -26,7 +26,7 @@ function App() {
     if (accessToken) {
       const refreshToken = localStorage.getItem("refreshToken");
       const decodedToken = decode(accessToken);
-
+     
       if (decodedToken.exp * 1000 < new Date().getTime()) {
         store.dispatch(refreshJwt({ refreshToken }));
         window.location.reload();
