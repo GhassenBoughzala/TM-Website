@@ -89,7 +89,7 @@ export const login = (values) => (dispatch) => {
         payload: res.data,
       });
       dispatch(loadUser());
-      toast.success("Welcome ");
+      toast.info("Welcome");
     })
     .catch(() => {
       dispatch({

@@ -3,8 +3,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getCourses } from "../redux/courses/courseActions";
 import { Card, Layout, Modal } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
-
 
 import Footer from "../components/Footer";
 import Arabic from "../assets/images/arabic.png";
@@ -15,9 +15,9 @@ export const Courses = ({ ...props }) => {
     props.AllCourses();
   }, []);
 
+  const course = { description: [], sessions: [] };
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentObj, setCurrentObj] = useState({});
-
+  const [currentObj, setCurrentObj] = useState(course);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -66,11 +66,42 @@ export const Courses = ({ ...props }) => {
           >
             <div className="row">
               <h3 className="blue-text">{currentObj.title}</h3>
-              <div className="mb-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <p>{currentObj.description}</p>
+              <div className="mb-3 col-lg-6 col-md-6 col-sm-12 col-xs-12 border-2 border-end">
+                {currentObj.description ? (
+                  currentObj.description.map((d, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <p className=" text-secondary">{d.desc}</p>
+                      </Fragment>
+                    );
+                  })
+                ) : (
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 24,
+                    }}
+                    spin
+                  />
+                )}
               </div>
               <div className="mb-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h5 className="yellow-text">Price description: </h5>
                 <p>{currentObj.priceDescription}</p>
+                <div>
+                <h5 className="yellow-text">Sessions: </h5>
+                  {currentObj.sessions.map((s, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <p className="blue-text">
+                          Session {s.num}: 
+                          <b className="mx-1 text-dark">
+                             {s.startDate} - {s.endDate}
+                          </b>
+                        </p>
+                      </Fragment>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </Modal>
