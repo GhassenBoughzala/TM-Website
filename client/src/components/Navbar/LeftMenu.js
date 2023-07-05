@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const LeftMenu = ({ mode }) => {
   return (
     <Menu mode={mode} items={""}>
-      <Menu.Item key="home">
+      <Menu.Item key="/">
         Home
         <Link to="/" />
       </Menu.Item>
-      <Menu.Item key="courses">
+      <Menu.Item key="/language-courses">
         Language Courses <Link to="/language-courses" />
       </Menu.Item>
       <Menu.Item key="life">Student Life</Menu.Item>
