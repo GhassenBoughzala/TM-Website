@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { logout } from "../../redux/auth/authActions";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const RightMenu = ({ ...props }) => {
-  const userExist = localStorage.getItem("user");
-  useEffect(() => {}, [userExist]);
+  const navTo = useNavigate();
+
   return (
     <>
       {props.isAuth ? (
@@ -18,9 +19,10 @@ const RightMenu = ({ ...props }) => {
             shape="circle"
             icon={<UserOutlined />}
             onClick={() => {
-              //props.Logout();
+              navTo("/profil");
             }}
           ></Button>
+
           <Button
             type="default"
             size="default"
@@ -29,6 +31,7 @@ const RightMenu = ({ ...props }) => {
             className="mx-3"
             onClick={() => {
               props.Logout();
+              navTo("/");
             }}
           ></Button>
         </div>
@@ -36,7 +39,7 @@ const RightMenu = ({ ...props }) => {
         <div className="mt-1">
           <Link to="/login">
             <Button type="default" size="default">
-              Log in
+              Sign in
             </Button>
           </Link>
           <Link to="/register" className="mx-2">
@@ -46,15 +49,6 @@ const RightMenu = ({ ...props }) => {
           </Link>
         </div>
       )}
-
-      {/* <Menu.Item key="sign">
-        Signin
-        <Link to="/login" />
-      </Menu.Item>
-      <Menu.Item key="app">
-        <Link to="/register" />
-        Signup
-      </Menu.Item> */}
     </>
   );
 };

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-function AdminRoute() {
+function UserRoute() {
   const [userLocal] = useState(() => {
     const saved = localStorage.getItem("user");
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   });
-  return userLocal.role === "admin" ? <Outlet /> : <Navigate to="/login" />;
+  return userLocal ? <Outlet /> : <Navigate to="/login" />;
 }
 
-export default AdminRoute;
+export default UserRoute;
