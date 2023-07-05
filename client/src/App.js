@@ -15,6 +15,11 @@ import setAuthToken from "./helpers/authToken";
 import { refreshJwt, verifUser } from "./redux/auth/authActions";
 import decode from "jwt-decode";
 
+import UserRoute from "./helpers/routes/UserRoute";
+import AdminRoute from "./helpers/routes/AdminRoute";
+import Profile from "./views/Profile";
+import AdminView from "./views/AdminView";
+
 function App() {
   if (localStorage.accessToken) {
     setAuthToken(localStorage.accessToken);
@@ -50,6 +55,17 @@ function App() {
               <Route exact path="/language-courses" Component={Courses}></Route>
               <Route exact path="/student-life"></Route>
               <Route exact path="/about"></Route>
+              <Route exact path="/profil" element={<UserRoute />}>
+                <Route exact path="/profil" Component={Profile}></Route>
+              </Route>
+
+              <Route exact path="/admin-dashboard" element={<AdminRoute />}>
+                <Route
+                  exact
+                  path="/admin-dashboard"
+                  Component={AdminView}
+                ></Route>
+              </Route>
             </Routes>
           </Layout>
         </Space>
