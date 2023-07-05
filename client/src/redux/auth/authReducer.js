@@ -53,6 +53,7 @@ export default function (state = intialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
+        codeMsg: 1,
         loading: false,
       };
     case LOGIN_SUCCESS:
@@ -83,6 +84,12 @@ export default function (state = intialState, action) {
         loading: false,
       };
     case REGISTER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        codeMsg: 0,
+      };
     case LOGIN_FAIL:
       return {
         ...state,

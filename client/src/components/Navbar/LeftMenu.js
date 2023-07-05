@@ -12,8 +12,12 @@ const LeftMenu = ({ mode }) => {
       <Menu.Item key="/language-courses">
         Language Courses <Link to="/language-courses" />
       </Menu.Item>
-      <Menu.Item key="life">Student Life</Menu.Item>
-      <Menu.Item key="about">About</Menu.Item>
+      <Menu.Item key="/student-life">
+        Student Life <Link to="/student-life" />
+      </Menu.Item>
+      <Menu.Item key="/about">
+        About <Link to="/about" />
+      </Menu.Item>
     </Menu>
   );
 };

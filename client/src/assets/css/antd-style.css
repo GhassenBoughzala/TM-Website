@@ -64,3 +64,8 @@
   display: inline-flex;
   align-items: center;
 }
+
+.ant-form-item-feedback-icon{
+  display: inline-flex;
+  align-items: center;
+}

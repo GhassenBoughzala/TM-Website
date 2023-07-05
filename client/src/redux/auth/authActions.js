@@ -52,29 +52,23 @@ export const verifUser = () => async (dispatch) => {
 };
 
 export const register = (values) => async (dispatch) => {
-  // Config header for axios
   const config = { headers: { "Content-Type": "application/json" } };
-  // Set body
   const body = JSON.stringify(values);
   dispatch({ type: SET_LOADING });
-
-  try {
-    // Response
-    const res = await axios.post(
-      `${ServerURL}/api/access/register`,
-      body,
-      config
-    );
-
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: res.data,
+  await axios
+    .post(`${ServerURL}/api/access/register`, body, config)
+    .then((res) => {
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(loadUser());
+      toast.success("Welcome to TaaMarbouta");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: REGISTER_FAIL });
     });
-    dispatch(loadUser());
-  } catch (err) {
-    console.log(err);
-    dispatch({ type: REGISTER_FAIL });
-  }
 };
 
 export const login = (values) => (dispatch) => {
