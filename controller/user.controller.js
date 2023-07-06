@@ -29,6 +29,7 @@ router.put("/", verifyAccessToken, async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       phone: req.body.phone,
+      city: req.body.city
     };
     const updated = await User.findByIdAndUpdate(
       req.user.id,
