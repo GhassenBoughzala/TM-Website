@@ -153,6 +153,7 @@ export const Login = ({ ...props }) => {
     </Content>
   );
 };
+
 const mapActionToProps = {
   Login: login,
 };

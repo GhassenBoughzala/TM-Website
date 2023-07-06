@@ -29,16 +29,14 @@ router.put("/", verifyAccessToken, async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       phone: req.body.phone,
-      city: req.body.city
+      city: req.body.city,
     };
     const updated = await User.findByIdAndUpdate(
       req.user.id,
       { $set: body },
       { new: true }
     );
-    const user = await User.findById(updated.id)
-      .select("-password")
-      .select("-role");
+    const user = await User.findById(updated.id).select("-password");
     res.status(200).json(user);
   } catch (err) {
     res.status(500).json({
