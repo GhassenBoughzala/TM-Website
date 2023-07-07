@@ -181,7 +181,7 @@ export const Home = () => {
       <motion.div
         initial="offScreen"
         whileInView="onScreen"
-        viewport={{ once: true, amount: 0.8 }}
+        viewport={{ once: true, amount: 0.5 }}
         className="why_taamarbouta"
       >
         <div className="container">
