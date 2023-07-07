@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 
 import Footer from "../components/Footer";
 import Arabic from "../assets/images/arabic.png";
+import CourseModal from "../components/CourseModal";
 const { Content } = Layout;
 
 export const Courses = ({ ...props }) => {
@@ -28,97 +29,70 @@ export const Courses = ({ ...props }) => {
   return (
     <>
       <Content className="container-fluid">
-        <div className="container mb-lg-5">
-          <h1 className="titre mt-5">Language Courses</h1>
-          <div className="row">
-            {props.courses.map((course, index) => {
-              return (
-                <Fragment key={index}>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                    className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12"
-                  >
-                    <Card
-                      loading={props.isLoading}
-                      hoverable
-                      onClick={() => {
-                        showModal();
-                        setCurrentObj(course);
-                      }}
-                      cover={<img alt="example" src={Arabic} />}
-                    >
-                      <h2 className="blue-text text-center">
-                        <b> {course.title}</b>
-                      </h2>
-                    </Card>
-                  </motion.div>
-                </Fragment>
-              );
-            })}
-          </div>
-          <Modal
-            open={isModalOpen}
-            onCancel={handleCancel}
-            width={1200}
-            footer={null}
-          >
+        {!props.isLoading ? (
+          <div className="container mb-lg-5">
+            <h1 className="titre mt-5">Language Courses</h1>
             <div className="row">
-              <h3 className="blue-text">{currentObj.title}</h3>
-              <div className="mb-3 col-lg-6 col-md-6 col-sm-12 col-xs-12 border-2 border-end">
-                {currentObj.description ? (
-                  currentObj.description.map((d, index) => {
-                    return (
-                      <Fragment key={index}>
-                        <p className=" text-secondary">{d.desc}</p>
-                      </Fragment>
-                    );
-                  })
-                ) : (
-                  <LoadingOutlined
-                    style={{
-                      fontSize: 24,
-                    }}
-                    spin
-                  />
-                )}
-              </div>
-              <div className="mb-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <h5 className="yellow-text">Price description: </h5>
-                <p>{currentObj.priceDescription}</p>
-                <div>
-                <h5 className="yellow-text">Sessions: </h5>
-                  {currentObj.sessions.map((s, index) => {
-                    return (
-                      <Fragment key={index}>
-                        <p className="blue-text">
-                          Session {s.num}: 
-                          <b className="mx-1 text-dark">
-                             {s.startDate} - {s.endDate}
-                          </b>
-                        </p>
-                      </Fragment>
-                    );
-                  })}
-                </div>
-              </div>
+              {props.courses.map((course, index) => {
+                return (
+                  <Fragment key={index}>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1 }}
+                      className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                    >
+                      <Card
+                        loading={props.isLoading}
+                        hoverable
+                        onClick={() => {
+                          showModal();
+                          setCurrentObj(course);
+                        }}
+                        cover={<img alt="example" src={Arabic} />}
+                      >
+                        <h2 className="blue-text text-center">
+                          <b> {course.title}</b>
+                        </h2>
+                      </Card>
+                    </motion.div>
+                  </Fragment>
+                );
+              })}
             </div>
-          </Modal>
-        </div>
+            <Modal
+              open={isModalOpen}
+              onCancel={handleCancel}
+              width={1200}
+              footer={null}
+            >
+              <CourseModal {...{ currentObj }} />
+            </Modal>
+          </div>
+        ) : (
+          <div className="text-center mt-5 mb-5">
+            <LoadingOutlined
+              style={{
+                fontSize: 40,
+                margin: 130
+              }}
+              spin
+            />
+          </div>
+        )}
       </Content>
       <Footer />
     </>
   );
 };
 
+const mapActionToProps = {
+  AllCourses: getCourses,
+};
+
 const mapStateToProps = (state) => ({
   courses: state.courses.courses,
   isLoading: state.courses.loading,
 });
-
-const mapActionToProps = {
-  AllCourses: getCourses,
-};
 
 export default connect(mapStateToProps, mapActionToProps)(Courses);

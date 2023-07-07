@@ -1,6 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
 
-import { FETCH_FAIL, FETCH_SUCCESS, LOADING_FETCH } from "./courseTypes";
+import {
+  ADD_FAILED,
+  ADD_SUCCESS,
+  FETCH_FAIL,
+  FETCH_SUCCESS,
+  LOADING,
+} from "./courseTypes";
 
 // Intial State
 const intialState = {
@@ -12,12 +18,23 @@ const intialState = {
 
 export default function (state = intialState, action) {
   switch (action.type) {
-    case LOADING_FETCH:
+    case LOADING:
       return { ...state, courses: [], loading: true };
     case FETCH_SUCCESS:
       return { ...state, courses: [...action.payload], loading: false };
     case FETCH_FAIL:
       return { ...state, courses: [], error: true };
+
+    case ADD_SUCCESS:
+      return {
+        ...state,
+        courses: [...state.courses, action.payload],
+        codeMsg: 1,
+        loading: false,
+      };
+    case ADD_FAILED:
+      return { ...state, codeMsg: 0, error: true };
+
     default:
       return state;
   }

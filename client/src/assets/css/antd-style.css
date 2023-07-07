@@ -53,7 +53,7 @@
 .ant-modal-content{
   overflow-y: auto;
   overflow-x: hidden;
-  height: 700px;
+  height: 550px;
 }
 
 .ant-modal{

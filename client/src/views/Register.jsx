@@ -200,7 +200,7 @@ export const Register = ({ ...props }) => {
                     </div>
                     <div className="form-outline text-center">
                       <Form.Item>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmltype="submit">
                           Submit
                         </Button>
                       </Form.Item>
