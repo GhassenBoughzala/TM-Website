@@ -15,16 +15,17 @@ import {
   FORGOTPASS_REQ,
   FORGOTPASS_FAIL,
   SET_LOADING_TOKEN,
+  VERIF,
 } from "./authTypes";
 
 // Intial State
 const intialState = {
-  accessToken: localStorage.getItem("accesstoken"),
+  accessToken: localStorage.getItem("accessToken"),
   expiresIn: localStorage.getItem("expiresIn"),
   refreshToken: localStorage.getItem("refreshToken"),
   isAuthenticated: false,
+  codeMsg: null,
   loading: true,
-  user: [],
 };
 
 // Reducers
@@ -39,6 +40,11 @@ export default function (state = intialState, action) {
         isAuthenticated: true,
         loading: false,
       };
+    case VERIF:
+      return {
+        ...state,
+        isAuthenticated: true,
+      };
     case REGISTER_SUCCESS:
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("expiresIn", payload.expiresIn);
@@ -47,6 +53,7 @@ export default function (state = intialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
+        codeMsg: 1,
         loading: false,
       };
     case LOGIN_SUCCESS:
@@ -57,12 +64,15 @@ export default function (state = intialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
+        codeMsg: 1,
         loading: false,
       };
     case SET_LOADING:
       return {
         ...state,
         loading: true,
+        isAuthenticated: null,
+        codeMsg: null,
       };
     case REFTOKEN_IS_SET:
       localStorage.setItem("accessToken", payload.accessToken);
@@ -74,7 +84,19 @@ export default function (state = intialState, action) {
         loading: false,
       };
     case REGISTER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        codeMsg: 0,
+      };
     case LOGIN_FAIL:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        codeMsg: 0,
+      };
     case AUTH_ERROR:
     case REFTOKEN_ERROR:
     case RESEND:

@@ -1212,3 +1212,7 @@ nav.list_compte ul li.is-active a {
 .blue-text{
   color: var(--venice_blue);
 }
+
+.yellow-text{
+  color: var(--lightning_yellow);
+}

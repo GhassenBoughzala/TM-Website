@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Col, Layout, Row } from "antd";
 import { motion } from "framer-motion";
 
+import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
 import HeaderHome from "../assets/images/header_home.png";
 import Arabic from "../assets/images/arabic.png";
@@ -40,6 +41,7 @@ export const Home = () => {
   };
 
   return (
+    <>
     <Content className="container-fluid">
       <div className="header_home">
         <div className="container">
@@ -109,7 +111,7 @@ export const Home = () => {
             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
               <Card hoverable cover={<img alt="example" src={StudyArabic} />}>
                 <h2 className="montserrat_bold">
-                  Study Arabic and Work Abroad
+                  Study Arabic
                 </h2>
                 <div className="parag_style">
                   <p>
@@ -179,7 +181,7 @@ export const Home = () => {
       <motion.div
         initial="offScreen"
         whileInView="onScreen"
-        viewport={{ once: true, amount: 0.8 }}
+        viewport={{ once: true, amount: 0.5 }}
         className="why_taamarbouta"
       >
         <div className="container">
@@ -236,6 +238,8 @@ export const Home = () => {
         </div>
       </div>
     </Content>
+    <Footer/>
+    </>
   );
 };
 

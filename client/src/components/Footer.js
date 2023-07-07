@@ -7,7 +7,7 @@ const { Footer } = Layout;
 export const HomeFooter = () => {
   return (
     <Footer>
-      <div className="container">
+      <div className="container position-sticky">
         <footer className="py-1">
           <div className="row">
             <div className="col-4">

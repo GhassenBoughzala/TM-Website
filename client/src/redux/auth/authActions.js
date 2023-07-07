@@ -1,23 +1,23 @@
-import { ServerURL } from "helpers/urls";
-import setAuthToken from "helpers/authToken";
+import { ServerURL } from "../../helpers/urls";
+import setAuthToken from "../../helpers/authToken";
 import axios from "axios";
-import { toast } from "react-toastify";
 
+import { toast } from "react-toastify";
 import {
   USER_LOADED,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT,
   SET_LOADING,
   ERROR,
   REFTOKEN_ERROR,
   REFTOKEN_IS_SET,
-  RESEND,
   FORGOTPASS_REQ,
   FORGOTPASS_FAIL,
   SET_LOADING_TOKEN,
+  LOGOUT,
+  VERIF,
 } from "./authTypes";
 
 export const loadUser = () => async (dispatch) => {
@@ -42,90 +42,62 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-export const register =
-  ({ firstName, lastName, email, password }) =>
-  async (dispatch) => {
-    // Config header for axios
-    const config = { headers: { "Content-Type": "application/json" } };
-    // Set body
-    const body = JSON.stringify({
-      firstName,
-      lastName,
-      email,
-      password,
-    });
+export const verifUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: VERIF });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: ERROR });
+  }
+};
 
-    dispatch({ type: SET_LOADING });
-
-    try {
-      // Response
-      const res = await axios.post(
-        `${ServerURL}/api/access/register`,
-        body,
-        config
-      );
-
+export const register = (values) => async (dispatch) => {
+  const config = { headers: { "Content-Type": "application/json" } };
+  const body = JSON.stringify(values);
+  dispatch({ type: SET_LOADING });
+  await axios
+    .post(`${ServerURL}/api/access/register`, body, config)
+    .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
       dispatch(loadUser());
-      toast.success("Inscription avec succès");
-      //toast.info("Vérifiez votre email pour activer votre compte");
-    } catch (err) {
-      toast.error("Inscription: Quelque chose s'est mal passé !");
+      toast.success("Welcome to TaaMarbouta");
+    })
+    .catch((err) => {
       console.log(err);
       dispatch({ type: REGISTER_FAIL });
-    }
-  };
-
-export const login =
-  ({ email, password, OneSignalID }) =>
-  async (dispatch) => {
-    // Config header for axios
-    const config = { headers: { "Content-Type": "application/json" } };
-
-    // Set body
-    const body = JSON.stringify({
-      email,
-      password,
-      OneSignalID,
     });
-    dispatch({ type: SET_LOADING });
+};
 
-    try {
-      const res = await axios
-        .post(`${ServerURL}/api/access/loginuser`, body, config)
-        .catch(function (error) {
-          //console.log(error.response.data.msg);
-          toast.warn(error.response.data.msg);
-        });
+export const login = (values) => (dispatch) => {
+  const config = { headers: { "Content-Type": "application/json" } };
+  const body = JSON.stringify(values);
+  dispatch({ type: SET_LOADING });
+  axios
+    .post(`${ServerURL}/api/access/login`, body, config)
+    .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-
       dispatch(loadUser());
-
-      toast.success("Connecté avec succès");
-    } catch (err) {
-      console.log(err);
-      //toast.error("Quelque chose s'est mal passé !")
+      toast.info("Welcome");
+    })
+    .catch(() => {
       dispatch({
         type: LOGIN_FAIL,
       });
-    }
-  };
+    });
+};
 
-export const logout = (OneSignalID) => async (dispatch) => {
+export const logout = () => async (dispatch) => {
   try {
     setAuthToken(localStorage.accessToken);
-    await axios
-      .put(`${ServerURL}/api/user/osid`, { OneSignalID: OneSignalID })
-      .then((res) => {
-        dispatch({ type: LOGOUT });
-      })
-      .catch((err) => console.log(err), ERROR, localStorage.clear());
+    dispatch({
+      type: LOGOUT,
+    });
   } catch (error) {
     console.log(error);
     dispatch({
@@ -161,25 +133,6 @@ export const refreshJwt =
       dispatch(logout());
     }
   };
-
-export const resend = () => async (dispatch) => {
-  if (localStorage.accessToken) {
-    setAuthToken(localStorage.accessToken);
-  }
-
-  try {
-    await axios.get(
-      `${ServerURL}/api/access/resend/` + localStorage.accessToken
-    );
-    dispatch({ type: RESEND });
-    dispatch(loadUser());
-  } catch (error) {
-    console.log(error);
-    dispatch({
-      type: ERROR,
-    });
-  }
-};
 
 export const forgotPass =
   ({ email }) =>

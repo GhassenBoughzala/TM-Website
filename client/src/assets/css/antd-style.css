@@ -17,12 +17,9 @@
 }
 
 /*---Card */
-.ant-card {
-  max-height: 520px;
-}
+
 
 .ant-card .ant-card-body {
-  height: 300px !important;
   padding: 24px;
   border-radius: 0 0 8px 8px;
 }
@@ -48,7 +45,36 @@
 .carousel-content {
   height: '160px';
   color: '#fff';
-  lineHeight: '160px';
-  textAlign: 'center';
   background: '#364d79';
+}
+
+/*---Modal */
+
+.ant-modal-content{
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 550px;
+}
+
+.ant-modal{
+  display: block;
+}
+
+.ant-btn .ant-btn-icon{
+  display: inline-flex;
+  align-items: center;
+}
+
+.ant-form-item-feedback-icon{
+  display: inline-flex;
+  align-items: center;
+}
+
+/*---SIder  */
+
+.ant-menu-light.ant-menu-root.ant-menu-inline{
+  border-inline-end: 0px
+}
+.ant-menu-light.ant-menu-root.ant-menu-vertical{
+  border-inline-end: 0px
 }
