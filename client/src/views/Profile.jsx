@@ -182,7 +182,7 @@ export const Profile = ({ ...props }) => {
                       <div className="form-outline text-center">
                         <Form.Item>
                           <Button type="default" htmlType="submit">
-                            Submit
+                            Update
                           </Button>
                         </Form.Item>
                       </div>

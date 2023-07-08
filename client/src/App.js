@@ -2,6 +2,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import React, { useEffect } from "react";
 import "./App.css";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 import Home from "./views/Home";
 import Navbar from "./components/Navbar/Navbar";
 import { Layout, Space } from "antd";
@@ -19,6 +23,7 @@ import UserRoute from "./helpers/routes/UserRoute";
 import AdminRoute from "./helpers/routes/AdminRoute";
 import Profile from "./views/Profile";
 import AdminView from "./views/AdminView";
+import StudentLife from "./views/StudentLife";
 
 function App() {
   if (localStorage.accessToken) {
@@ -53,7 +58,7 @@ function App() {
               <Route exact path="/login" Component={Login}></Route>
               <Route exact path="/register" Component={Register}></Route>
               <Route exact path="/language-courses" Component={Courses}></Route>
-              <Route exact path="/student-life"></Route>
+              <Route exact path="/student-life" Component={StudentLife}></Route>
               <Route exact path="/about"></Route>
               <Route exact path="/profil" element={<UserRoute />}>
                 <Route exact path="/profil" Component={Profile}></Route>
@@ -74,4 +79,5 @@ function App() {
   );
 }
 
+library.add(fab, fas, far)
 export default App;

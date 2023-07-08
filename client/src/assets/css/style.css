@@ -770,9 +770,9 @@ footer .reseau_social a:first-of-type {
   color: var(--baltic_sea);
 }
 
-.page_style .list_student a:hover,
-.page_style .list_student a:focus,
-.page_style .list_student a:active {
+.page_style .list_student div:hover,
+.page_style .list_student div:focus,
+.page_style .list_student dvi:active {
   color: var(--lightning_yellow);
 }
 
@@ -787,6 +787,7 @@ footer .reseau_social a:first-of-type {
   margin-bottom: 25px;
   color: var(--lightning_yellow);
   background: var(--venice_blue);
+  cursor: pointer;
 }
 
 .page_style .list_student a:hover .img_icon,

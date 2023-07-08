@@ -20,9 +20,11 @@ export const HomeFooter = () => {
                   Taa Marbouta
                 </h2>
                 <p className="montserrat_regular text-start">
-                  Taa Marbouta is a language school based in Carthage, Tunis. We
-                  aim to better connect Tunisia with the world. Our focus is on
-                  quality language tuition, immersive experiences, and
+                  Taa Marbouta is a language school based in Carthage, Tunis.
+                </p>
+                <p className="montserrat_regular text-start">
+                  We aim to better connect Tunisia with the world. Our focus is
+                  on quality language tuition, immersive experiences, and
                   extra-curricular career development.
                 </p>
               </div>
