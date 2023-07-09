@@ -3,21 +3,27 @@ import { Menu } from "antd";
 import { Link } from "react-router-dom";
 
 const LeftMenu = ({ mode }) => {
+  const items = [
+    {
+      label: (<> Home <Link to="/" /> </>),
+      key: "/" || "",
+    },    
+    {
+      label: (<> Language Courses <Link to="/language-courses" /> </>),
+      key: "/language-courses",
+    },    
+    {
+      label: (<> Student Life <Link to="/student-life" /> </>),
+      key: "/student-life",
+    },    
+    {
+      label: (<> About <Link to="/about" /> </>),
+      key: "/about",
+    },
+  ];
   return (
-    <Menu mode={mode} items={""}>
-      <Menu.Item key="/">
-        Home
-        <Link to="/" />
-      </Menu.Item>
-      <Menu.Item key="/language-courses">
-        Language Courses <Link to="/language-courses" />
-      </Menu.Item>
-      <Menu.Item key="/student-life">
-        Student Life <Link to="/student-life" />
-      </Menu.Item>
-      <Menu.Item key="/about">
-        About <Link to="/about" />
-      </Menu.Item>
+    <Menu mode={mode} items={items}>
+    
     </Menu>
   );
 };

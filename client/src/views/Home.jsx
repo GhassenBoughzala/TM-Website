@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Col, Layout, Row } from "antd";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
@@ -16,6 +17,7 @@ import Ex from "../assets/images/experience-1.png";
 const { Content } = Layout;
 
 export const Home = () => {
+  const navTo = useNavigate();
   const cardVariantts = {
     offScreen: {
       opacity: 0,
@@ -100,7 +102,11 @@ export const Home = () => {
                 variants={learnVariantsCard}
                 className="mb-3 col-lg-6 col-md-6 col-sm-6 col-xs-12"
               >
-                <Card hoverable cover={<img alt="example" src={Arabic} />}>
+                <Card
+                  hoverable
+                  onClick={() => navTo("/language-courses")}
+                  cover={<img alt="example" src={Arabic} />}
+                >
                   <h2 className="montserrat_bold">Evening class</h2>
                   <div className="parag_style">
                     <p>
@@ -115,7 +121,11 @@ export const Home = () => {
                 variants={learnVariantsCard}
                 className="col-lg-6 col-md-6 col-sm-6 col-xs-12"
               >
-                <Card hoverable cover={<img alt="example" src={StudyArabic} />}>
+                <Card
+                  hoverable
+                  onClick={() => navTo("/language-courses")}
+                  cover={<img alt="example" src={StudyArabic} />}
+                >
                   <h2 className="montserrat_bold">Study Arabic</h2>
                   <div className="parag_style">
                     <p>
@@ -207,7 +217,7 @@ export const Home = () => {
                         />
                         <h4 className="text-center blue-text">Quality Team</h4>
                       </div>
-                      <div className="d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+                      <div className="d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <img
                           className="w-50 mx-auto d-block"
                           src={Cul}

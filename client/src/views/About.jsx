@@ -1,16 +1,58 @@
 import React from "react";
-import { Layout } from "antd";
+import { Layout, Collapse } from "antd";
 import TM from "../assets/images/logo_footer.png";
+import Land from "../assets/images/landscape.png";
+import Footer from "../components/Footer";
+
 const { Content } = Layout;
 
 export const About = () => {
+  const items = [
+    {
+      key: "1",
+      label: (
+        <p className="montserrat_regular text-start">More informations...</p>
+      ),
+      children: (
+        <>
+          <p>
+            We are partnered with or on the study abroad list of several of the
+            top universities around the world. We are also connected with
+            various Tunisian non-governmental organisations to provide
+            internship opportunities for students, and Tunisian businesses who
+            provide discounted services to our students. These businesses share
+            our vision of a more engaged, outward-looking Tunisia for the
+            future, while we hope to do our bit in the coming years to help
+            Tunisians at home as well.
+          </p>
+          <p>
+            To ease the registration process we are able to accept payments
+            through our multi-currency bank account. This means that you will
+            not be hit by foreign exchange and transfer fees, whether you are
+            paying in US Dollars, Euros, Pounds, or one of many other
+            currencies. Our team is swift and professional, and will help you
+            focus on what matters most to you &#8211; learning a language!
+          </p>
+          <p>
+            Students from over 20 countries have joined us for classes since
+            July 2021, from a variety of work backgrounds and life experiences.
+            We work most closely with universities in order to support the
+            language development of students from around the world. We regularly
+            seek out feedback from our students so that we continue to grow and
+            improve. Our average rating on Google is 4.9/5.0 and over 95% of our
+            students recommend the Taa Marbouta Language Centre.
+          </p>
+        </>
+      ),
+    },
+  ];
   return (
     <>
       <Content className="container-fluid">
         <div className="container">
           <div className="aboutus_page full_espace_padding">
             <div className="container-fluid">
-            <h1 className="titre mt-5">About</h1>
+              <h1 className="titre mt-5">About</h1>
               <div className="row">
                 <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12">
                   <div className="parag_style style_link text-start">
@@ -49,35 +91,7 @@ export const About = () => {
                   interested in the study abroad and internship packages, our
                   team can help you with logistical arrangements if needed.
                 </p>
-                <p>
-                  We are partnered with or on the study abroad list of several
-                  of the top universities around the world. We are also
-                  connected with various Tunisian non-governmental organisations
-                  to provide internship opportunities for students, and Tunisian
-                  businesses who provide discounted services to our students.
-                  These businesses share our vision of a more engaged,
-                  outward-looking Tunisia for the future, while we hope to do
-                  our bit in the coming years to help Tunisians at home as well.
-                </p>
-                <p>
-                  To ease the registration process we are able to accept
-                  payments through our multi-currency bank account. This means
-                  that you will not be hit by foreign exchange and transfer
-                  fees, whether you are paying in US Dollars, Euros, Pounds, or
-                  one of many other currencies. Our team is swift and
-                  professional, and will help you focus on what matters most to
-                  you &#8211; learning a language!
-                </p>
-                <p>
-                  Students from over 20 countries have joined us for classes
-                  since July 2021, from a variety of work backgrounds and life
-                  experiences. We work most closely with universities in order
-                  to support the language development of students from around
-                  the world. We regularly seek out feedback from our students so
-                  that we continue to grow and improve. Our average rating on
-                  Google is 4.9/5.0 and over 95% of our students recommend the
-                  Taa Marbouta Language Centre.
-                </p>
+                <Collapse ghost items={items} />
               </div>
             </div>
           </div>
@@ -93,59 +107,50 @@ export const About = () => {
                     while supporting Tunisian organisations, brands and causes.
                   </p>
                 </div>
-
-                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <h3 className="title title_center">Promoting Tunisia</h3>
-                  <div className="parag_style">
-                    <p>
-                      Tunisia is an incredible country with so much to offer.
-                      From an extraordinary history to today’s entrepreneurial
-                      people, with beautiful coastlines and gorgeous deserts.
-                      Let us show you.
-                    </p>{" "}
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <h3 className="title title_center">Supporting Students</h3>
-                  <div className="parag_style">
-                    <p>
-                      We know that one of the most difficult steps for many
-                      students is the first one. Getting experience in
-                      real-world work and research. We can help with that.
-                    </p>{" "}
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <h3 className="title title_center">
-                    Standing with Civil Society
-                  </h3>
-                  <div className="parag_style">
-                    <p>
-                      By helping to connect smart international students with
-                      local NGOs, the NGOs can also benefit from the additional
-                      help, learn from new perspectives, and build their
-                      capacities.
-                    </p>{" "}
-                  </div>
-                </div>
-
-                <div className="flip_box">
-                  <div className="flip_one align_all">
-                    <div className="contenu_flip_one">
-                      <h4 className="montserrat_bold">Got a question?</h4>
-                      <p className="montserrat_regular">
-                        Don't hesitate to get in touch with us, our friendly
-                        team is here to help.
-                      </p>
+                <div className="card bg-light h-auto border-0">
+                  <img className="card-img" alt="example" src={Land} />
+                  <div className="card-img-overlay">
+                    <div className="row m-3 display-flex">
+                      <div className="d-block col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <h4 className="text-center yellow-text">
+                          Promoting Tunisia
+                        </h4>
+                        <div className="parag_style">
+                          <p>
+                            Tunisia is an incredible country with so much to
+                            offer. From an extraordinary history to today’s
+                            entrepreneurial people, with beautiful coastlines
+                            and gorgeous deserts. Let us show you.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="d-block col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <h4 className="text-center yellow-text">
+                          Supporting Students
+                        </h4>
+                        <div className="parag_style">
+                          <p>
+                            We know that one of the most difficult steps for
+                            many students is the first one. Getting experience
+                            in real-world work and research. We can help with
+                            that.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="d-block col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <h4 className="text-center yellow-text">
+                          Standing with Civil Society
+                        </h4>
+                        <div className="parag_style">
+                          <p>
+                            By helping to connect smart international students
+                            with local NGOs, the NGOs can also benefit from the
+                            additional help, learn from new perspectives, and
+                            build their capacities.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flip_two align_all">
-                    <a
-                      href="https://taamarbouta.com/contact-language-centre/"
-                      className="btn_url_blue center_element"
-                    >
-                      Contact Us
-                    </a>
                   </div>
                 </div>
               </div>
@@ -153,6 +158,7 @@ export const About = () => {
           </div>
         </div>
       </Content>
+      <Footer />
     </>
   );
 };

@@ -27,6 +27,7 @@ export const CoursesList = ({ ...props }) => {
   };
   return (
     <div className="row">
+      <h3 className="yellow-text">Course Management</h3>
       <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
         <AddCourse />
       </div>
