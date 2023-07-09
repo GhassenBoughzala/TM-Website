@@ -24,6 +24,7 @@ import AdminRoute from "./helpers/routes/AdminRoute";
 import Profile from "./views/Profile";
 import AdminView from "./views/AdminView";
 import StudentLife from "./views/StudentLife";
+import About from "./views/About";
 
 function App() {
   if (localStorage.accessToken) {
@@ -59,7 +60,8 @@ function App() {
               <Route exact path="/register" Component={Register}></Route>
               <Route exact path="/language-courses" Component={Courses}></Route>
               <Route exact path="/student-life" Component={StudentLife}></Route>
-              <Route exact path="/about"></Route>
+              <Route exact path="/about" Component={About}></Route>
+
               <Route exact path="/profil" element={<UserRoute />}>
                 <Route exact path="/profil" Component={Profile}></Route>
               </Route>

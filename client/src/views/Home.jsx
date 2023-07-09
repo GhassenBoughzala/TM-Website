@@ -199,15 +199,15 @@ export const Home = () => {
                   <img className="card-img" alt="example" src={Land} />
                   <div className="card-img-overlay">
                     <div className="row m-3 display-flex">
-                      <Col span={8} className="d-block m-auto">
+                      <div className="d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <img
                           className="w-50 mx-auto d-block"
                           src={Ev}
                           alt="Quality Team"
                         />
                         <h4 className="text-center blue-text">Quality Team</h4>
-                      </Col>
-                      <Col span={8}>
+                      </div>
+                      <div className="d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4" >
                         <img
                           className="w-50 mx-auto d-block"
                           src={Cul}
@@ -216,8 +216,8 @@ export const Home = () => {
                         <h4 className="text-center blue-text">
                           Cultural Immersion
                         </h4>
-                      </Col>
-                      <Col span={8}>
+                      </div>
+                      <div className="d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <img
                           className="w-50 mx-auto d-block"
                           src={Ex}
@@ -226,7 +226,7 @@ export const Home = () => {
                         <h4 className="text-center blue-text">
                           International Work Experience
                         </h4>
-                      </Col>
+                      </div>
                     </div>
                   </div>
                 </div>
