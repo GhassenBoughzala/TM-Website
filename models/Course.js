@@ -34,6 +34,10 @@ const CourseSchema = new mongoose.Schema({
     enum: ["published", "confirmed"],
     default: "published",
   },
+  backgroundImage: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = mongoose.model("Course", CourseSchema);

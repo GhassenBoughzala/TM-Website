@@ -20,8 +20,15 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { title, description, price, priceDescription, image, sessions } =
-        req.body;
+      let {
+        title,
+        description,
+        price,
+        priceDescription,
+        image,
+        sessions,
+        backgroundImage,
+      } = req.body;
       const exist = await Course.findOne({ title });
       if (exist) {
         return res.status(400).json({
@@ -36,6 +43,7 @@ router.post(
         priceDescription,
         image,
         sessions,
+        backgroundImage
       });
       newCourse
         .save()
