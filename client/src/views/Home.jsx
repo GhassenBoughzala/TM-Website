@@ -1,19 +1,23 @@
 import React from "react";
-import { Card, Col, Layout, Row } from "antd";
+import { Button, Col, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 import Footer from "../components/Footer";
-import Carousel from "../components/Carousel";
+import Partners from "../components/Carousel";
 import HeaderHome from "../assets/images/header_home.png";
-import Arabic from "../assets/images/arabic.png";
-import StudyArabic from "../assets/images/studyarabic.png";
+import France from "../assets/images/France.jpg";
+import English from "../assets/images/Eng.png";
 import Fresh from "../assets/images/french.png";
 import Libyan from "../assets/images/libyan.png";
 import Land from "../assets/images/landscape.png";
 import Ev from "../assets/images/evening_classes.png";
 import Cul from "../assets/images/culture-1.png";
 import Ex from "../assets/images/experience-1.png";
+import C1 from "../assets/images/pxfuel.jpg";
+import BG1 from "../assets/images/hbg-1.png";
+import BG2 from "../assets/images/hbg-2.png";
+import BG3 from "../assets/images/hbg-3.png";
 const { Content } = Layout;
 
 export const Home = () => {
@@ -45,9 +49,44 @@ export const Home = () => {
   return (
     <>
       <Content className="container-fluid">
-        <div className="header_home">
-          <div className="container">
-            <Row>
+        <div>
+          <div className="card border-0">
+            <Carousel
+              className="cover-img text-center"
+              autoplay
+              speed={1000}
+              dots={false}
+              fade={true}
+            >
+              <img src={BG1} alt="Taa Marbouta" className="h-50" />
+              <img src={BG2} alt="Taa Marbouta" className="h-50" />
+              <img src={BG3} alt="Taa Marbouta" className="h-50" />
+            </Carousel>
+            <div className="card-img-overlay ">
+              <div className="row">
+                <div className="col-lg-5 col-md-5 col-sm-5 col-xs-5 align">
+                  <div className="contenu_header_home">
+                    <h1 className="averiaseriflibre_bold">Taa Marbouta</h1>
+                    <h2 className="averiaseriflibre_bold">Language Courses</h2>
+                    <div className="parag_style">
+                      <p className="text-dark">
+                        Your gateway to North Africa &#038; the Arabic-speaking
+                        world. We teach Modern Standard Arabic, French, Tunisian
+                        Arabic, Libyan Arabic, Amazigh &#038; English. Study
+                        abroad and internship packages are available.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-7 col-md-7 col-sm-7 col-xs-7 align">
+                  <img src={HeaderHome} alt="Taa Marbouta" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/*  <div className="container">
+            <div className=" row">
               <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12 align">
                 <div className="contenu_header_home">
                   <h1 className="averiaseriflibre_bold">Taa Marbouta</h1>
@@ -65,9 +104,10 @@ export const Home = () => {
               <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12 align">
                 <img src={HeaderHome} alt="Taa Marbouta" />
               </div>
-            </Row>
-          </div>
+            </div>
+          </div> */}
         </div>
+
         <div className="category_details">
           <div className="container">
             <div className="row">
@@ -90,61 +130,108 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.8 }}
-          className="list_learn"
-        >
-          <div className="container">
-            <div className="row">
-              <motion.div
-                variants={learnVariantsCard}
-                className="mb-3 col-lg-6 col-md-6 col-sm-6 col-xs-12"
+
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3">
+              <div
+                onClick={() => navTo("/language-courses")}
+                className="card embed-responsive  ant-card-hoverable box-shadow"
               >
-                <Card
-                  hoverable
-                  onClick={() => navTo("/language-courses")}
-                  cover={<img alt="example" src={Arabic} />}
-                >
-                  <h2 className="montserrat_bold">Evening class</h2>
-                  <div className="parag_style">
-                    <p>
-                      If you are a working professional or simply have other
-                      commitments during the day, these evening courses are for
-                      you.
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-              <motion.div
-                variants={learnVariantsCard}
-                className="col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                <img
+                  className="course-card-img-ar embed-responsive-item"
+                  alt="example"
+                  src={C1}
+                />
+                <div className=" card-img-overlay d-block my-4">
+                  <h3 className="montserrat_bold text-center blue-text">
+                    Study Arabic
+                  </h3>
+
+                  <p className=" parag_style text-black text-center">
+                    This option includes twenty hours of language study per week
+                    and is perfect if you are also looking to gain real-world
+                    work.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3">
+              <div
+                onClick={() => navTo("/language-courses")}
+                className="card embed-responsive  ant-card-hoverable box-shadow"
               >
-                <Card
-                  hoverable
-                  onClick={() => navTo("/language-courses")}
-                  cover={<img alt="example" src={StudyArabic} />}
-                >
-                  <h2 className="montserrat_bold">Study Arabic</h2>
-                  <div className="parag_style">
-                    <p>
-                      This option includes twenty hours of language study per
-                      week and is perfect if you are also looking to gain
-                      real-world work.
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
+                <img
+                  className="course-card-img embed-responsive-item"
+                  alt="example"
+                  src={France}
+                />
+                <div className=" card-img-overlay d-block my-4">
+                  <h3 className="montserrat_bold text-center yellow-text">
+                    Study French
+                  </h3>
+                  <p className=" parag_style text-black text-center">
+                    Aimed at students looking to gain real-world work or
+                    research experience, this options includes 20 hours of
+                    language study per week.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3">
+              <div
+                onClick={() => navTo("/language-courses")}
+                className="card embed-responsive  ant-card-hoverable box-shadow"
+              >
+                <img
+                  className="course-card-img-ar embed-responsive-item"
+                  alt="example"
+                  src={C1}
+                />
+                <div className=" card-img-overlay d-block my-4">
+                  <h3 className="montserrat_bold text-center blue-text">
+                    Tunisian Arabic
+                  </h3>
+
+                  <p className=" parag_style text-black text-center">
+                    If you are a working professional or simply have other
+                    commitments during the day, these evening courses are for
+                    you.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3">
+              <div
+                onClick={() => navTo("/language-courses")}
+                className="card embed-responsive  ant-card-hoverable box-shadow"
+              >
+                <img
+                  className="course-card-img embed-responsive-item"
+                  alt="example"
+                  src={English}
+                />
+                <div className=" card-img-overlay d-block my-4">
+                  <h3 className="montserrat_bold text-center yellow-text">
+                    Study English
+                  </h3>
+                  <p className=" parag_style text-black text-center">
+                    Aimed at students looking to gain real-world work or
+                    research experience, this options includes 20 hours of
+                    language study per week.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
+
         <div className="category_details">
           <div className="container">
-            <div className="row mb-5">
+            <div className="row">
               <Col span={16}>
                 <h2 className="title text-start">Learn French in Tunisia</h2>
-                <div className="parag_style">
+                <div className="parag_style text-start">
                   <p className="text-start">
                     French is one of the six official UN languages, a working
                     language for international organisations and institutions
@@ -158,6 +245,13 @@ export const Home = () => {
                     at our centre in Carthage, Tunis, while private classNamees
                     can be taken online or in-person.
                   </p>
+                  <Button
+                    size="large"
+                    onClick={() => navTo("/language-courses")}
+                    type="primary"
+                  >
+                    Discover more
+                  </Button>
                 </div>
               </Col>
               <Col span={8}>
@@ -173,7 +267,7 @@ export const Home = () => {
                 <h2 className="title text-end">
                   Learn different Arabic Dialects
                 </h2>
-                <div className="parag_style">
+                <div className="parag_style text-end">
                   <p className="text-end">
                     While formal Arabic provides an element of linguistic unity
                     throughout the Arab world, dozens of dialects are spoken ‘on
@@ -187,6 +281,13 @@ export const Home = () => {
                     our centre in Carthage, Tunis, while private classNamees can
                     be taken online or in-person.
                   </p>
+                  <Button
+                    size="large"
+                    onClick={() => navTo("/language-courses")}
+                    type="primary"
+                  >
+                    Discover more
+                  </Button>
                 </div>
               </Col>
             </div>
@@ -198,7 +299,7 @@ export const Home = () => {
           viewport={{ once: true, amount: 0.5 }}
           className="why_taamarbouta"
         >
-          <div className="container">
+          <div>
             <div className="row">
               <motion.div
                 variants={cardVariantts}
@@ -244,10 +345,10 @@ export const Home = () => {
             </div>
           </div>
         </motion.div>
-        <div className="partenaire_block mb-3">
+        <div className="m-2">
           <div className="container">
-            <div className="row mt-5">
-              <Carousel />
+            <div className="row">
+              <Partners />
             </div>
           </div>
         </div>

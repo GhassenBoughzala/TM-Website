@@ -1,7 +1,14 @@
 import axios from "axios";
 import { ServerURL } from "../../helpers/urls";
 //import { toast } from "react-toastify"
-import { UPDATE_SUCCESS, UPDATE_FAILED, LOADING_USER } from "./userTypes";
+import {
+  UPDATE_SUCCESS,
+  UPDATE_FAILED,
+  LOADING_USER,
+  LOADING_USERS,
+  ALL_SUCCESS,
+  ALL_FAILED,
+} from "./userTypes";
 import setAuthToken from "../../helpers/authToken";
 
 export const UpdateUser = (values) => (dispatch) => {
@@ -17,8 +24,22 @@ export const UpdateUser = (values) => (dispatch) => {
         payload: res.data,
       });
       //toast.success("User details successfully updated !")
-      window.location.reload()
+      window.location.reload();
       localStorage.setItem("user", JSON.stringify(res.data));
     })
     .catch((err) => console.log(err), UPDATE_FAILED);
+};
+
+export const getUsers = () => (dispatch) => {
+  dispatch({ type: LOADING_USERS });
+  setAuthToken(localStorage.accessToken);
+  return axios
+    .get(`${ServerURL}/api/user/all`)
+    .then((res) => {
+      dispatch({
+        type: ALL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err), ALL_FAILED);
 };

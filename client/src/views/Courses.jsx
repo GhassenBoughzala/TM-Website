@@ -7,7 +7,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
 
 import Footer from "../components/Footer";
-import Arabic from "../assets/images/arabic.png";
 import CourseModal from "../components/CourseModal";
 const { Content } = Layout;
 
@@ -16,7 +15,11 @@ export const Courses = ({ ...props }) => {
     props.AllCourses();
   }, []);
 
-  const course = { description: [], sessions: [] };
+  const course = {
+    description: [],
+    sessions: [],
+    backgroundImage: [{ base64: "" }],
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentObj, setCurrentObj] = useState(course);
   const showModal = () => {
@@ -44,13 +47,19 @@ export const Courses = ({ ...props }) => {
                         className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12"
                       >
                         <Card
+                          bodyStyle={{ height: 150 }}
                           loading={props.isLoading}
                           hoverable
                           onClick={() => {
                             showModal();
                             setCurrentObj(course);
                           }}
-                          cover={<img alt="example" src={Arabic} />}
+                          cover={
+                            <img
+                              alt="example"
+                              src={course.backgroundImage.map((i)=>i.base64)}
+                            />
+                          }
                         >
                           <h2 className="blue-text text-center">
                             <b> {course.title}</b>

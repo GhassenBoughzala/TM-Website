@@ -35,7 +35,7 @@ const CourseSchema = new mongoose.Schema({
     default: "published",
   },
   backgroundImage: {
-    type: String,
+    type: Array,
     required: true
   }
 });

@@ -364,7 +364,6 @@ header .header_three {
 /*-- header_home */
 .header_home {
   padding-top: 60px;
-  background: url("../images/body_header.png") center no-repeat;
   background-size: cover;
   background-color: white;
 }
@@ -1208,6 +1207,35 @@ nav.list_compte ul li.is-active a {
   display: block;
   margin: auto;
   padding-top: 160px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.cover-img {
+  opacity: 15%;
+  display: block;
+  margin: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.course-card-img {
+  width: 100%;
+  opacity: 20%;
+  display: block;
+  margin: auto;
+  height: 35vh;
+  object-fit: cover;
+}
+
+
+.course-card-img-ar {
+  width: 100%;
+  opacity: 8%;
+  display: block;
+  margin: auto;
+  height: 35vh;
+  object-fit: cover;
 }
 
 .blue-text{
@@ -1216,4 +1244,20 @@ nav.list_compte ul li.is-active a {
 
 .yellow-text{
   color: var(--lightning_yellow);
+}
+
+.box-shadow{
+	-webkit-box-shadow: 0 1px 1px rgba(72,78,85,.6);
+	box-shadow: 0 1px 1px rgba(72,78,85,.6);
+	-webkit-transition: all .2s ease-out;
+	-moz-transition: all .2s ease-out;
+	-ms-transition: all .2s ease-out;
+	-o-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+}
+
+.box-shadow:hover{
+	-webkit-box-shadow: 0 5px 10px rgba(72,78,85,.6);
+	box-shadow: 0 5px 10px rgba(72,78,85,.6);
+
 }

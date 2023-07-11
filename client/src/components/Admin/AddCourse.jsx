@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   UploadOutlined,
   PlusOutlined,
@@ -12,7 +12,6 @@ const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
 export const AddCourse = ({ ...props }) => {
-  const [state, setState] = useState({});
   const dateFormat = "YYYY/MM/DD";
 
   const convertToBase64 = (file) => {
@@ -28,23 +27,22 @@ export const AddCourse = ({ ...props }) => {
     fileList.forEach((file) => {
       convertToBase64(file);
     });
-
-    setState([...e.fileList]);
-    console.log(state[0]);
   };
 
   const [form] = Form.useForm();
-
   const onFinish = (values) => {
-    //console.log("Received values of form:", values);
     props.Add(values);
+    onReset();
+  };
+
+  const onReset = () => {
+    form.resetFields();
   };
 
   const normFile = (e) => {
     if (Array.isArray(e)) {
       return e;
     }
-    setState(e?.fileList);
     return e?.fileList;
   };
 
@@ -60,14 +58,24 @@ export const AddCourse = ({ ...props }) => {
     });
   };
 
-  const onFinishFailed = () => {
-    console.log("Failed");
-  };
+  const uploadButton = (
+    <div>
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
 
   return (
     <Card>
       <h2 className=" blue-text">Add Course</h2>
       <Form
+        form={form}
         className="form"
         name="basic"
         layout="vertical"
@@ -75,7 +83,6 @@ export const AddCourse = ({ ...props }) => {
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         role="form"
         autoComplete="off"
       >
@@ -83,11 +90,76 @@ export const AddCourse = ({ ...props }) => {
           <Input />
         </Form.Item>
 
+        <Form.Item
+          label="Background Image"
+          name="backgroundImage"
+          valuePropName="fileList"
+          getValueFromEvent={normFile}
+        >
+          <Upload
+            type="file"
+            multiple={false}
+            name="backgroundImage"
+            accept=".jpeg, .png, .jpg"
+            onChange={(e) => handleFileUpload(e)}
+            customRequest={({ onSuccess }) => onSuccess("ok")}
+            listType="picture-card"
+            action=""
+            maxCount={1}
+          >
+            {uploadButton}
+          </Upload>
+        </Form.Item>
+
+        <Form.List name="description" onChange={handleDescChange}>
+          {(fields, { add, remove }) => (
+            <>
+              {fields.map((field) => (
+                <Space key={field.key} >
+                  <Form.Item
+                    noStyle
+                    shouldUpdate={(prevValues, curValues) =>
+                      prevValues.area !== curValues.area ||
+                      prevValues.sights !== curValues.sights
+                    }
+                  >
+                    {() => (
+                      <Form.Item
+                        {...field}
+                        label="Description"
+                        name={[field.name, "description"]}
+                      >
+                        <TextArea rows={4} />
+                      </Form.Item>
+                    )}
+                  </Form.Item>
+
+                  <MinusCircleOutlined
+                    className="mx-1"
+                    onClick={() => remove(field.name)}
+                  />
+                </Space>
+              ))}
+
+              <Form.Item>
+                <Button
+                  className="text-start"
+                  type="dashed"
+                  onClick={() => add()}
+                  block
+                  icon={<PlusOutlined />}
+                >
+                  Add descriptions
+                </Button>
+              </Form.Item>
+            </>
+          )}
+        </Form.List>
         <Form.List name="sessions" onChange={handleSessionsChange}>
           {(fields, { add, remove }) => (
             <>
               {fields.map((field) => (
-                <Space key={field.key} align="baseline">
+                <Space key={field.key}>
                   <Form.Item
                     noStyle
                     shouldUpdate={(prevValues, curValues) =>
@@ -127,55 +199,6 @@ export const AddCourse = ({ ...props }) => {
             </>
           )}
         </Form.List>
-
-        <Form.List name="description" onChange={handleDescChange}>
-          {(fields, { add, remove }) => (
-            <>
-              {fields.map((field) => (
-                <Space key={field.key} align="baseline">
-                  <Form.Item
-                    noStyle
-                    shouldUpdate={(prevValues, curValues) =>
-                      prevValues.area !== curValues.area ||
-                      prevValues.sights !== curValues.sights
-                    }
-                  >
-                    {() => (
-                      <Form.Item
-                        {...field}
-                        label="Description"
-                        name={[field.name, "description"]}
-                      >
-                        <TextArea rows={2} />
-                      </Form.Item>
-                    )}
-                  </Form.Item>
-
-                  <MinusCircleOutlined
-                    className="mx-1"
-                    onClick={() => remove(field.name)}
-                  />
-                </Space>
-              ))}
-
-              <Form.Item>
-                <Button
-                  className="text-start"
-                  type="dashed"
-                  onClick={() => add()}
-                  block
-                  icon={<PlusOutlined />}
-                >
-                  Add descriptions
-                </Button>
-              </Form.Item>
-            </>
-          )}
-        </Form.List>
-
-        <Form.Item name="priceDescription" label="Price description">
-          <TextArea rows={2} />
-        </Form.Item>
         <Form.Item
           label="Images"
           name="image"
@@ -195,16 +218,36 @@ export const AddCourse = ({ ...props }) => {
             <Button icon={<UploadOutlined />}>Upload</Button>
           </Upload>
         </Form.Item>
-        <div className="form-outline text-center">
-          <Form.Item>
-            <Button
-              //loading={props.isLoading}
-              type="primary"
-              htmlType="submit"
-            >
-              Confirm
-            </Button>
-          </Form.Item>
+        <Form.Item name="priceDescription" label="Price description">
+          <TextArea rows={2} />
+        </Form.Item>
+        <div className="row">
+          <div className="col">
+            <div className="form-outline text-end">
+              <Form.Item>
+                <Button
+                  //loading={props.isLoading}
+                  type="primary"
+                  htmlType="submit"
+                >
+                  Confirm
+                </Button>
+              </Form.Item>
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-outline text-start">
+              <Form.Item>
+                <Button
+                  //loading={props.isLoading}
+                  type="default"
+                  onClick={onReset}
+                >
+                  Reset
+                </Button>
+              </Form.Item>
+            </div>
+          </div>
         </div>
       </Form>
     </Card>

@@ -37,7 +37,7 @@ export const CourseModal = ({ ...props }) => {
         <h5 className="yellow-text">Price description: </h5>
         <p>{currentObj.priceDescription}</p>
         <div>
-          <h5 className="yellow-text">Sessions: </h5>
+          <h5 className="yellow-text">The course dates are as follows: </h5>
           {currentObj.sessions.map((s, index) => {
             return (
               <Fragment key={index}>

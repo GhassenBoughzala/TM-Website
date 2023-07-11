@@ -3,6 +3,8 @@
 import {
   ADD_FAILED,
   ADD_SUCCESS,
+  DEL_FAILED,
+  DEL_SUCCESS,
   FETCH_FAIL,
   FETCH_SUCCESS,
   LOADING,
@@ -33,8 +35,14 @@ export default function (state = intialState, action) {
         loading: false,
       };
     case ADD_FAILED:
-      return { ...state, codeMsg: 0, error: true };
+      return { ...state, codeMsg: 0, error: true, loading:false };
 
+    case DEL_SUCCESS:
+      return {
+        ...state,
+        courses: state.courses.filter((c) => c._id !== action.payload),
+      };
+    case DEL_FAILED:
     default:
       return state;
   }
