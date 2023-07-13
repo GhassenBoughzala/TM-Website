@@ -259,7 +259,7 @@ const mapActionToProps = {
 };
 const mapToStateProps = (state) => ({
   courses: state.courses.courses,
-  isLoading: state.courses.loading,
+  isLoading: state.courses.loading_create,
 });
 
 export default connect(mapToStateProps, mapActionToProps)(AddCourse);

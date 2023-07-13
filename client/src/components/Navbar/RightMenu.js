@@ -65,7 +65,7 @@ const RightMenu = ({ ...props }) => {
           </Link>
           <Link to="/register" className="mx-2">
             <Button type="default" size="default">
-              Sign up
+              Register
             </Button>
           </Link>
         </div>

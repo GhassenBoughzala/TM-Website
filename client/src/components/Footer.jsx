@@ -18,16 +18,16 @@ export const HomeFooter = () => {
 
             <div className="col-6 offset-1">
               <div className="contenu_footer">
-                <h2 className="averiaseriflibre_bold text-start">
-                  Taa Marbouta
-                </h2>
-                <p className="montserrat_regular text-start">
-                  Taa Marbouta is a language school based in Carthage, Tunis. We
-                  aim to better connect Tunisia with the world. Our focus is on
-                  quality language tuition, immersive experiences, and
-                  extra-curricular career development.
-                </p>
                 <div className="row">
+                  <h2 className="averiaseriflibre_bold text-start">
+                    Taa Marbouta
+                  </h2>
+                  <p className="montserrat_regular text-start">
+                    Taa Marbouta is a language school based in Carthage, Tunis.
+                    We aim to better connect Tunisia with the world. Our focus
+                    is on quality language tuition, immersive experiences, and
+                    extra-curricular career development.
+                  </p>
                   <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <p className="montserrat_regular text-start">
                       <FontAwesomeIcon icon="fa-solid fa-phone" /> +216 24 223
@@ -60,7 +60,7 @@ export const HomeFooter = () => {
           </div>
 
           <div className="d-flex justify-content-between py-4 my-4 border-top">
-            <p>© 2023 Company, Inc. All rights reserved.</p>
+            <p>© 2023 Taa Marbouta</p>
             <ul className="list-unstyled d-flex">
               <li className="ms-3 w-25">
                 <a

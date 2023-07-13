@@ -1,33 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
-import { getCourses } from "../redux/courses/courseActions";
-import { Card, Layout, Modal } from "antd";
+import { useNavigate } from "react-router-dom";
+import { getCourses, selectCourse } from "../redux/courses/courseActions";
+import { Card, Layout } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
-
 import Footer from "../components/Footer";
-import CourseModal from "../components/CourseModal";
 const { Content } = Layout;
 
 export const Courses = ({ ...props }) => {
+  const navTo = useNavigate()
   useEffect(() => {
     props.AllCourses();
   }, []);
 
-  const course = {
-    description: [],
-    sessions: [],
-    backgroundImage: [{ base64: "" }],
-  };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentObj, setCurrentObj] = useState(course);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  const selectCourse = (course) => {
+    if(course.title === 'French'){
+      navTo('/language-courses/learn-french')
+    }
+  }
 
   return (
     <>
@@ -51,13 +43,12 @@ export const Courses = ({ ...props }) => {
                           loading={props.isLoading}
                           hoverable
                           onClick={() => {
-                            showModal();
-                            setCurrentObj(course);
+                            selectCourse(course);
                           }}
                           cover={
                             <img
                               alt="example"
-                              src={course.backgroundImage.map((i)=>i.base64)}
+                              src={course.backgroundImage.map((i) => i.base64)}
                             />
                           }
                         >
@@ -70,14 +61,6 @@ export const Courses = ({ ...props }) => {
                   );
                 })}
               </div>
-              <Modal
-                open={isModalOpen}
-                onCancel={handleCancel}
-                width={1200}
-                footer={null}
-              >
-                <CourseModal {...{ currentObj }} />
-              </Modal>
             </>
           ) : (
             <div className="text-center">
@@ -99,11 +82,13 @@ export const Courses = ({ ...props }) => {
 
 const mapActionToProps = {
   AllCourses: getCourses,
+  Select: selectCourse,
 };
 
 const mapStateToProps = (state) => ({
   courses: state.courses.courses,
   isLoading: state.courses.loading,
+  selectedCourse: state.courses.courseObj,
 });
 
 export default connect(mapStateToProps, mapActionToProps)(Courses);

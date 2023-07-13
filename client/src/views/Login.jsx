@@ -122,7 +122,7 @@ export const Login = ({ ...props }) => {
                         <p>
                           Don’t have an account?
                           <Link to="/register" className="mx-1">
-                            Sign up
+                            Register
                           </Link>
                         </p>
                       </div>

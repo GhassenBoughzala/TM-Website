@@ -28,9 +28,9 @@ export const CoursesList = ({ ...props }) => {
     setDeleteModal(false);
   };
 
-  const prev_loading = usePrevious(props.isLoading);
+  const prev_loading = usePrevious(props.isLoadingCourse);
   useEffect(() => {
-    if (prev_loading && !props.isLoading) {
+    if (prev_loading && !props.isLoadingCourse) {
       if (props.msg === 1) {
         props.AllCourses();
       }
@@ -38,7 +38,7 @@ export const CoursesList = ({ ...props }) => {
         toast.warn("Something went wrong !");
       }
     }
-  }, [props.isLoading, props.courses]);
+  }, [props.isLoading]);
 
   return (
     <div className="row">
@@ -136,6 +136,7 @@ export const CoursesList = ({ ...props }) => {
 const mapStateToProps = (state) => ({
   courses: state.courses.courses,
   isLoading: state.courses.loading,
+  isLoadingCourse: state.courses.loading_create,
   msg: state.courses.codeMsg,
 });
 
