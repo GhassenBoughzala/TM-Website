@@ -16,6 +16,7 @@ import BG1 from "../assets/images/hbg-1.png";
 import BG2 from "../assets/images/hbg-2.png";
 import BG3 from "../assets/images/hbg-3.png";
 import HomeCourses from "../components/HomeCourses";
+import { ElfsightWidget } from "react-elfsight-widget";
 const { Content } = Layout;
 
 export const Home = () => {
@@ -71,7 +72,6 @@ export const Home = () => {
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="category_details">
@@ -84,13 +84,13 @@ export const Home = () => {
                   tongue of hundreds of millions of people around the world.
                   Modern Standard Arabic is the language of the media and formal
                   communication. At the Taa Marbouta Language Centre we provide
-                  Modern Standard Arabic classes targeting working
-                  professionals and students, whether they are at a beginner,
-                  intermediate or advanced level. Students can benefit from the
-                  flexible curriculum that we have designed, based on their
-                  interests and goals. Group classes are available in-person
-                  at our centre in Carthage, Tunis, while private classes
-                  can be taken online or in-person.
+                  Modern Standard Arabic classes targeting working professionals
+                  and students, whether they are at a beginner, intermediate or
+                  advanced level. Students can benefit from the flexible
+                  curriculum that we have designed, based on their interests and
+                  goals. Group classes are available in-person at our centre in
+                  Carthage, Tunis, while private classes can be taken online or
+                  in-person.
                 </p>
               </div>
             </div>
@@ -98,7 +98,7 @@ export const Home = () => {
         </div>
 
         <div className="container">
-            <HomeCourses/>
+          <HomeCourses />
         </div>
 
         <div className="category_details">
@@ -114,11 +114,11 @@ export const Home = () => {
                     culture. And of course, it is often called the language of
                     love. As a former French colony, Tunisia has long been a
                     Francophone country. At the Taa Marbouta Language Centre we
-                    provide French classes targeting working professionals
-                    and students, whether they are at a beginner, intermediate
-                    or advanced level. Group classes are available in-person
-                    at our centre in Carthage, Tunis, while private classes
-                    can be taken online or in-person.
+                    provide French classes targeting working professionals and
+                    students, whether they are at a beginner, intermediate or
+                    advanced level. Group classes are available in-person at our
+                    centre in Carthage, Tunis, while private classes can be
+                    taken online or in-person.
                   </p>
                   <Button
                     size="large"
@@ -152,9 +152,9 @@ export const Home = () => {
                     Libyan dialects, also known as Darija. Our experienced
                     teachers will give you lessons and courses that are tailored
                     to help you learn Tunisian Arabic and Libyan Arabic
-                    effectively. Group classes are available in-person at
-                    our centre in Carthage, Tunis, while private classes can
-                    be taken online or in-person.
+                    effectively. Group classes are available in-person at our
+                    centre in Carthage, Tunis, while private classes can be
+                    taken online or in-person.
                   </p>
                   <Button
                     size="large"
@@ -220,6 +220,19 @@ export const Home = () => {
             </div>
           </div>
         </motion.div>
+        <div className="m-2">
+          <div className="container">
+            <div className="row">
+              <h2 className="title title_center">Why Taa Marbouta?</h2>
+              <ElfsightWidget
+                widgetId="34f62dcf-0567-4469-b6c6-3f5f35113b3"
+                lazy
+                modern
+              />
+              
+            </div>
+          </div>
+        </div>
         <div className="m-2">
           <div className="container">
             <div className="row">

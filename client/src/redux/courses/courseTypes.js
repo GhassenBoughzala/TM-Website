@@ -9,3 +9,6 @@ export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAILED = "ADD_FAIL";
 export const DEL_SUCCESS = "DEL_SUCCESS";
 export const DEL_FAILED = "DEL_FAIL";
+export const UPDATE_LOADING = "UPDATE_LOADING";
+export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
+export const UPDATE_FAILED = "UPDATE_FAIL";

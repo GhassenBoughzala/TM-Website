@@ -10,23 +10,23 @@ import Footer from "../components/Footer";
 const { Content } = Layout;
 
 export const Courses = ({ ...props }) => {
-  const navTo = useNavigate()
+  const navTo = useNavigate();
   useEffect(() => {
     props.AllCourses();
   }, []);
 
   const selectCourse = (course) => {
-    if(course.title === 'French'){
-      navTo('/language-courses/learn-french')
+    if (course.title === "French") {
+      navTo("/language-courses/learn-french");
     }
-  }
+  };
 
   return (
     <>
       <Content className="container-fluid">
         <div className="container mb-lg-5">
           <h1 className="titre mt-5">Language Courses</h1>
-          {!props.isLoading ? (
+          {props.isLoading ? (
             <>
               <div className="row">
                 {props.courses.map((course, index) => {
@@ -40,7 +40,7 @@ export const Courses = ({ ...props }) => {
                       >
                         <Card
                           bodyStyle={{ height: 150 }}
-                          loading={props.isLoading}
+                          loading={!props.isLoading}
                           hoverable
                           onClick={() => {
                             selectCourse(course);
@@ -48,7 +48,10 @@ export const Courses = ({ ...props }) => {
                           cover={
                             <img
                               alt="example"
-                              src={course.backgroundImage.map((i) => i.base64)}
+                              src={course.backgroundImage.map((i) =>
+                                !i.base64 ? i.thumbUrl : i.base64
+                              )}
+                              className="w-50 my-2"
                             />
                           }
                         >

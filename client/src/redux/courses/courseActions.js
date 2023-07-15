@@ -12,6 +12,9 @@ import {
   LOADING,
   SELECT_FAIL,
   SELECT_SUCCESS,
+  UPDATE_FAILED,
+  UPDATE_LOADING,
+  UPDATE_SUCCESS,
 } from "./courseTypes";
 import setAuthToken from "../../helpers/authToken";
 
@@ -52,17 +55,42 @@ export const addCourses = (values) => async (dispatch) => {
   dispatch({ type: ADD_LOADING });
   setAuthToken(localStorage.accessToken);
   try {
-    const res = await axios
-      .post(`${ServerURL}/api/courses/`, body, config);
-    dispatch({
-      type: ADD_SUCCESS,
-      payload: res.data,
+    await axios.post(`${ServerURL}/api/courses/`, body, config).then((res) => {
+      if (res.status === 200) {
+        dispatch({
+          type: ADD_SUCCESS,
+          payload: res.data,
+        });
+        toast.success("Course successfully added");
+        //window.location.reload()
+      }
     });
-    toast.success("Course successfully added");
+    /*  toast.success("Course successfully added"); */
   } catch (err) {
     console.log(err);
     dispatch({
       type: ADD_FAILED,
+    });
+    toast.error("Something went wrong !");
+  }
+};
+
+export const updateCourses = (values, id) => async (dispatch) => {
+  const config = { headers: { "Content-Type": "application/json" } };
+  const body = JSON.stringify(values);
+  dispatch({ type: UPDATE_LOADING });
+  setAuthToken(localStorage.accessToken);
+  try {
+    const res = await axios.put(`${ServerURL}/api/courses/` + id, body, config);
+    dispatch({
+      type: UPDATE_SUCCESS,
+      payload: res.data,
+    });
+    toast.success("Course successfully updated");
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: UPDATE_FAILED,
     });
     toast.error("Something went wrong !");
   }

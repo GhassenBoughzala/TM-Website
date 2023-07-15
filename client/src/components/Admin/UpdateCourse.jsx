@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
+  UploadOutlined,
   PlusOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
 import { Button, DatePicker, Form, Input, Upload, Space, Card } from "antd";
 import { connect } from "react-redux";
-import { addCourses } from "../../redux/courses/courseActions";
-
+import { updateCourses } from "../../redux/courses/courseActions";
+import moment from "moment";
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-export const AddCourse = ({ ...props }) => {
+export const UpdateCourse = ({ ...props }) => {
   const dateFormat = "YYYY/MM/DD";
 
   const convertToBase64 = (file) => {
@@ -23,14 +24,16 @@ export const AddCourse = ({ ...props }) => {
 
   const handleFileUpload = async (e) => {
     let fileList = [...e.fileList];
-    fileList.forEach((file) => {
-      convertToBase64(file);
-    });
+    if (props.toUpdate.image.length === 0) {
+      fileList.forEach((file) => {
+        convertToBase64(file);
+      });
+    }
   };
 
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    props.Add(values);
+    props.Update(values, props.toUpdate._id);
     onReset();
   };
 
@@ -57,6 +60,18 @@ export const AddCourse = ({ ...props }) => {
     });
   };
 
+  const fieldsToUpdate = [
+    { name: ["title"], value: props.toUpdate.title },
+    { name: ["backgroundImage"], value: props.toUpdate.backgroundImage },
+    { name: ["description"], value: props.toUpdate.description },
+    {
+      name: ["sessions"],
+      value: props.toUpdate.sessions,
+    },
+    { name: ["priceDescription"], value: props.toUpdate.priceDescription },
+    { name: ["image"], value: props.toUpdate.image },
+  ];
+
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -71,16 +86,16 @@ export const AddCourse = ({ ...props }) => {
   );
 
   return (
-    <Card>
-      <h2 className=" blue-text">Add Course</h2>
+    <Card loading={!props.isLoading}>
+      <h3 className="blue-text">Update {props.toUpdate.title} Course</h3>
       <Form
+        fields={fieldsToUpdate}
         form={form}
         className="form"
         name="basic"
         layout="vertical"
         size={"medium"}
         style={{ maxWidth: 600 }}
-        initialValues={{ remember: true }}
         onFinish={onFinish}
         role="form"
         autoComplete="off"
@@ -114,7 +129,7 @@ export const AddCourse = ({ ...props }) => {
           {(fields, { add, remove }) => (
             <>
               {fields.map((field) => (
-                <Space key={field.key} >
+                <Space key={field.key}>
                   <Form.Item
                     noStyle
                     shouldUpdate={(prevValues, curValues) =>
@@ -154,50 +169,52 @@ export const AddCourse = ({ ...props }) => {
             </>
           )}
         </Form.List>
-        <Form.List name="sessions" onChange={handleSessionsChange}>
-          {(fields, { add, remove }) => (
-            <>
-              {fields.map((field) => (
-                <Space key={field.key}>
-                  <Form.Item
-                    noStyle
-                    shouldUpdate={(prevValues, curValues) =>
-                      prevValues.area !== curValues.area ||
-                      prevValues.sights !== curValues.sights
-                    }
+        {props.toUpdate.sessions.length !== 0 && (
+          <Form.List name="sessions" onChange={handleSessionsChange}>
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map((field) => (
+                  <Space key={field.key}>
+                    <Form.Item
+                      noStyle
+                      shouldUpdate={(prevValues, curValues) =>
+                        prevValues.area !== curValues.area ||
+                        prevValues.sights !== curValues.sights
+                      }
+                    >
+                      {() => (
+                        <Form.Item
+                          {...field}
+                          label="Sessions"
+                          name={[field.name, "sessions"]}
+                        >
+                          <RangePicker format={dateFormat} />
+                        </Form.Item>
+                      )}
+                    </Form.Item>
+
+                    <MinusCircleOutlined
+                      className="mx-1"
+                      onClick={() => remove(field.name)}
+                    />
+                  </Space>
+                ))}
+
+                <Form.Item>
+                  <Button
+                    className="text-start"
+                    type="dashed"
+                    onClick={() => add()}
+                    block
+                    icon={<PlusOutlined />}
                   >
-                    {() => (
-                      <Form.Item
-                        {...field}
-                        label="Sessions"
-                        name={[field.name, "sessions"]}
-                      >
-                        <RangePicker format={dateFormat} />
-                      </Form.Item>
-                    )}
-                  </Form.Item>
-
-                  <MinusCircleOutlined
-                    className="mx-1"
-                    onClick={() => remove(field.name)}
-                  />
-                </Space>
-              ))}
-
-              <Form.Item>
-                <Button
-                  className="text-start"
-                  type="dashed"
-                  onClick={() => add()}
-                  block
-                  icon={<PlusOutlined />}
-                >
-                  Add sessions
-                </Button>
-              </Form.Item>
-            </>
-          )}
-        </Form.List>
+                    Add sessions
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+        )}
         <Form.Item name="priceDescription" label="Price description">
           <TextArea rows={2} />
         </Form.Item>
@@ -206,24 +223,26 @@ export const AddCourse = ({ ...props }) => {
             <div className="form-outline text-end">
               <Form.Item>
                 <Button
-                  //loading={props.isLoading}
                   type="primary"
                   htmlType="submit"
                 >
-                  Confirm
+                  Update
                 </Button>
               </Form.Item>
             </div>
           </div>
+        
           <div className="col">
             <div className="form-outline text-start">
               <Form.Item>
                 <Button
-                  //loading={props.isLoading}
+                  danger
                   type="default"
-                  onClick={onReset}
+                  onClick={() => {
+                    props.setShowUpdate(false);
+                  }}
                 >
-                  Reset
+                  Cancel
                 </Button>
               </Form.Item>
             </div>
@@ -235,11 +254,11 @@ export const AddCourse = ({ ...props }) => {
 };
 
 const mapActionToProps = {
-  Add: addCourses,
+  Update: updateCourses,
 };
 const mapToStateProps = (state) => ({
   courses: state.courses.courses,
-  isLoading: state.courses.loading_create,
+  isLoading: state.courses.loading_update,
 });
 
-export default connect(mapToStateProps, mapActionToProps)(AddCourse);
+export default connect(mapToStateProps, mapActionToProps)(UpdateCourse);

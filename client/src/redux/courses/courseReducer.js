@@ -13,6 +13,9 @@ import {
   LOADING_SELECT,
   SELECT_FAIL,
   SELECT_SUCCESS,
+  UPDATE_FAILED,
+  UPDATE_LOADING,
+  UPDATE_SUCCESS,
 } from "./courseTypes";
 
 // Intial State
@@ -29,12 +32,12 @@ const intialState = {
 export default function (state = intialState, action) {
   switch (action.type) {
     case LOADING:
-      return { ...state, courses: [], loading: true, courseObj: null };
+      return { ...state, courses: [], loading: false, courseObj: null };
     case FETCH_SUCCESS:
       return {
         ...state,
         courses: [...action.payload],
-        loading: false,
+        loading: true,
         courseObj: null,
       };
     case FETCH_FAIL:
@@ -51,10 +54,28 @@ export default function (state = intialState, action) {
         ...state,
         courses: [...state.courses, action.payload],
         codeMsg: 1,
-        loading: true,
+        loading_create: true,
       };
     case ADD_FAILED:
-      return { ...state, codeMsg: 0, error: true, loading: true };
+      return { ...state, codeMsg: 0, error: true, loading_create: true };
+
+    case UPDATE_LOADING:
+      return {
+        ...state,
+        loading_update: false,
+        codeMsg: null,
+      };
+    case UPDATE_SUCCESS:
+      return {
+        ...state,
+        courses: state.courses.map((c) =>
+          c._id === action.payload._id ? action.payload : c
+        ),
+        codeMsg: 1,
+        loading_update: true,
+      };
+    case UPDATE_FAILED:
+      return { ...state, codeMsg: 0, error: true, loading_update: true };
 
     case DEL_SUCCESS:
       return {

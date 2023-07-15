@@ -20,7 +20,6 @@ const CourseSchema = new mongoose.Schema({
   },
   image: {
     type: Array,
-    required: true,
   },
   sessions: {
     type: Array,
@@ -36,8 +35,8 @@ const CourseSchema = new mongoose.Schema({
   },
   backgroundImage: {
     type: Array,
-    required: true
-  }
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Course", CourseSchema);

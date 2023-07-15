@@ -1,17 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Footer from "../components/Footer";
 import { Layout, Modal, Carousel, Image } from "antd";
 import { motion } from "framer-motion";
 import { classesDesc, icons } from "../helpers/StudentLifeDesc";
-import C1 from "../assets/images/student/c-1.jpeg";
-import C2 from "../assets/images/student/c-2.jpeg";
-import C3 from "../assets/images/student/c-3.jpeg";
-import C4 from "../assets/images/student/c-4.jpeg";
-import C5 from "../assets/images/student/c-5.jpeg";
-import C6 from "../assets/images/student/c-6.jpeg";
-import C7 from "../assets/images/student/c-7.jpeg";
-import C8 from "../assets/images/student/c-8.jpeg";
-import C9 from "../assets/images/student/c-9.jpeg";
 import Accommodation from "../components/Modals/Accomodation";
 import Travel from "../components/Modals/Travel";
 import LivingInTunis from "../components/Modals/Tunis";
@@ -38,6 +29,11 @@ export const StudentLife = (props) => {
       opacity: 1,
     },
   };
+
+  const imagesW = require.context("../assets/images/student/Course/W", true);
+  const imagesListW = imagesW.keys().map((image) => imagesW(image));
+  const imagesH = require.context("../assets/images/student/Course/H", true);
+  const imagesListH = imagesH.keys().map((image) => imagesH(image));
 
   const [ClassesModal, setClassesModal] = useState(false);
   const [AccModal, setAccModal] = useState(false);
@@ -135,23 +131,15 @@ export const StudentLife = (props) => {
                 })}
                 <p></p>
               </div>
-              <div className="mb-3 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <div className="mb-3 col-lg-5 col-md-5 col-sm-12 col-xs-12 text-center">
                 <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
-                  <div className="px-3">
-                    <Image src={C2} alt="Taa Marbouta" className="rounded" />
-                  </div>
-                  <div className="px-3">
-                    <Image src={C4} alt="Taa Marbouta" className="rounded" />
-                  </div>
-                  <div className="px-3">
-                    <Image src={C5} alt="Taa Marbouta" className="rounded" />
-                  </div>
-                  <div className="px-3">
-                    <Image src={C6} alt="Taa Marbouta" className="rounded" />
-                  </div>
-                  <div className="px-3">
-                    <Image src={C7} alt="Taa Marbouta" className="rounded" />
-                  </div>
+                  {imagesListH.map((img, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <Image width={300} src={img} preview={true} className="rounded" />
+                      </Fragment>
+                    );
+                  })}
                 </Carousel>
 
                 <Carousel
@@ -161,18 +149,13 @@ export const StudentLife = (props) => {
                   slidesToShow={1}
                   dots={false}
                 >
-                  <div className="px-3">
-                    <Image src={C1} alt="Taa Marbouta" className="rounded" />
-                  </div>
-                  <div className="px-3">
-                    <Image src={C8} alt="Taa Marbouta" className="rounded" />
-                  </div>
-                  <div className="px-3">
-                    <Image src={C9} alt="Taa Marbouta" className="rounded " />
-                  </div>
-                  <div className="px-3">
-                    <Image src={C3} alt="Taa Marbouta" className="rounded " />
-                  </div>
+                  {imagesListW.map((img, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <Image width={300} src={img} preview={true} className="rounded" />
+                      </Fragment>
+                    );
+                  })}
                 </Carousel>
               </div>
             </div>

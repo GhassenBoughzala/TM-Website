@@ -1261,3 +1261,8 @@ nav.list_compte ul li.is-active a {
 	box-shadow: 0 5px 10px rgba(72,78,85,.6);
 
 }
+
+.Main__Container-sc-1n4ud0o-0 > a {
+  display: none !important;
+  opacity: 0%;
+}
