@@ -26,6 +26,9 @@ import AdminView from "./views/AdminView";
 import StudentLife from "./views/StudentLife";
 import About from "./views/About";
 import CourseFR from "./views/courses/CourseFR";
+import CourseTN from "./views/courses/CourseTN";
+import CourseLB from "./views/courses/CourseLB";
+import CourseAR from "./views/courses/CourseAR";
 
 function App() {
   if (localStorage.accessToken) {
@@ -63,11 +66,11 @@ function App() {
               <Route exact path="/about" Component={About}></Route>
 
               <Route exact path="/language-courses" Component={Courses}></Route>
-              <Route exact path="/language-courses/learn-arabic" Component={Courses}></Route>
-              <Route exact path="/language-courses/learn-tunisian-arabic" Component={Courses}></Route>
-              <Route exact path="/language-courses/learn-libyan-arabic" Component={Courses}></Route>
+              <Route exact path="/language-courses/learn-arabic" Component={CourseAR}></Route>
+              <Route exact path="/language-courses/learn-tunisian-arabic" Component={CourseTN}></Route>
+              <Route exact path="/language-courses/learn-libyan-arabic" Component={CourseLB}></Route>
               <Route exact path="/language-courses/learn-french" Component={CourseFR}></Route>
-              <Route exact path="/language-courses/learn-english" Component={Courses}></Route>
+              <Route exact path="/language-courses/learn-english" Component={Courses}></Route> 
 
               <Route exact path="/profil" element={<UserRoute />}>
                 <Route exact path="/profil" Component={Profile}></Route>

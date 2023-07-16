@@ -10,7 +10,7 @@ export const CourseFR = ({ ...props }) => {
   const [currentObj, setstate] = useState(course);
   useEffect(() => {
     props.AllCourses();
-    setstate(props.courses[1]);
+    setstate(props.courses[0]);
     console.log(currentObj);
   }, []);
 

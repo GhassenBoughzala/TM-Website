@@ -19,6 +19,18 @@ export const Courses = ({ ...props }) => {
     if (course.title === "French") {
       navTo("/language-courses/learn-french");
     }
+    if (course.title === "Tunisian Arabic") {
+      navTo("/language-courses/learn-tunisian-arabic");
+    }
+    if (course.title === "Libyan Arabic") {
+      navTo("/language-courses/learn-libyan-arabic");
+    }
+    if (course.title === "English") {
+      navTo("/language-courses/learn-english");
+    }
+    if (course.title === "Modern Standard Arabic") {
+      navTo("/language-courses/learn-arabic");
+    }
   };
 
   return (
