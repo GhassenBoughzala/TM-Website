@@ -5,7 +5,7 @@ exports.validateCourse = [
   check("description").notEmpty().withMessage("description is required"),
   //check("price").notEmpty().withMessage("description is required"),
   check("priceDescription").notEmpty().withMessage("description is required"),
-  check("image").notEmpty().withMessage("image is required")
+  //check("image").notEmpty().withMessage("image is required")
 ];
 
 exports.isRequestValidated = (req, res, next) => {

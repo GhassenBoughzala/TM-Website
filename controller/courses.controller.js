@@ -23,7 +23,6 @@ router.post(
       let {
         title,
         description,
-        price,
         priceDescription,
         sessions,
         backgroundImage,
@@ -38,7 +37,6 @@ router.post(
       const newCourse = new Course({
         title,
         description,
-        price,
         priceDescription,
         sessions,
         backgroundImage,
@@ -48,7 +46,7 @@ router.post(
         .then(() =>
           res
             .status(200)
-            .json(`Course: ${newCourse.title} created successfully`)
+            .json(newCourse)
         );
     } catch (error) {
       res.status(500).json({
