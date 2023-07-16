@@ -55,15 +55,15 @@ export const CourseModal = ({ ...props }) => {
                         <p className="blue-text">
                           Session {index + 1}:
                           <b className="mx-1 text-dark">
-                            {moment(s.sessions[0]).utc().format("L")}
+                            {moment(s[0]).format("L")}
                           </b>
                           <b className="text-dark">
-                            - {moment(s.sessions[1]).utc().format("L")}
+                            - {moment(s[1]).format("L")}
                           </b>
                         </p>
                       </Fragment>
                     );
-                  })} 
+                  })}
                 </>
               )}
             </div>
@@ -72,11 +72,7 @@ export const CourseModal = ({ ...props }) => {
                 {imagesListH.map((img, index) => {
                   return (
                     <Fragment key={index}>
-                      <Image
-                        width={300}
-                        src={img}
-                        preview={true}
-                      />
+                      <Image width={300} src={img} preview={true} />
                     </Fragment>
                   );
                 })}
@@ -92,11 +88,7 @@ export const CourseModal = ({ ...props }) => {
                 {imagesListW.map((img, index) => {
                   return (
                     <Fragment key={index}>
-                      <Image
-                        width={300}
-                        src={img}
-                        preview={true}
-                      />
+                      <Image width={300} src={img} preview={true} />
                     </Fragment>
                   );
                 })}

@@ -16,6 +16,7 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 import AddCourse from "./AddCourse";
+import Courses from "../../views/Courses";
 import CourseModal from "../CourseModal";
 import usePrevious from "../../helpers/usePrevious";
 import UpdateCourse from "./UpdateCourse";
@@ -27,6 +28,7 @@ export const CoursesList = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setCurrentObj] = useState(course);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenCourses, setIsModalOpenCourses] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
   const [selctedId, setSelctedId] = useState();
   const [toUpdate, setToUpdate] = useState({});
@@ -35,6 +37,7 @@ export const CoursesList = ({ ...props }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
     setDeleteModal(false);
+    setIsModalOpenCourses(false);
   };
 
   const prev_loading = usePrevious(props.isLoadingCourse);
@@ -63,7 +66,19 @@ export const CoursesList = ({ ...props }) => {
 
   return (
     <div className="row">
-      <h3 className="yellow-text">Course Management</h3>
+      <h3 className="yellow-text">
+        Course Management 
+        <Button
+          className=" mx-3 mb-3"
+          type="default"
+          onClick={() => {
+            setIsModalOpenCourses(true);
+          }}
+        >
+          View Language Courses Page
+        </Button>
+      </h3>
+
       <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
         {!showUpdate ? (
           <AddCourse Create={props.Add} />
@@ -155,10 +170,19 @@ export const CoursesList = ({ ...props }) => {
       <Modal
         open={isModalOpen}
         onCancel={handleCancel}
-        width={1200}
+        width={1500}
         footer={null}
       >
         <CourseModal {...{ currentObj }}></CourseModal>
+      </Modal>
+
+      <Modal
+        open={isModalOpenCourses}
+        onCancel={handleCancel}
+        width={1500}
+        footer={null}
+      >
+        <Courses />
       </Modal>
 
       <Modal
