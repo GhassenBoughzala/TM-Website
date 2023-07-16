@@ -25,7 +25,6 @@ router.post(
         description,
         price,
         priceDescription,
-        image,
         sessions,
         backgroundImage,
       } = req.body;
@@ -41,9 +40,8 @@ router.post(
         description,
         price,
         priceDescription,
-        image,
         sessions,
-        backgroundImage
+        backgroundImage,
       });
       newCourse
         .save()
