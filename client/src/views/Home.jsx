@@ -16,7 +16,6 @@ import BG1 from "../assets/images/hbg-1.png";
 import BG2 from "../assets/images/hbg-2.png";
 import BG3 from "../assets/images/hbg-3.png";
 import HomeCourses from "../components/HomeCourses";
-import { ElfsightWidget } from "react-elfsight-widget";
 const { Content } = Layout;
 
 export const Home = () => {
@@ -224,12 +223,7 @@ export const Home = () => {
           <div className="container">
             <div className="row">
               <h2 className="title title_center">Why Taa Marbouta?</h2>
-              <ElfsightWidget
-                widgetId="34f62dcf-0567-4469-b6c6-3f5f35113b3"
-                lazy
-                modern
-              />
-              
+              <div className="elfsight-app-34f62dcf-0567-4469-b6c6-3f5f35113b3a"></div>
             </div>
           </div>
         </div>
