@@ -1,13 +1,8 @@
-import React, { useEffect } from "react";
-import {
-  UploadOutlined,
-  PlusOutlined,
-  MinusCircleOutlined,
-} from "@ant-design/icons";
+import React from "react";
+import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import { Button, DatePicker, Form, Input, Upload, Space, Card } from "antd";
 import { connect } from "react-redux";
 import { updateCourses } from "../../redux/courses/courseActions";
-import moment from "moment";
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
@@ -222,16 +217,13 @@ export const UpdateCourse = ({ ...props }) => {
           <div className="col">
             <div className="form-outline text-end">
               <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                >
+                <Button type="primary" htmlType="submit">
                   Update
                 </Button>
               </Form.Item>
             </div>
           </div>
-        
+
           <div className="col">
             <div className="form-outline text-start">
               <Form.Item>
