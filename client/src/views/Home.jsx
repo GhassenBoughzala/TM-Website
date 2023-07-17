@@ -222,7 +222,7 @@ export const Home = () => {
         <div className="m-2">
           <div className="container">
             <div className="row">
-              <h2 className="title title_center">Why Taa Marbouta?</h2>
+              <h2 className="title title_center">Testimonials</h2>
               <div className="elfsight-app-34f62dcf-0567-4469-b6c6-3f5f35113b3a"></div>
             </div>
           </div>
