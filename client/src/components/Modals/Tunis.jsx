@@ -1,5 +1,5 @@
 import React from "react";
-import { LivingDesc } from "../../helpers/StudentLifeDesc";
+import { LivingDesc } from "../../helpers/Constants";
 import { Carousel, Image } from "antd";
 
 export const LivingInTunis = (props) => {

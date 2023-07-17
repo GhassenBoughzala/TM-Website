@@ -1,5 +1,5 @@
 import React from 'react'
-import { TravelDesc } from '../../helpers/StudentLifeDesc';
+import { TravelDesc } from '../../helpers/Constants';
 import { Carousel, Image } from "antd";
 
 export const Travel = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { WorkDesc } from "../../helpers/StudentLifeDesc";
+import { WorkDesc } from "../../helpers/Constants";
 import { Carousel, Image } from "antd";
 
 export const Work = () => {
