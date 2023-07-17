@@ -31,7 +31,7 @@ router.post(
       });
     } else {
       try {
-        user = new User({ firstName, lastName, email, password });
+        user = new User({ firstName, lastName, email, phone, city, password });
         const savedUser = await user.save();
         if (!savedUser) {
           throw Error("Something went wrong saving the user");

@@ -11,7 +11,6 @@ export const CourseAR = ({ ...props }) => {
   useEffect(() => {
     props.AllCourses();
     setstate(props.courses[4]);
-    console.log(currentObj);
   }, []);
 
   return (

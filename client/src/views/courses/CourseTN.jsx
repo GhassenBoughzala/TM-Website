@@ -11,7 +11,7 @@ export const CourseTN = ({ ...props }) => {
   useEffect(() => {
     props.AllCourses();
     setstate(props.courses[1]);
-    console.log(currentObj);
+ 
   }, []);
 
   return (

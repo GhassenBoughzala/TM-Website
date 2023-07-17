@@ -68,11 +68,11 @@ export const CourseModal = ({ ...props }) => {
               )}
             </div>
             <div className="text-center mt-3">
-              <Carousel autoplay speed={1500} slidesToShow={2} dots={false}>
+              <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
                 {imagesListH.map((img, index) => {
                   return (
                     <Fragment key={index}>
-                      <Image width={300} src={img} preview={true} />
+                      <Image width={300} height={500} src={img} preview={true} className=" rounded" />
                     </Fragment>
                   );
                 })}
@@ -82,13 +82,13 @@ export const CourseModal = ({ ...props }) => {
                 className="py-4"
                 autoplay
                 speed={1250}
-                slidesToShow={2}
+                slidesToShow={1}
                 dots={false}
               >
                 {imagesListW.map((img, index) => {
                   return (
                     <Fragment key={index}>
-                      <Image width={300} src={img} preview={true} />
+                      <Image width={300} height={200} src={img} preview={true} className=" rounded"/>
                     </Fragment>
                   );
                 })}
