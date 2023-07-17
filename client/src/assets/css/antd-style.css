@@ -16,6 +16,10 @@
   border-bottom: 0;
 }
 
+.ant-menu{
+  flex: auto;
+}
+
 /*---Card */
 
 
@@ -53,7 +57,6 @@
 .ant-modal-content{
   overflow-y: auto;
   overflow-x: hidden;
-  height: 550px;
 }
 
 .ant-modal{
@@ -70,11 +73,17 @@
   align-items: center;
 }
 
-/*---SIder  */
+/*---Sider  */
 
 .ant-menu-light.ant-menu-root.ant-menu-inline{
   border-inline-end: 0px
 }
 .ant-menu-light.ant-menu-root.ant-menu-vertical{
   border-inline-end: 0px
+}
+
+
+/*---Button  */
+.ant-btn-primary{
+  background-color: var(--venice_blue) !important;
 }

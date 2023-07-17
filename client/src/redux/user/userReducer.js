@@ -1,16 +1,31 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { LOADING_USER, UPDATE_FAILED, UPDATE_SUCCESS } from "./userTypes";
+import {
+  ALL_FAILED,
+  ALL_SUCCESS,
+  LOADING_USER,
+  LOADING_USERS,
+  UPDATE_FAILED,
+  UPDATE_SUCCESS,
+} from "./userTypes";
 
 // Intial State
 const intialState = {
-  loadingUser: false,
+  loading: false,
   error: null,
   codeMsg: null,
-  user: localStorage.getItem("user")
+  user: localStorage.getItem("user"),
+  users: [],
 };
 
 export default function (state = intialState, action) {
   switch (action.type) {
+    case LOADING_USERS:
+      return { ...state, users: [], loading: true };
+    case ALL_SUCCESS:
+      return { ...state, users: [...action.payload], loading: false };
+    case ALL_FAILED:
+      return { ...state, error: true };
+
     case LOADING_USER:
       return { ...state, loading: true };
     case UPDATE_SUCCESS:

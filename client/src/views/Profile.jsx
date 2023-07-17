@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Layout, Button, Form, Input } from "antd";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { UserOutlined } from "@ant-design/icons";
 import { loadUser } from "../redux/auth/authActions";
@@ -27,8 +26,6 @@ export const Profile = ({ ...props }) => {
   //const User = props.user
 
   const [view, setView] = useState(false);
-  const navTo = useNavigate();
-
   const onFinish = (values) => {
     try {
       props.Update(values);
@@ -65,7 +62,7 @@ export const Profile = ({ ...props }) => {
                 <h1 className="montserrat_bold text-center blue-text ">
                   <UserOutlined style={{ fontSize: "100px" }} />
                 </h1>
-                <h3 className="text-center mx-lg-5 blue-text "> User informations </h3>
+                <h3 className="text-center mx-lg-5 blue-text "> User information </h3>
                 {!props.isLoading ? (
                   <div className="parag_style mt-4">
                     <p>
@@ -97,17 +94,7 @@ export const Profile = ({ ...props }) => {
                       >
                         Update informations
                       </Button>
-                      {User.role === "admin" && (
-                        <Button
-                          type="default"
-                          className="mt-4 mx-2"
-                          onClick={() => {
-                            navTo("/admin-dashboard");
-                          }}
-                        >
-                          Admin Dashboard
-                        </Button>
-                      )}
+                      
                     </div>
                   </div>
                 ) : (
@@ -182,7 +169,7 @@ export const Profile = ({ ...props }) => {
                       <div className="form-outline text-center">
                         <Form.Item>
                           <Button type="default" htmlType="submit">
-                            Submit
+                            Update
                           </Button>
                         </Form.Item>
                       </div>

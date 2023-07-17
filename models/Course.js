@@ -20,7 +20,6 @@ const CourseSchema = new mongoose.Schema({
   },
   image: {
     type: Array,
-    required: true,
   },
   sessions: {
     type: Array,
@@ -33,6 +32,10 @@ const CourseSchema = new mongoose.Schema({
     type: String,
     enum: ["published", "confirmed"],
     default: "published",
+  },
+  backgroundImage: {
+    type: Array,
+    required: true,
   },
 });
 

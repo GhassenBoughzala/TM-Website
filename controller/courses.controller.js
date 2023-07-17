@@ -20,8 +20,13 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { title, description, price, priceDescription, image, sessions } =
-        req.body;
+      let {
+        title,
+        description,
+        priceDescription,
+        sessions,
+        backgroundImage,
+      } = req.body;
       const exist = await Course.findOne({ title });
       if (exist) {
         return res.status(400).json({
@@ -32,17 +37,16 @@ router.post(
       const newCourse = new Course({
         title,
         description,
-        price,
         priceDescription,
-        image,
         sessions,
+        backgroundImage,
       });
       newCourse
         .save()
         .then(() =>
           res
             .status(200)
-            .json(`Course: ${newCourse.title} created successfully`)
+            .json(newCourse)
         );
     } catch (error) {
       res.status(500).json({

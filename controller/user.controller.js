@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const { verifyAccessToken } = require("../middleware/verify-token");
+const AdminAccess = require("../middleware/adminAuth");
+
 
 // @route   GET /user
 // @desc    Get User Information by token
@@ -50,17 +52,22 @@ router.put("/", verifyAccessToken, async (req, res) => {
 // @route   GET api/all
 // @desc    Get Courses
 // @access  Public
-router.get("/all", async (req, res) => {
-  try {
-    let users = await User.find({}).select("-subscription");
-    res.status(200).json(users);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      error: true,
-      msg: "server error",
-    });
+router.get(
+  "/all",
+  verifyAccessToken,
+  AdminAccess,
+  async (req, res) => {
+    try {
+      let users = await User.find({}).select("-subscription");
+      res.status(200).json(users);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        error: true,
+        msg: "server error",
+      });
+    }
   }
-});
+);
 
 module.exports = router;
