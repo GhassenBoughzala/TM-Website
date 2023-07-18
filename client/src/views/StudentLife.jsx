@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import Footer from "../components/Footer";
 import { Layout, Modal, Carousel, Image } from "antd";
 import { motion } from "framer-motion";
-import { classesDesc, icons } from "../helpers/StudentLifeDesc";
+import { classesDesc, icons } from "../helpers/Constants";
 import Accommodation from "../components/Modals/Accomodation";
 import Travel from "../components/Modals/Travel";
 import LivingInTunis from "../components/Modals/Tunis";
@@ -109,7 +109,7 @@ export const StudentLife = (props) => {
                       }}
                     >
                       <div className="img_icon align_all">{i.desc}</div>
-                      {i.name}
+                      {i.value}
                     </motion.li>
                   );
                 })}

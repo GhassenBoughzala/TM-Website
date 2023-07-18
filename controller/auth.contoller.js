@@ -22,7 +22,7 @@ router.post(
   validateSignupRequest,
   isRequestValidated,
   async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, phone, city, password } = req.body;
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
@@ -92,10 +92,11 @@ router.post(
           res.status(200).json({ accessToken, expiresIn, refreshToken });
           console.log("User logged in");
         } else if (user.role == "admin") {
-          res.status(200).json({ accessToken, expiresIn, refreshToken, access: true });
+          res
+            .status(200)
+            .json({ accessToken, expiresIn, refreshToken, access: true });
           console.log("Admin logged in");
         }
-        
       }
     } catch (err) {
       res.status(500).json({

@@ -16,12 +16,11 @@
   border-bottom: 0;
 }
 
-.ant-menu{
+.ant-menu {
   flex: auto;
 }
 
 /*---Card */
-
 
 .ant-card .ant-card-body {
   padding: 24px;
@@ -47,43 +46,47 @@
 }
 
 .carousel-content {
-  height: '160px';
-  color: '#fff';
-  background: '#364d79';
+  height: "160px";
+  color: "#fff";
+  background: "#364d79";
 }
 
 /*---Modal */
 
-.ant-modal-content{
+.ant-modal-content {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.ant-modal{
+.ant-modal {
   display: block;
 }
 
-.ant-btn .ant-btn-icon{
+.ant-btn .ant-btn-icon {
   display: inline-flex;
   align-items: center;
 }
 
-.ant-form-item-feedback-icon{
+.ant-form-item-feedback-icon {
   display: inline-flex;
   align-items: center;
 }
 
 /*---Sider  */
 
-.ant-menu-light.ant-menu-root.ant-menu-inline{
-  border-inline-end: 0px
+.ant-menu-light.ant-menu-root.ant-menu-inline {
+  border-inline-end: 0px;
 }
-.ant-menu-light.ant-menu-root.ant-menu-vertical{
-  border-inline-end: 0px
+.ant-menu-light.ant-menu-root.ant-menu-vertical {
+  border-inline-end: 0px;
 }
-
 
 /*---Button  */
-.ant-btn-primary{
+.ant-btn-primary {
   background-color: var(--venice_blue) !important;
+}
+
+/*---Input  */
+.ant-input-lg {
+  font-family: "averiaseriflibre_regular", Fallback, sans-serif;
 }

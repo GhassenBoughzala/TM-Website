@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Card, Layout, Button, Form, Input } from "antd";
+import { Card, Layout, Button, Form, Input, Select } from "antd";
 import { connect } from "react-redux";
 import Footer from "../components/Footer";
 import { UserOutlined } from "@ant-design/icons";
@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { UpdateUser } from "../redux/user/userActions";
 import { LoadingOutlined } from "@ant-design/icons";
 import usePrevious from "../helpers/usePrevious";
+import { countryList } from "../helpers/Constants";
 const { Content } = Layout;
 
 export const Profile = ({ ...props }) => {
@@ -56,13 +57,16 @@ export const Profile = ({ ...props }) => {
     <>
       <Content className="container-fluid">
         <div className="container my-5 ">
-          <div className="row justify-content-center">
+          <div className="row">
             <div className="col col-lg-4 col-md-12 col-sm-12 col-xs-12 align">
-              <Card style={{ height: 420 }}>
+              <Card style={{ height: 500 }}>
                 <h1 className="montserrat_bold text-center blue-text ">
                   <UserOutlined style={{ fontSize: "100px" }} />
                 </h1>
-                <h3 className="text-center mx-lg-5 blue-text "> User information </h3>
+                <h3 className="text-center mx-lg-5 blue-text ">
+                  {" "}
+                  User information{" "}
+                </h3>
                 {!props.isLoading ? (
                   <div className="parag_style mt-4">
                     <p>
@@ -81,7 +85,7 @@ export const Profile = ({ ...props }) => {
                     )}
                     {User.city && (
                       <p>
-                        City: <b> {User.city} </b>
+                        Country: <b> {User.city} </b>
                       </p>
                     )}
                     <div className="text-center">
@@ -92,14 +96,13 @@ export const Profile = ({ ...props }) => {
                           setView(true);
                         }}
                       >
-                        Update informations
+                        Update profil
                       </Button>
-                      
                     </div>
                   </div>
                 ) : (
                   <div className="text-center mt-5">
-                    <LoadingOutlined style={{ fontSize: 40 }} spin/>
+                    <LoadingOutlined style={{ fontSize: 40 }} spin />
                   </div>
                 )}
               </Card>
@@ -111,9 +114,9 @@ export const Profile = ({ ...props }) => {
                   animate={{ x: 0 }}
                   transition={{ type: "spring", stiffness: 100 }}
                   exit={{ x: "100vw" }}
-                  className="col col-lg-4 col-md-12 col-sm-12 col-xs-12 align"
+                  className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 align"
                 >
-                  <Card style={{ height: 420 }}>
+                  <Card style={{ height: 500, width: 1000 }}>
                     <Form
                       className="form"
                       name="basic"
@@ -159,19 +162,36 @@ export const Profile = ({ ...props }) => {
                         </div>
                         <div className="col-md-6">
                           <div className="form-outline text-start">
-                            <Form.Item label="City" name="city">
-                              <Input defaultValue={User.city} />
+                            <Form.Item label="Country" name="city">
+                              <Select
+                                showSearch
+                                defaultValue={User.city}
+                                options={countryList}
+                              ></Select>
                             </Form.Item>
                           </div>
                         </div>
                       </div>
 
-                      <div className="form-outline text-center">
-                        <Form.Item>
-                          <Button type="default" htmlType="submit">
-                            Update
-                          </Button>
-                        </Form.Item>
+                      <div className="row form-outline">
+                        <div className="col text-end">
+                          <Form.Item>
+                            <Button type="default" htmlType="submit">
+                              Update
+                            </Button>
+                          </Form.Item>
+                        </div>
+                        <div className="col">
+                          <Form.Item>
+                            <Button
+                              type="default"
+                              danger
+                              onClick={() => setView(false)}
+                            >
+                              Cancel
+                            </Button>
+                          </Form.Item>
+                        </div>
                       </div>
                     </Form>
                   </Card>
