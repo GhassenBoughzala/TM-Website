@@ -38,16 +38,16 @@ export const Home = () => {
 
   return (
     <>
-     
       <Content className="container-fluid">
-      <Helmet>
-        <title>Accueil</title>
-        <meta
-          name="description"
-          content="LE RECORD spécialisée dans la commercialisation de fournitures de confection - Entreprises Export - Textile - Accessoires - Avenue Habib Bourguiba, Nabeul 8000"
-        />
-        <link rel="canonical" href="/" />
-      </Helmet>
+        <Helmet>
+          <title>Taa Mrbouta</title>
+          <meta
+            name="description"
+            content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+          />
+          <link rel="canonical" href="/" />
+        </Helmet>
         <div>
           <div className="card border-0">
             <Carousel
@@ -196,7 +196,7 @@ export const Home = () => {
         <div className="m-2">
           <div className="container">
             <div className="row">
-              <h2 className="title title_center">Testimonials</h2>
+              <h2 className="title title_center">{t("Testimonials")}</h2>
               <div className="elfsight-app-34f62dcf-0567-4469-b6c6-3f5f35113b3a"></div>
             </div>
           </div>

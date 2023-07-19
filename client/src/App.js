@@ -30,6 +30,7 @@ import CourseFR from "./views/courses/CourseFR";
 import CourseTN from "./views/courses/CourseTN";
 import CourseLB from "./views/courses/CourseLB";
 import CourseAR from "./views/courses/CourseAR";
+import CourseEN from "./views/courses/CourseEN";
 
 function App() {
   if (localStorage.accessToken) {
@@ -72,7 +73,7 @@ function App() {
               <Route exact path="/language-courses/learn-tunisian-arabic" Component={CourseTN}></Route>
               <Route exact path="/language-courses/learn-libyan-arabic" Component={CourseLB}></Route>
               <Route exact path="/language-courses/learn-french" Component={CourseFR}></Route>
-              <Route exact path="/language-courses/learn-english" Component={Courses}></Route> 
+              <Route exact path="/language-courses/learn-english" Component={CourseEN}></Route> 
 
               <Route exact path="/profil" element={<UserRoute />}>
                 <Route exact path="/profil" Component={Profile}></Route>

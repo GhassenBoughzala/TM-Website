@@ -72,7 +72,7 @@ export const CourseModal = ({ ...props }) => {
                 {imagesListH.map((img, index) => {
                   return (
                     <Fragment key={index}>
-                      <Image width={300} height={500} src={img} preview={true} className=" rounded" />
+                      <Image width={300} height={500} src={img} alt={index} preview={true} className=" rounded" />
                     </Fragment>
                   );
                 })}
@@ -88,7 +88,7 @@ export const CourseModal = ({ ...props }) => {
                 {imagesListW.map((img, index) => {
                   return (
                     <Fragment key={index}>
-                      <Image width={300} height={200} src={img} preview={true} className=" rounded"/>
+                      <Image width={300} height={200} src={img} alt={index} preview={true} className=" rounded"/>
                     </Fragment>
                   );
                 })}

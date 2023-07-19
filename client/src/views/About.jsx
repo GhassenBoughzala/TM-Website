@@ -3,6 +3,7 @@ import { Layout, Collapse } from "antd";
 import TM from "../assets/images/logo_footer.png";
 import Land from "../assets/images/landscape.png";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet-async";
 
 const { Content } = Layout;
 
@@ -31,7 +32,7 @@ export const About = () => {
             not be hit by foreign exchange and transfer fees, whether you are
             paying in US Dollars, Euros, Pounds, or one of many other
             currencies. Our team is swift and professional, and will help you
-            focus on what matters most to you &#8211; learning a language!
+            focus on what matters most to you learning a language!
           </p>
           <p>
             Students from over 20 countries have joined us for classes since
@@ -49,6 +50,15 @@ export const About = () => {
   return (
     <>
       <Content className="container-fluid">
+      <Helmet>
+          <title>About Taa Marbouta</title>
+          <meta
+            name="description"
+            content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+          />
+          <link rel="canonical" href="/about" />
+        </Helmet>
         <div className="container">
           <div className="aboutus_page full_espace_padding">
             <div className="container-fluid">
@@ -61,7 +71,7 @@ export const About = () => {
                       a resource for language learning and professional
                       development. We are based in the beautiful seaside suburb
                       of Carthage in Tunisia, just two streets from the
-                      Mediterranean Sea &#8211; so close that our students often
+                      Mediterranean Sea so close that our students often
                       go swimming after class during the warmer months of the
                       year!
                     </p>

@@ -9,6 +9,7 @@ import LivingInTunis from "../components/Modals/Tunis";
 import Work from "../components/Modals/Work";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Helmet } from "react-helmet-async";
 
 const { Content } = Layout;
 export const StudentLife = () => {
@@ -94,6 +95,15 @@ export const StudentLife = () => {
 
   return (
     <Content>
+      <Helmet>
+        <title>Student Life</title>
+        <meta
+          name="description"
+          content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+        />
+        <link rel="canonical" href="/student-life" />
+      </Helmet>
       <div className="page_style full_espace_padding">
         <div className="container-fluid">
           <div className="row">

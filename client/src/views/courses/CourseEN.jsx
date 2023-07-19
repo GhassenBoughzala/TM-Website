@@ -4,6 +4,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import CourseModal from "../../components/CourseModal";
 import { connect } from "react-redux";
 import { getCourses } from "../../redux/courses/courseActions";
+import { Helmet } from "react-helmet-async";
 
 export const CourseEN = ({ ...props }) => {
   const course = { description: [], sessions: [] };
@@ -11,11 +12,19 @@ export const CourseEN = ({ ...props }) => {
   useEffect(() => {
     props.AllCourses();
     setstate(props.courses[3]);
- 
   }, []);
 
   return (
     <div className=" container-fluid m-3">
+      <Helmet>
+        <title>English Course</title>
+        <meta
+          name="description"
+          content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+        />
+        <link rel="canonical" href="/language-courses/learn-english" />
+      </Helmet>
       {!props.isLoading ? (
         <>
           <div className="text-center">
@@ -29,7 +38,7 @@ export const CourseEN = ({ ...props }) => {
           </div>
         </>
       ) : (
-       <CourseModal {...{currentObj}}/>
+        <CourseModal {...{ currentObj }} />
       )}
     </div>
   );
