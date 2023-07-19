@@ -43,12 +43,11 @@ export const Home = () => {
           <title>Taa Mrbouta</title>
           <meta
             name="description"
-            content="Taa Marbouta is a language school based in Carthage,
-          Tunis. We aim to better connect Tunisia with the world."
+            content="Taa Marbouta is a language school based in Carthage, Tunis. We aim to better connect Tunisia with the world."
           />
           <link rel="canonical" href="/" />
         </Helmet>
-        <div>
+        <div className="row">
           <div className="card border-0">
             <Carousel
               className="cover-img text-center"
@@ -61,8 +60,8 @@ export const Home = () => {
               <img src={BG2} alt="Taa Marbouta" className="h-50" />
               <img src={BG3} alt="Taa Marbouta" className="h-50" />
             </Carousel>
-            <div className="card-img-overlay ">
-              <div className="row">
+            <div className="card-img-overlay justify-content-center">
+              <div className="row ">
                 <div className="col-lg-5 col-md-5 col-sm-5 col-xs-5 align">
                   <div className="contenu_header_home">
                     <h1 className="averiaseriflibre_bold">Taa Marbouta</h1>
@@ -75,14 +74,14 @@ export const Home = () => {
                   </div>
                 </div>
                 <div className="col-lg-7 col-md-7 col-sm-7 col-xs-7 align">
-                  <img src={HeaderHome} alt="Taa Marbouta" />
+                  <img src={HeaderHome} alt="Taa Marbouta" className="w-75"  />
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="category_details">
+        <div className="category_details row mt-5">
           <div className="container">
             <div className="row">
               <h2 className="title title_center">{t("HomeT2")}</h2>
@@ -97,7 +96,7 @@ export const Home = () => {
           <HomeCourses />
         </div>
 
-        <div className="category_details">
+        <div className="category_details row m-2">
           <div className="container">
             <div className="row">
               <Col span={16}>
@@ -193,14 +192,7 @@ export const Home = () => {
             </div>
           </div>
         </motion.div>
-        <div className="m-2">
-          <div className="container">
-            <div className="row">
-              <h2 className="title title_center">{t("Testimonials")}</h2>
-              <div className="elfsight-app-34f62dcf-0567-4469-b6c6-3f5f35113b3a"></div>
-            </div>
-          </div>
-        </div>
+       
         <div className="m-2">
           <div className="container">
             <div className="row">

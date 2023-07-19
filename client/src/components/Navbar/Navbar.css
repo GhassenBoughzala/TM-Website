@@ -9,6 +9,9 @@
   top: 0;
   z-index: 99990;
   position: sticky;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 .nav-header {

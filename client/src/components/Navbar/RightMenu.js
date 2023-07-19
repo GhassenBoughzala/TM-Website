@@ -43,7 +43,7 @@ const RightMenu = ({ ...props }) => {
               }}
             ></Button>
           )}
-          <Tooltip placement="bottom" title={t("Language")} dropdownAlign={{ offset: [-40, 4] }}>
+          <Tooltip placement="leftTop" title={t("Language")} dropdownAlign={{ offset: [-40, 4] }}>
             <Button
               type="default"
               size="default"
