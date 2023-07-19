@@ -365,7 +365,6 @@ header .header_three {
 .header_home {
   padding-top: 60px;
   background-size: cover;
-  background-color: white;
 }
 
 .header_home h1,
@@ -453,7 +452,6 @@ header .header_three {
 /*-- why_taamarbouta */
 .why_taamarbouta {
   margin: 40px 0;
-  padding: 45px 0;
 }
 
 .why_taamarbouta h3 {

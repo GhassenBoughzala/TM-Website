@@ -9,13 +9,15 @@ import thunk from "redux-thunk";
 import auth from "./auth/authReducer";
 import courses from "./courses/courseReducer";
 import user from "./user/userReducer";
+import subs from "./subs/subsReducer";
 
 const intialState = {};
 
 const rootReducer = combineReducers({
   auth,
   courses,
-  user
+  user,
+  subs
 });
 
 const store = createStore(

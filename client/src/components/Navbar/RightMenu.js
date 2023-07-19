@@ -43,7 +43,7 @@ const RightMenu = ({ ...props }) => {
               }}
             ></Button>
           )}
-          <Tooltip placement="leftTop" title={t("Language")} dropdownAlign={{ offset: [-40, 4] }}>
+          <Tooltip placement="bottom" title={t("Language")} dropdownAlign={{ offset: [-40, 4] }}>
             <Button
               type="default"
               size="default"
@@ -83,9 +83,10 @@ const RightMenu = ({ ...props }) => {
             type="default"
             size="default"
             className="mx-2"
+            icon={<GlobalOutlined />}
             onClick={handleLanguage}
           >
-            {t("Language")}
+            | {t("LanguageCode")}
           </Button>
           <Link to="/login">
             <Button type="default" size="default">

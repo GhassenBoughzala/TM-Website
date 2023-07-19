@@ -61,20 +61,24 @@ export const Home = () => {
               <img src={BG3} alt="Taa Marbouta" className="h-50" />
             </Carousel>
             <div className="card-img-overlay justify-content-center">
-              <div className="row ">
-                <div className="col-lg-5 col-md-5 col-sm-5 col-xs-5 align">
-                  <div className="contenu_header_home">
-                    <h1 className="averiaseriflibre_bold">Taa Marbouta</h1>
-                    <h2 className="averiaseriflibre_bold">
-                      {t("LanguageCourses")}
-                    </h2>
-                    <div className="parag_style">
-                      <p className="text-dark">{t("HomeP1")}</p>
+              <div className=" header_home">
+                <div className=" container">
+                  <div className="row">
+                    <div className="col col-lg-5 col-md-5 col-sm-5  align">
+                      <div className="contenu_header_home">
+                        <h2 className="averiaseriflibre_bold">Taa Marbouta</h2>
+                        <h2 className="averiaseriflibre_bold">
+                          {t("LanguageCourses")}
+                        </h2>
+                        <div className="parag_style">
+                          <p className="text-dark">{t("HomeP1")}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col col-lg-7 col-md-7 col-sm-7 align">
+                      <img src={HeaderHome} alt="Taa Marbouta" />
                     </div>
                   </div>
-                </div>
-                <div className="col-lg-7 col-md-7 col-sm-7 col-xs-7 align">
-                  <img src={HeaderHome} alt="Taa Marbouta" className="w-75"  />
                 </div>
               </div>
             </div>
@@ -154,20 +158,21 @@ export const Home = () => {
                   <img className="card-img" alt="example" src={Land} />
                   <div className="card-img-overlay">
                     <div className="row m-3 display-flex">
-                      <div className="d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <img
-                          className="w-50 mx-auto d-block"
+                          width={170}
+                          className=" mx-auto d-block"
                           src={Ev}
                           alt="Quality Team"
                         />
                         <h4 className="text-center blue-text">
-                          {" "}
-                          {t("HomeTeam")}{" "}
+                          {t("HomeTeam")}
                         </h4>
                       </div>
-                      <div className="d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <img
-                          className="w-50 mx-auto d-block"
+                          width={170}
+                          className="mx-auto d-block"
                           src={Cul}
                           alt="Quality Team"
                         />
@@ -175,9 +180,10 @@ export const Home = () => {
                           {t("HomeCul")}
                         </h4>
                       </div>
-                      <div className="d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <img
-                          className="w-50 mx-auto d-block"
+                          width={170}
+                          className="mx-auto d-block"
                           src={Ex}
                           alt="Quality Team"
                         />
@@ -192,7 +198,7 @@ export const Home = () => {
             </div>
           </div>
         </motion.div>
-       
+
         <div className="m-2">
           <div className="container">
             <div className="row">
