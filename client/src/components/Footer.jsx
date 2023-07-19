@@ -2,11 +2,13 @@ import React from "react";
 import { Layout } from "antd";
 import { InstagramFilled, FacebookFilled } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useTranslation } from "react-i18next";
 import TM from "../assets/images/TM.png";
 const { Footer } = Layout;
 
 export const HomeFooter = () => {
+  const { t } = useTranslation();
+
   return (
     <Footer>
       <div className="container position-sticky">
@@ -24,10 +26,7 @@ export const HomeFooter = () => {
                       Taa Marbouta
                     </h2>
                     <p className="montserrat_regular text-start">
-                      Taa Marbouta is a language school based in Carthage,
-                      Tunis. We aim to better connect Tunisia with the world.
-                      Our focus is on quality language tuition, immersive
-                      experiences, and extra-curricular career development.
+                      {t("Footer")}
                     </p>
                   </div>
                   <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
