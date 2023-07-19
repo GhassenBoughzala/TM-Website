@@ -30,7 +30,7 @@
 }
 
 .navbar-menu {
-  width: calc(100% - 80px);
+  width: calc(100% - 50px);
   float: left;
 }
 .navbar-menu .ant-layout-header {

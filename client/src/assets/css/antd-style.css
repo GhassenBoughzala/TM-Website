@@ -20,6 +20,17 @@
   flex: auto;
 }
 
+.ant-btn-menu {
+  color: var(--venice_blue);
+  background-color: white;
+  border-radius: 0px;
+}
+.ant-btn-menu:hover {
+  color: var(--venice_blue);
+  border-bottom: 1.5px solid;
+  border-bottom-color: var(--lightning_yellow);
+}
+
 /*---Card */
 
 .ant-card .ant-card-body {

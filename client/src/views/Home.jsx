@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Col, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import Footer from "../components/Footer";
 import Partners from "../components/Carousel";
@@ -37,7 +38,16 @@ export const Home = () => {
 
   return (
     <>
+     
       <Content className="container-fluid">
+      <Helmet>
+        <title>Accueil</title>
+        <meta
+          name="description"
+          content="LE RECORD spécialisée dans la commercialisation de fournitures de confection - Entreprises Export - Textile - Accessoires - Avenue Habib Bourguiba, Nabeul 8000"
+        />
+        <link rel="canonical" href="/" />
+      </Helmet>
         <div>
           <div className="card border-0">
             <Carousel
@@ -172,7 +182,9 @@ export const Home = () => {
                           src={Ex}
                           alt="Quality Team"
                         />
-                        <h4 className="text-center blue-text">{t("HomeWork")}</h4>
+                        <h4 className="text-center blue-text">
+                          {t("HomeWork")}
+                        </h4>
                       </div>
                     </div>
                   </div>

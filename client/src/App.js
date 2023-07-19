@@ -10,6 +10,7 @@ import Home from "./views/Home";
 import Navbar from "./components/Navbar/Navbar";
 import { Layout, Space } from "antd";
 import { Provider } from "react-redux";
+import { HelmetProvider } from "react-helmet-async";
 import store from "./redux/store";
 import Login from "./views/Login";
 import Register from "./views/Register";
@@ -54,7 +55,8 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <ToastContainer position="bottom-right" />
-        <Space direction="vertical" style={{ width: "100%" }} size={[0, 48]}>
+        <HelmetProvider>
+          <Space direction="vertical" style={{ width: "100%" }} size={[0, 48]}>
           <Layout style={{ backgroundColor: "white" }}>
             <Navbar />
             <Routes>
@@ -86,6 +88,8 @@ function App() {
             </Routes>
           </Layout>
         </Space>
+        </HelmetProvider>
+        
       </BrowserRouter>
     </Provider>
   );

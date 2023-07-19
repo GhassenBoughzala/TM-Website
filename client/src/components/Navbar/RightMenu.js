@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Button, Switch } from "antd";
+import { Button, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import {
   UserOutlined,
   LogoutOutlined,
   SettingOutlined,
+  GlobalOutlined,
 } from "@ant-design/icons";
 import { logout } from "../../redux/auth/authActions";
 import { connect } from "react-redux";
@@ -20,6 +21,12 @@ const RightMenu = ({ ...props }) => {
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   });
+
+  const handleLanguage = () => {
+    const selectedLan = localStorage.getItem("i18nextLng");
+    if (selectedLan === "fr") i18next.changeLanguage("en");
+    else i18next.changeLanguage("fr");
+  };
   return (
     <>
       {props.isAuth ? (
@@ -36,7 +43,17 @@ const RightMenu = ({ ...props }) => {
               }}
             ></Button>
           )}
-          <Switch checkedChildren="ENG" unCheckedChildren="FR" defaultChecked />
+          <Tooltip placement="bottom" title={t("Language")} dropdownAlign={{ offset: [-40, 4] }}>
+            <Button
+              type="default"
+              size="default"
+              shape="circle"
+              className=" blue-text"
+              icon={<GlobalOutlined />}
+              onClick={handleLanguage}
+            ></Button>
+          </Tooltip>
+
           <Button
             type="default"
             size="default"
@@ -62,16 +79,14 @@ const RightMenu = ({ ...props }) => {
         </div>
       ) : (
         <div className="mt-1">
-          <Switch
-            checkedChildren="ENG"
-            unCheckedChildren="FR"
-            defaultChecked
+          <Button
+            type="default"
+            size="default"
             className="mx-2"
-            onChange={(checked) => {
-              if (checked) i18next.changeLanguage("en");
-              else i18next.changeLanguage("fr");
-            }}
-          />
+            onClick={handleLanguage}
+          >
+            {t("Language")}
+          </Button>
           <Link to="/login">
             <Button type="default" size="default">
               {t("SignIn")}
