@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { countries } from "countries-list";
-
 
 export const classesDesc = [
   {
@@ -97,29 +95,6 @@ export const WorkDesc = [
   },
   {
     desc: "With this support, the Taa Marbouta Language Centre is able to help students set themselves apart. If they can graduate university with strong language skills and international work experience, they will stand out from the crowd. They will stand a much stronger chance of finding work in international organizations, and they will be more confident in the future of about living abroad.",
-  },
-];
-
-export const icons = [
-  {
-    value: "Classes",
-    desc: <FontAwesomeIcon icon="fa-solid fa-puzzle-piece" />,
-  },
-  {
-    value: "Accommodation",
-    desc: <FontAwesomeIcon icon="fa-solid fa-house-chimney" />,
-  },
-  {
-    value: "Travel",
-    desc: <FontAwesomeIcon icon="fa-solid fa-plane" />,
-  },
-  {
-    value: "Living in Tunis",
-    desc: <FontAwesomeIcon icon="fa-solid fa-star-and-crescent" />,
-  },
-  {
-    value: "Work & Research",
-    desc: <FontAwesomeIcon icon="fa-solid fa-atom" />,
   },
 ];
 

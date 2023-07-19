@@ -2,14 +2,17 @@ import React, { useState, Fragment } from "react";
 import Footer from "../components/Footer";
 import { Layout, Modal, Carousel, Image } from "antd";
 import { motion } from "framer-motion";
-import { classesDesc, icons } from "../helpers/Constants";
+import { classesDesc } from "../helpers/Constants";
 import Accommodation from "../components/Modals/Accomodation";
 import Travel from "../components/Modals/Travel";
 import LivingInTunis from "../components/Modals/Tunis";
 import Work from "../components/Modals/Work";
+import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { Content } = Layout;
-export const StudentLife = (props) => {
+export const StudentLife = () => {
+  const { t } = useTranslation();
   const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
@@ -29,6 +32,29 @@ export const StudentLife = (props) => {
       opacity: 1,
     },
   };
+
+  const icons = [
+    {
+      value: t("Classes"),
+      desc: <FontAwesomeIcon icon="fa-solid fa-puzzle-piece" />,
+    },
+    {
+      value: t("Accommodation"),
+      desc: <FontAwesomeIcon icon="fa-solid fa-house-chimney" />,
+    },
+    {
+      value: t("Travel"),
+      desc: <FontAwesomeIcon icon="fa-solid fa-plane" />,
+    },
+    {
+      value: t("Living in Tunis"),
+      desc: <FontAwesomeIcon icon="fa-solid fa-star-and-crescent" />,
+    },
+    {
+      value: t("WorkResearch"),
+      desc: <FontAwesomeIcon icon="fa-solid fa-atom" />,
+    },
+  ];
 
   const imagesW = require.context("../assets/images/student/Course/W", true);
   const imagesListW = imagesW.keys().map((image) => imagesW(image));
@@ -71,24 +97,12 @@ export const StudentLife = (props) => {
       <div className="page_style full_espace_padding">
         <div className="container-fluid">
           <div className="row">
-            <h1 className="titre">Student Life</h1>
+            <h1 className="titre">{t("StudentLife")}</h1>
             <div className="mb-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
               <div className="parag_style style_link">
-                <p>
-                  While the Taa Marbouta Language Centre revolves around
-                  language classes, the rest of your time in Tunisia is just as
-                  important to us. We are willing and able to facilitate every
-                  step of your adventure, from finding accommodation to travel,
-                  from engaging fully in Tunisian culture and society to
-                  navigating life in Tunisia.
-                </p>
-                <p>
-                  We can also try to find you suitable work experience or
-                  research opportunities. For anyone coming from abroad, we will
-                  reach out to you when you make your booking to see if we can
-                  facilitate any of your arrangements.
-                </p>
-                <p>Come and enjoy student life in Tunisia!</p>
+                <p>{t("SLP1")} </p>
+                <p>{t("SLP2")} </p>
+                <p>{t("SLP3")} </p>
               </div>
             </div>
             <div className="mb-3 col-lg-8 col-md-12 col-sm-12 col-xs-12">
@@ -136,7 +150,12 @@ export const StudentLife = (props) => {
                   {imagesListH.map((img, index) => {
                     return (
                       <Fragment key={index}>
-                        <Image width={300} src={img} preview={true} className="rounded" />
+                        <Image
+                          width={300}
+                          src={img}
+                          preview={true}
+                          className="rounded"
+                        />
                       </Fragment>
                     );
                   })}
@@ -152,7 +171,12 @@ export const StudentLife = (props) => {
                   {imagesListW.map((img, index) => {
                     return (
                       <Fragment key={index}>
-                        <Image width={300} src={img} preview={true} className="rounded" />
+                        <Image
+                          width={300}
+                          src={img}
+                          preview={true}
+                          className="rounded"
+                        />
                       </Fragment>
                     );
                   })}

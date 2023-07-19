@@ -1,23 +1,25 @@
 import React from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const LeftMenu = ({ mode }) => {
+  const { t } = useTranslation();
   const items = [
     {
-      label: (<> Home <Link to="/" /> </>),
+      label: (<> {t("Home")} <Link to="/" /> </>),
       key: "/" || "",
     },    
     {
-      label: (<> Language Courses <Link to="/language-courses" /> </>),
+      label: (<> {t("LanguageCourses")} <Link to="/language-courses" /> </>),
       key: "/language-courses",
     },    
     {
-      label: (<> Student Life <Link to="/student-life" /> </>),
+      label: (<> {t("StudentLife")} <Link to="/student-life" /> </>),
       key: "/student-life",
     },    
     {
-      label: (<> About <Link to="/about" /> </>),
+      label: (<> {t("About")} <Link to="/about" /> </>),
       key: "/about",
     },
   ];

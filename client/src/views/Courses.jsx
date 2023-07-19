@@ -7,9 +7,12 @@ import { Card, Layout } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
+import { useTranslation } from "react-i18next";
+
 const { Content } = Layout;
 
 export const Courses = ({ ...props }) => {
+  const { t } = useTranslation();
   const navTo = useNavigate();
   useEffect(() => {
     props.AllCourses();
@@ -37,7 +40,7 @@ export const Courses = ({ ...props }) => {
     <>
       <Content className="container-fluid">
         <div className="container mb-lg-5">
-          <h1 className="titre mt-5">Language Courses</h1>
+          <h1 className="titre mt-5">{t("LanguageCourses")}</h1>
           {props.isLoading ? (
             <>
               <div className="row">

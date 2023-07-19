@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "antd";
+import { Button, Switch } from "antd";
 import { Link } from "react-router-dom";
 import {
   UserOutlined,
@@ -9,9 +9,12 @@ import {
 import { logout } from "../../redux/auth/authActions";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 const RightMenu = ({ ...props }) => {
   const navTo = useNavigate();
+  const { t } = useTranslation();
   const [User] = useState(() => {
     const saved = localStorage.getItem("user");
     const initialValue = JSON.parse(saved);
@@ -32,7 +35,8 @@ const RightMenu = ({ ...props }) => {
                 navTo("/admin-dashboard");
               }}
             ></Button>
-          )}{" "}
+          )}
+          <Switch checkedChildren="ENG" unCheckedChildren="FR" defaultChecked />
           <Button
             type="default"
             size="default"
@@ -58,14 +62,24 @@ const RightMenu = ({ ...props }) => {
         </div>
       ) : (
         <div className="mt-1">
+          <Switch
+            checkedChildren="ENG"
+            unCheckedChildren="FR"
+            defaultChecked
+            className="mx-2"
+            onChange={(checked) => {
+              if (checked) i18next.changeLanguage("en");
+              else i18next.changeLanguage("fr");
+            }}
+          />
           <Link to="/login">
             <Button type="default" size="default">
-              Sign in
+              {t("SignIn")}
             </Button>
           </Link>
           <Link to="/register" className="mx-2">
             <Button type="default" size="default">
-              Register
+              {t("Register")}
             </Button>
           </Link>
         </div>

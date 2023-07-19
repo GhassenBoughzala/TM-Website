@@ -1,9 +1,11 @@
 import React from "react";
 import C1 from "../assets/images/pxfuel.jpg";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const HomeCourses = () => {
   const navTo = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className="row justify-content-center">
@@ -19,12 +21,11 @@ export const HomeCourses = () => {
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center blue-text">
-              Learn Arabic
+              {t("LearnAR")}
             </h3>
 
             <p className=" parag_style text-black text-center">
-              This option includes twenty hours of language study per week and
-              is perfect if you are also looking to gain real-world work.
+              {t("LearnAR-P")}
             </p>
           </div>
         </div>
@@ -42,12 +43,11 @@ export const HomeCourses = () => {
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center yellow-text">
-              Arabic Tunisian
+              {t("LearnTN")}
             </h3>
 
             <p className=" parag_style text-black text-center">
-              This option includes twenty hours of language study per week and
-              is perfect if you are also looking to gain real-world work.
+              {t("LearnLB-P")}
             </p>
           </div>
         </div>
@@ -65,12 +65,11 @@ export const HomeCourses = () => {
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center blue-text">
-              Libyan Courses
+              {t("LearnLB")}
             </h3>
 
             <p className=" parag_style text-black text-center">
-              If you are a working professional or simply have other commitments
-              during the day, these evening courses are for you.
+              {t("LearnTN-P")}
             </p>
           </div>
         </div>
