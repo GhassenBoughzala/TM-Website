@@ -22,7 +22,7 @@
 
 .ant-btn-menu {
   color: var(--venice_blue);
-  background-color: white;
+  background-color: transparent;
   border-radius: 0px;
 }
 .ant-btn-menu:hover {
@@ -100,4 +100,47 @@
 /*---Input  */
 .ant-input-lg {
   font-family: "averiaseriflibre_regular", Fallback, sans-serif;
+}
+
+/*-- subscription button  */
+.subs-btn {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 18px;
+  color: var(--lightning_yellow);
+  border: 1px solid var(--lightning_yellow);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.subs-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: var(--lightning_yellow);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.subs-btn:hover::before {
+  scale: 3;
+}
+
+.subs-btn:hover {
+  color: var(--venice_blue);
+  scale: 1.2;
+  box-shadow: 0 0px 40px var(--lightning_yellow);
+}
+
+.subs-btn:active {
+  scale: 1;
 }

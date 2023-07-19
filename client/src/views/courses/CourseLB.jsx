@@ -5,13 +5,26 @@ import CourseModal from "../../components/CourseModal";
 import { connect } from "react-redux";
 import { getCourses } from "../../redux/courses/courseActions";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
+import { ServerURL } from "../../helpers/urls";
 
 export const CourseLB = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setstate] = useState(course);
+  const [loading, setloading] = useState(true);
   useEffect(() => {
-    props.AllCourses();
-    setstate(props.courses[2]);
+    const id = "64b02844f678c4606a7cd3e3";
+    setloading(false);
+    axios
+      .get(`${ServerURL}/api/courses/${id}`)
+      .then((res) => {
+        setloading(true);
+        setstate(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setstate(props.selectedCourse);
   }, []);
 
   return (
@@ -25,7 +38,7 @@ export const CourseLB = ({ ...props }) => {
         />
         <link rel="canonical" href="/learn-libyan-arabic" />
       </Helmet>
-      {!props.isLoading ? (
+      {!loading ? (
         <>
           <div className="text-center">
             <LoadingOutlined
