@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import Footer from "../components/Footer";
-import { Layout, Modal, Carousel, Image } from "antd";
+import { Layout, Modal, Carousel, Image, Button } from "antd";
 import { motion } from "framer-motion";
 import { classesDesc } from "../helpers/Constants";
 import Accommodation from "../components/Modals/Accomodation";
@@ -132,7 +132,19 @@ export const StudentLife = () => {
                         showModal(index);
                       }}
                     >
-                      <div className="img_icon align_all">{i.desc}</div>
+                      <div className="mb-3 align_all">
+                        <div className="row">
+                          <div className="col col-2">
+                            <Button
+                              style={{ width: 120, height: 120, fontSize: 55 }}
+                              type="primary"
+                              shape="circle"
+                              className="yellow-text"
+                              icon={<div className="my-2">{i.desc}</div>}
+                            />
+                          </div>
+                        </div>
+                      </div>
                       {i.value}
                     </motion.li>
                   );
