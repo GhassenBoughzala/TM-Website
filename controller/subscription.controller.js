@@ -21,33 +21,13 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { user, course, level, city, phone } = req.body;
+      let { course, level } = req.body;
       const selectedUser = await User.findById(req.user.id);
       if (!selectedUser) {
         return res.status(400).json({
           error: true,
           msg: "Error finding user",
         });
-      }
-
-      if (!selectedUser.city && !selectedUser.phone) {
-        await User.findByIdAndUpdate(
-          req.user.id,
-          { $set: { city: city, phone: phone } },
-          { new: true }
-        );
-      } else if (!selectedUser.city && selectedUser.phone) {
-        await User.findByIdAndUpdate(
-          req.user.id,
-          { $set: { city: city } },
-          { new: true }
-        );
-      } else {
-        await User.findByIdAndUpdate(
-          req.user.id,
-          { $set: { phone: phone } },
-          { new: true }
-        );
       }
 
       const selectedCourse = await Course.findById(req.body.course);

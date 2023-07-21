@@ -1,12 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getCourses } from "../../redux/courses/courseActions";
-import { Button, Modal } from "antd";
-import {
-  EyeOutlined,
-  LoadingOutlined,
-} from "@ant-design/icons";
+import { LoadingOutlined } from "@ant-design/icons";
 import AddCourse from "./AddCourse";
 import { getUsers } from "../../redux/user/userActions";
 
@@ -14,16 +9,6 @@ export const UsersList = ({ ...props }) => {
   useEffect(() => {
     props.AllUsers();
   }, []);
-
-  const [currentObj, setCurrentObj] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <div className="row">
@@ -44,7 +29,6 @@ export const UsersList = ({ ...props }) => {
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-          
           </table>
         ) : (
           <div className="text-center mt-5">
@@ -57,14 +41,6 @@ export const UsersList = ({ ...props }) => {
           </div>
         )}
       </div>
-      <Modal
-        open={isModalOpen}
-        onCancel={handleCancel}
-        width={1200}
-        footer={null}
-      >
-        
-      </Modal>
     </div>
   );
 };

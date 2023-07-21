@@ -10,6 +10,7 @@ import Home from "./views/Home";
 import Navbar from "./components/Navbar/Navbar";
 import { Layout, Space } from "antd";
 import { Provider } from "react-redux";
+import { HelmetProvider } from "react-helmet-async";
 import store from "./redux/store";
 import Login from "./views/Login";
 import Register from "./views/Register";
@@ -29,6 +30,8 @@ import CourseFR from "./views/courses/CourseFR";
 import CourseTN from "./views/courses/CourseTN";
 import CourseLB from "./views/courses/CourseLB";
 import CourseAR from "./views/courses/CourseAR";
+import CourseEN from "./views/courses/CourseEN";
+import Subscription from "./views/Subscription";
 
 function App() {
   if (localStorage.accessToken) {
@@ -54,7 +57,8 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <ToastContainer position="bottom-right" />
-        <Space direction="vertical" style={{ width: "100%" }} size={[0, 48]}>
+        <HelmetProvider>
+          <Space direction="vertical" style={{ width: "100%" }} size={[0, 48]}>
           <Layout style={{ backgroundColor: "white" }}>
             <Navbar />
             <Routes>
@@ -70,10 +74,14 @@ function App() {
               <Route exact path="/language-courses/learn-tunisian-arabic" Component={CourseTN}></Route>
               <Route exact path="/language-courses/learn-libyan-arabic" Component={CourseLB}></Route>
               <Route exact path="/language-courses/learn-french" Component={CourseFR}></Route>
-              <Route exact path="/language-courses/learn-english" Component={Courses}></Route> 
+              <Route exact path="/language-courses/learn-english" Component={CourseEN}></Route> 
 
               <Route exact path="/profil" element={<UserRoute />}>
                 <Route exact path="/profil" Component={Profile}></Route>
+              </Route>
+
+              <Route exact path="/subscription" element={<UserRoute />}>
+                <Route exact path="/subscription" Component={Subscription}></Route>
               </Route>
 
               <Route exact path="/admin-dashboard" element={<AdminRoute />}>
@@ -86,6 +94,8 @@ function App() {
             </Routes>
           </Layout>
         </Space>
+        </HelmetProvider>
+        
       </BrowserRouter>
     </Provider>
   );

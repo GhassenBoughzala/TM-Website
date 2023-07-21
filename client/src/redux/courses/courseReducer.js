@@ -26,7 +26,7 @@ const intialState = {
   error: null,
   codeMsg: null,
   courses: [],
-  courseObj: {},
+  courseObj: null,
 };
 
 export default function (state = intialState, action) {
@@ -89,8 +89,8 @@ export default function (state = intialState, action) {
     case SELECT_SUCCESS:
       return {
         ...state,
-        loading: false,
-        courseObj: { ...action.payload },
+        loading: true,
+        courseObj: action.payload
       };
     case SELECT_FAIL:
       return { courseObj: null, error: true };

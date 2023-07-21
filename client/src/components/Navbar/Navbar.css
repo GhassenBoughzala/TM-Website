@@ -2,13 +2,13 @@
 .navbar {
   padding-bottom: 1px;
   height: 70px;
-  border-bottom: solid 1px white;
-  background-color: white;
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.12),
     0 6px 16px -11px rgba(0, 0, 0, 0.08);
   top: 0;
   z-index: 99990;
-  position: sticky;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 .nav-header {
@@ -30,7 +30,7 @@
 }
 
 .navbar-menu {
-  width: calc(100% - 60px);
+  width: calc(100% - 50px);
   float: left;
 }
 .navbar-menu .ant-layout-header {

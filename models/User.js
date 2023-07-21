@@ -22,10 +22,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       /* Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character */
-      match: [/^^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/],
+      match: [
+        /^^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      ],
     },
-    phone: { type: String },
-    city: { type: String },
+    phone: { type: String, required: true },
+    city: { type: String, required: true },
     role: {
       type: String,
       enum: ["user", "admin"],

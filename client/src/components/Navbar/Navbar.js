@@ -26,20 +26,20 @@ const Navbar = () => {
   });
 
   useEffect(() => {
-    if(userLocal.role === 'admin'){
-      <Navigate to="/admin-dashboard"/>
+    if (userLocal.role === "admin") {
+      <Navigate to="/admin-dashboard" />;
     }
   }, [userLocal]);
 
   return (
-    <nav className="col-lg-12 col-md-12 col-sm-12 col-xs-3 align header_one navbar">
+    <nav className="align header_one navbar">
       <div className="logo">
         <Link to="/">
           <img src={Logo} alt="logo" className="logo-header" />
         </Link>
       </div>
       <div className="navbar-menu">
-        <div className="leftMenu">
+        <div className="leftMenu my-1">
           <LeftMenu mode={"horizontal"} />
         </div>
 

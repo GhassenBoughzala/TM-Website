@@ -3,45 +3,21 @@ import { Layout, Collapse } from "antd";
 import TM from "../assets/images/logo_footer.png";
 import Land from "../assets/images/landscape.png";
 import Footer from "../components/Footer";
-
+import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 const { Content } = Layout;
 
 export const About = () => {
+  const { t } = useTranslation();
   const items = [
     {
       key: "1",
-      label: (
-        <p className="montserrat_regular text-start">More informations...</p>
-      ),
+      label: <p className="montserrat_regular text-start">{t("AboutT1")}</p>,
       children: (
         <>
-          <p>
-            We are partnered with or on the study abroad list of several of the
-            top universities around the world. We are also connected with
-            various Tunisian non-governmental organisations to provide
-            internship opportunities for students, and Tunisian businesses who
-            provide discounted services to our students. These businesses share
-            our vision of a more engaged, outward-looking Tunisia for the
-            future, while we hope to do our bit in the coming years to help
-            Tunisians at home as well.
-          </p>
-          <p>
-            To ease the registration process we are able to accept payments
-            through our multi-currency bank account. This means that you will
-            not be hit by foreign exchange and transfer fees, whether you are
-            paying in US Dollars, Euros, Pounds, or one of many other
-            currencies. Our team is swift and professional, and will help you
-            focus on what matters most to you &#8211; learning a language!
-          </p>
-          <p>
-            Students from over 20 countries have joined us for classes since
-            July 2021, from a variety of work backgrounds and life experiences.
-            We work most closely with universities in order to support the
-            language development of students from around the world. We regularly
-            seek out feedback from our students so that we continue to grow and
-            improve. Our average rating on Google is 4.9/5.0 and over 95% of our
-            students recommend the Taa Marbouta Language Centre.
-          </p>
+          <p>{t("AboutP4")}</p>
+          <p>{t("AboutP5")}</p>
+          <p>{t("AboutP6")}</p>
         </>
       ),
     },
@@ -49,29 +25,24 @@ export const About = () => {
   return (
     <>
       <Content className="container-fluid">
+        <Helmet>
+          <title>About Taa Marbouta</title>
+          <meta
+            name="description"
+            content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+          />
+          <link rel="canonical" href="/about" />
+        </Helmet>
         <div className="container">
           <div className="aboutus_page full_espace_padding">
             <div className="container-fluid">
-              <h1 className="titre mt-5">About</h1>
+              <h1 className="titre mt-5">{t("About")} Taa Marbouta</h1>
               <div className="row">
                 <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12">
                   <div className="parag_style style_link text-start">
-                    <p>
-                      Launched in July 2021, the Taa Marbouta Language Centre is
-                      a resource for language learning and professional
-                      development. We are based in the beautiful seaside suburb
-                      of Carthage in Tunisia, just two streets from the
-                      Mediterranean Sea &#8211; so close that our students often
-                      go swimming after class during the warmer months of the
-                      year!
-                    </p>
-                    <p>
-                      So why Tunisia? We believe that Tunisia provides great
-                      opportunities to students around the world. Our teachers
-                      are wonderful, the cost of living is relatively low, and
-                      students can take their first steps in the international
-                      arena with internships through us.
-                    </p>
+                    <p>{t("AboutP1")}</p>
+                    <p>{t("AboutP2")}</p>
                   </div>
                 </div>
 
@@ -81,31 +52,25 @@ export const About = () => {
               </div>
 
               <div className="row parag_style style_link text-start">
-                <p>
-                  While providing quality language education and supporting
-                  research and internships, we also want to bring the best of
-                  what Tunisia has to offer to the world. All teachers at the
-                  Taa Marbouta Language Centre are well-qualified and
-                  experienced. They are also passionate and dedicated to making
-                  sure your experience is both positive and effective. For those
-                  interested in the study abroad and internship packages, our
-                  team can help you with logistical arrangements if needed.
-                </p>
+                <p>{t("AboutP3")}</p>
                 <Collapse ghost items={items} />
               </div>
             </div>
           </div>
-
+          <div className="m-2">
+            <div className="container">
+              <div className="row">
+                <h2 className="title title_center">{t("Testimonials")}</h2>
+                <div className="elfsight-app-34f62dcf-0567-4469-b6c6-3f5f35113b3a"></div>
+              </div>
+            </div>
+          </div>
           <div className="our_philosphy full_espace_padding">
             <div className="container">
               <div className="row">
-                <h2 className="title title_center">Our Philosphy</h2>
+                <h2 className="title title_center">{t("AboutT2")}</h2>
                 <div className="parag_style">
-                  <p>
-                    The Taa Marbouta Language Centre is more than just a
-                    language centre. We want to share Tunisia with the world
-                    while supporting Tunisian organisations, brands and causes.
-                  </p>
+                  <p>{t("AboutP7")}</p>
                 </div>
                 <div className="card bg-light h-auto border-0">
                   <img className="card-img" alt="example" src={Land} />
@@ -113,41 +78,26 @@ export const About = () => {
                     <div className="row m-3 display-flex">
                       <div className="d-block col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <h4 className="text-center yellow-text">
-                          Promoting Tunisia
+                          {t("AboutT2.1")}
                         </h4>
                         <div className="parag_style">
-                          <p>
-                            Tunisia is an incredible country with so much to
-                            offer. From an extraordinary history to today’s
-                            entrepreneurial people, with beautiful coastlines
-                            and gorgeous deserts. Let us show you.
-                          </p>
+                          <p>{t("AboutT2P")}</p>
                         </div>
                       </div>
                       <div className="d-block col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <h4 className="text-center yellow-text">
-                          Supporting Students
+                          {t("AboutT2.2")}
                         </h4>
                         <div className="parag_style">
-                          <p>
-                            We know that one of the most difficult steps for
-                            many students is the first one. Getting experience
-                            in real-world work and research. We can help with
-                            that.
-                          </p>
+                          <p>{t("AboutT2P2")}</p>
                         </div>
                       </div>
                       <div className="d-block col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <h4 className="text-center yellow-text">
-                          Standing with Civil Society
+                          {t("AboutT2.3")}
                         </h4>
                         <div className="parag_style">
-                          <p>
-                            By helping to connect smart international students
-                            with local NGOs, the NGOs can also benefit from the
-                            additional help, learn from new perspectives, and
-                            build their capacities.
-                          </p>
+                          <p>{t("AboutT2P3")}</p>
                         </div>
                       </div>
                     </div>

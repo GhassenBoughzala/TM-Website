@@ -7,9 +7,12 @@ import { Card, Layout } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
+import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 const { Content } = Layout;
 
 export const Courses = ({ ...props }) => {
+  const { t } = useTranslation();
   const navTo = useNavigate();
   useEffect(() => {
     props.AllCourses();
@@ -36,8 +39,17 @@ export const Courses = ({ ...props }) => {
   return (
     <>
       <Content className="container-fluid">
+        <Helmet>
+          <title>Language Courses</title>
+          <meta
+            name="description"
+            content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+          />
+          <link rel="canonical" href="/language-courses" />
+        </Helmet>
         <div className="container mb-lg-5">
-          <h1 className="titre mt-5">Language Courses</h1>
+          <h1 className="titre mt-5">{t("LanguageCourses")}</h1>
           {props.isLoading ? (
             <>
               <div className="row">

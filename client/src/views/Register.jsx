@@ -5,14 +5,16 @@ import "../assets/css/login.css";
 import Art from "../assets/images/Artboard-5-100.jpg";
 import Logo from "../assets/images/logo_footer.png";
 import { register } from "../redux/auth/authActions";
-import { Layout, Button, Form, Input } from "antd";
+import { Layout, Button, Form, Input, Select } from "antd";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
+import { countryList } from "../helpers/Constants";
 const { Content } = Layout;
 
 export const Register = ({ ...props }) => {
+  const [form] = Form.useForm();
   const navigate = useNavigate();
   const uppercaseRegExp = /(?=.*?[A-Z])/;
   const lowercaseRegExp = /(?=.*?[a-z])/;
@@ -67,18 +69,18 @@ export const Register = ({ ...props }) => {
     }),
   ];
 
-  const onFinish = (values) => {
-    try {
-      props.Register(values);
-    } catch (error) {
-      console.log(error);
-      toast.error("Sign up failed !");
-    }
-  };
-  const onFinishFailed = () => {
-    toast.error("Sign up failed !");
-  };
 
+  const handleFormSubmit = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        props.Register(values);
+      })
+      .catch((errorInfo) => {
+        toast.error("Register failed !");
+        console.log("errorInfo ...", errorInfo);
+      });
+  };
   const prev_loading = usePrevious(props.isLoading);
   useEffect(() => {
     if (prev_loading && !props.isLoading) {
@@ -105,17 +107,15 @@ export const Register = ({ ...props }) => {
                     style={{ width: "12%" }}
                     className="mb-3"
                   />
-                  <h2 className="fw-bold mb-2 text-start">Sign up</h2>
+
                   <Form
+                    form={form}
                     className="form"
                     name="basic"
                     layout="vertical"
                     size={"large"}
                     labelCol={{ span: 20 }}
                     style={{ maxWidth: 600 }}
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
                     autoComplete="off"
                   >
                     <div className="row">
@@ -143,11 +143,45 @@ export const Register = ({ ...props }) => {
                             rules={[
                               {
                                 required: true,
-                                message: "Please input your lastName !",
+                                message: "Please input your last name !",
                               },
                             ]}
                           >
                             <Input />
+                          </Form.Item>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-outline text-start">
+                          <Form.Item
+                            label="Country"
+                            name="city"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your country !",
+                              },
+                            ]}
+                          >
+                            <Select showSearch options={countryList}></Select>
+                          </Form.Item>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-outline text-start">
+                          <Form.Item
+                            label="Phone number"
+                            name="phone"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your phone number !",
+                              },
+                            ]}
+                          >
+                            <Input pattern="[0-9]{0,5}" type="number" />
                           </Form.Item>
                         </div>
                       </div>
@@ -169,7 +203,6 @@ export const Register = ({ ...props }) => {
                         </Form.Item>
                       </div>
                     </div>
-
                     <div className="row mb-5">
                       <div className="col-md-6">
                         <div className="form-outline text-start">
@@ -200,12 +233,16 @@ export const Register = ({ ...props }) => {
                     </div>
                     <div className="form-outline text-center">
                       <Form.Item>
-                        <Button type="primary" htmltype="submit">
+                        <Button
+                          type="primary"
+                          htmltype="submit"
+                          onClick={handleFormSubmit}
+                        >
                           Submit
                         </Button>
                       </Form.Item>
                       <p>
-                        Already have an account? <Link to="/login">Log in</Link>{" "}
+                        Already have an account? <Link to="/login">Log in</Link>
                       </p>
                     </div>
                   </Form>

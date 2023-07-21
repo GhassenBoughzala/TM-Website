@@ -1,30 +1,50 @@
 import React from "react";
-import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const LeftMenu = ({ mode }) => {
-  const items = [
-    {
-      label: (<> Home <Link to="/" /> </>),
-      key: "/" || "",
-    },    
-    {
-      label: (<> Language Courses <Link to="/language-courses" /> </>),
-      key: "/language-courses",
-    },    
-    {
-      label: (<> Student Life <Link to="/student-life" /> </>),
-      key: "/student-life",
-    },    
-    {
-      label: (<> About <Link to="/about" /> </>),
-      key: "/about",
-    },
-  ];
+  const { t } = useTranslation();
+  const navTo = useNavigate();
   return (
-    <Menu mode={mode} items={items}>
-    
-    </Menu>
+    <>
+      <Button
+        type="link"
+        className="ant-btn-menu"
+        onClick={() => {
+          navTo("/");
+        }}
+      >
+        {t("Home")}
+      </Button>
+      <Button
+        type="link"
+        className="ant-btn-menu"
+        onClick={() => {
+          navTo("/language-courses");
+        }}
+      >
+        {t("LanguageCourses")}
+      </Button>
+      <Button
+        type="link"
+        className="ant-btn-menu"
+        onClick={() => {
+          navTo("/student-life");
+        }}
+      >
+        {t("StudentLife")}
+      </Button>{" "}
+      <Button
+        type="link"
+        className="ant-btn-menu"
+        onClick={() => {
+          navTo("/about");
+        }}
+      >
+        {t("About")}
+      </Button>
+    </>
   );
 };
 

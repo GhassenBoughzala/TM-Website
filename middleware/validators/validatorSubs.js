@@ -2,8 +2,7 @@ const { check, validationResult } = require("express-validator");
 
 exports.validateSubscription = [
   check("level").notEmpty().withMessage("level is required"),
-  check("phone").notEmpty().withMessage("phone is required"),
-  check("city").notEmpty().withMessage("city is required")
+  check("course").notEmpty().withMessage("course is required"),
 ];
 
 exports.isRequestValidated = (req, res, next) => {
