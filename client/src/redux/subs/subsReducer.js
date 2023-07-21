@@ -59,7 +59,7 @@ export default function (state = intialState, action) {
     case ADD_SUBS_SUCCESS:
       return {
         ...state,
-        subs: [...state.subs, action.payload],
+        user_subs: [...state.subs, action.payload],
         codeMsg: 1,
         loading_create: true,
       };

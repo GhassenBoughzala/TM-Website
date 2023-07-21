@@ -66,7 +66,6 @@ export const Subscribe = (values) => async (dispatch) => {
     dispatch({
       type: ADD_SUBS_FAILED,
     });
-    toast.error("Something went wrong !");
   }
 };
 

@@ -41,7 +41,7 @@ export const CourseModal = ({ ...props }) => {
           level: values.level,
         });
         setOpenModal(false);
-        navTo("/");
+        navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
@@ -62,7 +62,7 @@ export const CourseModal = ({ ...props }) => {
         navTo("/");
       }
       if (props.msg === 0) {
-        toast.error("Something went wrong !");
+        toast.warn("Something went wrong !");
       }
     }
   }, [props.loadingSub, props.msg]);

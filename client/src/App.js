@@ -31,6 +31,7 @@ import CourseTN from "./views/courses/CourseTN";
 import CourseLB from "./views/courses/CourseLB";
 import CourseAR from "./views/courses/CourseAR";
 import CourseEN from "./views/courses/CourseEN";
+import Subscription from "./views/Subscription";
 
 function App() {
   if (localStorage.accessToken) {
@@ -77,6 +78,10 @@ function App() {
 
               <Route exact path="/profil" element={<UserRoute />}>
                 <Route exact path="/profil" Component={Profile}></Route>
+              </Route>
+
+              <Route exact path="/subscription" element={<UserRoute />}>
+                <Route exact path="/subscription" Component={Subscription}></Route>
               </Route>
 
               <Route exact path="/admin-dashboard" element={<AdminRoute />}>
