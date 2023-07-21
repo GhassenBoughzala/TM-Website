@@ -59,7 +59,7 @@ export default function (state = intialState, action) {
     case ADD_SUBS_SUCCESS:
       return {
         ...state,
-        user_subs: [...state.subs, action.payload],
+        user_subs: [...state.user_subs, action.payload],
         codeMsg: 1,
         loading_create: true,
       };
@@ -87,7 +87,7 @@ export default function (state = intialState, action) {
     case DEL_SUBS_SUCCESS:
       return {
         ...state,
-        subs: state.subs.filter((c) => c._id !== action.payload),
+        user_subs: state.user_subs.filter((c) => c._id !== action.payload),
       };
     case DEL_SUBS_FAILED:
     default:

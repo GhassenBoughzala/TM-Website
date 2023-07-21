@@ -10,6 +10,7 @@ import {
   Collapse,
   Steps,
   Empty,
+  Modal,
 } from "antd";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +23,7 @@ import { UpdateUser } from "../redux/user/userActions";
 import { LoadingOutlined } from "@ant-design/icons";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
-import { getSubsByUser } from "../redux/subs/subsActions";
+import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 const { Content } = Layout;
 
 export const Profile = ({ ...props }) => {
@@ -38,6 +39,8 @@ export const Profile = ({ ...props }) => {
   });
 
   const [view, setView] = useState(false);
+  const [DeleteModal, setDeleteModal] = useState(false);
+  const [selctedId, setSelctedId] = useState();
   const navTo = useNavigate();
   const onFinish = (values) => {
     try {
@@ -85,20 +88,39 @@ export const Profile = ({ ...props }) => {
     children: (
       <div className="my-4">
         <Steps current={statusOfSub(su.status)} size="small" items={items} />
-        {su.status === "pending" && (
-          <div className="text-center">
+        <div className="row">
+          <div className="col text-start">
             <Button
+              danger
               size="small"
-              type="primary"
-              className="mt-4"
+              type="dashed"
+              className="mt-3"
               onClick={() => {
-                console.log("Download");
+                setSelctedId(su._id);
+                setDeleteModal(true);
               }}
             >
-              Download Language Test
+              Cancel booking
             </Button>
           </div>
-        )}
+          <div className="col">
+            {su.status === "pending" && (
+              <div className="text-center">
+                <Button
+                  size="small"
+                  type="primary"
+                  className="mt-3"
+                  onClick={() => {
+                    console.log("Download");
+                  }}
+                >
+                  Download Language Test
+                </Button>
+              </div>
+            )}
+          </div>
+          <div className="col"></div>
+        </div>
       </div>
     ),
   }));
@@ -311,6 +333,16 @@ export const Profile = ({ ...props }) => {
               </Card>
             </div>
           </div>
+
+          <Modal
+            title={"Are you sure to cancel ?"}
+            open={DeleteModal}
+            onCancel={() => setDeleteModal(false)}
+            onOk={() => {
+              props.Delete(selctedId);
+              setDeleteModal(false);
+            }}
+          />
         </div>
       </Content>
       <Footer />
@@ -322,6 +354,7 @@ const mapActionToProps = {
   GetUser: loadUser,
   Update: UpdateUser,
   GetSubs: getSubsByUser,
+  Delete: deleteSub,
 };
 const mapToStateProps = (state) => ({
   isLoading: state.user.loadingUser,

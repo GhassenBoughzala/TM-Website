@@ -93,7 +93,7 @@ export const updateSub = (values, id) => async (dispatch) => {
 export const deleteSub = (id) => (dispatch) => {
   setAuthToken(localStorage.accessToken);
   return axios
-    .delete(`${ServerURL}/api/courses/` + id)
+    .delete(`${ServerURL}/api/subscription/` + id)
     .then(() => {
       dispatch({
         type: DEL_SUBS_SUCCESS,
