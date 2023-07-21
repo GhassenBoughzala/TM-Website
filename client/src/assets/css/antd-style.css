@@ -144,3 +144,18 @@
 .subs-btn:active {
   scale: 1;
 }
+/*-- Steps  */
+.ant-steps .ant-steps-item-process .ant-steps-item-icon {
+  background-color: var(--venice_blue);
+  border-color: var(--venice_blue);
+}
+
+.ant-steps .ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #11D054;
+  border-color: #11D054;
+}
+
+.ant-steps .ant-steps-item-finish .ant-steps-item-icon >.ant-steps-icon {
+  color: white;
+  top: -2.5px;
+}
