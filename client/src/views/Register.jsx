@@ -74,7 +74,6 @@ export const Register = ({ ...props }) => {
     form
       .validateFields()
       .then((values) => {
-        console.log(values);
         props.Register(values);
       })
       .catch((errorInfo) => {

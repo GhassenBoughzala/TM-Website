@@ -133,17 +133,13 @@ export const StudentLife = () => {
                       }}
                     >
                       <div className="mb-3 align_all">
-                        <div className="row">
-                          <div className="col col-2">
-                            <Button
-                              style={{ width: 120, height: 120, fontSize: 55 }}
-                              type="primary"
-                              shape="circle"
-                              className="yellow-text"
-                              icon={<div className="my-2">{i.desc}</div>}
-                            />
-                          </div>
-                        </div>
+                        <Button
+                          style={{ width: 120, height: 120, fontSize: 55 }}
+                          type="primary"
+                          shape="circle"
+                          className="yellow-text"
+                          icon={<div className="my-2">{i.desc}</div>}
+                        />
                       </div>
                       {i.value}
                     </motion.li>

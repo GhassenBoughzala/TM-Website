@@ -1,12 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, Fragment, useEffect } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Image, Empty, Carousel, Button, Modal, Form, Select } from "antd";
 import moment from "moment";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Subscribe } from "../redux/subs/subsActions";
+import usePrevious from "../helpers/usePrevious";
+import { motion } from "framer-motion";
+
 
 export const CourseModal = ({ ...props }) => {
+  const navTo = useNavigate();
   const course = { description: [], sessions: [{ sessions: [] }] };
   const [form] = Form.useForm();
   const [currentObj, setCurrentObj] = useState(course);
@@ -21,7 +27,6 @@ export const CourseModal = ({ ...props }) => {
   const imagesH = require.context("../assets/images/student/Course/H", true);
   const imagesListH = imagesH.keys().map((image) => imagesH(image));
   const [openModal, setOpenModal] = useState(false);
-  const [data, setData] = useState({});
 
   const handleCancel = () => {
     setOpenModal(false);
@@ -31,14 +36,15 @@ export const CourseModal = ({ ...props }) => {
     form
       .validateFields()
       .then((values) => {
-        setData({
+        props.AddSub({
           course: currentObj._id,
-          level: values,
+          level: values.level,
         });
-        console.log(data);
+        setOpenModal(false);
+        navTo("/");
       })
       .catch((errorInfo) => {
-        toast.error("Register failed !");
+        toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
       });
   };
@@ -49,11 +55,28 @@ export const CourseModal = ({ ...props }) => {
     { label: "Advanced", value: "Advanced" },
   ];
 
+  const prev_loadingUp = usePrevious(props.loadingSub);
+  useEffect(() => {
+    if (prev_loadingUp && !props.loadingSub) {
+      if (props.msg === 1) {
+        navTo("/");
+      }
+      if (props.msg === 0) {
+        toast.error("Something went wrong !");
+      }
+    }
+  }, [props.loadingSub, props.msg]);
+
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       {currentObj !== null ? (
         <div className="row m-3">
           <h3 className="blue-text">{currentObj.title}</h3>
+          {/* Course Side 1 */}
           <div className="mb-3 col-lg-7 col-md-6 col-sm-12 col-xs-12 border-2 border-end">
             {currentObj.description ? (
               currentObj.description.map((d, index) => {
@@ -90,6 +113,7 @@ export const CourseModal = ({ ...props }) => {
               </div>
             )}
           </div>
+          {/* Course Side 2 */}
           <div className="mb-3 col-lg-5 col-md-6 col-sm-12 col-xs-12">
             <h5 className="yellow-text">Price description: </h5>
             <p>{currentObj.priceDescription}</p>
@@ -159,6 +183,8 @@ export const CourseModal = ({ ...props }) => {
               </Carousel>
             </div>
           </div>
+
+          {/* Book Modal */}
           <Modal
             open={openModal}
             onCancel={handleCancel}
@@ -166,70 +192,86 @@ export const CourseModal = ({ ...props }) => {
             bodyStyle={{ height: 300 }}
             footer={null}
           >
-            <div className="row">
-              <h2 className=" blue-text mb-5">
-                Book {currentObj.title} Course
-              </h2>
-              <Form
-                form={form}
-                className="form"
-                name="basic"
-                layout="vertical"
-                size={"large"}
-                labelCol={{ span: 20 }}
-                style={{ maxWidth: 600 }}
-                autoComplete="off"
-              >
-                <div className="row mb-5">
-                  <div className="col-md-4">
-                    <div className="form-outline text-start">
-                      <h5>Select your level:</h5>
+            {!props.loadingSub ? (
+              <div className="text-center">
+                <LoadingOutlined
+                  style={{
+                    fontSize: 40,
+                    margin: 130,
+                  }}
+                  spin
+                />
+              </div>
+            ) : (
+              <div className="row">
+                <h2 className=" blue-text mb-5">
+                  Book {currentObj.title} Course
+                </h2>
+                <Form
+                  form={form}
+                  className="form"
+                  name="basic"
+                  layout="vertical"
+                  size={"large"}
+                  labelCol={{ span: 20 }}
+                  style={{ maxWidth: 600 }}
+                  autoComplete="off"
+                >
+                  <div className="row mb-5">
+                    <div className="col-md-4">
+                      <div className="form-outline text-start">
+                        <h5>Select your level:</h5>
+                      </div>
+                    </div>
+                    <div className="col-md-8">
+                      <div className="form-outline text-start">
+                        <Form.Item
+                          name="level"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your level !",
+                            },
+                          ]}
+                        >
+                          <Select options={options}></Select>
+                        </Form.Item>
+                      </div>
                     </div>
                   </div>
-                  <div className="col-md-8">
-                    <div className="form-outline text-start">
-                      <Form.Item
-                        //label="Level"
-                        name="level"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your level !",
-                          },
-                        ]}
-                      >
-                        <Select options={options}></Select>
-                      </Form.Item>
-                    </div>
-                  </div>
-                </div>
 
-                <div className="form-outline text-center">
-                  <Form.Item>
-                    <Button
-                      type="primary"
-                      htmltype="submit"
-                      onClick={handleFormSubmit}
-                    >
-                      Confirm
-                    </Button>
-                  </Form.Item>
-                </div>
-              </Form>
-            </div>
+                  <div className="form-outline text-center">
+                    <Form.Item>
+                      <Button
+                        type="primary"
+                        htmltype="submit"
+                        onClick={handleFormSubmit}
+                      >
+                        Confirm
+                      </Button>
+                    </Form.Item>
+                  </div>
+                </Form>
+              </div>
+            )}
           </Modal>
+          {/* End Book Modal */}
         </div>
       ) : (
         <div className=" my-5">
           <Empty />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
-const mapActionToProps = {};
+const mapActionToProps = {
+  AddSub: Subscribe,
+};
 const mapToStateProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
+  loadingSub: state.subs.loading_create,
+  msg: state.subs.codeMsg,
 });
 
 export default connect(mapToStateProps, mapActionToProps)(CourseModal);

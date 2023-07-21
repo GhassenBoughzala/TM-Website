@@ -49,7 +49,6 @@ export const CourseTN = ({ ...props }) => {
               }}
               spin
             />
-            <h5 className="blue-text">Course is loading</h5>
           </div>
         </>
       ) : (
