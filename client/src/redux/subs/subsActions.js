@@ -8,7 +8,9 @@ import {
   DEL_SUBS_FAILED,
   DEL_SUBS_SUCCESS,
   GET_FAIL,
+  GET_FAIL_AD,
   GET_SUBS,
+  GET_SUBS_AD,
   LOADING_SUBS,
   UPDATE_SUBS_FAILED,
   UPDATE_SUBS_LOADING,
@@ -16,11 +18,24 @@ import {
 } from "./subsTypes";
 import setAuthToken from "../../helpers/authToken";
 
-export const getSubs = () => (dispatch) => {
+export const getSubsAD = () => (dispatch) => {
   dispatch({ type: LOADING_SUBS });
   setAuthToken(localStorage.accessToken);
   return axios
     .get(`${ServerURL}/api/subscription/all`)
+    .then((res) => {
+      dispatch({
+        type: GET_SUBS_AD,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err), GET_FAIL_AD);
+};
+export const getSubsByUser = () => (dispatch) => {
+  dispatch({ type: LOADING_SUBS });
+  setAuthToken(localStorage.accessToken);
+  return axios
+    .get(`${ServerURL}/api/subscription/byuser`)
     .then((res) => {
       dispatch({
         type: GET_SUBS,
@@ -30,23 +45,22 @@ export const getSubs = () => (dispatch) => {
     .catch((err) => console.log(err), GET_FAIL);
 };
 
-export const addCourses = (values) => async (dispatch) => {
+export const Subscribe = (values) => async (dispatch) => {
   const config = { headers: { "Content-Type": "application/json" } };
   const body = JSON.stringify(values);
   dispatch({ type: ADD_SUBS_LOADING });
   setAuthToken(localStorage.accessToken);
   try {
-    await axios.post(`${ServerURL}/api/courses/`, body, config).then((res) => {
-      if (res.status === 200) {
-        dispatch({
-          type: ADD_SUBS_SUCCESS,
-          payload: res.data,
-        });
-        toast.success("Course successfully added");
-        //window.location.reload()
-      }
-    });
-    /*  toast.success("Course successfully added"); */
+    await axios
+      .post(`${ServerURL}/api/subscription/`, body, config)
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: ADD_SUBS_SUCCESS,
+            payload: res.data,
+          });
+        }
+      });
   } catch (err) {
     console.log(err);
     dispatch({
@@ -56,7 +70,7 @@ export const addCourses = (values) => async (dispatch) => {
   }
 };
 
-export const updateCourses = (values, id) => async (dispatch) => {
+export const updateSub = (values, id) => async (dispatch) => {
   const config = { headers: { "Content-Type": "application/json" } };
   const body = JSON.stringify(values);
   dispatch({ type: UPDATE_SUBS_LOADING });
@@ -77,7 +91,7 @@ export const updateCourses = (values, id) => async (dispatch) => {
   }
 };
 
-export const deleteCourse = (id) => (dispatch) => {
+export const deleteSub = (id) => (dispatch) => {
   setAuthToken(localStorage.accessToken);
   return axios
     .delete(`${ServerURL}/api/courses/` + id)

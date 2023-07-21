@@ -8,7 +8,9 @@ import {
   DEL_SUBS_FAILED,
   DEL_SUBS_SUCCESS,
   GET_FAIL,
+  GET_FAIL_AD,
   GET_SUBS,
+  GET_SUBS_AD,
   LOADING_SUBS,
   UPDATE_SUBS_FAILED,
   UPDATE_SUBS_LOADING,
@@ -23,20 +25,29 @@ const intialState = {
   error: null,
   codeMsg: null,
   subs: [],
+  user_subs: [],
 };
 
 export default function (state = intialState, action) {
   switch (action.type) {
     case LOADING_SUBS:
-      return { ...state, subs: [], loading: false, courseObj: null };
+      return { ...state, subs: [], loading: false };
     case GET_SUBS:
+      return {
+        ...state,
+        user_subs: [...action.payload],
+        loading: true,
+      };
+    case GET_FAIL:
+      return { user_subs: [], error: true };
+
+    case GET_SUBS_AD:
       return {
         ...state,
         subs: [...action.payload],
         loading: true,
-        courseObj: null,
       };
-    case GET_FAIL:
+    case GET_FAIL_AD:
       return { subs: [], error: true };
 
     case ADD_SUBS_LOADING:
