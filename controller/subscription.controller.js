@@ -50,6 +50,11 @@ router.post(
 
       if (verify.length == 0) {
         newSubs.save().then(() => res.status(200).json(newSubs));
+        await User.findByIdAndUpdate(
+          req.user.id,
+          { $push: {subscription: newSubs} },
+          { new: true }
+        );
       } else {
         res.status(400).json({
           error: true,

@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema(
       default: "user",
     },
     subscription: {
-      type: ObjectId,
+      type: [ObjectId],
       ref: "Subscription",
     },
   },
