@@ -36,7 +36,7 @@ const RightMenu = ({ ...props }) => {
               type="default"
               size="default"
               shape="circle"
-              className="blue-text"
+              className="blue-text mx-3"
               icon={<SettingOutlined />}
               onClick={() => {
                 navTo("/admin-dashboard");
