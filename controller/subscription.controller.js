@@ -10,6 +10,8 @@ const {
 const User = require("../models/User");
 const adminAuth = require("../middleware/adminAuth");
 const { ObjectId } = require("bson");
+const transferwise = require("@fightmegg/transferwise");
+require("dotenv").config({});
 
 // @route   POST api/
 // @desc    Book a course
@@ -52,7 +54,7 @@ router.post(
         newSubs.save().then(() => res.status(200).json(newSubs));
         await User.findByIdAndUpdate(
           req.user.id,
-          { $push: {subscription: newSubs} },
+          { $push: { subscription: newSubs } },
           { new: true }
         );
       } else {
@@ -76,10 +78,14 @@ router.post(
 // @access  Private Admin
 router.get("/all", verifyAccessToken, adminAuth, async (req, res) => {
   try {
-    let subs = await Subscription.find({})
+    /*     let subs = await Subscription.find({})
       .populate("course", { image: 0, __v: 0 })
-      .populate("user", { password: 0, role: 0, __v: 0 });
-    res.status(200).json(subs);
+      .populate("user", { password: 0, role: 0, __v: 0 }); */
+    let usersList = await User.find({})
+      .select("-password")
+      .select("-__v")
+      .populate("subscription");
+    res.status(200).json(usersList);
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -161,6 +167,44 @@ router.delete("/:subId", verifyAccessToken, async (req, res) => {
     res.status(200).json({
       error: false,
       msg: `Deleted successfully`,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      error: true,
+      msg: "Server error",
+    });
+  }
+});
+
+// @route   POST api/payment
+// @desc    Add payment
+// @access  Public
+router.post("/payment", async (req, res) => {
+  try {
+    const client = new transferwise.Client({
+      apiKey: process.env.TW_API_KEY,
+    });
+
+    const payout = {
+      amount: 100,
+      currency: "EUR",
+      recipient: {
+        name: "John Doe",
+        account_number: "1234567890",
+        bank_code: "000000",
+        bic: "WISEBANKGB",
+      },
+    };
+
+    client.payouts.create(payout, (err, payout) => {
+      if (err) {
+        console.error(err);
+        res.json(err);
+      } else {
+        console.log(payout);
+        res.json(payout);
+      }
     });
   } catch (error) {
     console.log(error.message);
