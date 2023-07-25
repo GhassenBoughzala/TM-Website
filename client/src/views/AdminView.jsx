@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import CoursesList from "../components/Admin/CoursesList";
-import { UsersList } from "../components/Admin/UsersList";
+import UsersList  from "../components/Admin/UsersList";
 
 const { Header, Sider, Content } = Layout;
 export const AdminView = ({ ...props }) => {
@@ -32,8 +32,6 @@ export const AdminView = ({ ...props }) => {
       label: "Users",
     },
   ];
-
-
 
   return (
     <div className="mt-2">
@@ -85,7 +83,7 @@ export const AdminView = ({ ...props }) => {
               minHeight: 280,
             }}
           >
-            <CoursesList />
+            {!showUsers && <CoursesList />}
             {showUsers && <UsersList />}
           </Content>
         </Layout>

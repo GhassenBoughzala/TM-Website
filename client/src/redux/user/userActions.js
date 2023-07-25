@@ -34,12 +34,15 @@ export const getUsers = () => (dispatch) => {
   dispatch({ type: LOADING_USERS });
   setAuthToken(localStorage.accessToken);
   return axios
-    .get(`${ServerURL}/api/user/all`)
+    .get(`${ServerURL}/api/subscription/all`)
     .then((res) => {
       dispatch({
         type: ALL_SUCCESS,
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err), ALL_FAILED);
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: ALL_FAILED });
+    });
 };

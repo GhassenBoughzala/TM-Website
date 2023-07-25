@@ -26,6 +26,7 @@
     "node": "v16.13.1"
   },
   "dependencies": {
+    "@fightmegg/transferwise": "^0.0.3",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.19.0",
     "connect-mongo": "^4.6.0",
@@ -44,6 +45,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "passport": "^0.6.0",
+    "transferwise": "^2.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

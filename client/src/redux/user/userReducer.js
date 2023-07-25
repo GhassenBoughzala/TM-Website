@@ -24,7 +24,7 @@ export default function (state = intialState, action) {
     case ALL_SUCCESS:
       return { ...state, users: [...action.payload], loading: false };
     case ALL_FAILED:
-      return { ...state, error: true };
+      return { ...state, users: [], error: true };
 
     case LOADING_USER:
       return { ...state, loading: true };
