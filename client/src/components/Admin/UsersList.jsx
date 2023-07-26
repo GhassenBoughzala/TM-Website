@@ -42,9 +42,11 @@ export const UsersList = ({ ...props }) => {
       label: (
         <List.Item.Meta
           title={
-            <p>
+            <p className=" fw-lighter fs-5">
               {item.firstName} {item.lastName} - {item.email} -
-              {item.subscription.length} Booked courses
+              <span className="mx-1 yellow-text">
+                {item.subscription.length} Booked courses
+              </span>
             </p>
           }
         />
