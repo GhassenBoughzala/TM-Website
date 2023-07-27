@@ -90,18 +90,20 @@ export const Profile = ({ ...props }) => {
         <Steps current={statusOfSub(su.status)} size="small" items={items} />
         <div className="row">
           <div className="col text-start">
-            <Button
-              danger
-              size="small"
-              type="dashed"
-              className="mt-3"
-              onClick={() => {
-                setSelctedId(su._id);
-                setDeleteModal(true);
-              }}
-            >
-              Cancel booking
-            </Button>
+            {su.payment === false && (
+              <Button
+                danger
+                size="small"
+                type="dashed"
+                className="mt-3"
+                onClick={() => {
+                  setSelctedId(su._id);
+                  setDeleteModal(true);
+                }}
+              >
+                Cancel booking
+              </Button>
+            )}
           </div>
           <div className="col">
             {su.status === "pending" && (
