@@ -247,8 +247,9 @@ router.post("/test", async (req, res) => {
 // @access  Public
 router.get("/config", (req, res) => {
   /* STRIPE_TEST_PUBLIC_KEY */
+  /* STRIPE_PUBLIC_KEY */
   res.send({
-    publishableKey: process.env.STRIPE_PUBLIC_KEY,
+    publishableKey: process.env.STRIPE_TEST_PUBLIC_KEY,
   });
 });
 

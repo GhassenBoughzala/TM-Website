@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   Layout,
@@ -11,6 +11,7 @@ import {
   Steps,
   Empty,
   Modal,
+  Divider,
 } from "antd";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +25,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
+import PaymentForm from "../components/PaymentForm";
 const { Content } = Layout;
 
 export const Profile = ({ ...props }) => {
@@ -86,10 +88,13 @@ export const Profile = ({ ...props }) => {
       </>
     ),
     children: (
-      <div className="my-4">
-        <p className=" yellow-text">Subscription process :</p>
-        <Steps current={statusOfSub(su.status)} size="small" items={items} />
-        <div className="row">
+      <div>
+        <div className="row my-2 mb-3">
+          <Divider orientation="left">
+            <p className=" blue-text">Subscription process</p>
+          </Divider>
+
+          <Steps current={statusOfSub(su.status)} size="small" items={items} />
           <div className="col text-start">
             {su.payment === false && (
               <Button
@@ -124,6 +129,14 @@ export const Profile = ({ ...props }) => {
           </div>
           <div className="col"></div>
         </div>
+        {su.status === "pending" && (
+          <div className="row my-2">
+            <Divider orientation="left">
+              <p className=" blue-text">Payment</p>
+            </Divider>
+            <PaymentForm />
+          </div>
+        )}
       </div>
     ),
   }));
