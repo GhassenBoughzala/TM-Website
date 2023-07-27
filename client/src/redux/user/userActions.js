@@ -11,7 +11,7 @@ import {
 } from "./userTypes";
 import setAuthToken from "../../helpers/authToken";
 
-export const UpdateUser = (values) => (dispatch) => {
+export const updateUser = (values) => (dispatch) => {
   const config = { headers: { "Content-Type": "application/json" } };
   const body = JSON.stringify(values);
   dispatch({ type: LOADING_USER });

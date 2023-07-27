@@ -19,7 +19,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { loadUser } from "../redux/auth/authActions";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
-import { UpdateUser } from "../redux/user/userActions";
+import { updateUser } from "../redux/user/userActions";
 import { LoadingOutlined } from "@ant-design/icons";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
@@ -87,6 +87,7 @@ export const Profile = ({ ...props }) => {
     ),
     children: (
       <div className="my-4">
+        <p className=" yellow-text">Subscription process :</p>
         <Steps current={statusOfSub(su.status)} size="small" items={items} />
         <div className="row">
           <div className="col text-start">
@@ -354,7 +355,7 @@ export const Profile = ({ ...props }) => {
 
 const mapActionToProps = {
   GetUser: loadUser,
-  Update: UpdateUser,
+  Update: updateUser,
   GetSubs: getSubsByUser,
   Delete: deleteSub,
 };
