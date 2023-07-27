@@ -1,3 +1,4 @@
+require("dotenv").config({});
 const express = require("express");
 const router = express.Router();
 const Subscription = require("../models/Subscription");
@@ -10,12 +11,11 @@ const {
 const User = require("../models/User");
 const adminAuth = require("../middleware/adminAuth");
 const { ObjectId } = require("bson");
-const transferwise = require("@fightmegg/transferwise");
-require("dotenv").config({});
+const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
 
 // @route   POST api/
 // @desc    Book a course
-// @access  Public
+// @access  User
 router.post(
   "/",
   verifyAccessToken,
@@ -97,7 +97,7 @@ router.get("/all", verifyAccessToken, adminAuth, async (req, res) => {
 
 // @route   GET api/byuser
 // @desc    Get User Subs
-// @access  Public
+// @access  User
 router.get("/byuser", verifyAccessToken, async (req, res) => {
   try {
     let subs = await Subscription.aggregate([
@@ -126,7 +126,7 @@ router.get("/byuser", verifyAccessToken, async (req, res) => {
 
 // @route   PUT api/:subId
 // @desc    Update Subscription
-// @access  Public
+// @access  User or Admin
 router.put("/:subId", verifyAccessToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -160,7 +160,7 @@ router.put("/:subId", verifyAccessToken, async (req, res) => {
 
 // @route   DELETE api/:subsId
 // @desc    Delete Subscription
-// @access  Public
+// @access  User
 router.delete("/:subId", verifyAccessToken, async (req, res) => {
   try {
     await Subscription.findByIdAndRemove(req.params.subId);
@@ -177,35 +177,44 @@ router.delete("/:subId", verifyAccessToken, async (req, res) => {
   }
 });
 
-// @route   POST api/payment
-// @desc    Add payment
-// @access  Public
-router.post("/payment", async (req, res) => {
+// @route   POST api/create-payment
+// @desc    Add payment with stripe and upadte subscription status
+// @access  User
+router.post("/create-payment", verifyAccessToken, async (req, res) => {
   try {
-    const client = new transferwise.Client({
-      apiKey: process.env.TW_API_KEY,
-    });
-
-    const payout = {
-      amount: 100,
-      currency: "EUR",
-      recipient: {
-        name: "John Doe",
-        account_number: "1234567890",
-        bank_code: "000000",
-        bic: "WISEBANKGB",
-      },
-    };
-
-    client.payouts.create(payout, (err, payout) => {
-      if (err) {
-        console.error(err);
-        res.json(err);
+    const { currency, amount, subId } = req.body;
+    const selected = await Subscription.findById(subId);
+    if (selected) {
+      if (selected.payment === false) {
+        const params = {
+          amount: amount,
+          currency: currency,
+        };
+        const paymentIntent = await stripe.paymentIntents.create(params);
+        res.status(200).send({ clientSecret: paymentIntent.client_secret });
       } else {
-        console.log(payout);
-        res.json(payout);
+        res.status(404).json({
+          error: true,
+          msg: "Subscription already payed",
+        });
       }
-    });
+    } else {
+      res.status(404).json({
+        error: true,
+        msg: "Subscription not found",
+      });
+    }
+
+    if (res.statusCode === 200) {
+      const updated = await Subscription.findByIdAndUpdate(
+        subId,
+        {
+          $set: { status: "confirmed", payment: true },
+        },
+        { new: true }
+      );
+      console.log(`Subscription ${updated.id}: ${updated.status}`);
+    }
   } catch (error) {
     console.log(error.message);
     res.status(500).json({
@@ -214,5 +223,60 @@ router.post("/payment", async (req, res) => {
     });
   }
 });
+
+router.post("/test", async (req, res) => {
+  try {
+    const { currency, amount, subId } = req.body;
+    const params = {
+      amount: amount,
+      currency: currency,
+    };
+    const paymentIntent = await stripe.paymentIntents.create(params);
+    res.status(200).send({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      error: true,
+      msg: "Server error",
+    });
+  }
+});
+
+// @route   GET api/payment
+// @desc    Get stripe config
+// @access  Public
+router.get("/config", (req, res) => {
+  /* STRIPE_TEST_PUBLIC_KEY */
+  res.send({
+    publishableKey: process.env.STRIPE_PUBLIC_KEY,
+  });
+});
+
+router.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  (request, response) => {
+    const sig = request.headers["stripe-signature"];
+
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(
+        request.body,
+        sig,
+        process.env.WEBHOOK_SECRET
+      );
+    } catch (err) {
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
+
+    // Handle the event
+    console.log(`Unhandled event type ${event.type}`);
+
+    // Return a 200 response to acknowledge receipt of the event
+    response.send();
+  }
+);
 
 module.exports = router;

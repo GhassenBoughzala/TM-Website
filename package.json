@@ -45,6 +45,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "passport": "^0.6.0",
+    "stripe": "^12.14.0",
     "transferwise": "^2.1.0",
     "uuid": "^8.3.2"
   },

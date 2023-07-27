@@ -1,3 +1,4 @@
+require("dotenv").config({});
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -8,8 +9,9 @@ const authRoute = require("./controller/auth.contoller");
 const courseRoute = require("./controller/courses.controller");
 const userRoute = require("./controller/user.controller");
 const subsRoute = require("./controller/subscription.controller");
+//process.env.STRIPE_SECRET_KEY
+const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
 
-require("dotenv").config({});
 connectDB();
 
 let app = express();
@@ -23,6 +25,18 @@ app.use("/api/access", authRoute);
 app.use("/api/courses", courseRoute);
 app.use("/api/user", userRoute);
 app.use("/api/subscription", subsRoute);
+
+app.use(
+  express.json({
+    // We need the raw body to verify webhook signatures.
+    // Let's compute it only when hitting the Stripe webhook endpoint.
+    verify: function (req, res, buf) {
+      if (req.originalUrl.startsWith("/api/subscription/webhook")) {
+        req.rawBody = buf.toString();
+      }
+    },
+  })
+);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
