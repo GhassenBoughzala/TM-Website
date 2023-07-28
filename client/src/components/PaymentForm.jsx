@@ -1,6 +1,8 @@
 import React from "react";
 import { CardElement } from "@stripe/react-stripe-js";
 import { Button, Form, Input, Select } from "antd";
+import CurrencyInput from 'react-currency-input-field';
+
 
 export const PaymentForm = ({ ...props }) => {
   const [form] = Form.useForm();
@@ -34,7 +36,16 @@ export const PaymentForm = ({ ...props }) => {
           <div className="col-md-9">
             <div className="form-outline text-start">
               <Form.Item label="Amount" name="amount">
-                <Input />
+                <CurrencyInput
+                  id="validationCustom04"
+                  name="input-1"
+                  //intlConfig={intlConfig}
+                  className={`form-control`}
+                  //onValueChange={handleOnValueChange}
+                  decimalsLimit={6}
+                  //value={value}
+                  step={1}
+                />
               </Form.Item>
             </div>
           </div>
