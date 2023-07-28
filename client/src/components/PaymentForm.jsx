@@ -1,6 +1,6 @@
 import React from "react";
 import { CardElement } from "@stripe/react-stripe-js";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Select } from "antd";
 import CurrencyInput from 'react-currency-input-field';
 
 
