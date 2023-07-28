@@ -121,6 +121,7 @@ router.post("/refresh-token", async (req, res, next) => {
     const time = deco(accessToken);
     const expiresIn = new Date(date.getHours() + time.exp * 1000);
     res.status(200).json({ accessToken, expiresIn });
+    console.log("Token refreshed ✅");
   } catch (error) {
     res.status(500).json({
       error: true,
