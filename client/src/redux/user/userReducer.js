@@ -5,12 +5,16 @@ import {
   LOADING_USER,
   LOADING_USERS,
   UPDATE_FAILED,
+  UPDATE_SUBS_FAILED,
+  UPDATE_SUBS_LOADING,
+  UPDATE_SUBS_SUCCESS,
   UPDATE_SUCCESS,
 } from "./userTypes";
 
 // Intial State
 const intialState = {
   loading: false,
+  loading_update: false,
   error: null,
   codeMsg: null,
   user: localStorage.getItem("user"),
@@ -32,6 +36,33 @@ export default function (state = intialState, action) {
       return { ...state, user: action.payload, loading: false, codeMsg: 1 };
     case UPDATE_FAILED:
       return { ...state, user: null, error: true, loading: false, codeMsg: 0 };
+
+    case UPDATE_SUBS_LOADING:
+      return {
+        ...state,
+        loading_update: true,
+        loading: true,
+        codeMsg: null,
+      };
+    case UPDATE_SUBS_SUCCESS:
+      return {
+        ...state,
+        users: state.users.map((c) =>
+          c._id === action.payload._id ? action.payload : c
+        ),
+        codeMsg: 1,
+        loading_update: false,
+        //loading: false
+      };
+    case UPDATE_SUBS_FAILED:
+      return {
+        ...state,
+        codeMsg: 0,
+        error: true,
+        loading_update: false,
+        //loading: false,
+        users: [],
+      };
     default:
       return state;
   }

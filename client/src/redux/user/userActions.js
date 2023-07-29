@@ -8,6 +8,9 @@ import {
   LOADING_USERS,
   ALL_SUCCESS,
   ALL_FAILED,
+  UPDATE_SUBS_LOADING,
+  UPDATE_SUBS_SUCCESS,
+  UPDATE_SUBS_FAILED,
 } from "./userTypes";
 import setAuthToken from "../../helpers/authToken";
 
@@ -45,4 +48,27 @@ export const getUsers = () => (dispatch) => {
       console.log(err);
       dispatch({ type: ALL_FAILED });
     });
+};
+
+export const updateSub = (id, status) => async (dispatch) => {
+  const config = { headers: { "Content-Type": "application/json" } };
+  const body = JSON.stringify({ status: status });
+  dispatch({ type: UPDATE_SUBS_LOADING });
+  setAuthToken(localStorage.accessToken);
+  try {
+    const res = await axios.put(
+      `${ServerURL}/api/subscription/` + id,
+      body,
+      config
+    );
+    dispatch({
+      type: UPDATE_SUBS_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: UPDATE_SUBS_FAILED,
+    });
+  }
 };

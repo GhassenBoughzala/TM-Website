@@ -78,12 +78,16 @@ export const updateSub = (values, id) => async (dispatch) => {
   dispatch({ type: UPDATE_SUBS_LOADING });
   setAuthToken(localStorage.accessToken);
   try {
-    const res = await axios.put(`${ServerURL}/api/courses/` + id, body, config);
+    const res = await axios.put(
+      `${ServerURL}/api/subscription/` + id,
+      body,
+      config
+    );
     dispatch({
       type: UPDATE_SUBS_SUCCESS,
       payload: res.data,
     });
-    toast.success("Course successfully updated");
+    toast.success("Successfully updated");
   } catch (err) {
     console.log(err);
     dispatch({

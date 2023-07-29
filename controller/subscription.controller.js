@@ -130,11 +130,11 @@ router.get("/byuser", verifyAccessToken, async (req, res) => {
 router.put("/:subId", verifyAccessToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    if (user.role == "admin") {
+    if (user.role === "admin") {
       const updated = await Subscription.findByIdAndUpdate(
         req.params.subId,
         {
-          $set: req.body,
+          $set: { status: req.body.status },
         },
         { new: true }
       );

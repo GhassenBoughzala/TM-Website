@@ -3,6 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Button, Divider, Form, InputNumber, Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StatusMessages, { useMessages } from "../components/StatusMessages";
+import { currencies } from "../helpers/Constants";
 
 export const PaymentForm = ({ subId }) => {
   const [form] = Form.useForm();
@@ -12,29 +13,7 @@ export const PaymentForm = ({ subId }) => {
 
   const [currency, setCurrency] = useState(" $ ");
   const [format, setFormat] = useState(0);
-
-  const currencies = [
-    {
-      value: "USD",
-      label: "USD",
-      code: " $ ",
-    },
-    {
-      value: "GBP",
-      label: "GBP",
-      code: " £ ",
-    },
-    {
-      value: "EUR",
-      label: "EUR",
-      code: " € ",
-    },
-    {
-      value: "CAD",
-      label: "CAD",
-      code: " C $ ",
-    },
-  ];
+  const [isLoading, setisLoading] = useState(false);
 
   const [User] = useState(() => {
     const saved = localStorage.getItem("user");
@@ -57,6 +36,7 @@ export const PaymentForm = ({ subId }) => {
     form
       .validateFields()
       .then(async (values) => {
+        setisLoading(true);
         const { error: backendError, clientSecret } = await fetch(
           "http://localhost:5500/api/subscription/test",
           {
@@ -208,7 +188,12 @@ export const PaymentForm = ({ subId }) => {
 
         <div className="row form-outline text-center">
           <Form.Item>
-            <Button type="default" htmlType="submit" onClick={handleFormSubmit}>
+            <Button
+              type="default"
+              htmlType="submit"
+              onClick={handleFormSubmit}
+              loading={isLoading}
+            >
               Confirm payment
             </Button>
           </Form.Item>
