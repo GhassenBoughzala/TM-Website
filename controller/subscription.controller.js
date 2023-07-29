@@ -248,9 +248,7 @@ router.post("/test", async (req, res) => {
 router.get("/config", (req, res) => {
   /* STRIPE_TEST_PUBLIC_KEY */
   /* STRIPE_PUBLIC_KEY */
-  res.send({
-    publishableKey: process.env.STRIPE_TEST_PUBLIC_KEY,
-  });
+  res.status(200).json(process.env.STRIPE_TEST_PUBLIC_KEY);
 });
 
 router.post(

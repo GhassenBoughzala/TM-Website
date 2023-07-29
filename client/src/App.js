@@ -1,6 +1,7 @@
+/* eslint-disable no-const-assign */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -57,10 +58,20 @@ function App() {
     }
   }, []);
 
-  const { PK } = axios
-    .get(`${ServerURL}/api/subscription/config`)
-    .then((r) => r, console.log("$$$"));
+  const [PK, setPK] = useState("");
+  useEffect(() => {
+    const getPK = async () => {
+      await axios.get(`${ServerURL}/api/subscription/config`).then((r) => {
+        setPK(r.data);
+      });
+    };
+
+    getPK();
+  }, []);
+
+  
   const stripePromise = loadStripe(`${PK}`);
+  console.log(stripePromise);
 
   return (
     <Provider store={store}>
