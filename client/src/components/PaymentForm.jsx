@@ -3,12 +3,15 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Button, Divider, Form, InputNumber, Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const PaymentForm = ({subId}) => {
+export const PaymentForm = ({ subId }) => {
   console.log(subId);
   const [form] = Form.useForm();
   const elements = useElements();
   const stripe = useStripe();
   const handleFormSubmit = async () => {
+    if (!stripe || !elements) {
+      return;
+    }
     const cardElement = elements.getElement(CardElement);
     console.log(cardElement);
     form
