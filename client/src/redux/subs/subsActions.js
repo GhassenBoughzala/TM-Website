@@ -12,6 +12,9 @@ import {
   GET_SUBS,
   GET_SUBS_AD,
   LOADING_SUBS,
+  PAYMENT_FAILED,
+  PAYMENT_LOADING,
+  PAYMENT_SUCCESS,
   UPDATE_SUBS_FAILED,
   UPDATE_SUBS_LOADING,
   UPDATE_SUBS_SUCCESS,
@@ -101,4 +104,27 @@ export const deleteSub = (id) => (dispatch) => {
       });
     })
     .catch((err) => console.log(err), DEL_SUBS_FAILED);
+};
+
+export const createPayment = (amount, currency, subId) => async (dispatch) => {
+  const config = { headers: { "Content-Type": "application/json" } };
+  const body = JSON.stringify({
+    paymentMethodType: "card",
+    amount: amount,
+    currency: currency,
+    subId: subId,
+  });
+  dispatch({ type: PAYMENT_LOADING });
+  setAuthToken(localStorage.accessToken);
+  try {
+    //create-payment
+    await axios
+      .post(`${ServerURL}/api/subscription/test`, body, config)
+      .then((res) => {
+        dispatch({ type: PAYMENT_SUCCESS, payload: res.data });
+      });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: PAYMENT_FAILED });
+  }
 };

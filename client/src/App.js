@@ -69,9 +69,7 @@ function App() {
     getPK();
   }, []);
 
-  
   const stripePromise = loadStripe(`${PK}`);
-  console.log(stripePromise);
 
   return (
     <Provider store={store}>

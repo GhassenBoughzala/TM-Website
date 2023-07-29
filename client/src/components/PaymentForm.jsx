@@ -2,27 +2,13 @@ import React, { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Button, Divider, Form, InputNumber, Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import StatusMessages, { useMessages } from "../components/StatusMessages";
 
 export const PaymentForm = ({ subId }) => {
-  console.log(subId);
   const [form] = Form.useForm();
   const elements = useElements();
   const stripe = useStripe();
-  const handleFormSubmit = async () => {
-    if (!stripe || !elements) {
-      return;
-    }
-    const cardElement = elements.getElement(CardElement);
-    console.log(cardElement);
-    form
-      .validateFields()
-      .then((values) => {
-        console.log(values);
-      })
-      .catch((errorInfo) => {
-        console.log("errorInfo ...", errorInfo);
-      });
-  };
+  const [messages, addMessage] = useMessages();
 
   const [currency, setCurrency] = useState(" $ ");
   const [format, setFormat] = useState(0);
@@ -50,9 +36,75 @@ export const PaymentForm = ({ subId }) => {
     },
   ];
 
+  const [User] = useState(() => {
+    const saved = localStorage.getItem("user");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+
   const handleAmountChange = (e) => {
     setFormat(e / 100);
     form.setFieldValue({ amount: format.toFixed(2) });
+  };
+
+  const handleFormSubmit = async () => {
+    if (!stripe || !elements) {
+      return;
+    }
+
+    const cardElement = elements.getElement(CardElement);
+
+    form
+      .validateFields()
+      .then(async (values) => {
+        const { error: backendError, clientSecret } = await fetch(
+          "http://localhost:5500/api/subscription/test",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              paymentMethodType: "card",
+              currency: values.currency,
+              amount: values.amount,
+            }),
+          }
+        ).then((r) => r.json());
+
+        if (backendError) {
+          addMessage(backendError.message);
+          return;
+        }
+
+        //addMessage("Client secret returned");
+
+        const { error: stripeError, paymentIntent } =
+          await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+              card: cardElement,
+              billing_details: {
+                name: `${User.firstName} ${User.lastName}`,
+              },
+            },
+          });
+
+        if (stripeError) {
+          // Show error to your customer (e.g., insufficient funds)
+          addMessage(stripeError.message);
+          return;
+        }
+
+        // Show a success message to your customer
+        // There's a risk of the customer closing the window before callback
+        // execution. Set up a webhook or plugin to listen for the
+        // payment_intent.succeeded event that handles any business critical
+        // post-payment actions.
+        addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+      })
+      .catch((errorInfo) => {
+        console.log("errorInfo ...", errorInfo);
+      });
   };
 
   return (
@@ -141,7 +193,7 @@ export const PaymentForm = ({ subId }) => {
           <div className="form-outline text-center">
             <Divider orientation="center">
               <h4 className=" blue-text">
-                {format.toFixed(2)} {currency}{" "}
+                {format.toFixed(2)} {currency}
               </h4>
             </Divider>
           </div>
@@ -149,7 +201,7 @@ export const PaymentForm = ({ subId }) => {
         <div className="row">
           <div className="form-outline text-start my-3">
             <Form.Item>
-              <CardElement className="mx-5" />
+              <CardElement className="mx-5" disableLink={false} />
             </Form.Item>
           </div>
         </div>
@@ -160,6 +212,7 @@ export const PaymentForm = ({ subId }) => {
               Confirm payment
             </Button>
           </Form.Item>
+          <StatusMessages messages={messages} />
         </div>
       </Form>
     </>
