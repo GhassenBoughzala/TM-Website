@@ -43,6 +43,7 @@ export const Profile = ({ ...props }) => {
   const [view, setView] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
   const [selctedId, setSelctedId] = useState();
+  const [subId, setSubId] = useState();
   const navTo = useNavigate();
   const onFinish = (values) => {
     try {
@@ -81,7 +82,7 @@ export const Profile = ({ ...props }) => {
   };
 
   const subsList = props.user_subs.map((su, index) => ({
-    key: index,
+    key: su.id,
     label: (
       <>
         {su.course[0].title} - {su.level}
@@ -90,7 +91,7 @@ export const Profile = ({ ...props }) => {
     children: (
       <div>
         <div className="row my-2 mb-3">
-          <Divider orientation="left">
+          <Divider orientation="center">
             <p className=" blue-text">Subscription process</p>
           </Divider>
 
@@ -131,10 +132,10 @@ export const Profile = ({ ...props }) => {
         </div>
         {su.status === "pending" && (
           <div className="row my-2">
-            <Divider orientation="left">
+            <Divider orientation="center">
               <p className=" blue-text">Payment</p>
             </Divider>
-            <PaymentForm />
+            <PaymentForm {...{ subId }} />
           </div>
         )}
       </div>
@@ -302,7 +303,6 @@ export const Profile = ({ ...props }) => {
             </div>
 
             {/* Course by users */}
-
             <div className="col col-lg-7 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
@@ -325,7 +325,13 @@ export const Profile = ({ ...props }) => {
                         <>
                           <h3 className="blue-text">Booked Courses</h3>
                           <div className="my-5">
-                            <Collapse accordion items={subsList} />
+                            <Collapse
+                              accordion
+                              items={subsList}
+                              onChange={(e) =>
+                                setSubId(props.user_subs[e]?._id)
+                              }
+                            />
                           </div>
                         </>
                       ) : (
