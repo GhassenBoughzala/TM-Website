@@ -164,6 +164,11 @@ router.put("/:subId", verifyAccessToken, async (req, res) => {
 router.delete("/:subId", verifyAccessToken, async (req, res) => {
   try {
     await Subscription.findByIdAndRemove(req.params.subId);
+    await User.findByIdAndUpdate(
+      req.user.id,
+      { $pull: { subscription: req.params.subId } },
+      { new: true }
+    );
     res.status(200).json({
       error: false,
       msg: `Deleted successfully`,
