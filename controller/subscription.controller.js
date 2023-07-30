@@ -213,14 +213,13 @@ router.post("/create-payment", verifyAccessToken, async (req, res) => {
   }
 });
 
-router.post("/confirm-payment", verifyAccessToken, async (req, res) => {
+router.put("/confirm-payment/:subId", verifyAccessToken, async (req, res) => {
   try {
-    const { subId } = req.body;
-    const selected = await Subscription.findById(subId);
+    const selected = await Subscription.findById(req.params.subId);
     if (selected) {
-      if (selected.payment === false) {
+      if (selected.status === "test") {
         const updated = await Subscription.findByIdAndUpdate(
-          subId,
+          req.params.subId,
           {
             $set: { status: "confirmed", payment: true },
           },

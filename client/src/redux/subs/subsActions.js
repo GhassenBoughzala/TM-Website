@@ -111,13 +111,11 @@ export const deleteSub = (id) => (dispatch) => {
 };
 
 export const confirmPayment = (subId) => async (dispatch) => {
-  const config = { headers: { "Content-Type": "application/json" } };
-  const body = JSON.stringify(subId);
   dispatch({ type: PAYMENT_LOADING });
   setAuthToken(localStorage.accessToken);
   try {
     await axios
-      .post(`${ServerURL}/api/subscription/confirm-payment`, body, config)
+      .put(`${ServerURL}/api/subscription/confirm-payment/` + subId)
       .then((res) => {
         dispatch({ type: PAYMENT_SUCCESS, payload: res.data });
       });

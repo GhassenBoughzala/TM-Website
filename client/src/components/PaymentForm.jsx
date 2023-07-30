@@ -4,10 +4,15 @@ import { Button, Divider, Form, InputNumber, Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StatusMessages, { useMessages } from "../components/StatusMessages";
 import { currencies } from "../helpers/Constants";
+import { ServerURL } from "../helpers/urls";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { confirmPayment } from "../redux/subs/subsActions";
 
 export const PaymentForm = ({ ...props }) => {
   const [form] = Form.useForm();
   const elements = useElements();
+  const navTo = useNavigate();
   const stripe = useStripe();
   const [messages, addMessage] = useMessages();
   const [types, setTypes] = useState("");
@@ -31,16 +36,15 @@ export const PaymentForm = ({ ...props }) => {
     if (!stripe || !elements) {
       return;
     }
-
     const cardElement = elements.getElement(CardElement);
 
     form
       .validateFields()
       .then(async (values) => {
         setisLoading(true);
-        addMessage("")
+        addMessage("");
         const { error: backendError, clientSecret } = await fetch(
-          "http://localhost:5500/api/subscription/test",
+          `${ServerURL}/api/subscription/test`,
           {
             method: "POST",
             headers: {
@@ -57,12 +61,11 @@ export const PaymentForm = ({ ...props }) => {
 
         if (backendError) {
           addMessage(backendError.message);
-          setTypes("error")
+          setTypes("error");
           return;
         }
 
         //addMessage("Client secret returned");
-
         const { error: stripeError, paymentIntent } =
           await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -76,8 +79,8 @@ export const PaymentForm = ({ ...props }) => {
         if (stripeError) {
           // Show error to your customer (e.g., insufficient funds)
           addMessage(stripeError.message);
-          setTypes("warning")
-          setisLoading(false)
+          setTypes("warning");
+          setisLoading(false);
           return;
         }
 
@@ -86,8 +89,11 @@ export const PaymentForm = ({ ...props }) => {
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
+
         addMessage(`Payment ${paymentIntent.status} ${paymentIntent.id}`);
-        setTypes("success")
+        setTypes("success");
+        props.Confirm(props.subId);
+        navTo("/payment-result");
         form.resetFields();
       })
       .catch((errorInfo) => {
@@ -221,4 +227,13 @@ export const PaymentForm = ({ ...props }) => {
   );
 };
 
-export default PaymentForm;
+const mapActionToProps = {
+  Confirm: confirmPayment,
+};
+const mapToStateProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+  loadingUpdate: state.subs.update,
+  msg: state.subs.codeMsg,
+});
+
+export default connect(mapToStateProps, mapActionToProps)(PaymentForm);

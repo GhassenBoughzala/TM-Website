@@ -29,17 +29,17 @@ export const SubscriptionResult = ({ ...props }) => {
               className="my-5"
               status="success"
               title={t("SubsResult-1")}
-              //subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+              subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
               extra={[
                 <Button type="primary" key="console">
-                  Download Language Test
+                  Contact us
                 </Button>,
               ]}
             />
           )}
           {props.msg === 0 && (
             <Result
-              status="warning"
+              status="error"
               title={t("SubsResult-0")}
               extra={
                 <Button
@@ -61,7 +61,7 @@ export const SubscriptionResult = ({ ...props }) => {
 const mapActionToProps = {};
 const mapToStateProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
-  loadingSub: state.subs.loading_create,
+  loadingSub: state.subs.loading_update,
   msg: state.subs.codeMsg,
 });
 
