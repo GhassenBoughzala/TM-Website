@@ -13,7 +13,7 @@ export const CourseTN = ({ ...props }) => {
   const [currentObj, setstate] = useState(course);
   const [loading, setloading] = useState(true);
   useEffect(() => {
-    const id = "64b02549f678c4606a7cd3da";
+    const id = "64c684a913ebbe2aec0e1b1e";
     setloading(false);
     axios
       .get(`${ServerURL}/api/courses/${id}`)
