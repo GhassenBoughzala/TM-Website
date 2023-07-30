@@ -1,13 +1,21 @@
 // A small set of helpers for displaying messages while in development.
+import { Alert } from "antd";
 import React, { useReducer } from "react";
 
 // `StatusMessages` is a helper component for displaying messages while in
 // development. This has no impact on your integration and can be deleted.
-const StatusMessages = ({ messages }) =>
+const StatusMessages = ({ messages, type }) =>
   messages.length ? (
     <div id="messages" role="alert">
       {messages.map((m, i) => (
-        <div key={i}>{maybeLink(m)}</div>
+        <div key={i}>
+          <Alert
+            message={maybeLink(m)}
+            type={type}
+            style={{ width: "50%", margin: "auto" }}
+            showIcon
+          />
+        </div>
       ))}
     </div>
   ) : (
@@ -33,7 +41,11 @@ const useMessages = () => {
   // helper for displaying status messages.
   return useReducer((messages, message) => {
     // Embed link
-    return [...messages, message];
+    if (message === "") {
+      return [];
+    } else {
+      return [...messages, message];
+    }
   }, []);
 };
 

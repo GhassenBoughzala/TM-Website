@@ -42,9 +42,13 @@ export const Profile = ({ ...props }) => {
 
   const [view, setView] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [selctedId, setSelctedId] = useState();
   const [subId, setSubId] = useState();
   const navTo = useNavigate();
+  const handleCancel = () => {
+    setOpenModal(false);
+  };
   const onFinish = (values) => {
     try {
       props.Update(values);
@@ -96,28 +100,26 @@ export const Profile = ({ ...props }) => {
           </Divider>
 
           <Steps current={statusOfSub(su.status)} size="small" items={items} />
-          <div className="col text-start">
-            {su.payment === false && (
-              <Button
-                danger
-                size="small"
-                type="dashed"
-                className="mt-3"
-                onClick={() => {
-                  setSelctedId(su._id);
-                  setDeleteModal(true);
-                }}
-              >
-                Cancel booking
-              </Button>
-            )}
-          </div>
-          <div className="col">
-            {su.status === "pending" && (
-              <div className="text-center">
+          {su.status === "pending" && (
+            <>
+              <div className="col text-start">
+                <Button
+                  danger
+                  size="small"
+                  type="dashed"
+                  className="mt-3"
+                  onClick={() => {
+                    setSelctedId(su._id);
+                    setDeleteModal(true);
+                  }}
+                >
+                  Cancel booking
+                </Button>
+              </div>
+              <div className="col text-center">
                 <Button
                   size="small"
-                  type="primary"
+                  type="default"
                   className="mt-3"
                   onClick={() => {
                     console.log("Download");
@@ -126,18 +128,24 @@ export const Profile = ({ ...props }) => {
                   Download Language Test
                 </Button>
               </div>
+            </>
+          )}
+
+          <div className="col">
+            {su.status === "test" && (
+              <div className="text-end">
+                <Button
+                  size="small"
+                  type="primary"
+                  className="mt-3"
+                  onClick={() => setOpenModal(true)}
+                >
+                  Make a payment
+                </Button>
+              </div>
             )}
           </div>
-          <div className="col"></div>
         </div>
-        {su.status === "pending" && (
-          <div className="row my-2">
-            <Divider orientation="center">
-              <p className=" blue-text">Payment</p>
-            </Divider>
-            <PaymentForm {...{ subId }} />
-          </div>
-        )}
       </div>
     ),
   }));
@@ -365,6 +373,30 @@ export const Profile = ({ ...props }) => {
               setDeleteModal(false);
             }}
           />
+
+          <Modal
+            open={openModal}
+            onCancel={handleCancel}
+            width={600}
+            bodyStyle={{ height: 550 }}
+            footer={null}
+          >
+            {!props.loadingSubs ? (
+              <div className="text-center">
+                <LoadingOutlined
+                  style={{
+                    fontSize: 40,
+                    margin: 130,
+                  }}
+                  spin
+                />
+              </div>
+            ) : (
+              <>
+                <PaymentForm {...{ subId, setOpenModal }} />
+              </>
+            )}
+          </Modal>
         </div>
       </Content>
       <Footer />

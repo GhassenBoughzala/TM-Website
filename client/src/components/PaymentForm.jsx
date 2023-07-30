@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StatusMessages, { useMessages } from "../components/StatusMessages";
 import { currencies } from "../helpers/Constants";
 
-export const PaymentForm = ({ subId }) => {
+export const PaymentForm = ({ ...props }) => {
   const [form] = Form.useForm();
   const elements = useElements();
   const stripe = useStripe();
   const [messages, addMessage] = useMessages();
+  const [types, setTypes] = useState("");
 
   const [currency, setCurrency] = useState(" $ ");
   const [format, setFormat] = useState(0);
@@ -37,6 +38,7 @@ export const PaymentForm = ({ subId }) => {
       .validateFields()
       .then(async (values) => {
         setisLoading(true);
+        addMessage("")
         const { error: backendError, clientSecret } = await fetch(
           "http://localhost:5500/api/subscription/test",
           {
@@ -48,12 +50,14 @@ export const PaymentForm = ({ subId }) => {
               paymentMethodType: "card",
               currency: values.currency,
               amount: values.amount,
+              subId: props.subId,
             }),
           }
         ).then((r) => r.json());
 
         if (backendError) {
           addMessage(backendError.message);
+          setTypes("error")
           return;
         }
 
@@ -72,6 +76,8 @@ export const PaymentForm = ({ subId }) => {
         if (stripeError) {
           // Show error to your customer (e.g., insufficient funds)
           addMessage(stripeError.message);
+          setTypes("warning")
+          setisLoading(false)
           return;
         }
 
@@ -80,7 +86,9 @@ export const PaymentForm = ({ subId }) => {
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
-        addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+        addMessage(`Payment ${paymentIntent.status} ${paymentIntent.id}`);
+        setTypes("success")
+        form.resetFields();
       })
       .catch((errorInfo) => {
         console.log("errorInfo ...", errorInfo);
@@ -99,7 +107,8 @@ export const PaymentForm = ({ subId }) => {
         style={{ height: 550 }}
       >
         <div className="row text-center">
-          <div className="text-center mb-3">
+          <h4 className=" blue-text my-4 mb-4"> Invoice </h4>
+          <div className="text-center mb-4">
             <FontAwesomeIcon
               icon="fa-brands fa-cc-visa"
               fontSize={50}
@@ -157,7 +166,6 @@ export const PaymentForm = ({ subId }) => {
                   },
                 ]}
               >
-                {/* <CurrencyInput className=" form-" name="amount" step={1} /> */}
                 <InputNumber
                   style={{ width: "100%" }}
                   min={100}
@@ -179,9 +187,16 @@ export const PaymentForm = ({ subId }) => {
           </div>
         </div>
         <div className="row">
+          <div className="text-center">Payment Information</div>
           <div className="form-outline text-start my-3">
             <Form.Item>
-              <CardElement className="mx-5" disableLink={false} />
+              <CardElement
+                className="mx-5"
+                options={{
+                  disableLink: true,
+                  hidePostalCode: true,
+                }}
+              />
             </Form.Item>
           </div>
         </div>
@@ -189,7 +204,7 @@ export const PaymentForm = ({ subId }) => {
         <div className="row form-outline text-center">
           <Form.Item>
             <Button
-              type="default"
+              type="primary"
               htmlType="submit"
               onClick={handleFormSubmit}
               loading={isLoading}
@@ -197,7 +212,9 @@ export const PaymentForm = ({ subId }) => {
               Confirm payment
             </Button>
           </Form.Item>
-          <StatusMessages messages={messages} />
+          <div className="text-center">
+            <StatusMessages messages={messages} type={types} />
+          </div>
         </div>
       </Form>
     </>
