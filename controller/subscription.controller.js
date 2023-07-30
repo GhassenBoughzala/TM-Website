@@ -193,27 +193,52 @@ router.post("/create-payment", verifyAccessToken, async (req, res) => {
         const paymentIntent = await stripe.paymentIntents.create(params);
         res.status(200).send({ clientSecret: paymentIntent.client_secret });
       } else {
-        res.status(404).json({
+        res.status(400).json({
           error: true,
           msg: "Subscription already payed",
         });
       }
     } else {
-      res.status(404).json({
+      res.status(400).json({
         error: true,
         msg: "Subscription not found",
       });
     }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      error: true,
+      msg: "Server error",
+    });
+  }
+});
 
-    if (res.statusCode === 200) {
-      const updated = await Subscription.findByIdAndUpdate(
-        subId,
-        {
-          $set: { status: "confirmed", payment: true },
-        },
-        { new: true }
-      );
-      console.log(`Subscription ${updated.id}: ${updated.status}`);
+router.post("/confirm-payment", verifyAccessToken, async (req, res) => {
+  try {
+    const { subId } = req.body;
+    const selected = await Subscription.findById(subId);
+    if (selected) {
+      if (selected.payment === false) {
+        const updated = await Subscription.findByIdAndUpdate(
+          subId,
+          {
+            $set: { status: "confirmed", payment: true },
+          },
+          { new: true }
+        );
+        console.log(`Subscription ${updated.id}: ${updated.status}`);
+        res.status(200).json(updated);
+      } else {
+        res.status(400).json({
+          error: true,
+          msg: "Subscription already payed",
+        });
+      }
+    } else {
+      res.status(400).json({
+        error: true,
+        msg: "Subscription not found",
+      });
     }
   } catch (error) {
     console.log(error.message);
