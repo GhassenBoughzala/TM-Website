@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-export const Subscription = ({ ...props }) => {
+export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
   const { t } = useTranslation();
 
@@ -71,4 +71,4 @@ const mapToStateProps = (state) => ({
   msg: state.subs.codeMsg,
 });
 
-export default connect(mapToStateProps, mapActionToProps)(Subscription);
+export default connect(mapToStateProps, mapActionToProps)(SubscriptionResult);

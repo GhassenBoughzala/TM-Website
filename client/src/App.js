@@ -32,11 +32,12 @@ import CourseTN from "./views/courses/CourseTN";
 import CourseLB from "./views/courses/CourseLB";
 import CourseAR from "./views/courses/CourseAR";
 import CourseEN from "./views/courses/CourseEN";
-import Subscription from "./views/Subscription";
+import SubscriptionResult from "./views/SubscriptionResult";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { ServerURL } from "./helpers/urls";
+import PaymentResult from "./views/PaymentResult";
 
 function App() {
   if (localStorage.accessToken) {
@@ -135,7 +136,15 @@ function App() {
                     <Route
                       exact
                       path="/subscription"
-                      Component={Subscription}
+                      Component={SubscriptionResult}
+                    ></Route>
+                  </Route>
+
+                  <Route exact path="/payment-result" element={<UserRoute />}>
+                    <Route
+                      exact
+                      path="/payment-result"
+                      Component={PaymentResult}
                     ></Route>
                   </Route>
 

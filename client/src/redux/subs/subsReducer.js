@@ -12,6 +12,9 @@ import {
   GET_SUBS,
   GET_SUBS_AD,
   LOADING_SUBS,
+  PAYMENT_FAILED,
+  PAYMENT_LOADING,
+  PAYMENT_SUCCESS,
   UPDATE_SUBS_FAILED,
   UPDATE_SUBS_LOADING,
   UPDATE_SUBS_SUCCESS,
@@ -90,6 +93,23 @@ export default function (state = intialState, action) {
         user_subs: state.user_subs.filter((c) => c._id !== action.payload),
       };
     case DEL_SUBS_FAILED:
+    case PAYMENT_LOADING:
+      return {
+        ...state,
+        loading_update: false,
+        codeMsg: null,
+      };
+    case PAYMENT_SUCCESS:
+      return {
+        ...state,
+        subs: state.subs.map((c) =>
+          c._id === action.payload._id ? action.payload : c
+        ),
+        codeMsg: 1,
+        loading_update: true,
+      };
+    case PAYMENT_FAILED:
+      return { ...state, codeMsg: 0, error: true, loading_update: true };
     default:
       return state;
   }

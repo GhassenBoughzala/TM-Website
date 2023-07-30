@@ -89,7 +89,7 @@ export const Profile = ({ ...props }) => {
     key: su.id,
     label: (
       <>
-        {su.course[0].title} - {su.level}
+        {su.course[0].title}
       </>
     ),
     children: (
