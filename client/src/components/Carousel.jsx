@@ -14,13 +14,13 @@ const CarouselAntd = () => {
       <h2 className="title title_center">{t("HomePartners")}</h2>
       <Carousel autoplay speed={1000} slidesToShow={4} dots={false}>
         <div className="px-5">
-          <img src={Ames} alt="Taa Marbouta" className="w-75" />
+          <img src={Ames} alt="Taa Marbouta" style={{ width: "100%"}} />
         </div>
         <div className="px-5">
-          <img src={Mi} alt="Taa Marbouta" />
+          <img src={Mi} alt="Taa Marbouta" style={{ width: "100%"}} />
         </div>
         <div className="px-5">
-          <img src={Mn} alt="Taa Marbouta" />
+          <img src={Mn} alt="Taa Marbouta"  />
         </div>
         <div className="px-5">
           <img src={Na} alt="Taa Marbouta" />

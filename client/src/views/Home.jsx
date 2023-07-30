@@ -60,24 +60,24 @@ export const Home = () => {
               <img src={BG2} alt="Taa Marbouta" className="h-50" />
               <img src={BG3} alt="Taa Marbouta" className="h-50" />
             </Carousel>
-            <div className="card-img-overlay justify-content-center">
-              <div className=" header_home">
-                <div className=" container">
-                  <div className="row">
-                    <div className="col col-lg-5 col-md-5 col-sm-5  align">
-                      <div className="contenu_header_home">
-                        <h2 className="averiaseriflibre_bold">Taa Marbouta</h2>
-                        <h2 className="averiaseriflibre_bold">
-                          {t("LanguageCourses")}
-                        </h2>
-                        <div className="parag_style">
-                          <p className="text-dark">{t("HomeP1")}</p>
-                        </div>
+            <div className="card-img-overlay justify-content-center overflow-x-hidden overflow-y-scroll">
+              <div className="container my-5">
+                <div className="row">
+                  <div className="col col-lg-5 col-md-5 col-sm-5 col-xs-3 align">
+                    <div className="contenu_header_home">
+                      <h1 className="averiaseriflibre_bold blue-text">
+                        Taa Marbouta
+                      </h1>
+                      <h3 className="averiaseriflibre_bold">
+                        {t("LanguageCourses")}
+                      </h3>
+                      <div className="parag_style">
+                        <p className="text-dark">{t("HomeP1")}</p>
                       </div>
                     </div>
-                    <div className="col col-lg-7 col-md-7 col-sm-7 align">
-                      <img src={HeaderHome} alt="Taa Marbouta" />
-                    </div>
+                  </div>
+                  <div className="col col-lg-7 col-md-7 col-sm-6 col-xs-6">
+                    <img src={HeaderHome} alt="Taa Marbouta" />
                   </div>
                 </div>
               </div>
@@ -154,11 +154,11 @@ export const Home = () => {
                 className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
               >
                 <h2 className="title title_center">{t("HomeWhy")}</h2>
-                <div className="card bg-light h-auto border-0">
+                <div className="card bg-light h-auto border-0 overflow-x-hidden overflow-y-scroll">
                   <img className="card-img" alt="example" src={Land} />
                   <div className="card-img-overlay">
                     <div className="row m-3 display-flex">
-                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
                         <img
                           width={170}
                           className=" mx-auto d-block"
@@ -169,7 +169,7 @@ export const Home = () => {
                           {t("HomeTeam")}
                         </h4>
                       </div>
-                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
                         <img
                           width={170}
                           className="mx-auto d-block"
@@ -180,7 +180,7 @@ export const Home = () => {
                           {t("HomeCul")}
                         </h4>
                       </div>
-                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
                         <img
                           width={170}
                           className="mx-auto d-block"
@@ -199,7 +199,7 @@ export const Home = () => {
           </div>
         </motion.div>
 
-        <div className="m-2">
+        <div className="m-2 mb-5 my-5">
           <div className="container">
             <div className="row">
               <Partners />
