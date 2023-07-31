@@ -33,4 +33,20 @@ router.put(
   }
 );
 
+// @route   GET api/contactId
+// @desc    Get Courses
+// @access  Public
+router.get("/", async (req, res) => {
+  try {
+    let all = await Contact.findById("64c69a5691d4d2b7c6156301");
+    res.status(200).json(all);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: true,
+      msg: "server error",
+    });
+  }
+});
+
 module.exports = router;

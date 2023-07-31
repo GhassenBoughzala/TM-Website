@@ -1,20 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Result } from "antd";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import TM from "../assets/images/TM.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import { ServerURL } from "../helpers/urls";
 
 export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
   const { t } = useTranslation();
+  const [contact, setContact] = useState({});
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noreferrer");
   };
+
+  useEffect(() => {
+    axios
+      .get(`${ServerURL}/api/contact/`)
+      .then((res) => {
+        setContact(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className=" container-fluid">
@@ -51,7 +64,7 @@ export const SubscriptionResult = ({ ...props }) => {
                 extra={[
                   <Button
                     size="large"
-                    icon={<FontAwesomeIcon icon="fa-brands fa-whatsapp" />}
+                    icon={<WhatsAppOutlined style={{ fontSize: 23 }} />}
                     className="bg-success text-white"
                     key="console"
                     onClick={() =>
@@ -60,10 +73,20 @@ export const SubscriptionResult = ({ ...props }) => {
                       )
                     }
                   >
-                    Contact Us on WhatsApp
+                    {contact.mobile}
                   </Button>,
-                  <Button type="primary" key="console">
-                    Download Language Test
+                  <Button
+                    size="large"
+                    icon={<WhatsAppOutlined style={{ fontSize: 23 }} />}
+                    className="bg-success text-white"
+                    key="console"
+                    onClick={() =>
+                      openInNewTab(
+                        `https://api.whatsapp.com/send?phone=1234567890`
+                      )
+                    }
+                  >
+                    {contact.work}
                   </Button>,
                 ]}
               />
