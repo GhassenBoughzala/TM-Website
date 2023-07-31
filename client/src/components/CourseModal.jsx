@@ -10,7 +10,6 @@ import { Subscribe } from "../redux/subs/subsActions";
 import usePrevious from "../helpers/usePrevious";
 import { motion } from "framer-motion";
 
-
 export const CourseModal = ({ ...props }) => {
   const navTo = useNavigate();
   const course = { description: [], sessions: [{ sessions: [] }] };
@@ -217,26 +216,20 @@ export const CourseModal = ({ ...props }) => {
                   style={{ maxWidth: 600 }}
                   autoComplete="off"
                 >
-                  <div className="row mb-5">
-                    <div className="col-md-4">
-                      <div className="form-outline text-start">
-                        <h5>Select your level:</h5>
-                      </div>
-                    </div>
-                    <div className="col-md-8">
-                      <div className="form-outline text-start">
-                        <Form.Item
-                          name="level"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your level !",
-                            },
-                          ]}
-                        >
-                          <Select options={options}></Select>
-                        </Form.Item>
-                      </div>
+                  <div className="text-center">
+                    <div className="form-outline text-center d-block m-auto">
+                      <h5>Select your level</h5>
+                      <Form.Item
+                        name="level"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your level !",
+                          },
+                        ]}
+                      >
+                        <Select options={options} className="w-50"></Select>
+                      </Form.Item>
                     </div>
                   </div>
 

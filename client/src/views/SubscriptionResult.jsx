@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import TM from "../assets/images/TM.png";
 
 export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
@@ -17,7 +19,7 @@ export const SubscriptionResult = ({ ...props }) => {
   }, [props.msg]); */
 
   return (
-    <div>
+    <div className=" container-fluid">
       {!props.loadingSub ? (
         <div className="text-center">
           <LoadingOutlined
@@ -29,19 +31,32 @@ export const SubscriptionResult = ({ ...props }) => {
           />
         </div>
       ) : (
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           {props.msg === 1 && (
-            <Result
-              className="my-5"
-              status="success"
-              title={t("SubsResult-1")}
-              //subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
-              extra={[
-                <Button type="primary" key="console">
-                  Download Language Test
-                </Button>,
-              ]}
-            />
+            <>
+              <div className="my-3 text-center">
+                <img
+                  width={300}
+                  className="mx-auto d-block"
+                  src={TM}
+                  alt="Quality Team"
+                />
+              </div>
+              <Result
+                status="success"
+                title={t("SubsResult-1")}
+                //subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+                extra={[
+                  <Button type="primary" key="console">
+                    Download Language Test
+                  </Button>,
+                ]}
+              />
+            </>
           )}
           {props.msg === 0 && (
             <Result
@@ -58,7 +73,7 @@ export const SubscriptionResult = ({ ...props }) => {
               }
             />
           )}
-        </div>
+        </motion.div>
       )}
     </div>
   );
