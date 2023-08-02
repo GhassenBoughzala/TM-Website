@@ -65,7 +65,6 @@ export const Subscribe = (values) => async (dispatch) => {
         }
       });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: ADD_SUBS_FAILED,
     });
@@ -89,7 +88,6 @@ export const updateSub = (values, id) => async (dispatch) => {
     });
     toast.success("Successfully updated");
   } catch (err) {
-    console.log(err);
     dispatch({
       type: UPDATE_SUBS_FAILED,
     });
@@ -120,7 +118,6 @@ export const confirmPayment = (subId) => async (dispatch) => {
         dispatch({ type: PAYMENT_SUCCESS, payload: res.data });
       });
   } catch (err) {
-    console.log(err);
     dispatch({ type: PAYMENT_FAILED });
   }
 };
