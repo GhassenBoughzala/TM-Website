@@ -5,7 +5,7 @@ import { Image, Empty, Carousel, Button, Modal, Form, Select } from "antd";
 import moment from "moment";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Subscribe } from "../redux/subs/subsActions";
 import usePrevious from "../helpers/usePrevious";
 import { motion } from "framer-motion";
@@ -106,9 +106,16 @@ export const CourseModal = ({ ...props }) => {
               </div>
             ) : (
               <div className="text-center my-5">
-                <h5 className=" blue-text">
-                  Connect or Register to book a course <Link to="/login"></Link>
-                </h5>
+                <Button
+                  type="default"
+                  size="large"
+                  htmlType="submit"
+                  onClick={() => {
+                    navTo("/login");
+                  }}
+                >
+                  Connect or Register to book a course
+                </Button>
               </div>
             )}
           </div>
