@@ -54,9 +54,9 @@ export const PaymentForm = ({ ...props }) => {
               paymentMethodType: "card",
               currency: values.currency,
               amount: values.amount,
-              subId: props.subId,
+              subId: props.subObj._id,
               receipt_email: User.email,
-              description: '3% of your purchase goes toward our ocean cleanup effort!'
+              description: `Payment for ${props.subObj.course[0].title}`,
             }),
           }
         ).then((r) => r.json());
@@ -92,9 +92,10 @@ export const PaymentForm = ({ ...props }) => {
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
 
-        addMessage(`Payment ${paymentIntent.status} ${paymentIntent.id}`);
+        //addMessage(`Payment ${paymentIntent.status} ${paymentIntent.id}`);
+        addMessage(`Payment ${paymentIntent.status}`);
         setTypes("success");
-        props.Confirm(props.subId);
+        props.Confirm(props.subObj._id);
         navTo("/payment-result");
         form.resetFields();
       })
@@ -115,7 +116,9 @@ export const PaymentForm = ({ ...props }) => {
         style={{ height: 550 }}
       >
         <div className="row text-center">
-          <h4 className=" blue-text my-4 mb-4"> Invoice </h4>
+          <h4 className=" blue-text my-4 mb-4">
+            {props.subObj.course[0].title} Invoice{" "}
+          </h4>
           <div className="text-center mb-4">
             <FontAwesomeIcon
               icon="fa-brands fa-cc-visa"

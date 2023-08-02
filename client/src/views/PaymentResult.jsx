@@ -61,7 +61,6 @@ export const SubscriptionResult = ({ ...props }) => {
               <Result
                 status="success"
                 title={t("PayResult-1")}
-                subTitle={t("PayResult-2")}
                 extra={[
                   <Button
                     size="large"
@@ -89,16 +88,24 @@ export const SubscriptionResult = ({ ...props }) => {
                   >
                     Contact us for internships
                   </Button>,
+                ]}
+              >
+                <div className=" bg-transparent text-center">
+                  <div className=" mt-3">
+                    <h5> {t("PayResult-2")} </h5>
+                    <h5> {t("PayResult-3")} </h5>
+                  </div>
                   <Button
-                    type="primary"
+                    className="mt-4"
                     size="large"
+                    type="primary"
                     key="num3"
                     onClick={() => navTo("/profil")}
                   >
                     View booked Courses
-                  </Button>,
-                ]}
-              />
+                  </Button>
+                </div>
+              </Result>
             </>
           )}
           {props.msg === 0 && (

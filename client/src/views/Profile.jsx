@@ -44,7 +44,7 @@ export const Profile = ({ ...props }) => {
   const [DeleteModal, setDeleteModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selctedId, setSelctedId] = useState();
-  const [subId, setSubId] = useState();
+  const [subObj, setsubObj] = useState({});
   const navTo = useNavigate();
   const handleCancel = () => {
     setOpenModal(false);
@@ -87,11 +87,7 @@ export const Profile = ({ ...props }) => {
 
   const subsList = props.user_subs.map((su, index) => ({
     key: su.id,
-    label: (
-      <>
-        {su.course[0].title}
-      </>
-    ),
+    label: <>{su.course[0].title}</>,
     children: (
       <div>
         <div className="row my-2 mb-3">
@@ -156,7 +152,10 @@ export const Profile = ({ ...props }) => {
         <div className="container my-5 ">
           <div className="row">
             <div className="col col-lg-5 col-md-12 col-sm-12 col-xs-12 align">
-              <Card style={{ height: 500, width: 1000 }} className="overflow-y-scroll overflow-x-hidden mb-3">
+              <Card
+                style={{ height: 500, width: 1000 }}
+                className="overflow-y-scroll overflow-x-hidden mb-3"
+              >
                 {!view && (
                   <AnimatePresence>
                     <motion.div
@@ -337,7 +336,7 @@ export const Profile = ({ ...props }) => {
                               accordion
                               items={subsList}
                               onChange={(e) =>
-                                setSubId(props.user_subs[e]?._id)
+                                setsubObj(props.user_subs[e])
                               }
                             />
                           </div>
@@ -364,6 +363,7 @@ export const Profile = ({ ...props }) => {
             </div>
           </div>
 
+          {/* Cancel Modal */}
           <Modal
             title={"Are you sure to cancel ?"}
             open={DeleteModal}
@@ -374,6 +374,7 @@ export const Profile = ({ ...props }) => {
             }}
           />
 
+          {/* Payment Modal */}
           <Modal
             open={openModal}
             onCancel={handleCancel}
@@ -393,7 +394,7 @@ export const Profile = ({ ...props }) => {
               </div>
             ) : (
               <>
-                <PaymentForm {...{ subId, setOpenModal }} />
+                <PaymentForm {...{ subObj, setOpenModal }} />
               </>
             )}
           </Modal>

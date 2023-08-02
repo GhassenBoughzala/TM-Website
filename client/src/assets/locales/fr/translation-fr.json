@@ -55,5 +55,6 @@
   "SubsResult-1": "Cours réservé avec succès",
   "SubsResult-0": "Vous avez déjà réservé ce cours",
   "PayResult-1": "Paiement réussi",
-  "PayResult-2": "Votre paiement a été traité"
+  "PayResult-2": "Votre paiement a été traité",
+  "PayResult-3": "Vérifiez votre e-mail pour le reçu de paiement"
 }

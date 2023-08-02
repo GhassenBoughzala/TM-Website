@@ -55,5 +55,6 @@
   "SubsResult-1": "Course successfully booked",
   "SubsResult-0": "You have already booked this course",
   "PayResult-1": "Payment Successfull",
-  "PayResult-2": "Your payment has been processed"
+  "PayResult-2": "Your payment has been processed",
+  "PayResult-3": "Check your email for the payment receipet"
 }
