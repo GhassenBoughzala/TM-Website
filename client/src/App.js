@@ -1,6 +1,7 @@
+/* eslint-disable no-const-assign */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -31,11 +32,12 @@ import CourseTN from "./views/courses/CourseTN";
 import CourseLB from "./views/courses/CourseLB";
 import CourseAR from "./views/courses/CourseAR";
 import CourseEN from "./views/courses/CourseEN";
-import Subscription from "./views/Subscription";
+import SubscriptionResult from "./views/SubscriptionResult";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { ServerURL } from "./helpers/urls";
+import PaymentResult from "./views/PaymentResult";
 
 function App() {
   if (localStorage.accessToken) {
@@ -57,9 +59,17 @@ function App() {
     }
   }, []);
 
-  const { PK } = axios
-    .get(`${ServerURL}/api/subscription/config`)
-    .then((r) => r, console.log("$$$"));
+  const [PK, setPK] = useState("");
+  useEffect(() => {
+    const getPK = async () => {
+      await axios.get(`${ServerURL}/api/subscription/config`).then((r) => {
+        setPK(r.data);
+      });
+    };
+
+    getPK();
+  }, []);
+
   const stripePromise = loadStripe(`${PK}`);
 
   return (
@@ -126,7 +136,15 @@ function App() {
                     <Route
                       exact
                       path="/subscription"
-                      Component={Subscription}
+                      Component={SubscriptionResult}
+                    ></Route>
+                  </Route>
+
+                  <Route exact path="/payment-result" element={<UserRoute />}>
+                    <Route
+                      exact
+                      path="/payment-result"
+                      Component={PaymentResult}
                     ></Route>
                   </Route>
 

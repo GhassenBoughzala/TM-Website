@@ -14,12 +14,12 @@ export const HomeFooter = () => {
       <div className="container position-sticky">
         <footer className="py-1">
           <div className="row">
-            <div className="col-6">
+            <div className="col col-lg-6 col-xs-12">
               <h2 className="averiaseriflibre_bold text-start">Taa Marbouta</h2>
               <p className="montserrat_regular text-start">{t("Footer")}</p>
             </div>
 
-            <div className="col-6">
+            <div className="col col-lg-6 col-xs-12">
             <div>
                   <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <p className="montserrat_regular text-start">

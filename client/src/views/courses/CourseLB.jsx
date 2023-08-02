@@ -7,13 +7,16 @@ import { getCourses } from "../../redux/courses/courseActions";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
 import { ServerURL } from "../../helpers/urls";
+import { Layout } from "antd";
+import Footer from "../../components/Footer";
+const { Content } = Layout;
 
 export const CourseLB = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setstate] = useState(course);
   const [loading, setloading] = useState(true);
   useEffect(() => {
-    const id = "64b02844f678c4606a7cd3e3";
+    const id = "64c684b713ebbe2aec0e1b1f";
     setloading(false);
     axios
       .get(`${ServerURL}/api/courses/${id}`)
@@ -28,32 +31,36 @@ export const CourseLB = ({ ...props }) => {
   }, []);
 
   return (
-    <div className=" container-fluid m-3">
-      <Helmet>
-        <title>Libyan Arabic Course</title>
-        <meta
-          name="description"
-          content="Taa Marbouta is a language school based in Carthage,
+    <>
+      <Content className=" container-fluid m-3">
+        <Helmet>
+          <title>Libyan Arabic Course</title>
+          <meta
+            name="description"
+            content="Taa Marbouta is a language school based in Carthage,
           Tunis. We aim to better connect Tunisia with the world."
-        />
-        <link rel="canonical" href="/learn-libyan-arabic" />
-      </Helmet>
-      {!loading ? (
-        <>
-          <div className="text-center">
-            <LoadingOutlined
-              style={{
-                fontSize: 40,
-                margin: 130,
-              }}
-              spin
-            />
-          </div>
-        </>
-      ) : (
-        <CourseModal {...{ currentObj }} />
-      )}
-    </div>
+          />
+          <link rel="canonical" href="/learn-libyan-arabic" />
+        </Helmet>
+        {!loading ? (
+          <>
+            <div className="text-center">
+              <LoadingOutlined
+                className="yellow-text"
+                style={{
+                  fontSize: 40,
+                  margin: 330,
+                }}
+                spin
+              />
+            </div>
+          </>
+        ) : (
+          <CourseModal {...{ currentObj }} />
+        )}
+      </Content>
+      <Footer />
+    </>
   );
 };
 

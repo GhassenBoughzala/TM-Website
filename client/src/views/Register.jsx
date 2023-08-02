@@ -8,6 +8,7 @@ import { register } from "../redux/auth/authActions";
 import { Layout, Button, Form, Input, Select } from "antd";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
@@ -69,7 +70,6 @@ export const Register = ({ ...props }) => {
     }),
   ];
 
-
   const handleFormSubmit = () => {
     form
       .validateFields()
@@ -96,7 +96,12 @@ export const Register = ({ ...props }) => {
   return (
     <Content className="container-fluid">
       <section className="text-center text-lg-start">
-        <div className="container py-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="container py-4"
+        >
           <div className="row g-0 align-items-center">
             <div className="col-lg-6 mb-5 mb-lg-0">
               <div className="card cascading-right">
@@ -254,7 +259,7 @@ export const Register = ({ ...props }) => {
               <img src={Art} className="w-100 rounded-4 shadow-4" alt="" />
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </Content>
   );

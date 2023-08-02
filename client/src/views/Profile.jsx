@@ -42,8 +42,13 @@ export const Profile = ({ ...props }) => {
 
   const [view, setView] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [selctedId, setSelctedId] = useState();
+  const [subObj, setsubObj] = useState({});
   const navTo = useNavigate();
+  const handleCancel = () => {
+    setOpenModal(false);
+  };
   const onFinish = (values) => {
     try {
       props.Update(values);
@@ -81,42 +86,36 @@ export const Profile = ({ ...props }) => {
   };
 
   const subsList = props.user_subs.map((su, index) => ({
-    key: index,
-    label: (
-      <>
-        {su.course[0].title} - {su.level}
-      </>
-    ),
+    key: su.id,
+    label: <>{su.course[0].title}</>,
     children: (
       <div>
         <div className="row my-2 mb-3">
-          <Divider orientation="left">
+          <Divider orientation="center">
             <p className=" blue-text">Subscription process</p>
           </Divider>
 
           <Steps current={statusOfSub(su.status)} size="small" items={items} />
-          <div className="col text-start">
-            {su.payment === false && (
-              <Button
-                danger
-                size="small"
-                type="dashed"
-                className="mt-3"
-                onClick={() => {
-                  setSelctedId(su._id);
-                  setDeleteModal(true);
-                }}
-              >
-                Cancel booking
-              </Button>
-            )}
-          </div>
-          <div className="col">
-            {su.status === "pending" && (
-              <div className="text-center">
+          {su.status === "pending" && (
+            <>
+              <div className="col text-start">
+                <Button
+                  danger
+                  size="small"
+                  type="dashed"
+                  className="mt-3"
+                  onClick={() => {
+                    setSelctedId(su._id);
+                    setDeleteModal(true);
+                  }}
+                >
+                  Cancel booking
+                </Button>
+              </div>
+              <div className="col text-center">
                 <Button
                   size="small"
-                  type="primary"
+                  type="default"
                   className="mt-3"
                   onClick={() => {
                     console.log("Download");
@@ -125,18 +124,24 @@ export const Profile = ({ ...props }) => {
                   Download Language Test
                 </Button>
               </div>
+            </>
+          )}
+
+          <div className="col">
+            {su.status === "test" && (
+              <div className="text-end">
+                <Button
+                  size="small"
+                  type="primary"
+                  className="mt-3"
+                  onClick={() => setOpenModal(true)}
+                >
+                  Make a payment
+                </Button>
+              </div>
             )}
           </div>
-          <div className="col"></div>
         </div>
-        {su.status === "pending" && (
-          <div className="row my-2">
-            <Divider orientation="left">
-              <p className=" blue-text">Payment</p>
-            </Divider>
-            <PaymentForm />
-          </div>
-        )}
       </div>
     ),
   }));
@@ -147,7 +152,10 @@ export const Profile = ({ ...props }) => {
         <div className="container my-5 ">
           <div className="row">
             <div className="col col-lg-5 col-md-12 col-sm-12 col-xs-12 align">
-              <Card style={{ height: 500, width: 1000 }}>
+              <Card
+                style={{ height: 500, width: 1000 }}
+                className="overflow-y-scroll overflow-x-hidden mb-3"
+              >
                 {!view && (
                   <AnimatePresence>
                     <motion.div
@@ -302,11 +310,10 @@ export const Profile = ({ ...props }) => {
             </div>
 
             {/* Course by users */}
-
             <div className="col col-lg-7 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
-                className=" overflow-y-scroll overflow-x-hidden"
+                className=" overflow-y-scroll overflow-x-hidden mb-3"
               >
                 <div>
                   {!props.loadingSubs ? (
@@ -325,7 +332,13 @@ export const Profile = ({ ...props }) => {
                         <>
                           <h3 className="blue-text">Booked Courses</h3>
                           <div className="my-5">
-                            <Collapse accordion items={subsList} />
+                            <Collapse
+                              accordion
+                              items={subsList}
+                              onChange={(e) =>
+                                setsubObj(props.user_subs[e])
+                              }
+                            />
                           </div>
                         </>
                       ) : (
@@ -350,6 +363,7 @@ export const Profile = ({ ...props }) => {
             </div>
           </div>
 
+          {/* Cancel Modal */}
           <Modal
             title={"Are you sure to cancel ?"}
             open={DeleteModal}
@@ -359,6 +373,31 @@ export const Profile = ({ ...props }) => {
               setDeleteModal(false);
             }}
           />
+
+          {/* Payment Modal */}
+          <Modal
+            open={openModal}
+            onCancel={handleCancel}
+            width={600}
+            bodyStyle={{ height: 550 }}
+            footer={null}
+          >
+            {!props.loadingSubs ? (
+              <div className="text-center">
+                <LoadingOutlined
+                  style={{
+                    fontSize: 40,
+                    margin: 130,
+                  }}
+                  spin
+                />
+              </div>
+            ) : (
+              <>
+                <PaymentForm {...{ subObj, setOpenModal }} />
+              </>
+            )}
+          </Modal>
         </div>
       </Content>
       <Footer />

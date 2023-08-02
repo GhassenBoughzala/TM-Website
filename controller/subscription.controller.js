@@ -130,11 +130,11 @@ router.get("/byuser", verifyAccessToken, async (req, res) => {
 router.put("/:subId", verifyAccessToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    if (user.role == "admin") {
+    if (user.role === "admin") {
       const updated = await Subscription.findByIdAndUpdate(
         req.params.subId,
         {
-          $set: req.body,
+          $set: { status: req.body.status },
         },
         { new: true }
       );
@@ -164,6 +164,11 @@ router.put("/:subId", verifyAccessToken, async (req, res) => {
 router.delete("/:subId", verifyAccessToken, async (req, res) => {
   try {
     await Subscription.findByIdAndRemove(req.params.subId);
+    await User.findByIdAndUpdate(
+      req.user.id,
+      { $pull: { subscription: req.params.subId } },
+      { new: true }
+    );
     res.status(200).json({
       error: false,
       msg: `Deleted successfully`,
@@ -193,27 +198,51 @@ router.post("/create-payment", verifyAccessToken, async (req, res) => {
         const paymentIntent = await stripe.paymentIntents.create(params);
         res.status(200).send({ clientSecret: paymentIntent.client_secret });
       } else {
-        res.status(404).json({
+        res.status(400).json({
           error: true,
           msg: "Subscription already payed",
         });
       }
     } else {
-      res.status(404).json({
+      res.status(400).json({
         error: true,
         msg: "Subscription not found",
       });
     }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      error: true,
+      msg: "Server error",
+    });
+  }
+});
 
-    if (res.statusCode === 200) {
-      const updated = await Subscription.findByIdAndUpdate(
-        subId,
-        {
-          $set: { status: "confirmed", payment: true },
-        },
-        { new: true }
-      );
-      console.log(`Subscription ${updated.id}: ${updated.status}`);
+router.put("/confirm-payment/:subId", verifyAccessToken, async (req, res) => {
+  try {
+    const selected = await Subscription.findById(req.params.subId);
+    if (selected) {
+      if (selected.status === "test") {
+        const updated = await Subscription.findByIdAndUpdate(
+          req.params.subId,
+          {
+            $set: { status: "confirmed", payment: true },
+          },
+          { new: true }
+        );
+        console.log(`Subscription ${updated.id}: ${updated.status}`);
+        res.status(200).json(updated);
+      } else {
+        res.status(400).json({
+          error: true,
+          msg: "Subscription already payed",
+        });
+      }
+    } else {
+      res.status(400).json({
+        error: true,
+        msg: "Subscription not found",
+      });
     }
   } catch (error) {
     console.log(error.message);
@@ -248,9 +277,7 @@ router.post("/test", async (req, res) => {
 router.get("/config", (req, res) => {
   /* STRIPE_TEST_PUBLIC_KEY */
   /* STRIPE_PUBLIC_KEY */
-  res.send({
-    publishableKey: process.env.STRIPE_TEST_PUBLIC_KEY,
-  });
+  res.status(200).json(process.env.STRIPE_TEST_PUBLIC_KEY);
 });
 
 router.post(

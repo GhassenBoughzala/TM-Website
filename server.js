@@ -9,6 +9,7 @@ const authRoute = require("./controller/auth.contoller");
 const courseRoute = require("./controller/courses.controller");
 const userRoute = require("./controller/user.controller");
 const subsRoute = require("./controller/subscription.controller");
+const contactRoute = require("./controller/contact.controller");
 //process.env.STRIPE_SECRET_KEY
 const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
 
@@ -25,6 +26,7 @@ app.use("/api/access", authRoute);
 app.use("/api/courses", courseRoute);
 app.use("/api/user", userRoute);
 app.use("/api/subscription", subsRoute);
+app.use("/api/contact", contactRoute);
 
 app.use(
   express.json({

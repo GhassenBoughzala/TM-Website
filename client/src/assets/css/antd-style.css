@@ -151,11 +151,16 @@
 }
 
 .ant-steps .ant-steps-item-finish .ant-steps-item-icon {
-  background-color: #11D054;
-  border-color: #11D054;
+  background-color: #11d054;
+  border-color: #11d054;
 }
 
-.ant-steps .ant-steps-item-finish .ant-steps-item-icon >.ant-steps-icon {
+.ant-steps .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
   color: white;
   top: -2.5px;
+}
+
+/*-- Result  */
+.ant-result-content {
+  background-color: transparent !important;
 }

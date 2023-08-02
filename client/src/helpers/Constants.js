@@ -98,10 +98,33 @@ export const WorkDesc = [
   },
 ];
 
-export const countryList = Object.entries(countries).map(([code, country])=> ({
+export const countryList = Object.entries(countries).map(([code, country]) => ({
   label: `${country.emoji}   ${country.name}`,
-  value: country.name
-}))
+  value: country.name,
+}));
+
+export const currencies = [
+  {
+    value: "USD",
+    label: "USD",
+    code: " $ ",
+  },
+  {
+    value: "GBP",
+    label: "GBP",
+    code: " £ ",
+  },
+  {
+    value: "EUR",
+    label: "EUR",
+    code: " € ",
+  },
+  {
+    value: "CAD",
+    label: "CAD",
+    code: " C $ ",
+  },
+];
 
 /* export const WorkDesc = [
 {

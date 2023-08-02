@@ -5,11 +5,10 @@ import { Image, Empty, Carousel, Button, Modal, Form, Select } from "antd";
 import moment from "moment";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Subscribe } from "../redux/subs/subsActions";
 import usePrevious from "../helpers/usePrevious";
 import { motion } from "framer-motion";
-
 
 export const CourseModal = ({ ...props }) => {
   const navTo = useNavigate();
@@ -107,9 +106,16 @@ export const CourseModal = ({ ...props }) => {
               </div>
             ) : (
               <div className="text-center my-5">
-                <h5 className=" blue-text">
-                  Connect or Register to book a course <Link to="/login"></Link>
-                </h5>
+                <Button
+                  type="default"
+                  size="large"
+                  htmlType="submit"
+                  onClick={() => {
+                    navTo("/login");
+                  }}
+                >
+                  Connect or Register to book a course
+                </Button>
               </div>
             )}
           </div>
@@ -217,26 +223,20 @@ export const CourseModal = ({ ...props }) => {
                   style={{ maxWidth: 600 }}
                   autoComplete="off"
                 >
-                  <div className="row mb-5">
-                    <div className="col-md-4">
-                      <div className="form-outline text-start">
-                        <h5>Select your level:</h5>
-                      </div>
-                    </div>
-                    <div className="col-md-8">
-                      <div className="form-outline text-start">
-                        <Form.Item
-                          name="level"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your level !",
-                            },
-                          ]}
-                        >
-                          <Select options={options}></Select>
-                        </Form.Item>
-                      </div>
+                  <div className="text-center">
+                    <div className="form-outline text-center d-block m-auto">
+                      <h5>Select your level</h5>
+                      <Form.Item
+                        name="level"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your level !",
+                          },
+                        ]}
+                      >
+                        <Select options={options} className="w-50"></Select>
+                      </Form.Item>
                     </div>
                   </div>
 

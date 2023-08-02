@@ -12,6 +12,9 @@ import {
   GET_SUBS,
   GET_SUBS_AD,
   LOADING_SUBS,
+  PAYMENT_FAILED,
+  PAYMENT_LOADING,
+  PAYMENT_SUCCESS,
   UPDATE_SUBS_FAILED,
   UPDATE_SUBS_LOADING,
   UPDATE_SUBS_SUCCESS,
@@ -62,7 +65,6 @@ export const Subscribe = (values) => async (dispatch) => {
         }
       });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: ADD_SUBS_FAILED,
     });
@@ -75,14 +77,17 @@ export const updateSub = (values, id) => async (dispatch) => {
   dispatch({ type: UPDATE_SUBS_LOADING });
   setAuthToken(localStorage.accessToken);
   try {
-    const res = await axios.put(`${ServerURL}/api/courses/` + id, body, config);
+    const res = await axios.put(
+      `${ServerURL}/api/subscription/` + id,
+      body,
+      config
+    );
     dispatch({
       type: UPDATE_SUBS_SUCCESS,
       payload: res.data,
     });
-    toast.success("Course successfully updated");
+    toast.success("Successfully updated");
   } catch (err) {
-    console.log(err);
     dispatch({
       type: UPDATE_SUBS_FAILED,
     });
@@ -101,4 +106,18 @@ export const deleteSub = (id) => (dispatch) => {
       });
     })
     .catch((err) => console.log(err), DEL_SUBS_FAILED);
+};
+
+export const confirmPayment = (subId) => async (dispatch) => {
+  dispatch({ type: PAYMENT_LOADING });
+  setAuthToken(localStorage.accessToken);
+  try {
+    await axios
+      .put(`${ServerURL}/api/subscription/confirm-payment/` + subId)
+      .then((res) => {
+        dispatch({ type: PAYMENT_SUCCESS, payload: res.data });
+      });
+  } catch (err) {
+    dispatch({ type: PAYMENT_FAILED });
+  }
 };

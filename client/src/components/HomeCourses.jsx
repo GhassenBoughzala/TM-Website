@@ -31,7 +31,7 @@ export const HomeCourses = () => {
         </div>
       </div>
       {/* 2 */}
-      <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3">
         <div
           onClick={() => navTo("/language-courses")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
@@ -53,7 +53,7 @@ export const HomeCourses = () => {
         </div>
       </div>
       {/* 3 */}
-      <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3">
         <div
           onClick={() => navTo("/language-courses")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
