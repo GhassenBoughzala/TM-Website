@@ -72,7 +72,7 @@ export const About = () => {
                 <div className="parag_style">
                   <p>{t("AboutP7")}</p>
                 </div>
-                <div className="card bg-light h-auto border-0">
+                <div className="card bg-light h-auto border-0 overflow-y-scroll overflow-x-hidden">
                   <img className="card-img" alt="example" src={Land} />
                   <div className="card-img-overlay">
                     <div className="row m-3 display-flex">

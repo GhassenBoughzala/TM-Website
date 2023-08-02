@@ -1,25 +1,47 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Button, Result } from "antd";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import TM from "../assets/images/TM.png";
+import { ServerURL } from "../helpers/urls";
+import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
   const { t } = useTranslation();
 
-  /*   useEffect(() => {
-    if (props.msg === null) {
-      navTo("/");
-    }
-  }, [props.msg]); */
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noreferrer");
+  };
+
+  const [contact, setContact] = useState({});
+  useEffect(() => {
+    axios
+      .get(`${ServerURL}/api/contact/`)
+      .then((res) => {
+        setContact(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className=" container-fluid">
+      <Helmet>
+        <title>Course Subscription</title>
+        <meta
+          name="description"
+          content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+        />
+        <link rel="canonical" href="/subscription" />
+      </Helmet>
       {!props.loadingSub ? (
         <div className="text-center">
           <LoadingOutlined
@@ -51,11 +73,55 @@ export const SubscriptionResult = ({ ...props }) => {
                 title={t("SubsResult-1")}
                 //subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
                 extra={[
-                  <Button type="primary" key="console">
-                    Download Language Test
-                  </Button>,
+                  <Fragment key={1}>
+                    <Button
+                      size="large"
+                      icon={<WhatsAppOutlined style={{ fontSize: 23 }} />}
+                      className="bg-success text-white"
+                      key="num1"
+                      onClick={() =>
+                        openInNewTab(
+                          `https://api.whatsapp.com/send?phone=${contact.mobile}`
+                        )
+                      }
+                    >
+                      Contact us for accomodations
+                    </Button>
+                  </Fragment>,
+                  <Fragment key={2}>
+                    <Button
+                      size="large"
+                      icon={<WhatsAppOutlined style={{ fontSize: 23 }} />}
+                      className="bg-success text-white"
+                      key="num2"
+                      onClick={() =>
+                        openInNewTab(
+                          `https://api.whatsapp.com/send?phone=${contact.work}`
+                        )
+                      }
+                    >
+                      Contact us for internships
+                    </Button>
+                  </Fragment>,
+                  /*  <Fragment key={3}>
+                    <Button type="primary" key="console">
+                      Download Language Test
+                    </Button>
+                  </Fragment> */
                 ]}
-              />
+              >
+                <div className=" bg-transparent text-center">
+                  <Button
+                    size="large"
+                    type="primary"
+                    key="num3"
+                    onClick={() => navTo("/profil")}
+                  >
+                    View booked Courses
+                  </Button>
+                  
+                </div>
+              </Result>
             </>
           )}
           {props.msg === 0 && (
@@ -64,6 +130,7 @@ export const SubscriptionResult = ({ ...props }) => {
               title={t("SubsResult-0")}
               extra={
                 <Button
+                  size="large"
                   type="primary"
                   key="console"
                   onClick={() => navTo("/profil")}

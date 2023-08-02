@@ -13,11 +13,12 @@ import { ServerURL } from "../helpers/urls";
 export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
   const { t } = useTranslation();
-  const [contact, setContact] = useState({});
+
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noreferrer");
   };
 
+  const [contact, setContact] = useState({});
   useEffect(() => {
     axios
       .get(`${ServerURL}/api/contact/`)
@@ -66,27 +67,35 @@ export const SubscriptionResult = ({ ...props }) => {
                     size="large"
                     icon={<WhatsAppOutlined style={{ fontSize: 23 }} />}
                     className="bg-success text-white"
-                    key="console"
+                    key="num1"
                     onClick={() =>
                       openInNewTab(
                         `https://api.whatsapp.com/send?phone=${contact.mobile}`
                       )
                     }
                   >
-                    {contact.mobile}
+                    Contact us for accomodations
                   </Button>,
                   <Button
                     size="large"
                     icon={<WhatsAppOutlined style={{ fontSize: 23 }} />}
                     className="bg-success text-white"
-                    key="console"
+                    key="num2"
                     onClick={() =>
                       openInNewTab(
                         `https://api.whatsapp.com/send?phone=${contact.work}`
                       )
                     }
                   >
-                    {contact.work}
+                    Contact us for internships
+                  </Button>,
+                  <Button
+                    type="primary"
+                    size="large"
+                    key="num3"
+                    onClick={() => navTo("/profil")}
+                  >
+                    View booked Courses
                   </Button>,
                 ]}
               />
@@ -98,6 +107,7 @@ export const SubscriptionResult = ({ ...props }) => {
               title={t("SubsResult-0")}
               extra={
                 <Button
+                  size="large"
                   type="primary"
                   key="console"
                   onClick={() => navTo("/profil")}

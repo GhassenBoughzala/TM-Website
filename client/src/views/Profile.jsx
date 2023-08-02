@@ -156,7 +156,7 @@ export const Profile = ({ ...props }) => {
         <div className="container my-5 ">
           <div className="row">
             <div className="col col-lg-5 col-md-12 col-sm-12 col-xs-12 align">
-              <Card style={{ height: 500, width: 1000 }}>
+              <Card style={{ height: 500, width: 1000 }} className="overflow-y-scroll overflow-x-hidden mb-3">
                 {!view && (
                   <AnimatePresence>
                     <motion.div
@@ -314,7 +314,7 @@ export const Profile = ({ ...props }) => {
             <div className="col col-lg-7 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
-                className=" overflow-y-scroll overflow-x-hidden"
+                className=" overflow-y-scroll overflow-x-hidden mb-3"
               >
                 <div>
                   {!props.loadingSubs ? (

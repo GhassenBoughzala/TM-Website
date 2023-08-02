@@ -55,7 +55,8 @@ export const PaymentForm = ({ ...props }) => {
               currency: values.currency,
               amount: values.amount,
               subId: props.subId,
-              receipt_email: User.email
+              receipt_email: User.email,
+              description: '3% of your purchase goes toward our ocean cleanup effort!'
             }),
           }
         ).then((r) => r.json());

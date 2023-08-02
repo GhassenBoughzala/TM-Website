@@ -40,7 +40,7 @@ export const Home = () => {
     <>
       <Content className="container-fluid">
         <Helmet>
-          <title>Taa Mrbouta</title>
+          <title>Taa Marbouta</title>
           <meta
             name="description"
             content="Taa Marbouta is a language school based in Carthage, Tunis. We aim to better connect Tunisia with the world."
