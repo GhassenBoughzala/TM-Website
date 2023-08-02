@@ -4,8 +4,18 @@ import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
 import { getUsers, updateSub } from "../../redux/user/userActions";
-import { Button, Collapse, Empty, List, Select, Steps, theme } from "antd";
+import {
+  Button,
+  Collapse,
+  Empty,
+  List,
+  Modal,
+  Select,
+  Steps,
+  theme,
+} from "antd";
 import usePrevious from "../../helpers/usePrevious";
+import { toast } from "react-toastify";
 
 export const UsersList = ({ ...props }) => {
   useEffect(() => {
@@ -31,9 +41,24 @@ export const UsersList = ({ ...props }) => {
   ];
 
   const [status, setStatus] = useState("");
+  const [showUpdate, setShowUpdate] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
   const handleUpdate = (id) => {
-    props.UpdateStatus(id, status);
+    if (status === "") {
+      toast.warn("Select a status !");
+    } else {
+      props.UpdateStatus(id, status);
+      setShowUpdate(false);
+    }
   };
+
+  const handleCancel = () => {
+    setShowUpdate(false);
+    setStatus("");
+    setSelectedIndex(null);
+  };
+
   const { token } = theme.useToken();
   const panelStyle = {
     marginBottom: 10,
@@ -74,39 +99,24 @@ export const UsersList = ({ ...props }) => {
                 return (
                   <Fragment key={index}>
                     <>
-                      <p>Course {index + 1}</p>
-                      <div className="row my-4">
-                        <div className="col col-3">
-                          <div className="row">
-                            <div className="col col-6">
-                              <Select
-                                className="mx-2"
-                                style={{ width: "100%" }}
-                                options={options}
-                                onSelect={(value) => {
-                                  setStatus(value);
-                                }}
-                              ></Select>
-                            </div>
-                            <div className="col col-6">
-                              <Button
-                                type="default"
-                                loading={props.loadingStatus}
-                                onClick={() => {
-                                  handleUpdate(su._id);
-                                }}
-                              >
-                                Update
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col col-9">
-                          <Steps
-                            current={statusOfSub(su.status)}
-                            items={items}
-                          />
-                        </div>
+                      <p>
+                        Course {index + 1}
+                        <Button
+                          type="default"
+                          className="mx-2"
+                          size="small"
+                          loading={props.loadingStatus}
+                          onClick={() => {
+                            setShowUpdate(true);
+                            setSelectedIndex(su._id);
+                          }}
+                        >
+                          Update status
+                        </Button>
+                      </p>
+
+                      <div className="row my-3">
+                        <Steps current={statusOfSub(su.status)} items={items} />
                       </div>
                     </>
                   </Fragment>
@@ -152,6 +162,42 @@ export const UsersList = ({ ...props }) => {
           <p className="my-2">Loading users </p>
         </div>
       )}
+
+      <Modal
+        title={"Update user subscription status"}
+        open={showUpdate}
+        onCancel={handleCancel}
+        width={400}
+        bodyStyle={{ height: 50 }}
+        footer={null}
+        centered={true}
+        closeIcon={null}
+      >
+        <div className="container text-center">
+          <div className="row mt-4">
+            <div className="col col-7">
+              <Select
+                style={{ width: "100%" }}
+                options={options}
+                onSelect={(value) => {
+                  setStatus(value);
+                }}
+              ></Select>
+            </div>
+            <div className="col col-5">
+              <Button
+                type="default"
+                loading={props.loadingStatus}
+                onClick={() => {
+                  handleUpdate(selectedIndex);
+                }}
+              >
+                Update status
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
