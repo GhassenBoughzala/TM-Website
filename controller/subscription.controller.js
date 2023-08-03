@@ -23,7 +23,7 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { course, level } = req.body;
+      let { course, level, notes, sessions } = req.body;
       const selectedUser = await User.findById(req.user.id);
       if (!selectedUser) {
         return res.status(400).json({
@@ -44,6 +44,8 @@ router.post(
         user: req.user.id,
         course,
         level,
+        sessions,
+        notes
       });
 
       const verify = await Subscription.find({
@@ -190,7 +192,7 @@ router.post("/create-payment", verifyAccessToken, async (req, res) => {
     const { currency, amount, subId } = req.body;
     const selected = await Subscription.findById(subId);
     if (selected) {
-      if (selected.payment === false) {
+      if (selected.status === "test") {
         const params = {
           amount: amount,
           currency: currency,

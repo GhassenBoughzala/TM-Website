@@ -24,6 +24,13 @@ const SubscriptionSchema = new mongoose.Schema({
     enum: ["Beginner", "Intermediate", "Advanced"],
     require: true,
   },
+  notes: {
+    type: String,
+    require: true,
+  },
+  sessions: {
+    type: Array,
+  },
 });
 
 module.exports = mongoose.model("Subscription", SubscriptionSchema);
