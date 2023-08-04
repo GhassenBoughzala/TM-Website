@@ -9,9 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { Subscribe } from "../redux/subs/subsActions";
 import usePrevious from "../helpers/usePrevious";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export const CourseModal = ({ ...props }) => {
   const navTo = useNavigate();
+  const { t } = useTranslation();
   const course = { description: [], sessions: [{ sessions: [] }] };
   const [form] = Form.useForm();
   const [currentObj, setCurrentObj] = useState(course);
@@ -121,25 +123,20 @@ export const CourseModal = ({ ...props }) => {
           </div>
           {/* Course Side 2 */}
           <div className="mb-3 col-lg-5 col-md-6 col-sm-12 col-xs-12">
-            <h5 className="yellow-text">Price description: </h5>
+            <h5 className="yellow-text">{t("priceDesc")}</h5>
             <p>{currentObj.priceDescription}</p>
             <div>
               {currentObj.sessions.length !== 0 && (
                 <>
-                  <h5 className="yellow-text">
-                    The course dates are as follows:
-                  </h5>
+                  <h5 className="yellow-text">{t("sessions")}</h5>
                   {currentObj.sessions.map((s, index) => {
                     return (
                       <Fragment key={index}>
                         <p className="blue-text">
-                          {moment(s[0]).format("MMMM")}:
-                          <b className="mx-1 text-dark">
+                          <b className="mx-1">
                             {moment(s[0]).format("MMM Do")}
                           </b>
-                          <b className="text-dark">
-                            - {moment(s[1]).format("MMM Do YYYY")}
-                          </b>
+                          <b>- {moment(s[1]).format("MMM Do YYYY")}</b>
                         </p>
                       </Fragment>
                     );
