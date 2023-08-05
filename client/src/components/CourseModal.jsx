@@ -1,7 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, Fragment, useEffect } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Image, Empty, Carousel, Button, Modal, Form, Select } from "antd";
+import {
+  Image,
+  Empty,
+  Carousel,
+  Button,
+  Modal,
+  Form,
+  Select,
+  Input,
+} from "antd";
 import moment from "moment";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
@@ -10,6 +19,8 @@ import { Subscribe } from "../redux/subs/subsActions";
 import usePrevious from "../helpers/usePrevious";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+const { Option } = Select;
+const { TextArea } = Input;
 
 export const CourseModal = ({ ...props }) => {
   const navTo = useNavigate();
@@ -31,6 +42,7 @@ export const CourseModal = ({ ...props }) => {
 
   const handleCancel = () => {
     setOpenModal(false);
+    form.resetFields();
   };
 
   const handleFormSubmit = () => {
@@ -40,6 +52,8 @@ export const CourseModal = ({ ...props }) => {
         props.AddSub({
           course: currentObj._id,
           level: values.level,
+          sessions: values.sessions,
+          notes: values.notes,
         });
         setOpenModal(false);
         navTo("/subscription");
@@ -67,6 +81,13 @@ export const CourseModal = ({ ...props }) => {
       }
     }
   }, [props.loadingSub, props.msg]);
+
+  const handleChange = (value) => {
+    form.setFieldValue({
+      sessions: [],
+    });
+    console.log(value);
+  };
 
   return (
     <motion.div
@@ -191,8 +212,8 @@ export const CourseModal = ({ ...props }) => {
           <Modal
             open={openModal}
             onCancel={handleCancel}
-            width={600}
-            bodyStyle={{ height: 300 }}
+            width={500}
+            bodyStyle={{ height: "100%" }}
             footer={null}
           >
             {!props.loadingSub ? (
@@ -207,7 +228,7 @@ export const CourseModal = ({ ...props }) => {
               </div>
             ) : (
               <div className="row">
-                <h2 className=" blue-text mb-5">
+                <h2 className=" blue-text mb-5 text-center mt-4">
                   Book {currentObj.title} Course
                 </h2>
                 <Form
@@ -216,28 +237,67 @@ export const CourseModal = ({ ...props }) => {
                   name="basic"
                   layout="vertical"
                   size={"large"}
-                  labelCol={{ span: 20 }}
-                  style={{ maxWidth: 600 }}
+                  labelCol={{ span: 15 }}
                   autoComplete="off"
                 >
-                  <div className="text-center">
-                    <div className="form-outline text-center d-block m-auto">
-                      <h5>Select your level</h5>
+                  <div className="row">
+                    <div className="form-outline text-start">
                       <Form.Item
+                        label="Select you level"
                         name="level"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your level !",
-                          },
-                        ]}
+                        rules={[{ required: true }]}
                       >
-                        <Select options={options} className="w-50"></Select>
+                        <Select options={options} />
                       </Form.Item>
                     </div>
                   </div>
+                  <div className="row">
+                    <div className="form-outline text-start">
+                      {currentObj.sessions.length !== 0 && (
+                        <Form.Item
+                          label="Select your sessions"
+                          name="sessions"
+                          onChange={handleChange}
+                        >
+                          <Select mode="multiple" maxLength={3}>
+                            {currentObj.sessions.map((s, index) => {
+                              return (
+                                <Fragment key={index}>
+                                  <Option
+                                    value={s[0]}
+                                    key={index}
+                                    label={`${moment(s[0]).format(
+                                      "MMMM"
+                                    )} session`}
+                                  >
+                                    <p className=" text-dark">
+                                      <b className="mx-1">
+                                        {moment(s[0]).format("MMM Do")}
+                                      </b>
+                                      <b>
+                                        - {moment(s[1]).format("MMM Do YYYY")}
+                                      </b>
+                                    </p>
+                                  </Option>
+                                </Fragment>
+                              );
+                            })}
+                          </Select>
+                        </Form.Item>
+                      )}
+                    </div>
+                  </div>
 
-                  <div className="form-outline text-center">
+                  <div className="row">
+                    <Form.Item
+                      label="Tell us more about your level :"
+                      name="notes"
+                    >
+                      <TextArea rows={3} />
+                    </Form.Item>
+                  </div>
+
+                  <div className="form-outline text-center mt-1">
                     <Form.Item>
                       <Button
                         type="primary"

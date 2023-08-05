@@ -127,6 +127,27 @@ export const UpdateCourse = ({ ...props }) => {
           </Upload>
         </Form.Item>
 
+        <Form.Item
+          label="Background Image"
+          name="image"
+          valuePropName="fileList"
+          getValueFromEvent={normFile}
+        >
+          <Upload
+            type="file"
+            multiple={false}
+            name="image"
+            accept=".jpeg, .png, .jpg"
+            onChange={(e) => handleFileUpload(e)}
+            customRequest={({ onSuccess }) => onSuccess("ok")}
+            listType="picture"
+            action=""
+            maxCount={4}
+          >
+            {uploadButton}
+          </Upload>
+        </Form.Item>
+
         <Form.List name="description" onChange={handleDescChange}>
           {(fields, { add, remove }) => (
             <>
