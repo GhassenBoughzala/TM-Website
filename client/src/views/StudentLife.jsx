@@ -115,17 +115,17 @@ export const StudentLife = () => {
               </div>
             </div>
             <div className="mb-3 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-              <motion.ul
+              <motion.div
                 variants={container}
                 initial="hidden"
                 animate="visible"
-                className="list_student"
+                className="list_student row"
               >
                 {icons.map((i, index) => {
                   return (
-                    <motion.li
+                    <motion.div
                       key={index}
-                      className="item montserrat_bold center_element"
+                      className="item montserrat_bold center_element col col-2"
                       variants={item}
                       onClick={() => {
                         showModal(index);
@@ -141,10 +141,10 @@ export const StudentLife = () => {
                         />
                       </div>
                       {i.value}
-                    </motion.li>
+                    </motion.div>
                   );
                 })}
-              </motion.ul>
+              </motion.div>
             </div>
           </div>
           <Modal
@@ -204,7 +204,6 @@ export const StudentLife = () => {
             </div>
           </Modal>
 
-
           <Modal
             open={AccModal}
             onCancel={handleCancel}
@@ -215,7 +214,6 @@ export const StudentLife = () => {
             <Accommodation />
           </Modal>
 
-          
           <Modal
             open={TravelModal}
             onCancel={handleCancel}
