@@ -25,7 +25,6 @@ const SubscriptionSchema = new mongoose.Schema({
   },
   notes: {
     type: String,
-    require: true,
   },
   sessions: {
     type: Array,
