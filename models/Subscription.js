@@ -17,7 +17,6 @@ const SubscriptionSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ["pending", "test", "confirmed"],
-    default: "pending",
   },
   level: {
     type: String,

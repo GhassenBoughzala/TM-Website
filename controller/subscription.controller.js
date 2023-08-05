@@ -40,25 +40,42 @@ router.post(
         });
       }
 
-      const newSubs = new Subscription({
-        user: req.user.id,
-        course,
-        level,
-        sessions,
-        notes
-      });
-
       const verify = await Subscription.find({
         $and: [{ user: req.user.id }, { course: course }],
       });
 
       if (verify.length == 0) {
-        newSubs.save().then(() => res.status(200).json(newSubs));
-        await User.findByIdAndUpdate(
-          req.user.id,
-          { $push: { subscription: newSubs } },
-          { new: true }
-        );
+        if (level != "Beginner") {
+          const newSubs = new Subscription({
+            user: req.user.id,
+            status: "pending",
+            course,
+            level,
+            sessions,
+            notes,
+          });
+          newSubs.save().then(() => res.status(200).json(newSubs));
+          await User.findByIdAndUpdate(
+            req.user.id,
+            { $push: { subscription: newSubs } },
+            { new: true }
+          );
+        } else {
+          const newSubs = new Subscription({
+            user: req.user.id,
+            status: "test",
+            course,
+            level,
+            sessions,
+            notes,
+          });
+          newSubs.save().then(() => res.status(200).json(newSubs));
+          await User.findByIdAndUpdate(
+            req.user.id,
+            { $push: { subscription: newSubs } },
+            { new: true }
+          );
+        }
       } else {
         res.status(400).json({
           error: true,
