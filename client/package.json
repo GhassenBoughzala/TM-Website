@@ -50,9 +50,6 @@
     "redux-thunk": "^2.4.2",
     "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "7.21.11"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
