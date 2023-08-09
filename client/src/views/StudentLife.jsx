@@ -164,13 +164,13 @@ export const StudentLife = () => {
                 <p>{t("STC-5")}</p>
                 <p>{t("STC-6")}</p>
               </div>
-              <div className="mb-3 col-lg-5 col-md-5 col-sm-12 col-xs-12 text-center">
+              <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12 text-center">
                 <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
-                  {imagesListH.map((img, index) => {
+                  {imagesListW.map((img, index) => {
                     return (
                       <Fragment key={index}>
                         <Image
-                          width={300}
+                          width={"80%"}
                           src={img}
                           preview={true}
                           className="rounded"
@@ -179,19 +179,12 @@ export const StudentLife = () => {
                     );
                   })}
                 </Carousel>
-
-                <Carousel
-                  className="py-4"
-                  autoplay
-                  speed={1500}
-                  slidesToShow={1}
-                  dots={false}
-                >
-                  {imagesListW.map((img, index) => {
+                <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
+                  {imagesListH.map((img, index) => {
                     return (
                       <Fragment key={index}>
                         <Image
-                          width={300}
+                          width={"80%"}
                           src={img}
                           preview={true}
                           className="rounded"
@@ -238,7 +231,7 @@ export const StudentLife = () => {
             open={WorkModal}
             onCancel={handleCancel}
             width={1200}
-            bodyStyle={{ height: 500 }}
+            bodyStyle={{ height: 700 }}
             footer={null}
           >
             <Work />

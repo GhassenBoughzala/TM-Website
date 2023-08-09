@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 export const Travel = () => {
   const { t } = useTranslation();
-  const images = require.context("../../assets/images/student/Course/H", true);
+  const images = require.context("../../assets/images/student/Travel", true);
   const imagesList = images.keys().map((image) => images(image));
   return (
     <div className="row">

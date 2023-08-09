@@ -4,8 +4,11 @@ import { useTranslation } from "react-i18next";
 
 export const LivingInTunis = (props) => {
   const { t } = useTranslation();
-  const images = require.context("../../assets/images/student/Tunis", true);
+  const images = require.context("../../assets/images/student/Tunis/H", true);
   const imagesList = images.keys().map((image) => images(image));
+
+  const imagesW = require.context("../../assets/images/student/Tunis/W", true);
+  const imagesListW = imagesW.keys().map((image) => imagesW(image));
 
   return (
     <div className="row">
@@ -19,6 +22,15 @@ export const LivingInTunis = (props) => {
         <p>{t("ST-LV6")}</p>
       </div>
       <div className="mb-3 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+        <Carousel autoplay speed={1500} slidesToShow={1} dots={false} className="mb-3">
+          {imagesListW.map((i, index) => {
+            return (
+              <div className="px-3" key={index}>
+                <Image src={i} alt="Taa Marbouta" className="rounded" />
+              </div>
+            );
+          })}
+        </Carousel>
         <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
           {imagesList.map((i, index) => {
             return (

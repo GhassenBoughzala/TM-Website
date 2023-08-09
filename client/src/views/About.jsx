@@ -46,7 +46,7 @@ export const About = () => {
                   </div>
                 </div>
 
-                <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center my-3">
+                <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mb-5">
                   <img src={TM} alt="About" style={{ width: 150 }} />
                 </div>
               </div>
