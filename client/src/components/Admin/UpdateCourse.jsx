@@ -1,6 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import {
+  PlusOutlined,
+  MinusCircleOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
 import { Button, DatePicker, Form, Input, Upload, Space, Card } from "antd";
 import { connect } from "react-redux";
 import { updateCourses } from "../../redux/courses/courseActions";
@@ -66,6 +70,7 @@ export const UpdateCourse = ({ ...props }) => {
   const fieldsToUpdate = [
     { name: ["title"], value: props.toUpdate.title },
     { name: ["backgroundImage"], value: props.toUpdate.backgroundImage },
+    { name: ["image"], value: props.toUpdate.image },
     { name: ["description"], value: props.toUpdate.description },
     {
       name: ["sessions"],
@@ -128,23 +133,22 @@ export const UpdateCourse = ({ ...props }) => {
         </Form.Item>
 
         <Form.Item
-          label="Background Image"
+          label="Images"
           name="image"
           valuePropName="fileList"
           getValueFromEvent={normFile}
         >
           <Upload
             type="file"
-            multiple={false}
+            multiple={true}
             name="image"
             accept=".jpeg, .png, .jpg"
             onChange={(e) => handleFileUpload(e)}
             customRequest={({ onSuccess }) => onSuccess("ok")}
             listType="picture"
             action=""
-            maxCount={4}
           >
-            {uploadButton}
+            <Button icon={<UploadOutlined />}>Upload</Button>
           </Upload>
         </Form.Item>
 

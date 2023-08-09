@@ -25,7 +25,7 @@ const { TextArea } = Input;
 export const CourseModal = ({ ...props }) => {
   const navTo = useNavigate();
   const { t } = useTranslation();
-  const course = { description: [], sessions: [{ sessions: [] }] };
+  const course = { description: [], sessions: [{ sessions: [] }], image: [] };
   const [form] = Form.useForm();
   const [currentObj, setCurrentObj] = useState(course);
   useEffect(() => {
@@ -34,10 +34,6 @@ export const CourseModal = ({ ...props }) => {
     }
   }, [props.currentObj]);
 
-  const imagesW = require.context("../assets/images/student/Course/W", true);
-  const imagesListW = imagesW.keys().map((image) => imagesW(image));
-  const imagesH = require.context("../assets/images/student/Course/H", true);
-  const imagesListH = imagesH.keys().map((image) => imagesH(image));
   const [openModal, setOpenModal] = useState(false);
 
   const handleCancel = () => {
@@ -167,39 +163,15 @@ export const CourseModal = ({ ...props }) => {
             </div>
             <div className="text-center mt-3">
               <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
-                {imagesListH.map((img, index) => {
+                {currentObj.image.map((img, index) => {
                   return (
                     <Fragment key={index}>
                       <Image
-                        width={300}
-                        height={500}
-                        src={img}
+                        width={"90%"}
+                        src={img.base64}
                         alt={index}
                         preview={true}
-                        className=" rounded"
-                      />
-                    </Fragment>
-                  );
-                })}
-              </Carousel>
-
-              <Carousel
-                className="py-4"
-                autoplay
-                speed={1250}
-                slidesToShow={1}
-                dots={false}
-              >
-                {imagesListW.map((img, index) => {
-                  return (
-                    <Fragment key={index}>
-                      <Image
-                        width={300}
-                        height={200}
-                        src={img}
-                        alt={index}
-                        preview={true}
-                        className=" rounded"
+                        className=" rounded my-5"
                       />
                     </Fragment>
                   );
