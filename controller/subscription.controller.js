@@ -11,6 +11,7 @@ const {
 const User = require("../models/User");
 const adminAuth = require("../middleware/adminAuth");
 const { ObjectId } = require("bson");
+const { contactUs } = require("../middleware/mailer");
 const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
 
 // @route   POST api/
@@ -23,7 +24,7 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { course, level } = req.body;
+      let { course, level, notes, sessions } = req.body;
       const selectedUser = await User.findById(req.user.id);
       if (!selectedUser) {
         return res.status(400).json({
@@ -40,23 +41,58 @@ router.post(
         });
       }
 
-      const newSubs = new Subscription({
-        user: req.user.id,
-        course,
-        level,
-      });
-
       const verify = await Subscription.find({
         $and: [{ user: req.user.id }, { course: course }],
       });
 
       if (verify.length == 0) {
-        newSubs.save().then(() => res.status(200).json(newSubs));
-        await User.findByIdAndUpdate(
-          req.user.id,
-          { $push: { subscription: newSubs } },
-          { new: true }
-        );
+        if (level != "Beginner") {
+          const newSubs = new Subscription({
+            user: req.user.id,
+            status: "pending",
+            course,
+            level,
+            sessions,
+            notes,
+          });
+          newSubs.save().then(() => res.status(200).json(newSubs));
+          await User.findByIdAndUpdate(
+            req.user.id,
+            { $push: { subscription: newSubs } },
+            { new: true }
+          );
+          await contactUs(
+            selectedUser.email,
+            "x",
+            "x",
+            "200",
+            "x",
+            selectedUser.firstName
+          );
+        } else {
+          const newSubs = new Subscription({
+            user: req.user.id,
+            status: "test",
+            course,
+            level,
+            sessions,
+            notes,
+          });
+          newSubs.save().then(() => res.status(200).json(newSubs));
+          await User.findByIdAndUpdate(
+            req.user.id,
+            { $push: { subscription: newSubs } },
+            { new: true }
+          );
+          await contactUs(
+            selectedUser.email,
+            "x",
+            "x",
+            "200",
+            "x",
+            selectedUser.firstName
+          ).catch((err) => console.log(err));
+        }
       } else {
         res.status(400).json({
           error: true,
@@ -185,12 +221,12 @@ router.delete("/:subId", verifyAccessToken, async (req, res) => {
 // @route   POST api/create-payment
 // @desc    Add payment with stripe and upadte subscription status
 // @access  User
-router.post("/create-payment", verifyAccessToken, async (req, res) => {
+router.post("/create-payment", async (req, res) => {
   try {
     const { currency, amount, subId } = req.body;
     const selected = await Subscription.findById(subId);
     if (selected) {
-      if (selected.payment === false) {
+      if (selected.status === "test") {
         const params = {
           amount: amount,
           currency: currency,
@@ -255,7 +291,7 @@ router.put("/confirm-payment/:subId", verifyAccessToken, async (req, res) => {
 
 router.post("/test", async (req, res) => {
   try {
-    const { currency, amount, subId } = req.body;
+    const { currency, amount } = req.body;
     const params = {
       amount: amount,
       currency: currency,

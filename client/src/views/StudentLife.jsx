@@ -2,7 +2,6 @@ import React, { useState, Fragment } from "react";
 import Footer from "../components/Footer";
 import { Layout, Modal, Carousel, Image, Button } from "antd";
 import { motion } from "framer-motion";
-import { classesDesc } from "../helpers/Constants";
 import Accommodation from "../components/Modals/Accomodation";
 import Travel from "../components/Modals/Travel";
 import LivingInTunis from "../components/Modals/Tunis";
@@ -116,17 +115,17 @@ export const StudentLife = () => {
               </div>
             </div>
             <div className="mb-3 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-              <motion.ul
+              <motion.div
                 variants={container}
                 initial="hidden"
                 animate="visible"
-                className="list_student"
+                className="list_student row"
               >
                 {icons.map((i, index) => {
                   return (
-                    <motion.li
+                    <motion.div
                       key={index}
-                      className="item montserrat_bold center_element"
+                      className="item montserrat_bold center_element col col-2"
                       variants={item}
                       onClick={() => {
                         showModal(index);
@@ -142,10 +141,10 @@ export const StudentLife = () => {
                         />
                       </div>
                       {i.value}
-                    </motion.li>
+                    </motion.div>
                   );
                 })}
-              </motion.ul>
+              </motion.div>
             </div>
           </div>
           <Modal
@@ -158,10 +157,12 @@ export const StudentLife = () => {
             <div className="row">
               <h3 className="blue-text">Classes</h3>
               <div className="mb-3 col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                {classesDesc.map((d, index) => {
-                  return <p key={index}>{d.desc}</p>;
-                })}
-                <p></p>
+                <p>{t("STC-1")}</p>
+                <p>{t("STC-2")}</p>
+                <p>{t("STC-3")}</p>
+                <p>{t("STC-4")}</p>
+                <p>{t("STC-5")}</p>
+                <p>{t("STC-6")}</p>
               </div>
               <div className="mb-3 col-lg-5 col-md-5 col-sm-12 col-xs-12 text-center">
                 <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
@@ -202,6 +203,7 @@ export const StudentLife = () => {
               </div>
             </div>
           </Modal>
+
           <Modal
             open={AccModal}
             onCancel={handleCancel}
@@ -211,6 +213,7 @@ export const StudentLife = () => {
           >
             <Accommodation />
           </Modal>
+
           <Modal
             open={TravelModal}
             onCancel={handleCancel}

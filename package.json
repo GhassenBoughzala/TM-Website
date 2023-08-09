@@ -1,6 +1,6 @@
 {
   "name": "tm-website",
-  "version": "1.1.0",
+  "version": "2.1.0",
   "description": "TaaMarbouta ",
   "main": "server.js",
   "scripts": {
@@ -41,12 +41,13 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
+    "mailgen": "^2.0.27",
     "mongoose": "^6.1.11",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.9.4",
     "nodemon": "^2.0.15",
     "passport": "^0.6.0",
     "stripe": "^12.14.0",
-    "transferwise": "^2.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

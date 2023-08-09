@@ -96,35 +96,35 @@ export const Profile = ({ ...props }) => {
           </Divider>
 
           <Steps current={statusOfSub(su.status)} size="small" items={items} />
+          {su.status !== "confirmed" && (
+            <div className="col text-start">
+              <Button
+                danger
+                size="small"
+                type="dashed"
+                className="mt-3"
+                onClick={() => {
+                  setSelctedId(su._id);
+                  setDeleteModal(true);
+                }}
+              >
+                Cancel booking
+              </Button>
+            </div>
+          )}
           {su.status === "pending" && (
-            <>
-              <div className="col text-start">
-                <Button
-                  danger
-                  size="small"
-                  type="dashed"
-                  className="mt-3"
-                  onClick={() => {
-                    setSelctedId(su._id);
-                    setDeleteModal(true);
-                  }}
-                >
-                  Cancel booking
-                </Button>
-              </div>
-              <div className="col text-center">
-                <Button
-                  size="small"
-                  type="default"
-                  className="mt-3"
-                  onClick={() => {
-                    console.log("Download");
-                  }}
-                >
-                  Download Language Test
-                </Button>
-              </div>
-            </>
+            <div className="col text-center">
+              <Button
+                size="small"
+                type="default"
+                className="mt-3"
+                onClick={() => {
+                  console.log("Download");
+                }}
+              >
+                Download Language Test
+              </Button>
+            </div>
           )}
 
           <div className="col">
@@ -335,9 +335,7 @@ export const Profile = ({ ...props }) => {
                             <Collapse
                               accordion
                               items={subsList}
-                              onChange={(e) =>
-                                setsubObj(props.user_subs[e])
-                              }
+                              onChange={(e) => setsubObj(props.user_subs[e])}
                             />
                           </div>
                         </>

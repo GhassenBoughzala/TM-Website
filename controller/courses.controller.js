@@ -26,6 +26,7 @@ router.post(
         priceDescription,
         sessions,
         backgroundImage,
+        image,
       } = req.body;
       const exist = await Course.findOne({ title });
       if (exist) {
@@ -40,14 +41,9 @@ router.post(
         priceDescription,
         sessions,
         backgroundImage,
+        image,
       });
-      newCourse
-        .save()
-        .then(() =>
-          res
-            .status(200)
-            .json(newCourse)
-        );
+      newCourse.save().then(() => res.status(200).json(newCourse));
     } catch (error) {
       res.status(500).json({
         error: true,
