@@ -69,6 +69,24 @@ router.get("/all", async (req, res) => {
     });
   }
 });
+router.get("/all/filter", async (req, res) => {
+  try {
+    let courses = await Course.find({})
+      .select("-subscription")
+      .select("-status")
+      .select("-image")
+      .select("-sessions")
+      .select("-priceDescription")
+      .select("-description");
+    res.status(200).json(courses);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: true,
+      msg: "server error",
+    });
+  }
+});
 
 // @route   GET api/:courseId
 // @desc    Get one
