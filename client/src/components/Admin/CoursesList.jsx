@@ -199,7 +199,7 @@ export const CoursesList = ({ ...props }) => {
 };
 
 const mapStateToProps = (state) => ({
-  courses: state.courses.courses,
+  courses: state.courses.coursesAD,
   isLoading: state.courses.loading,
   isLoadingCourse: state.courses.loading_create,
   isLoadingUpdate: state.courses.loading_update,

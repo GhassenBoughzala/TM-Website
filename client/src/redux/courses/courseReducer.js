@@ -8,7 +8,9 @@ import {
   DEL_FAILED,
   DEL_SUCCESS,
   FETCH_FAIL,
+  FETCH_FAIL_AD,
   FETCH_SUCCESS,
+  FETCH_SUCCESS_AD,
   LOADING,
   LOADING_SELECT,
   SELECT_FAIL,
@@ -26,13 +28,20 @@ const intialState = {
   error: null,
   codeMsg: null,
   courses: [],
+  coursesAD: [],
   courseObj: null,
 };
 
 export default function (state = intialState, action) {
   switch (action.type) {
     case LOADING:
-      return { ...state, courses: [], loading: false, courseObj: null };
+      return {
+        ...state,
+        courses: [],
+        coursesAD: [],
+        loading: false,
+        courseObj: null,
+      };
     case FETCH_SUCCESS:
       return {
         ...state,
@@ -42,6 +51,16 @@ export default function (state = intialState, action) {
       };
     case FETCH_FAIL:
       return { courses: [], error: true };
+
+    case FETCH_SUCCESS_AD:
+      return {
+        ...state,
+        coursesAD: [...action.payload],
+        loading: true,
+        courseObj: null,
+      };
+    case FETCH_FAIL_AD:
+      return { coursesAD: [], error: true };
 
     case ADD_LOADING:
       return {
@@ -90,7 +109,7 @@ export default function (state = intialState, action) {
       return {
         ...state,
         loading: true,
-        courseObj: action.payload
+        courseObj: action.payload,
       };
     case SELECT_FAIL:
       return { courseObj: null, error: true };

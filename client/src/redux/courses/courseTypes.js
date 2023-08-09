@@ -1,5 +1,7 @@
 export const LOADING = "LOADING";
 export const LOADING_SELECT = "LOADING COURSE";
+export const FETCH_SUCCESS_AD = "FETCH_SUCCESS AD";
+export const FETCH_FAIL_AD = "FETCH_FAIL AD";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
 export const SELECT_SUCCESS = "FETCH_SUCCESS";

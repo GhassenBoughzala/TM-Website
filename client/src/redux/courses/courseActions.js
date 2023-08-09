@@ -8,7 +8,9 @@ import {
   DEL_FAILED,
   DEL_SUCCESS,
   FETCH_FAIL,
+  FETCH_FAIL_AD,
   FETCH_SUCCESS,
+  FETCH_SUCCESS_AD,
   LOADING,
   SELECT_FAIL,
   SELECT_SUCCESS,
@@ -24,11 +26,11 @@ export const getCourses = () => (dispatch) => {
     .get(`${ServerURL}/api/courses/all`)
     .then((res) => {
       dispatch({
-        type: FETCH_SUCCESS,
+        type: FETCH_SUCCESS_AD,
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err), FETCH_FAIL);
+    .catch((err) => console.log(err), FETCH_FAIL_AD);
 };
 
 export const getFilteredCourses = () => (dispatch) => {
