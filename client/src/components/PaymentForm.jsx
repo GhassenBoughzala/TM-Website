@@ -44,7 +44,7 @@ export const PaymentForm = ({ ...props }) => {
         setisLoading(true);
         addMessage("");
         const { error: backendError, clientSecret } = await fetch(
-          `${ServerURL}/api/subscription/test`,
+          `${ServerURL}/api/subscription/create-payment`,
           {
             method: "POST",
             headers: {
