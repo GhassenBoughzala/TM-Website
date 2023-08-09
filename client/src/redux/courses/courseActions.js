@@ -31,6 +31,19 @@ export const getCourses = () => (dispatch) => {
     .catch((err) => console.log(err), FETCH_FAIL);
 };
 
+export const getFilteredCourses = () => (dispatch) => {
+  dispatch({ type: LOADING });
+  return axios
+    .get(`${ServerURL}/api/courses/all/filter`)
+    .then((res) => {
+      dispatch({
+        type: FETCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err), FETCH_FAIL);
+};
+
 export const selectCourse = (id) => async (dispatch) => {
   dispatch({ type: LOADING });
   return await axios

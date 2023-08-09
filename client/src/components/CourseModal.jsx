@@ -167,10 +167,10 @@ export const CourseModal = ({ ...props }) => {
                   return (
                     <Fragment key={index}>
                       <Image
-                        width={"90%"}
+                        width={"75%"}
                         src={img.base64}
                         alt={index}
-                        preview={true}
+                        preview={false}
                         className=" rounded my-5"
                       />
                     </Fragment>

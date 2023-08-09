@@ -2,7 +2,7 @@
 import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCourses, selectCourse } from "../redux/courses/courseActions";
+import { getFilteredCourses, selectCourse } from "../redux/courses/courseActions";
 import { Card, Layout } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
@@ -108,7 +108,7 @@ export const Courses = ({ ...props }) => {
 };
 
 const mapActionToProps = {
-  AllCourses: getCourses,
+  AllCourses: getFilteredCourses,
   Select: selectCourse,
 };
 
