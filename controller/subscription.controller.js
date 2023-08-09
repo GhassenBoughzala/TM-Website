@@ -11,6 +11,7 @@ const {
 const User = require("../models/User");
 const adminAuth = require("../middleware/adminAuth");
 const { ObjectId } = require("bson");
+const { contactUs } = require("../middleware/mailer");
 const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
 
 // @route   POST api/
@@ -60,6 +61,14 @@ router.post(
             { $push: { subscription: newSubs } },
             { new: true }
           );
+          await contactUs(
+            selectedUser.email,
+            "x",
+            "x",
+            "200",
+            "x",
+            selectedUser.firstName
+          );
         } else {
           const newSubs = new Subscription({
             user: req.user.id,
@@ -75,6 +84,14 @@ router.post(
             { $push: { subscription: newSubs } },
             { new: true }
           );
+          await contactUs(
+            selectedUser.email,
+            "x",
+            "x",
+            "200",
+            "x",
+            selectedUser.firstName
+          ).catch((err) => console.log(err));
         }
       } else {
         res.status(400).json({
@@ -204,7 +221,7 @@ router.delete("/:subId", verifyAccessToken, async (req, res) => {
 // @route   POST api/create-payment
 // @desc    Add payment with stripe and upadte subscription status
 // @access  User
-router.post("/create-payment", verifyAccessToken, async (req, res) => {
+router.post("/create-payment", async (req, res) => {
   try {
     const { currency, amount, subId } = req.body;
     const selected = await Subscription.findById(subId);
@@ -274,7 +291,7 @@ router.put("/confirm-payment/:subId", verifyAccessToken, async (req, res) => {
 
 router.post("/test", async (req, res) => {
   try {
-    const { currency, amount, subId } = req.body;
+    const { currency, amount } = req.body;
     const params = {
       amount: amount,
       currency: currency,
