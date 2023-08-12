@@ -80,6 +80,6 @@
       "localhost",
       ".localhost"
     ],
-    "proxy": "https://localhost:5500/"
+    "proxy": "http://localhost:5500/"
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
-import { Layout, Collapse } from "antd";
+import { Layout, Carousel } from "antd";
 import TM from "../assets/images/logo_footer.png";
+import A1 from "../assets/images/about-1.jpeg";
 import Land from "../assets/images/landscape.png";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
@@ -9,7 +10,7 @@ const { Content } = Layout;
 
 export const About = () => {
   const { t } = useTranslation();
-  const items = [
+  /* const items = [
     {
       key: "1",
       label: <p className="montserrat_regular text-start">{t("AboutT1")}</p>,
@@ -21,7 +22,7 @@ export const About = () => {
         </>
       ),
     },
-  ];
+  ]; */
   return (
     <>
       <Content className="container-fluid">
@@ -47,14 +48,17 @@ export const About = () => {
                 </div>
 
                 <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mb-5">
-                  <img src={TM} alt="About" style={{ width: 150 }} />
+                  <Carousel autoplay speed={1000} slidesToShow={1} dots={false}>
+                    <img src={TM} alt="About0" className="w-50" />
+                    <img src={A1} alt="About1" style={{ width: 150 }} className="rounded" />
+                  </Carousel>
                 </div>
               </div>
-
+              {/* 
               <div className="row parag_style style_link text-start">
                 <p>{t("AboutP3")}</p>
                 <Collapse ghost items={items} />
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="m-2">
@@ -66,7 +70,7 @@ export const About = () => {
             </div>
           </div>
           <div className="our_philosphy full_espace_padding">
-            <div className="container">
+            <div>
               <div className="row">
                 <h2 className="title title_center">{t("AboutT2")}</h2>
                 <div className="parag_style">

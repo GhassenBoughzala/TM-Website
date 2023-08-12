@@ -11,7 +11,7 @@ const {
 const User = require("../models/User");
 const adminAuth = require("../middleware/adminAuth");
 const { ObjectId } = require("bson");
-const { contactUs } = require("../middleware/mailer");
+const { contactUs, subConfirmation } = require("../middleware/mailer");
 const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
 
 // @route   POST api/
@@ -24,7 +24,7 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { course, level, notes, sessions } = req.body;
+      let { course, level, notes, sessions, title } = req.body;
       const selectedUser = await User.findById(req.user.id);
       if (!selectedUser) {
         return res.status(400).json({
@@ -33,7 +33,7 @@ router.post(
         });
       }
 
-      const selectedCourse = await Course.findById(req.body.course);
+      const selectedCourse = await Course.findById(course);
       if (selectedCourse) {
         return res.status(400).json({
           error: true,
@@ -61,14 +61,13 @@ router.post(
             { $push: { subscription: newSubs } },
             { new: true }
           );
-          await contactUs(
+
+          await subConfirmation(
             selectedUser.email,
-            "x",
-            "x",
-            "200",
-            "x",
-            selectedUser.firstName
-          );
+            title,
+            selectedUser.firstName,
+            selectedUser.lastName
+          ).catch((err) => console.log(err));
         } else {
           const newSubs = new Subscription({
             user: req.user.id,
@@ -84,13 +83,11 @@ router.post(
             { $push: { subscription: newSubs } },
             { new: true }
           );
-          await contactUs(
+          await subConfirmation(
             selectedUser.email,
-            "x",
-            "x",
-            "200",
-            "x",
-            selectedUser.firstName
+            title,
+            selectedUser.firstName,
+            selectedUser.lastName
           ).catch((err) => console.log(err));
         }
       } else {
@@ -291,13 +288,22 @@ router.put("/confirm-payment/:subId", verifyAccessToken, async (req, res) => {
 
 router.post("/test", async (req, res) => {
   try {
-    const { currency, amount } = req.body;
-    const params = {
-      amount: amount,
-      currency: currency,
-    };
-    const paymentIntent = await stripe.paymentIntents.create(params);
-    res.status(200).send({ clientSecret: paymentIntent.client_secret });
+    //let { course } = req.body;
+    const selectedUser = await User.findById(req.user.id);
+    if (!selectedUser) {
+      return res.status(400).json({
+        error: true,
+        msg: "Error finding user",
+      });
+    }
+
+    await subConfirmation(
+      selectedUser.email,
+      "xx",
+      selectedUser.firstName,
+      selectedUser.lastName
+    ).catch((err) => console.log(err));
+    res.status(200).send("OK");
   } catch (error) {
     console.log(error.message);
     res.status(500).json({

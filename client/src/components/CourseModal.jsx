@@ -50,6 +50,7 @@ export const CourseModal = ({ ...props }) => {
           level: values.level,
           sessions: values.sessions,
           notes: values.notes,
+          title: currentObj.title,
         });
         setOpenModal(false);
         navTo("/subscription");
@@ -217,7 +218,12 @@ export const CourseModal = ({ ...props }) => {
                       <Form.Item
                         label="Select you level"
                         name="level"
-                        rules={[{ required: true }]}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please select your level",
+                          },
+                        ]}
                       >
                         <Select options={options} />
                       </Form.Item>
@@ -264,6 +270,12 @@ export const CourseModal = ({ ...props }) => {
                     <Form.Item
                       label="Tell us more about your level :"
                       name="notes"
+                      rules={[
+                        {
+                          required: true,
+                          message: "This field is required",
+                        },
+                      ]}
                     >
                       <TextArea rows={3} />
                     </Form.Item>
