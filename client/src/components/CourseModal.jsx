@@ -50,6 +50,7 @@ export const CourseModal = ({ ...props }) => {
           level: values.level,
           sessions: values.sessions,
           notes: values.notes,
+          title: currentObj.title,
         });
         setOpenModal(false);
         navTo("/subscription");

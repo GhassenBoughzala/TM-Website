@@ -70,7 +70,7 @@ export const SubscriptionResult = ({ ...props }) => {
           )}
           {props.msg === 0 && (
             <Result
-              status="warning"
+              status="error"
               title={t("SubsResult-0")}
               extra={[
                 <Button
