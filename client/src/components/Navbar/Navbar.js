@@ -40,11 +40,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-menu">
         <div className="leftMenu my-1">
-          <LeftMenu />
+          <LeftMenu {...{ open, setOpen }} />
         </div>
 
         <div className="rightMenu">
-          <RightMenu />
+          <RightMenu {...{ open, setOpen }} />
         </div>
         <Button className="menuButton" type="text" onClick={showDrawer}>
           <span className="barsBtn"></span>
