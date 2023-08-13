@@ -43,7 +43,7 @@ export const HomeCourses = () => {
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center yellow-text mb-5">
-              {t("LearnTN")}
+              {t("LearnLB")}
             </h3>
 
             <p className=" parag_style text-black text-center">
@@ -65,7 +65,7 @@ export const HomeCourses = () => {
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center blue-text mb-5">
-              {t("LearnLB")}
+              {t("LearnTN")}
             </h3>
 
             <p className=" parag_style text-black text-center">

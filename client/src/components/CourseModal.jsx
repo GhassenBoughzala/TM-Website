@@ -152,9 +152,9 @@ export const CourseModal = ({ ...props }) => {
                       <Fragment key={index}>
                         <p className="blue-text">
                           <b className="mx-1">
-                            {moment(s[0]).format("MMM Do")}
+                            {moment(s[1]).format("MMM Do")}
                           </b>
-                          <b>- {moment(s[1]).format("MMM Do YYYY")}</b>
+                          <b>- {moment(s[0]).format("MMM Do YYYY")}</b>
                         </p>
                       </Fragment>
                     );
@@ -250,10 +250,10 @@ export const CourseModal = ({ ...props }) => {
                                   >
                                     <p className=" text-dark">
                                       <b className="mx-1">
-                                        {moment(s[0]).format("MMM Do")}
+                                        {moment(s[1]).format("MMM Do")}
                                       </b>
                                       <b>
-                                        - {moment(s[1]).format("MMM Do YYYY")}
+                                        - {moment(s[0]).format("MMM Do YYYY")}
                                       </b>
                                     </p>
                                   </Option>

@@ -109,27 +109,27 @@ function App() {
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-arabic"
+                    path="/learn-arabic"
                     Component={CourseAR}
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-tunisian-arabic"
+                    path="/learn-tunisian-arabic"
                     Component={CourseTN}
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-libyan-arabic"
+                    path="/learn-libyan-arabic"
                     Component={CourseLB}
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-french"
+                    path="/learn-french"
                     Component={CourseFR}
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-english"
+                    path="/learn-english"
                     Component={CourseEN}
                   ></Route>
 
