@@ -62,9 +62,15 @@ function App() {
   const [PK, setPK] = useState("");
   useEffect(() => {
     const getPK = async () => {
-      await axios.get(`${ServerURL}/api/subscription/config`).then((r) => {
-        setPK(r.data);
-      });
+      await axios
+        .get(`${ServerURL}/api/subscription/config`)
+        .then((r) => {
+          console.log("$");
+          setPK(r.data);
+        })  
+        .catch((err) => {
+          console.log(err);
+        });
     };
 
     getPK();
