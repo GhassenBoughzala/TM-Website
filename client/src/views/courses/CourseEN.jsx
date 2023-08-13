@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { getCourses } from "../../redux/courses/courseActions";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
-import { ServerURL } from "../../helpers/urls";
+
 import { Layout } from "antd";
 import Footer from "../../components/Footer";
 const { Content } = Layout;
@@ -19,7 +19,7 @@ export const CourseEN = ({ ...props }) => {
     const id = "64c684dc13ebbe2aec0e1b21";
     setloading(false);
     axios
-      .get(`${ServerURL}/api/courses/${id}`)
+      .get(`/api/courses/${id}`)
       .then((res) => {
         setloading(true);
         setstate(res.data);
@@ -49,7 +49,8 @@ export const CourseEN = ({ ...props }) => {
                 className="yellow-text"
                 style={{
                   fontSize: 40,
-                  margin: 330,
+                  marginTop: 330,
+                  marginBottom: 330,
                 }}
                 spin
               />

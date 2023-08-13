@@ -36,7 +36,6 @@ import SubscriptionResult from "./views/SubscriptionResult";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { ServerURL } from "./helpers/urls";
 import PaymentResult from "./views/PaymentResult";
 
 function App() {
@@ -63,7 +62,7 @@ function App() {
   useEffect(() => {
     const getPK = async () => {
       await axios
-        .get(`${ServerURL}/api/subscription/config`)
+        .get(`/api/subscription/config`)
         .then((r) => {
           console.log("$");
           setPK(r.data);

@@ -23,6 +23,9 @@ const RightMenu = ({ ...props }) => {
   });
 
   const handleLanguage = () => {
+    if (props.open) {
+      props.setOpen(false);
+    }
     const selectedLan = localStorage.getItem("i18nextLng");
     if (selectedLan === "fr") i18next.changeLanguage("en");
     else i18next.changeLanguage("fr");
@@ -40,10 +43,15 @@ const RightMenu = ({ ...props }) => {
               icon={<SettingOutlined />}
               onClick={() => {
                 navTo("/admin-dashboard");
+                props.setOpen(false);
               }}
             ></Button>
           )}
-          <Tooltip placement="bottom" title={t("Language")} dropdownAlign={{ offset: [-40, 4] }}>
+          <Tooltip
+            placement="bottom"
+            title={t("Language")}
+            dropdownAlign={{ offset: [-40, 4] }}
+          >
             <Button
               type="default"
               size="default"
@@ -62,6 +70,7 @@ const RightMenu = ({ ...props }) => {
             icon={<UserOutlined />}
             onClick={() => {
               navTo("/profil");
+              props.setOpen(false);
             }}
           ></Button>
           <Button
@@ -74,6 +83,7 @@ const RightMenu = ({ ...props }) => {
               props.Logout();
               navTo("/");
               window.location.reload();
+              props.setOpen(false);
             }}
           ></Button>
         </div>
@@ -89,12 +99,26 @@ const RightMenu = ({ ...props }) => {
             | {t("LanguageCode")}
           </Button>
           <Link to="/login">
-            <Button type="default" size="default" className=" bg-transparent">
+            <Button
+              onClick={() => {
+                props.setOpen(false);
+              }}
+              type="default"
+              size="default"
+              className=" bg-transparent"
+            >
               {t("SignIn")}
             </Button>
           </Link>
           <Link to="/register" className="mx-2">
-            <Button type="default" size="default" className=" bg-transparent">
+            <Button
+              onClick={() => {
+                props.setOpen(false);
+              }}
+              type="default"
+              size="default"
+              className=" bg-transparent"
+            >
               {t("Register")}
             </Button>
           </Link>

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ServerURL } from "../../helpers/urls";
 import { toast } from "react-toastify";
 import {
   ADD_FAILED,
@@ -23,7 +22,7 @@ import setAuthToken from "../../helpers/authToken";
 export const getCourses = () => (dispatch) => {
   dispatch({ type: LOADING });
   return axios
-    .get(`${ServerURL}/api/courses/all`)
+    .get(`/api/courses/all`)
     .then((res) => {
       dispatch({
         type: FETCH_SUCCESS_AD,
@@ -36,7 +35,7 @@ export const getCourses = () => (dispatch) => {
 export const getFilteredCourses = () => (dispatch) => {
   dispatch({ type: LOADING });
   return axios
-    .get(`${ServerURL}/api/courses/all/filter`)
+    .get(`/api/courses/all/filter`)
     .then((res) => {
       dispatch({
         type: FETCH_SUCCESS,
@@ -49,7 +48,7 @@ export const getFilteredCourses = () => (dispatch) => {
 export const selectCourse = (id) => async (dispatch) => {
   dispatch({ type: LOADING });
   return await axios
-    .get(`${ServerURL}/api/courses/${id}`)
+    .get(`/api/courses/${id}`)
     .then((res) => {
       dispatch({
         type: SELECT_SUCCESS,
@@ -70,7 +69,7 @@ export const addCourses = (values) => async (dispatch) => {
   dispatch({ type: ADD_LOADING });
   setAuthToken(localStorage.accessToken);
   try {
-    await axios.post(`${ServerURL}/api/courses/`, body, config).then((res) => {
+    await axios.post(`/api/courses/`, body, config).then((res) => {
       if (res.status === 200) {
         dispatch({
           type: ADD_SUCCESS,
@@ -96,7 +95,7 @@ export const updateCourses = (values, id) => async (dispatch) => {
   dispatch({ type: UPDATE_LOADING });
   setAuthToken(localStorage.accessToken);
   try {
-    const res = await axios.put(`${ServerURL}/api/courses/` + id, body, config);
+    const res = await axios.put(`/api/courses/` + id, body, config);
     dispatch({
       type: UPDATE_SUCCESS,
       payload: res.data,
@@ -114,7 +113,7 @@ export const updateCourses = (values, id) => async (dispatch) => {
 export const deleteCourse = (id) => (dispatch) => {
   setAuthToken(localStorage.accessToken);
   return axios
-    .delete(`${ServerURL}/api/courses/` + id)
+    .delete(`/api/courses/` + id)
     .then(() => {
       dispatch({
         type: DEL_SUCCESS,

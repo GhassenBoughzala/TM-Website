@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ServerURL } from "../../helpers/urls";
 import { toast } from "react-toastify";
 import {
   ADD_SUBS_FAILED,
@@ -25,7 +24,7 @@ export const getSubsAD = () => (dispatch) => {
   dispatch({ type: LOADING_SUBS });
   setAuthToken(localStorage.accessToken);
   return axios
-    .get(`${ServerURL}/api/subscription/all`)
+    .get(`/api/subscription/all`)
     .then((res) => {
       dispatch({
         type: GET_SUBS_AD,
@@ -38,7 +37,7 @@ export const getSubsByUser = () => (dispatch) => {
   dispatch({ type: LOADING_SUBS });
   setAuthToken(localStorage.accessToken);
   return axios
-    .get(`${ServerURL}/api/subscription/byuser`)
+    .get(`/api/subscription/byuser`)
     .then((res) => {
       dispatch({
         type: GET_SUBS,
@@ -55,7 +54,7 @@ export const Subscribe = (values) => async (dispatch) => {
   setAuthToken(localStorage.accessToken);
   try {
     await axios
-      .post(`${ServerURL}/api/subscription/`, body, config)
+      .post(`/api/subscription/`, body, config)
       .then((res) => {
         if (res.status === 200) {
           dispatch({
@@ -78,7 +77,7 @@ export const updateSub = (values, id) => async (dispatch) => {
   setAuthToken(localStorage.accessToken);
   try {
     const res = await axios.put(
-      `${ServerURL}/api/subscription/` + id,
+      `/api/subscription/` + id,
       body,
       config
     );
@@ -98,7 +97,7 @@ export const updateSub = (values, id) => async (dispatch) => {
 export const deleteSub = (id) => (dispatch) => {
   setAuthToken(localStorage.accessToken);
   return axios
-    .delete(`${ServerURL}/api/subscription/` + id)
+    .delete(`/api/subscription/` + id)
     .then(() => {
       dispatch({
         type: DEL_SUBS_SUCCESS,
@@ -113,7 +112,7 @@ export const confirmPayment = (subId) => async (dispatch) => {
   setAuthToken(localStorage.accessToken);
   try {
     await axios
-      .put(`${ServerURL}/api/subscription/confirm-payment/` + subId)
+      .put(`/api/subscription/confirm-payment/` + subId)
       .then((res) => {
         dispatch({ type: PAYMENT_SUCCESS, payload: res.data });
       });

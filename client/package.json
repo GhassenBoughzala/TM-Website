@@ -1,6 +1,6 @@
 {
   "name": "taamarbouta",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "homepage": ".",
   "scripts": {
@@ -75,11 +75,5 @@
       "last 1 safari version"
     ]
   },
-  "options": {
-    "allowedHosts": [
-      "localhost",
-      ".localhost"
-    ],
-    "proxy": "http://localhost:5500/"
-  }
+  "proxy": "http://localhost:5500"
 }

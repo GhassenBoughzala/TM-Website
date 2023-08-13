@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ServerURL } from "../../helpers/urls";
 //import { toast } from "react-toastify"
 import {
   UPDATE_SUCCESS,
@@ -20,7 +19,7 @@ export const updateUser = (values) => (dispatch) => {
   dispatch({ type: LOADING_USER });
   setAuthToken(localStorage.accessToken);
   return axios
-    .put(`${ServerURL}/api/user`, body, config)
+    .put(`/api/user`, body, config)
     .then((res) => {
       dispatch({
         type: UPDATE_SUCCESS,
@@ -37,7 +36,7 @@ export const getUsers = () => (dispatch) => {
   dispatch({ type: LOADING_USERS });
   setAuthToken(localStorage.accessToken);
   return axios
-    .get(`${ServerURL}/api/subscription/all`)
+    .get(`/api/subscription/all`)
     .then((res) => {
       dispatch({
         type: ALL_SUCCESS,
@@ -57,7 +56,7 @@ export const updateSub = (id, status) => async (dispatch) => {
   setAuthToken(localStorage.accessToken);
   try {
     const res = await axios.put(
-      `${ServerURL}/api/subscription/` + id,
+      `/api/subscription/` + id,
       body,
       config
     );

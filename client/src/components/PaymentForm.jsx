@@ -4,7 +4,6 @@ import { Button, Divider, Form, InputNumber, Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StatusMessages, { useMessages } from "../components/StatusMessages";
 import { currencies } from "../helpers/Constants";
-import { ServerURL } from "../helpers/urls";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { confirmPayment } from "../redux/subs/subsActions";
@@ -44,7 +43,7 @@ export const PaymentForm = ({ ...props }) => {
         setisLoading(true);
         addMessage("");
         const { error: backendError, clientSecret } = await fetch(
-          `${ServerURL}/api/subscription/create-payment`,
+          `/api/subscription/create-payment`,
           {
             method: "POST",
             headers: {

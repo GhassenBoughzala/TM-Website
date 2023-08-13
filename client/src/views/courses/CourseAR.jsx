@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { getCourses, selectCourse } from "../../redux/courses/courseActions";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
-import { ServerURL } from "../../helpers/urls";
+
 import { Layout } from "antd";
 import Footer from "../../components/Footer";
 const { Content } = Layout;
@@ -19,7 +19,7 @@ export const CourseAR = ({ ...props }) => {
     const id = "64c6849913ebbe2aec0e1b1d";
     setloading(false);
     axios
-      .get(`${ServerURL}/api/courses/${id}`)
+      .get(`/api/courses/${id}`)
       .then((res) => {
         setloading(true);
         setstate(res.data);
@@ -46,10 +46,11 @@ export const CourseAR = ({ ...props }) => {
           <>
             <div className="text-center">
               <LoadingOutlined
-                className="yellow-text"
+                className="yellow-text classes-loader"
                 style={{
                   fontSize: 40,
-                  margin: 330,
+                  marginTop: 330,
+                  marginBottom: 330,
                 }}
                 spin
               />
