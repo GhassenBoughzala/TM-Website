@@ -199,7 +199,7 @@ export const Profile = ({ ...props }) => {
                                 setView(true);
                               }}
                             >
-                              Update profil
+                              Update profile
                             </Button>
                           </div>
                         </div>

@@ -10,19 +10,7 @@ const { Content } = Layout;
 
 export const About = () => {
   const { t } = useTranslation();
-  /* const items = [
-    {
-      key: "1",
-      label: <p className="montserrat_regular text-start">{t("AboutT1")}</p>,
-      children: (
-        <>
-          <p>{t("AboutP4")}</p>
-          <p>{t("AboutP5")}</p>
-          <p>{t("AboutP6")}</p>
-        </>
-      ),
-    },
-  ]; */
+
   return (
     <>
       <Content className="container-fluid">
@@ -54,11 +42,13 @@ export const About = () => {
                   </Carousel>
                 </div>
               </div>
-              {/* 
+
               <div className="row parag_style style_link text-start">
                 <p>{t("AboutP3")}</p>
-                <Collapse ghost items={items} />
-              </div> */}
+                <p>{t("AboutP4")}</p>
+                <p>{t("AboutP5")}</p>
+                <p>{t("AboutP6")}</p>
+              </div>
             </div>
           </div>
           <div className="m-2">
