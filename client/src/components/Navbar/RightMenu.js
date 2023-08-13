@@ -23,7 +23,9 @@ const RightMenu = ({ ...props }) => {
   });
 
   const handleLanguage = () => {
-    props.setOpen(false);
+    if (props.open) {
+      props.setOpen(false);
+    }
     const selectedLan = localStorage.getItem("i18nextLng");
     if (selectedLan === "fr") i18next.changeLanguage("en");
     else i18next.changeLanguage("fr");
