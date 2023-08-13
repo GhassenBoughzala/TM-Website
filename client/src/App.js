@@ -37,6 +37,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import PaymentResult from "./views/PaymentResult";
+import ContactUs from "./views/ContactUs";
 
 function App() {
   if (localStorage.accessToken) {
@@ -66,7 +67,7 @@ function App() {
         .then((r) => {
           console.log("$");
           setPK(r.data);
-        })  
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -131,6 +132,12 @@ function App() {
                     exact
                     path="/learn-english"
                     Component={CourseEN}
+                  ></Route>
+
+                  <Route
+                    exact
+                    path="/contact"
+                    Component={ContactUs}
                   ></Route>
 
                   <Route exact path="/profil" element={<UserRoute />}>

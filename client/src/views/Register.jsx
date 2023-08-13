@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
+import { Helmet } from "react-helmet-async";
 const { Content } = Layout;
 
 export const Register = ({ ...props }) => {
@@ -95,6 +96,15 @@ export const Register = ({ ...props }) => {
 
   return (
     <Content className="container-fluid">
+       <Helmet>
+        <title>Register</title>
+        <meta
+          name="description"
+          content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+        />
+        <link rel="canonical" href="/register" />
+      </Helmet>
       <section className="text-center text-lg-start">
         <motion.div
           initial={{ opacity: 0 }}

@@ -11,7 +11,7 @@ export const ContactUs = () => {
   return (
     <Content>
       <Helmet>
-        <title>{t("SLP1")}</title>
+        <title>Contact</title>
         <meta
           name="description"
           content="Taa Marbouta is a language school based in Carthage,
@@ -22,7 +22,7 @@ export const ContactUs = () => {
       <div className="page_style full_espace_padding">
         <div className="container-fluid">
           <div className="row">
-            <h1 className="titre">{t("StudentLife")}</h1>
+            <h1 className="titre">{t("ContactT")}</h1>
             <div className="mb-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
               <div className="parag_style style_link">
                 <p>{t("SLP1")} </p>

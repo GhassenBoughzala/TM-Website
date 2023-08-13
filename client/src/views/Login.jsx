@@ -12,6 +12,7 @@ import Art from "../assets/images/Artboard-4-100.jpg";
 import Logo from "../assets/images/logo_footer.png";
 import { login } from "../redux/auth/authActions";
 import usePrevious from "../helpers/usePrevious";
+import { Helmet } from "react-helmet-async";
 const { Content } = Layout;
 
 export const Login = ({ ...props }) => {
@@ -43,6 +44,15 @@ export const Login = ({ ...props }) => {
 
   return (
     <Content className="container-fluid">
+       <Helmet>
+        <title>Login</title>
+        <meta
+          name="description"
+          content="Taa Marbouta is a language school based in Carthage,
+          Tunis. We aim to better connect Tunisia with the world."
+        />
+        <link rel="canonical" href="/register" />
+      </Helmet>
       <section className="text-center text-lg-start">
         <motion.div
           initial={{ opacity: 0 }}
