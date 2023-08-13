@@ -1,4 +1,3 @@
-import { ServerURL } from "../../helpers/urls";
 import setAuthToken from "../../helpers/authToken";
 import axios from "axios";
 
@@ -26,7 +25,7 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get(`${ServerURL}/api/user/`);
+    const res = await axios.get(`/api/user/`);
     localStorage.setItem("user", JSON.stringify(res.data));
 
     dispatch({
@@ -56,7 +55,7 @@ export const register = (values) => async (dispatch) => {
   const body = JSON.stringify(values);
   dispatch({ type: SET_LOADING });
   await axios
-    .post(`${ServerURL}/api/access/register`, body, config)
+    .post(`/api/access/register`, body, config)
     .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -76,7 +75,7 @@ export const login = (values) => (dispatch) => {
   const body = JSON.stringify(values);
   dispatch({ type: SET_LOADING });
   axios
-    .post(`${ServerURL}/api/access/login`, body, config)
+    .post(`/api/access/login`, body, config)
     .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -118,7 +117,7 @@ export const refreshJwt =
 
     try {
       const res = axios.post(
-        `${ServerURL}/api/access/refresh-token`,
+        `/api/access/refresh-token`,
         body,
         config
       );
@@ -143,7 +142,7 @@ export const forgotPass =
       // Set body
       const body = JSON.stringify({ email });
 
-      await axios.post(`${ServerURL}/api/access/forgot-pass`, body, config);
+      await axios.post(`/api/access/forgot-pass`, body, config);
       dispatch({ type: FORGOTPASS_REQ });
       toast.info("Mot de passe oublié: e-mail envoyé avec succès");
     } catch (error) {
