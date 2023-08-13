@@ -68,7 +68,7 @@ export const Home = () => {
                       <h1 className="averiaseriflibre_bold blue-text">
                         Taa Marbouta
                       </h1>
-                      <h3 className="averiaseriflibre_bold">
+                      <h3 className="averiaseriflibre_bold mb-4">
                         {t("LanguageCourses")}
                       </h3>
                       <div className="parag_style">
