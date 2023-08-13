@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import TM from "../assets/images/TM.png";
 import axios from "axios";
-import { ServerURL } from "../helpers/urls";
 
 export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
@@ -21,7 +20,7 @@ export const SubscriptionResult = ({ ...props }) => {
   const [contact, setContact] = useState({});
   useEffect(() => {
     axios
-      .get(`${ServerURL}/api/contact/`)
+      .get(`/api/contact/`)
       .then((res) => {
         setContact(res.data);
       })

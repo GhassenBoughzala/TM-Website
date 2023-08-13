@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { getCourses } from "../../redux/courses/courseActions";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
-import { ServerURL } from "../../helpers/urls";
+
 import { Layout } from "antd";
 import Footer from "../../components/Footer";
 const { Content } = Layout;
@@ -19,7 +19,7 @@ export const CourseFR = ({ ...props }) => {
     const id = "64c684ce13ebbe2aec0e1b20";
     setloading(false);
     axios
-      .get(`${ServerURL}/api/courses/${id}`)
+      .get(`/api/courses/${id}`)
       .then((res) => {
         setloading(true);
         setstate(res.data);
