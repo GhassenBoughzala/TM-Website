@@ -22,7 +22,7 @@ router.post(
   validateSignupRequest,
   isRequestValidated,
   async (req, res) => {
-    const { firstName, lastName, email, phone, city, password } = req.body;
+    const { firstName, lastName, email, phone, country, city, password } = req.body;
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
@@ -31,7 +31,7 @@ router.post(
       });
     } else {
       try {
-        user = new User({ firstName, lastName, email, phone, city, password });
+        user = new User({ firstName, lastName, email, phone, country ,city, password });
         const savedUser = await user.save();
         if (!savedUser) {
           throw Error("Something went wrong saving the user");
