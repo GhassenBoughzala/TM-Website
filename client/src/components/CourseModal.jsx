@@ -91,6 +91,7 @@ export const CourseModal = ({ ...props }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
+      className="overflow-y-scroll overflow-x-hidden"
     >
       {currentObj !== null ? (
         <div className="row m-3">

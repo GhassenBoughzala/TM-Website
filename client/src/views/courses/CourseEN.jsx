@@ -32,7 +32,7 @@ export const CourseEN = ({ ...props }) => {
 
   return (
     <>
-      <Content className=" container-fluid m-3">
+      <Content className=" container-fluid m-3 overflow-y-scroll overflow-x-hidden">
         <Helmet>
           <title>English Course</title>
           <meta

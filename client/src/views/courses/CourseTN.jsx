@@ -32,7 +32,7 @@ export const CourseTN = ({ ...props }) => {
 
   return (
     <>
-      <Content className=" container-fluid m-3">
+      <Content className=" container-fluid m-3 overflow-y-scroll overflow-x-hidden">
         <Helmet>
           <title>Tunisian Arabic Course</title>
           <meta
@@ -49,7 +49,8 @@ export const CourseTN = ({ ...props }) => {
                 className="yellow-text"
                 style={{
                   fontSize: 40,
-                  margin: 330,
+                  marginTop: 330,
+                  marginBottom: 330,
                 }}
                 spin
               />
