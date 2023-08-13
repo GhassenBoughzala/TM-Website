@@ -49,8 +49,8 @@ export const About = () => {
 
                 <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mb-5">
                   <Carousel autoplay speed={1000} slidesToShow={1} dots={false}>
-                    <img src={TM} alt="About0" className="w-50" />
-                    <img src={A1} alt="About1" style={{ width: 150 }} className="rounded" />
+                    <img src={TM} alt="About0" className="w-25" />
+                    <img src={A1} alt="About1" className="rounded w-75" />
                   </Carousel>
                 </div>
               </div>
