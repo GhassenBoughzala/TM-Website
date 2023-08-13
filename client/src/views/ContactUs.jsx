@@ -1,53 +1,23 @@
 import React, { useState, Fragment } from "react";
 import Footer from "../components/Footer";
 import { Layout, Modal, Carousel, Image, Button } from "antd";
-import { motion } from "framer-motion";
-import Accommodation from "../components/Modals/Accomodation";
-import Travel from "../components/Modals/Travel";
-import LivingInTunis from "../components/Modals/Tunis";
-import Work from "../components/Modals/Work";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 
 const { Content } = Layout;
 export const ContactUs = () => {
   const { t } = useTranslation();
-  const container = {
-    hidden: { opacity: 1, scale: 0 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
-
-  const imagesW = require.context("../assets/images/student/Course/W", true);
-  const imagesListW = imagesW.keys().map((image) => imagesW(image));
-  const imagesH = require.context("../assets/images/student/Course/H", true);
-  const imagesListH = imagesH.keys().map((image) => imagesH(image));
 
   return (
     <Content>
       <Helmet>
-        <title>Contact us</title>
+        <title>{t("SLP1")}</title>
         <meta
           name="description"
           content="Taa Marbouta is a language school based in Carthage,
           Tunis. We aim to better connect Tunisia with the world."
         />
-        <link rel="canonical" href="/student-life" />
+        <link rel="canonical" href="/contactus" />
       </Helmet>
       <div className="page_style full_espace_padding">
         <div className="container-fluid">

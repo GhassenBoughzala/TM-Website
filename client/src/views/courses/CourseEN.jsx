@@ -40,7 +40,7 @@ export const CourseEN = ({ ...props }) => {
             content="Taa Marbouta is a language school based in Carthage,
           Tunis. We aim to better connect Tunisia with the world."
           />
-          <link rel="canonical" href="/language-courses/learn-english" />
+          <link rel="canonical" href="/learn-english" />
         </Helmet>
         {!loading ? (
           <>
