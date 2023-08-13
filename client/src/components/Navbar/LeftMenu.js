@@ -3,7 +3,7 @@ import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const LeftMenu = ({ mode }) => {
+const LeftMenu = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
   return (
@@ -13,6 +13,7 @@ const LeftMenu = ({ mode }) => {
         className="ant-btn-menu"
         onClick={() => {
           navTo("/");
+          props.setOpen(false);
         }}
       >
         {t("Home")}
@@ -22,6 +23,7 @@ const LeftMenu = ({ mode }) => {
         className="ant-btn-menu"
         onClick={() => {
           navTo("/language-courses");
+          props.setOpen(false);
         }}
       >
         {t("LanguageCourses")}
@@ -31,6 +33,7 @@ const LeftMenu = ({ mode }) => {
         className="ant-btn-menu"
         onClick={() => {
           navTo("/student-life");
+          props.setOpen(false);
         }}
       >
         {t("StudentLife")}
@@ -40,6 +43,7 @@ const LeftMenu = ({ mode }) => {
         className="ant-btn-menu"
         onClick={() => {
           navTo("/about");
+          props.setOpen(false);
         }}
       >
         {t("About")}

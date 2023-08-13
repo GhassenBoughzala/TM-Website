@@ -40,11 +40,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-menu">
         <div className="leftMenu my-1">
-          <LeftMenu mode={"horizontal"} />
+          <LeftMenu />
         </div>
 
         <div className="rightMenu">
-          <RightMenu mode={"horizontal"} />
+          <RightMenu />
         </div>
         <Button className="menuButton" type="text" onClick={showDrawer}>
           <span className="barsBtn"></span>
@@ -57,8 +57,8 @@ const Navbar = () => {
           open={open}
           style={{ zIndex: 99999 }}
         >
-          <LeftMenu mode={"inline"} />
-          <RightMenu mode={"inline"} />
+          <LeftMenu {...{ open, setOpen }} />
+          <RightMenu {...{ open, setOpen }} />
         </Drawer>
       </div>
     </nav>
