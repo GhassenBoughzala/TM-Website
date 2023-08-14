@@ -27,6 +27,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "countries-list": "^2.6.1",
+    "country-state-city": "^3.1.4",
     "dayjs": "^1.11.9",
     "framer-motion": "^10.12.16",
     "http-proxy-middleware": "^2.0.6",

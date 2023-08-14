@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
 import Art from "../assets/images/Artboard-5-100.jpg";
@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { Helmet } from "react-helmet-async";
+const State = require("country-state-city").State;
 const { Content } = Layout;
 
 export const Register = ({ ...props }) => {
@@ -71,6 +72,13 @@ export const Register = ({ ...props }) => {
     }),
   ];
 
+  const [ciso, setCiso] = useState("");
+  const cities = State.getStatesOfCountry(ciso);
+  const cityList = Object.entries(cities).map(([code, country]) => ({
+    label: country.name,
+    value: country.name,
+  }));
+
   const handleFormSubmit = () => {
     form
       .validateFields()
@@ -94,9 +102,13 @@ export const Register = ({ ...props }) => {
     }
   }, [props.isLoading, props.isAuth]);
 
+  const handleCountry = async (val, options) => {
+    setCiso(options.code);
+  };
+
   return (
     <Content className="container-fluid">
-       <Helmet>
+      <Helmet>
         <title>Register</title>
         <meta
           name="description"
@@ -172,7 +184,7 @@ export const Register = ({ ...props }) => {
                         <div className="form-outline text-start">
                           <Form.Item
                             label="Country"
-                            name="city"
+                            name="country"
                             rules={[
                               {
                                 required: true,
@@ -180,11 +192,58 @@ export const Register = ({ ...props }) => {
                               },
                             ]}
                           >
-                            <Select showSearch options={countryList}></Select>
+                            <Select
+                              onSelect={(val, options) =>
+                                handleCountry(val, options)
+                              }
+                              showSearch
+                              options={countryList}
+                            ></Select>
                           </Form.Item>
                         </div>
                       </div>
+
                       <div className="col-md-6">
+                        <div className="form-outline text-start">
+                          <Form.Item
+                            label="City"
+                            name="city"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your city !",
+                              },
+                            ]}
+                          >
+                            <Select
+                              disabled={ciso === "" ? true : false}
+                              showSearch
+                              options={cityList}
+                            ></Select>
+                          </Form.Item>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col col-md-6">
+                        <div className="form-outline text-start">
+                          <Form.Item
+                            label="Email"
+                            name="email"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your email !",
+                                type: "email",
+                              },
+                            ]}
+                          >
+                            <Input />
+                          </Form.Item>
+                        </div>
+                      </div>
+
+                      <div className="col col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
                             label="Phone number"
@@ -199,23 +258,6 @@ export const Register = ({ ...props }) => {
                             <Input pattern="[0-9]{0,5}" type="number" />
                           </Form.Item>
                         </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="form-outline text-start">
-                        <Form.Item
-                          label="Email"
-                          name="email"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your email !",
-                              type: "email",
-                            },
-                          ]}
-                        >
-                          <Input />
-                        </Form.Item>
                       </div>
                     </div>
                     <div className="row mb-5">

@@ -101,6 +101,7 @@ export const WorkDesc = [
 export const countryList = Object.entries(countries).map(([code, country]) => ({
   label: `${country.emoji}   ${country.name}`,
   value: country.name,
+  code: code
 }));
 
 export const currencies = [

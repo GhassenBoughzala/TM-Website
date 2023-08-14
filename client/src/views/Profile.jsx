@@ -27,6 +27,7 @@ import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 import PaymentForm from "../components/PaymentForm";
 const { Content } = Layout;
+const State = require("country-state-city").State;
 
 export const Profile = ({ ...props }) => {
   useEffect(() => {
@@ -146,12 +147,22 @@ export const Profile = ({ ...props }) => {
     ),
   }));
 
+  const [ciso, setCiso] = useState("");
+  const cities = State.getStatesOfCountry(ciso);
+  const cityList = Object.entries(cities).map(([code, country]) => ({
+    label: country.name,
+    value: country.name,
+  }));
+  const handleCountry = async (val, options) => {
+    setCiso(options.code);
+  };
+
   return (
     <>
       <Content className="container-fluid">
         <div className="container my-5 ">
           <div className="row">
-            <div className="col col-lg-5 col-md-12 col-sm-12 col-xs-12 align">
+            <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
                 className="overflow-y-scroll overflow-x-hidden mb-3"
@@ -188,7 +199,11 @@ export const Profile = ({ ...props }) => {
                           )}
                           {User.city && (
                             <p>
-                              Country: <b> {User.city} </b>
+                              Country:{" "}
+                              <b>
+                                {" "}
+                                {User.country} - {User.city}
+                              </b>
                             </p>
                           )}
                           <div className="text-center">
@@ -251,13 +266,14 @@ export const Profile = ({ ...props }) => {
                           </div>
                         </div>
                         <div className="row">
-                          <div className="form-outline text-start">
-                            <Form.Item label="Email" name="email">
-                              <Input defaultValue={User.email} />
-                            </Form.Item>
+                          <div className="col-md-6">
+                            <div className="form-outline text-start">
+                              <Form.Item label="Email" name="email">
+                                <Input defaultValue={User.email} />
+                              </Form.Item>
+                            </div>
                           </div>
-                        </div>
-                        <div className="row">
+
                           <div className="col-md-6">
                             <div className="form-outline text-start">
                               <Form.Item label="Phone number" name="phone">
@@ -268,13 +284,29 @@ export const Profile = ({ ...props }) => {
                               </Form.Item>
                             </div>
                           </div>
+                        </div>
+                        <div className="row">
                           <div className="col-md-6">
                             <div className="form-outline text-start">
-                              <Form.Item label="Country" name="city">
+                              <Form.Item label="Country" name="country">
+                                <Select
+                                  showSearch
+                                  onSelect={(val, options) =>
+                                    handleCountry(val, options)
+                                  }
+                                  defaultValue={User.country}
+                                  options={countryList}
+                                ></Select>
+                              </Form.Item>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="form-outline text-start">
+                              <Form.Item label="City" name="city">
                                 <Select
                                   showSearch
                                   defaultValue={User.city}
-                                  options={countryList}
+                                  options={cityList}
                                 ></Select>
                               </Form.Item>
                             </div>
@@ -284,7 +316,11 @@ export const Profile = ({ ...props }) => {
                         <div className="row form-outline">
                           <div className="col text-end">
                             <Form.Item>
-                              <Button type="primary" htmlType="submit">
+                              <Button
+                                type="primary"
+                                htmlType="submit"
+                                size="medium"
+                              >
                                 Update
                               </Button>
                             </Form.Item>
@@ -292,6 +328,7 @@ export const Profile = ({ ...props }) => {
                           <div className="col">
                             <Form.Item>
                               <Button
+                                size="medium"
                                 type="default"
                                 onClick={() => {
                                   setView(false);
@@ -310,7 +347,7 @@ export const Profile = ({ ...props }) => {
             </div>
 
             {/* Course by users */}
-            <div className="col col-lg-7 col-md-12 col-sm-12 col-xs-12 align">
+            <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
                 className=" overflow-y-scroll overflow-x-hidden mb-3"
