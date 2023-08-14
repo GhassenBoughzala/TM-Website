@@ -4,7 +4,6 @@ const User = require("../models/User");
 const { verifyAccessToken } = require("../middleware/verify-token");
 const AdminAccess = require("../middleware/adminAuth");
 
-
 // @route   GET /user
 // @desc    Get User Information by token
 // @access  Public
@@ -32,6 +31,7 @@ router.put("/", verifyAccessToken, async (req, res) => {
       lastName: req.body.lastName,
       phone: req.body.phone,
       city: req.body.city,
+      country: req.body.country,
     };
     const updated = await User.findByIdAndUpdate(
       req.user.id,
@@ -52,22 +52,17 @@ router.put("/", verifyAccessToken, async (req, res) => {
 // @route   GET api/all
 // @desc    Get Courses
 // @access  Public
-router.get(
-  "/all",
-  verifyAccessToken,
-  AdminAccess,
-  async (req, res) => {
-    try {
-      let users = await User.find({}).select("-subscription");
-      res.status(200).json(users);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({
-        error: true,
-        msg: "server error",
-      });
-    }
+router.get("/all", verifyAccessToken, AdminAccess, async (req, res) => {
+  try {
+    let users = await User.find({}).select("-subscription");
+    res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: true,
+      msg: "server error",
+    });
   }
-);
+});
 
 module.exports = router;
