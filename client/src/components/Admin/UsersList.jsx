@@ -124,7 +124,7 @@ export const UsersList = ({ ...props }) => {
         />
       ),
       children: (
-        <div className="my-4">
+        <div className="my-1">
           {item.subscription.length === 0 ? (
             <>
               <Empty description="No booked courses"></Empty>

@@ -44,7 +44,7 @@ const PaginationComponent = ({
             aria-disabled={true && currentPage === 1}
             onClick={() => onPageChange(currentPage - 1)}
           >
-            {"<<"}
+          Previous
           </a>
         </li>
         {paginationItems}
@@ -56,7 +56,7 @@ const PaginationComponent = ({
             aria-disabled={true && currentPage === totalPages}
             onClick={() => onPageChange(currentPage + 1)}
           >
-            {">>"}
+            Next
           </a>
         </li>
       </ul>
