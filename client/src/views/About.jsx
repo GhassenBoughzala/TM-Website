@@ -1,28 +1,48 @@
-import React from "react";
-import { Layout, Carousel } from "antd";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Layout, Carousel, Card, Avatar, Rate } from "antd";
 import TM from "../assets/images/logo_footer.png";
 import A1 from "../assets/images/about-1.jpeg";
 import Land from "../assets/images/landscape.png";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import moment from "moment";
+import {
+  LoadingOutlined,
+  MinusCircleOutlined,
+  PlusCircleOutlined,
+} from "@ant-design/icons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import Meta from "antd/es/card/Meta";
+
 const { Content } = Layout;
 
 export const About = () => {
   const { t } = useTranslation();
-  /* const items = [
-    {
-      key: "1",
-      label: <p className="montserrat_regular text-start">{t("AboutT1")}</p>,
-      children: (
-        <>
-          <p>{t("AboutP4")}</p>
-          <p>{t("AboutP5")}</p>
-          <p>{t("AboutP6")}</p>
-        </>
-      ),
-    },
-  ]; */
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(
+        "https://service-reviews-ultimate.elfsight.com/data/reviews?uris%5B%5D=ChIJkZsz9x-14hIRdHKhX7KF8sY&with_text_only=1&min_rating=5&page_length=100&order=date"
+      )
+      .then((res) => {
+        setReviews(res.data.result.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noreferrer");
+  };
+
   return (
     <>
       <Content className="container-fluid">
@@ -54,18 +74,112 @@ export const About = () => {
                   </Carousel>
                 </div>
               </div>
-              {/* 
+
               <div className="row parag_style style_link text-start">
                 <p>{t("AboutP3")}</p>
-                <Collapse ghost items={items} />
-              </div> */}
+                <p>{t("AboutP4")}</p>
+                <p>{t("AboutP5")}</p>
+                <p>{t("AboutP6")}</p>
+              </div>
             </div>
           </div>
           <div className="m-2">
             <div className="container">
               <div className="row">
                 <h2 className="title title_center">{t("Testimonials")}</h2>
-                <div className="elfsight-app-34f62dcf-0567-4469-b6c6-3f5f35113b3a"></div>
+                {loading ? (
+                  <div className="text-center">
+                    <LoadingOutlined
+                      style={{
+                        fontSize: 40,
+                        margin: 130,
+                      }}
+                      spin
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <Swiper
+                      centeredSlides={false}
+                      autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                      }}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      navigation={false}
+                      modules={[Autoplay, Pagination, Navigation]}
+                      className="mySwiper"
+                      breakpoints={{
+                        320: { slidesPerView: 1 },
+                        480: { slidesPerView: 2, spaceBetween: 50 },
+                        768: { slidesPerView: 2, spaceBetween: 50 },
+                        1024: { slidesPerView: 4, spaceBetween: 15 },
+                      }}
+                    >
+                      {reviews.map((re, index) => {
+                        return (
+                          <SwiperSlide key={index}>
+                            <Card
+                              style={{ height: 250, width: 300 }}
+                              className=" overflow-x-hidden overflow-y-scroll"
+                            >
+                              <Meta
+                                className="text-start mb-2"
+                                avatar={
+                                  <Avatar
+                                    style={{ cursor: "pointer" }}
+                                    src={re.reviewer_picture_url}
+                                    onClick={() => openInNewTab(re.url)}
+                                    size={"large"}
+                                    alt={re.url}
+                                  />
+                                }
+                                title={re.reviewer_name}
+                                description={moment
+                                  .unix(re.published_at)
+                                  .fromNow()}
+                              />
+                              <Rate
+                                disabled
+                                defaultValue={re.rating}
+                                style={{ fontSize: 15 }}
+                                className="text-start"
+                              />
+
+                              <p className="text-start">
+                                {showMore
+                                  ? `" ${re.text} "`
+                                  : `" ${re.text.substring(0, 100)} ... "`}
+                              </p>
+                              <button
+                                style={{ marginTop: "-20px" }}
+                                className="btn"
+                                onClick={() => setShowMore(!showMore)}
+                              >
+                                {!showMore ? (
+                                  <PlusCircleOutlined
+                                    style={{
+                                      fontSize: 20,
+                                    }}
+                                  />
+                                ) : (
+                                  <MinusCircleOutlined
+                                    style={{
+                                      fontSize: 20,
+                                      //marginBottom: 15,
+                                    }}
+                                  />
+                                )}
+                              </button>
+                            </Card>
+                          </SwiperSlide>
+                        );
+                      })}
+                    </Swiper>
+                  </>
+                )}
               </div>
             </div>
           </div>

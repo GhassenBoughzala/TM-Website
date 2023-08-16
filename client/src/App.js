@@ -37,8 +37,27 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import PaymentResult from "./views/PaymentResult";
+import ContactUs from "./views/ContactUs";
 
 function App() {
+  useEffect(() => {
+    window.addEventListener("error", (e) => {
+      if (e.message === "ResizeObserver loop limit exceeded") {
+        const resizeObserverErrDiv = document.getElementById(
+          "webpack-dev-server-client-overlay-div"
+        );
+        const resizeObserverErr = document.getElementById(
+          "webpack-dev-server-client-overlay"
+        );
+        if (resizeObserverErr) {
+          resizeObserverErr.setAttribute("style", "display: none");
+        }
+        if (resizeObserverErrDiv) {
+          resizeObserverErrDiv.setAttribute("style", "display: none");
+        }
+      }
+    });
+  }, []);
   if (localStorage.accessToken) {
     setAuthToken(localStorage.accessToken);
     store.dispatch(verifUser());
@@ -66,7 +85,7 @@ function App() {
         .then((r) => {
           console.log("$");
           setPK(r.data);
-        })  
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -109,29 +128,31 @@ function App() {
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-arabic"
+                    path="/learn-arabic"
                     Component={CourseAR}
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-tunisian-arabic"
+                    path="/learn-tunisian-arabic"
                     Component={CourseTN}
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-libyan-arabic"
+                    path="/learn-libyan-arabic"
                     Component={CourseLB}
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-french"
+                    path="/learn-french"
                     Component={CourseFR}
                   ></Route>
                   <Route
                     exact
-                    path="/language-courses/learn-english"
+                    path="/learn-english"
                     Component={CourseEN}
                   ></Route>
+
+                  <Route exact path="/contact" Component={ContactUs}></Route>
 
                   <Route exact path="/profil" element={<UserRoute />}>
                     <Route exact path="/profil" Component={Profile}></Route>

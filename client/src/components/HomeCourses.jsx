@@ -11,7 +11,7 @@ export const HomeCourses = () => {
     <div className="row justify-content-center">
       <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-3">
         <div
-          onClick={() => navTo("/language-courses")}
+          onClick={() => navTo("/learn-arabic")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
           <img
@@ -33,7 +33,7 @@ export const HomeCourses = () => {
       {/* 2 */}
       <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-3">
         <div
-          onClick={() => navTo("/language-courses")}
+          onClick={() => navTo("/learn-libyan-arabic")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
           <img
@@ -43,7 +43,7 @@ export const HomeCourses = () => {
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center yellow-text mb-5">
-              {t("LearnTN")}
+              {t("LearnLB")}
             </h3>
 
             <p className=" parag_style text-black text-center">
@@ -55,7 +55,7 @@ export const HomeCourses = () => {
       {/* 3 */}
       <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-3">
         <div
-          onClick={() => navTo("/language-courses")}
+          onClick={() => navTo("/learn-tunisian-arabic")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
           <img
@@ -65,7 +65,7 @@ export const HomeCourses = () => {
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center blue-text mb-5">
-              {t("LearnLB")}
+              {t("LearnTN")}
             </h3>
 
             <p className=" parag_style text-black text-center">

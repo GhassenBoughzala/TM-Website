@@ -1208,6 +1208,14 @@ nav.list_compte ul li.is-active a {
   object-fit: cover;
   width: 100%;
 }
+.cover-img-contact {
+  filter: blur(2px);
+  opacity: 25%;
+  display: block;
+  margin: auto;
+  object-fit: cover;
+  width: 100%;
+}
 
 .cover-img {
   filter: blur(2px);
@@ -1257,4 +1265,41 @@ nav.list_compte ul li.is-active a {
 .box-shadow:hover {
   -webkit-box-shadow: 0 5px 10px rgba(72, 78, 85, 0.6);
   box-shadow: 0 5px 10px rgba(72, 78, 85, 0.6);
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  display: none !important;
+}
+
+.fixed-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }

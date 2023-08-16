@@ -41,8 +41,11 @@ const subConfirmation = async (userEmail, title, firstName, lastName) => {
           link: "https://www.taamarbouta.com/",
         },
       },
-      outro: ["We look forward to supporting you on your language-learning journey !", "Many thanks, Taa Marbouta Team"],
-      signature: 'Sincerely'
+      outro: [
+        "We look forward to supporting you on your language-learning journey !",
+        "Many thanks, Taa Marbouta Team",
+      ],
+      signature: "Sincerely",
     },
   };
 
@@ -58,7 +61,9 @@ const subConfirmation = async (userEmail, title, firstName, lastName) => {
   await transporter
     .sendMail(message)
     .then((info) => {
-      console.log("Subscription email successfully sent ✅ --> " + info.accepted);
+      console.log(
+        "Subscription email successfully sent ✅ --> " + info.accepted
+      );
     })
     .catch((error) => {
       console.log("Email not sent ⛔️");
@@ -66,7 +71,7 @@ const subConfirmation = async (userEmail, title, firstName, lastName) => {
     });
 };
 
-const contactUs = async (text, firstName, lastName) => {
+const contactUs = async (text, firstName, lastName, email) => {
   const config = {
     service: "gmail",
     auth: {
@@ -88,9 +93,10 @@ const contactUs = async (text, firstName, lastName) => {
 
   let response = {
     body: {
-      greeting: "From ",
+      greeting: "This message is from ",
       name: `${firstName} ${lastName}`,
       intro: `${text}`,
+      outro: `User's contact : ${email}`
     },
   };
 
@@ -106,7 +112,7 @@ const contactUs = async (text, firstName, lastName) => {
   await transporter
     .sendMail(message)
     .then((info) => {
-      console.log("Contact us mail successfully sent ✅");
+      console.log("Contact us email successfully sent ✅");
     })
     .catch((error) => {
       console.log("Email not sent ⛔️");

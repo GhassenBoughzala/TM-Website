@@ -37,7 +37,7 @@ const LeftMenu = ({ ...props }) => {
         }}
       >
         {t("StudentLife")}
-      </Button>{" "}
+      </Button>
       <Button
         type="link"
         className="ant-btn-menu"
@@ -47,6 +47,16 @@ const LeftMenu = ({ ...props }) => {
         }}
       >
         {t("About")}
+      </Button>{" "}
+      <Button
+        type="link"
+        className="ant-btn-menu"
+        onClick={() => {
+          navTo("/contact");
+          props.setOpen(false);
+        }}
+      >
+        Contact
       </Button>
     </>
   );

@@ -32,7 +32,7 @@ export const CourseTN = ({ ...props }) => {
 
   return (
     <>
-      <Content className=" container-fluid m-3">
+      <Content className=" container-fluid m-3 overflow-y-scroll overflow-x-hidden">
         <Helmet>
           <title>Tunisian Arabic Course</title>
           <meta
@@ -40,7 +40,7 @@ export const CourseTN = ({ ...props }) => {
             content="Taa Marbouta is a language school based in Carthage,
           Tunis. We aim to better connect Tunisia with the world."
           />
-          <link rel="canonical" href="/" />
+          <link rel="canonical" href="/learn-tunisian-arabic" />
         </Helmet>
         {!loading ? (
           <>
@@ -49,7 +49,8 @@ export const CourseTN = ({ ...props }) => {
                 className="yellow-text"
                 style={{
                   fontSize: 40,
-                  margin: 330,
+                  marginTop: 330,
+                  marginBottom: 330,
                 }}
                 spin
               />

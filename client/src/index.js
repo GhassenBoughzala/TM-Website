@@ -6,7 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/fonts/Averia_Serif_Libre/AveriaSerifLibre-Regular.ttf"
 import 'react-toastify/dist/ReactToastify.css';
 import './i18nextConf';
-
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 
 import App from "./App";

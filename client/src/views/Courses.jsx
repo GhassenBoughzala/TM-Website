@@ -20,19 +20,19 @@ export const Courses = ({ ...props }) => {
 
   const selectCourse = (course) => {
     if (course.title === "French") {
-      navTo("/language-courses/learn-french");
+      navTo("/learn-french");
     }
     if (course.title === "Tunisian Arabic") {
-      navTo("/language-courses/learn-tunisian-arabic");
+      navTo("/learn-tunisian-arabic");
     }
     if (course.title === "Libyan Arabic") {
-      navTo("/language-courses/learn-libyan-arabic");
+      navTo("/learn-libyan-arabic");
     }
     if (course.title === "English") {
-      navTo("/language-courses/learn-english");
+      navTo("/learn-english");
     }
     if (course.title === "Modern Standard Arabic") {
-      navTo("/language-courses/learn-arabic");
+      navTo("/learn-arabic");
     }
   };
 

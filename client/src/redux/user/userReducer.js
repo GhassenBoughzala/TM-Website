@@ -4,6 +4,9 @@ import {
   ALL_SUCCESS,
   LOADING_USER,
   LOADING_USERS,
+  SEND_FAILED,
+  SEND_LOADING,
+  SEND_SUCCESS,
   UPDATE_FAILED,
   UPDATE_SUBS_FAILED,
   UPDATE_SUBS_LOADING,
@@ -17,7 +20,8 @@ const intialState = {
   loading_update: false,
   error: null,
   codeMsg: null,
-  user: localStorage.getItem("user"),
+  message: null,
+  user: "",
   users: [],
 };
 
@@ -52,7 +56,6 @@ export default function (state = intialState, action) {
         ),
         codeMsg: 1,
         loading_update: false,
-        //loading: false
       };
     case UPDATE_SUBS_FAILED:
       return {
@@ -60,9 +63,16 @@ export default function (state = intialState, action) {
         codeMsg: 0,
         error: true,
         loading_update: false,
-        //loading: false,
         users: [],
       };
+
+    case SEND_LOADING:
+      return { ...state, loading: true, message: null, codeMsg: null };
+    case SEND_SUCCESS:
+      return { ...state, loading: false, message: action.payload, codeMsg: 1 };
+    case SEND_FAILED:
+      return { ...state, error: true, loading: false, message: action.payload, codeMsg: 0 };
+
     default:
       return state;
   }

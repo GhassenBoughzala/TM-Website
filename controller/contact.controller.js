@@ -7,6 +7,8 @@ const {
   isRequestValidated,
 } = require("../middleware/validators/validatorCourses");
 const Contact = require("../models/Contact");
+const { contactUs } = require("../middleware/mailer");
+const Mails = require("../models/Mails");
 
 router.put(
   "/",
@@ -45,6 +47,43 @@ router.get("/", async (req, res) => {
     res.status(500).json({
       error: true,
       msg: "server error",
+    });
+  }
+});
+
+router.post("/send", async (req, res) => {
+  try {
+    let { firstName, lastName, text, email } = req.body;
+
+    const exist = await Mails.findOne({ email });
+    if (exist) {
+      return res.status(400).json({
+        error: true,
+        msg: "This email address is already used !",
+      });
+    } else {
+      const newMail = new Mails({ email });
+      await newMail.save();
+      await contactUs(text, firstName, lastName, email)
+        .then(() => {
+          res.status(200).json({
+            error: false,
+            msg: "Contact us message sent ✔",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.status(500).json({
+            error: true,
+            msg: "Mail error",
+          });
+        });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: true,
+      msg: "Mail error",
     });
   }
 });
