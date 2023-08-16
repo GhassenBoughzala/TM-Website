@@ -225,7 +225,7 @@ export const Register = ({ ...props }) => {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col col-md-6">
+                      <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
                             label="Email"
@@ -243,7 +243,7 @@ export const Register = ({ ...props }) => {
                         </div>
                       </div>
 
-                      <div className="col col-md-6">
+                      <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
                             label="Phone number"
