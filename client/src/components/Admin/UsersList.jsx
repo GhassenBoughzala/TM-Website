@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
 import { getUsers, updateSub } from "../../redux/user/userActions";
@@ -8,6 +8,7 @@ import {
   Button,
   Collapse,
   Empty,
+  Input,
   List,
   Modal,
   Select,
@@ -16,6 +17,7 @@ import {
 } from "antd";
 import usePrevious from "../../helpers/usePrevious";
 import { toast } from "react-toastify";
+import PaginationComponent from "../../helpers/pagination";
 
 export const UsersList = ({ ...props }) => {
   useEffect(() => {
@@ -67,7 +69,41 @@ export const UsersList = ({ ...props }) => {
     border: "none",
   };
 
-  const subsList = props.usersList
+  const prev_loadingUp = usePrevious(props.loadingStatus);
+  useEffect(() => {
+    if (prev_loadingUp && !props.isLoadingUpdate) {
+      if (props.msg === 1) {
+        props.AllUsers();
+      }
+      if (props.msg === 0) {
+        //toast.warn("Something went wrong !");
+      }
+    }
+  }, [props.loadingStatus, props.usersList]);
+
+  const [Search, setSearch] = useState("");
+  const [pageNumber, setPageNumber] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const offresPerPage = 10;
+  const data = props.usersList;
+  const dataToSearch = useMemo(() => {
+    let computed = data;
+    if (Search) {
+      computed = computed.filter(
+        (i) =>
+          i.lastName.toLowerCase().includes(Search.toLowerCase()) ||
+          i.firstName.toLowerCase().includes(Search.toLowerCase()) ||
+          i.email.toLowerCase().includes(Search.toLowerCase())
+      );
+    }
+    setPageNumber(computed.length);
+    return computed.slice(
+      (currentPage - 1) * offresPerPage,
+      (currentPage - 1) * offresPerPage + offresPerPage
+    );
+  }, [data, currentPage, Search]);
+
+  const subsList = dataToSearch
     .filter((user) => {
       if (user.role === "user") {
         return user;
@@ -116,7 +152,9 @@ export const UsersList = ({ ...props }) => {
                       </p>
 
                       <div className="row my-3">
+                        <p>Notes: {su.notes}</p>
                         <Steps current={statusOfSub(su.status)} items={items} />
+                        
                       </div>
                     </>
                   </Fragment>
@@ -129,28 +167,34 @@ export const UsersList = ({ ...props }) => {
       style: panelStyle,
     }));
 
-  const prev_loadingUp = usePrevious(props.loadingStatus);
-  useEffect(() => {
-    if (prev_loadingUp && !props.isLoadingUpdate) {
-      if (props.msg === 1) {
-        props.AllUsers();
-      }
-      if (props.msg === 0) {
-        //toast.warn("Something went wrong !");
-      }
-    }
-  }, [props.loadingStatus, props.usersList]);
-
   return (
     <div className="row">
       <h3 className="yellow-text">Users Management</h3>
 
       {!props.isLoading ? (
-        <>
+        <div className=" container-fluid">
+          <Input
+            placeholder="Search by First name, Last name or email"
+            size="large"
+            className="w-50 d-block m-auto mb-4"
+            onChange={(event) => {
+              setSearch(event.target.value);
+              setCurrentPage(1);
+            }}
+            
+          />
           <List itemLayout="horizontal">
             <Collapse ghost accordion items={subsList} />
           </List>
-        </>
+          {!Search && (
+            <PaginationComponent
+              total={pageNumber}
+              itemsPerPage={offresPerPage}
+              currentPage={currentPage}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
+          )}
+        </div>
       ) : (
         <div className="text-center mt-5 yellow-text">
           <LoadingOutlined
