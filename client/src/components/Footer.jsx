@@ -11,7 +11,7 @@ export const HomeFooter = () => {
 
   return (
     <Footer>
-      <div className="container position-sticky">
+      <div className="container position-sticky fixed-footer">
         <footer className="py-1">
           <div className="row">
             <div className="col col-lg-6 col-xs-12">

@@ -1296,3 +1296,10 @@ nav.list_compte ul li.is-active a {
 .swiper-pagination-bullets.swiper-pagination-horizontal {
   display: none !important;
 }
+
+.fixed-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

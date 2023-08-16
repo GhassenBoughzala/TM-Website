@@ -13,9 +13,11 @@ import Logo from "../assets/images/logo_footer.png";
 import { login } from "../redux/auth/authActions";
 import usePrevious from "../helpers/usePrevious";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 const { Content } = Layout;
 
 export const Login = ({ ...props }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const onFinish = (values) => {
     try {
@@ -44,7 +46,7 @@ export const Login = ({ ...props }) => {
 
   return (
     <Content className="container-fluid">
-       <Helmet>
+      <Helmet>
         <title>Login</title>
         <meta
           name="description"
@@ -108,7 +110,7 @@ export const Login = ({ ...props }) => {
 
                       <div className="form-outline text-start">
                         <Form.Item
-                          label="Password"
+                          label={t("pwd")}
                           name="password"
                           rules={[
                             {
@@ -136,23 +138,23 @@ export const Login = ({ ...props }) => {
                           </Button>
                         </Form.Item>
                         <p>
-                          Don’t have an account?
+                          {t("login-1")}
                           <Link to="/register" className="mx-1">
-                            Register
+                            {t("login-2")}
                           </Link>
                         </p>
                       </div>
                     </Form>
                   ) : (
                     <>
-                      <h2> Already connected </h2>
+                      <h2> {t("connected")} </h2>
                       <Button
                         type="primary"
                         onClick={() => {
                           navigate("/");
                         }}
                       >
-                        Back home
+                        {t("back")}
                       </Button>
                     </>
                   )}
