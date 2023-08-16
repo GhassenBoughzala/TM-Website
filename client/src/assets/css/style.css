@@ -1208,6 +1208,14 @@ nav.list_compte ul li.is-active a {
   object-fit: cover;
   width: 100%;
 }
+.cover-img-contact {
+  filter: blur(2px);
+  opacity: 25%;
+  display: block;
+  margin: auto;
+  object-fit: cover;
+  width: 100%;
+}
 
 .cover-img {
   filter: blur(2px);

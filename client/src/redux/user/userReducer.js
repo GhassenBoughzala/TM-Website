@@ -21,7 +21,7 @@ const intialState = {
   error: null,
   codeMsg: null,
   message: null,
-  user: localStorage.getItem("user"),
+  user: "",
   users: [],
 };
 
@@ -67,11 +67,11 @@ export default function (state = intialState, action) {
       };
 
     case SEND_LOADING:
-      return { ...state, loading: true, message: null };
+      return { ...state, loading: true, message: null, codeMsg: null };
     case SEND_SUCCESS:
-      return { ...state, loading: false, message: action.payload };
+      return { ...state, loading: false, message: action.payload, codeMsg: 1 };
     case SEND_FAILED:
-      return { ...state, error: true, loading: false, message: action.payload };
+      return { ...state, error: true, loading: false, message: action.payload, codeMsg: 0 };
 
     default:
       return state;

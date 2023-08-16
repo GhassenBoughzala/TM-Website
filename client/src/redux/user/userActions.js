@@ -87,6 +87,6 @@ export const sendContact = (values) => async (dispatch) => {
     .catch((err) => {
       dispatch({ type: SEND_FAILED });
       console.log(err);
-      toast.warn(`${err.data.msg}`);
+      toast.warn(`${err.response.data.msg}`);
     });
 };
