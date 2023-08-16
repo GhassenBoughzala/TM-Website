@@ -40,6 +40,24 @@ import PaymentResult from "./views/PaymentResult";
 import ContactUs from "./views/ContactUs";
 
 function App() {
+  useEffect(() => {
+    window.addEventListener("error", (e) => {
+      if (e.message === "ResizeObserver loop limit exceeded") {
+        const resizeObserverErrDiv = document.getElementById(
+          "webpack-dev-server-client-overlay-div"
+        );
+        const resizeObserverErr = document.getElementById(
+          "webpack-dev-server-client-overlay"
+        );
+        if (resizeObserverErr) {
+          resizeObserverErr.setAttribute("style", "display: none");
+        }
+        if (resizeObserverErrDiv) {
+          resizeObserverErrDiv.setAttribute("style", "display: none");
+        }
+      }
+    });
+  }, []);
   if (localStorage.accessToken) {
     setAuthToken(localStorage.accessToken);
     store.dispatch(verifUser());
@@ -134,11 +152,7 @@ function App() {
                     Component={CourseEN}
                   ></Route>
 
-                  <Route
-                    exact
-                    path="/contact"
-                    Component={ContactUs}
-                  ></Route>
+                  <Route exact path="/contact" Component={ContactUs}></Route>
 
                   <Route exact path="/profil" element={<UserRoute />}>
                     <Route exact path="/profil" Component={Profile}></Route>

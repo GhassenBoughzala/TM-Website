@@ -62,6 +62,10 @@
   background: "#364d79";
 }
 
+.ant-card .ant-card-meta-detail >div:not(:last-child){
+  margin-bottom: 0px;
+}
+
 /*---Modal */
 
 .ant-modal-content {
