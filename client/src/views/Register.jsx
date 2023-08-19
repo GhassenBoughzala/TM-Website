@@ -5,7 +5,7 @@ import "../assets/css/login.css";
 import Art from "../assets/images/Artboard-5-100.jpg";
 import Logo from "../assets/images/logo_footer.png";
 import { register } from "../redux/auth/authActions";
-import { Layout, Button, Form, Input, Select } from "antd";
+import { Layout, Button, Form, Input, Select, Checkbox } from "antd";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { Helmet } from "react-helmet-async";
-const State = require("country-state-city").State;
+//const State = require("country-state-city").State;
 const { Content } = Layout;
 
 export const Register = ({ ...props }) => {
@@ -73,11 +73,12 @@ export const Register = ({ ...props }) => {
   ];
 
   const [ciso, setCiso] = useState("");
-  const cities = State.getStatesOfCountry(ciso);
-  const cityList = Object.entries(cities).map(([code, country]) => ({
+  const [policy, setPolicy] = useState(false);
+  /*  const cities = State.getStatesOfCountry(ciso);
+   const cityList = Object.entries(cities).map(([code, country]) => ({
     label: country.name,
     value: country.name,
-  }));
+  })); */
 
   const handleFormSubmit = () => {
     form
@@ -104,6 +105,15 @@ export const Register = ({ ...props }) => {
 
   const handleCountry = async (val, options) => {
     setCiso(options.code);
+  };
+
+  const onChangeCheck = (e) => {
+    console.log(`checked = ${e.target.checked}`);
+    if (e.target.checked) {
+      setPolicy(true);
+    } else {
+      setPolicy(false);
+    }
   };
 
   return (
@@ -215,11 +225,7 @@ export const Register = ({ ...props }) => {
                               },
                             ]}
                           >
-                            <Select
-                              disabled={ciso === "" ? true : false}
-                              showSearch
-                              options={cityList}
-                            ></Select>
+                            <Input disabled={ciso === "" ? true : false} />
                           </Form.Item>
                         </div>
                       </div>
@@ -287,15 +293,23 @@ export const Register = ({ ...props }) => {
                           </Form.Item>
                         </div>
                       </div>
+                      <Checkbox onChange={onChangeCheck}>
+                        <span className="text-start">
+                          By checking, you agree to TaaMarbouta’s Terms of Use &
+                          Privacy Policy.
+                        </span>
+                      </Checkbox>
                     </div>
+
                     <div className="form-outline text-center">
                       <Form.Item>
                         <Button
                           type="primary"
                           htmltype="submit"
                           onClick={handleFormSubmit}
+                          disabled={!policy}
                         >
-                          Submit
+                          Create an account
                         </Button>
                       </Form.Item>
                       <p>

@@ -27,7 +27,7 @@ import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 import PaymentForm from "../components/PaymentForm";
 const { Content } = Layout;
-const State = require("country-state-city").State;
+//const State = require("country-state-city").State;
 
 export const Profile = ({ ...props }) => {
   useEffect(() => {
@@ -148,11 +148,11 @@ export const Profile = ({ ...props }) => {
   }));
 
   const [ciso, setCiso] = useState("");
-  const cities = State.getStatesOfCountry(ciso);
+  /*   const cities = State.getStatesOfCountry(ciso);
   const cityList = Object.entries(cities).map(([code, country]) => ({
     label: country.name,
     value: country.name,
-  }));
+  })); */
   const handleCountry = async (val, options) => {
     setCiso(options.code);
   };
@@ -216,6 +216,18 @@ export const Profile = ({ ...props }) => {
                             >
                               Update profile
                             </Button>
+                            {User.role === "admin" && (
+                              <Button
+                                type="default"
+                                size="default"
+                                className="mx-2"
+                                onClick={() => {
+                                  navTo("/admin-dashboard");
+                                }}
+                              >
+                                Admin Dashboard
+                              </Button>
+                            )}
                           </div>
                         </div>
                       ) : (
@@ -303,11 +315,10 @@ export const Profile = ({ ...props }) => {
                           <div className="col-md-6">
                             <div className="form-outline text-start">
                               <Form.Item label="City" name="city">
-                                <Select
-                                  showSearch
+                                <Input
                                   defaultValue={User.city}
-                                  options={cityList}
-                                ></Select>
+                                  disabled={ciso === "" ? true : false}
+                                />
                               </Form.Item>
                             </div>
                           </div>
