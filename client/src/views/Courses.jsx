@@ -2,7 +2,10 @@
 import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getFilteredCourses, selectCourse } from "../redux/courses/courseActions";
+import {
+  getFilteredCourses,
+  selectCourse,
+} from "../redux/courses/courseActions";
 import { Card, Layout } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
@@ -49,7 +52,14 @@ export const Courses = ({ ...props }) => {
           <link rel="canonical" href="/language-courses" />
         </Helmet>
         <div className="container mb-lg-5">
-          <h1 className="titre mt-5">{t("LanguageCourses")}</h1>
+          <h1 className="titre mt-5">
+            {t("LanguageCourses")}
+            <p className=" fs-5 mt-3">
+              You will be contacted by a member of our team after you book a
+              course and before you proceed to payment.
+            </p>
+          </h1>
+
           {props.isLoading ? (
             <>
               <div className="row">
