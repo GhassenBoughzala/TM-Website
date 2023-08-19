@@ -102,7 +102,7 @@ export const CourseModal = ({ ...props }) => {
               currentObj.description.map((d, index) => {
                 return (
                   <Fragment key={index}>
-                    <p className="text-secondary">{d.description}</p>
+                    <p className="text-secondary fs-6">{d.description}</p>
                   </Fragment>
                 );
               })
@@ -143,7 +143,7 @@ export const CourseModal = ({ ...props }) => {
           {/* Course Side 2 */}
           <div className="mb-3 col-lg-5 col-md-6 col-sm-12 col-xs-12">
             <h5 className="yellow-text">{t("priceDesc")}</h5>
-            <p>{currentObj.priceDescription}</p>
+            <p className="fs-6">{currentObj.priceDescription}</p>
             <div>
               {currentObj.sessions.length !== 0 && (
                 <>

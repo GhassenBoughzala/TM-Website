@@ -38,6 +38,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import PaymentResult from "./views/PaymentResult";
 import ContactUs from "./views/ContactUs";
+import ScrollToTop from "./helpers/scrollToTop";
 
 function App() {
   useEffect(() => {
@@ -100,6 +101,7 @@ function App() {
     <Provider store={store}>
       <Elements stripe={stripePromise}>
         <BrowserRouter>
+          <ScrollToTop />
           <ToastContainer position="bottom-right" />
           <HelmetProvider>
             <Space

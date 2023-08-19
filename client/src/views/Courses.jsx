@@ -55,8 +55,7 @@ export const Courses = ({ ...props }) => {
           <h1 className="titre mt-5">
             {t("LanguageCourses")}
             <p className=" fs-5 mt-3">
-              You will be contacted by a member of our team after you book a
-              course and before you proceed to payment.
+            {t("courses-ph")}
             </p>
           </h1>
 

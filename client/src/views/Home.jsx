@@ -89,14 +89,14 @@ export const Home = () => {
             <div className="row">
               <h2 className="title title_center">{t("HomeT2")}</h2>
               <div className="parag_style">
-                <p className="w-75 d-block m-auto">{t("HomeP4")}</p>
+                <p className="w-75 d-block m-auto">{t("HomeP2")}</p>
               </div>
             </div>
           </div>
           <div className="container">
             <div className="row">
               <div className="parag_style">
-                <p className="w-75 d-block m-auto">{t("HomeP2")}</p>
+                <p className="w-75 d-block m-auto">{t("HomeP4")}</p>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@ export const Home = () => {
                   <p className="text-start">{t("HomeP3")}</p>
                   <Button
                     size="large"
-                    onClick={() => navTo("/language-courses")}
+                    onClick={() => navTo("/learn-french")}
                     type="primary"
                   >
                     {t("HomeDiscover")}
