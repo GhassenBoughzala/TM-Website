@@ -26,6 +26,7 @@ import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 import PaymentForm from "../components/PaymentForm";
+import moment from "moment";
 const { Content } = Layout;
 //const State = require("country-state-city").State;
 
@@ -83,7 +84,8 @@ export const Profile = ({ ...props }) => {
   const statusOfSub = (status) => {
     if (status === "pending") return 1;
     else if (status === "test") return 2;
-    else if (status === "confirmed") return 3;
+    else if (status === "request") return 3;
+    else if (status === "confirmed") return 4;
   };
 
   const subsList = props.user_subs.map((su, index) => ({
@@ -92,6 +94,23 @@ export const Profile = ({ ...props }) => {
     children: (
       <div>
         <div className="row my-2 mb-3">
+          <span>
+            Type:
+            <span className="blue-text mx-1">{su.type} Class</span>
+          </span>
+          {su.sessions.length !== 0 && (
+            <span>
+              Sessions:
+              {su.sessions.map((se, inedx) => {
+                return (
+                  <span key={index} className="blue-text mx-1">
+                    • {moment(se).format("MMM Do YYYY")}
+                  </span>
+                );
+              })}
+            </span>
+          )}
+
           <Divider orientation="center">
             <p className=" blue-text">Subscription process</p>
           </Divider>
@@ -129,7 +148,7 @@ export const Profile = ({ ...props }) => {
           )}
 
           <div className="col">
-            {su.status === "test" && (
+            {su.status === "request" && (
               <div className="text-end">
                 <Button
                   size="small"

@@ -45,13 +45,6 @@ router.post(
         $and: [{ user: req.user.id }, { course: course }],
       });
 
-      const sendEmail = await subConfirmation(
-        selectedUser.email,
-        title,
-        selectedUser.firstName,
-        selectedUser.lastName
-      ).catch((err) => console.log(err));
-
       if (verify.length == 0) {
         const newSubs = new Subscription({
           user: req.user.id,
@@ -70,8 +63,15 @@ router.post(
             req.user.id,
             { $push: { subscription: newSubs } },
             { new: true }
+          ).then(
+            async () =>
+              await subConfirmation(
+                selectedUser.email,
+                title,
+                selectedUser.firstName,
+                selectedUser.lastName
+              ).catch((err) => console.log(err))
           );
-          sendEmail;
         } else {
           newSubs.status = "test";
           newSubs.save().then(() => res.status(200).json(newSubs));
@@ -79,14 +79,22 @@ router.post(
             req.user.id,
             { $push: { subscription: newSubs } },
             { new: true }
+          ).then(
+            async () =>
+              await subConfirmation(
+                selectedUser.email,
+                title,
+                selectedUser.firstName,
+                selectedUser.lastName
+              ).catch((err) => console.log(err))
           );
-          sendEmail;
         }
       } else {
         res.status(400).json({
           error: true,
           msg: "Subscription already exists",
         });
+        console.log("Subscription already exists");
       }
     } catch (error) {
       res.status(500).json({
