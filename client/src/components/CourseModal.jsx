@@ -195,7 +195,7 @@ export const CourseModal = ({ ...props }) => {
             <Modal
               open={openModal}
               onCancel={handleCancel}
-              width={500}
+              width={550}
               bodyStyle={{ height: "100%" }}
               footer={null}
               style={{ top: 0 }}

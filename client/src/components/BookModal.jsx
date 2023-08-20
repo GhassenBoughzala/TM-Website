@@ -70,7 +70,7 @@ export const BookModal = ({ ...props }) => {
       <div className="row">
         <div className="form-outline text-start">
           <Form.Item
-            label="Select you level"
+            label="Select your level"
             name="level"
             rules={[
               {
@@ -98,38 +98,6 @@ export const BookModal = ({ ...props }) => {
         </Form.Item>
       </div>
       <div className="row">
-        <div className="form-outline text-start">
-          {currentObj.sessions.length !== 0 && (
-            <Form.Item
-              label="Select your sessions"
-              name="sessions"
-              onChange={handleChange}
-            >
-              <Select mode="multiple" maxLength={3}>
-                {currentObj.sessions.map((s, index) => {
-                  return (
-                    <Fragment key={index}>
-                      <Option
-                        value={s[0]}
-                        key={index}
-                        label={`${moment(s[0]).format("MMMM")} session`}
-                      >
-                        <p className=" text-dark">
-                          <b className="mx-1">
-                            {moment(s[1]).format("MMM Do")}
-                          </b>
-                          <b>- {moment(s[0]).format("MMM Do YYYY")}</b>
-                        </p>
-                      </Option>
-                    </Fragment>
-                  );
-                })}
-              </Select>
-            </Form.Item>
-          )}
-        </div>
-      </div>
-      <div className="row">
         <Form.Item
           label="Pick an option"
           name="type"
@@ -141,7 +109,7 @@ export const BookModal = ({ ...props }) => {
           ]}
         >
           <div className="row text-center">
-            <div className="col">
+            <div className="col col-4">
               <Button
                 type={`${type === "Evening" ? "primary" : "default"}`}
                 onClick={() => setType("Evening")}
@@ -149,7 +117,7 @@ export const BookModal = ({ ...props }) => {
                 Next Evening Class
               </Button>
             </div>
-            <div className="col">
+            <div className="col col-4">
               <Button
                 type={`${type === "Private" ? "primary" : "default"}`}
                 onClick={() => setType("Private")}
@@ -157,10 +125,10 @@ export const BookModal = ({ ...props }) => {
                 Private Classes
               </Button>
             </div>
-            <div className="col">
+            <div className="col col-4">
               <Button
                 type={`${type === "Intensive" ? "primary" : "default"}`}
-                onClick={() => setType("Private")}
+                onClick={() => setType("Intensive")}
               >
                 Intensive Classes
               </Button>
@@ -168,6 +136,41 @@ export const BookModal = ({ ...props }) => {
           </div>
         </Form.Item>
       </div>
+      {type === "Intensive" && (
+        <div className="row">
+          <div className="form-outline text-start">
+            {currentObj.sessions.length !== 0 && (
+              <Form.Item
+                label="Select your sessions"
+                name="sessions"
+                onChange={handleChange}
+              >
+                <Select mode="multiple" maxLength={3}>
+                  {currentObj.sessions.map((s, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <Option
+                          value={s[0]}
+                          key={index}
+                          label={`${moment(s[0]).format("MMMM")} session`}
+                        >
+                          <p className=" text-dark">
+                            <b className="mx-1">
+                              {moment(s[1]).format("MMM Do")}
+                            </b>
+                            <b>- {moment(s[0]).format("MMM Do YYYY")}</b>
+                          </p>
+                        </Option>
+                      </Fragment>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="row">
         <div className=" col col-6">
           <Form.Item
@@ -188,6 +191,7 @@ export const BookModal = ({ ...props }) => {
             <Form.Item
               label="Number of hours"
               name="hours"
+              style={{width: "100%"}}
               rules={[
                 {
                   required: type === "Private" && true,
@@ -195,7 +199,7 @@ export const BookModal = ({ ...props }) => {
                 },
               ]}
             >
-              <InputNumber />
+              <InputNumber width={"100%"} />
             </Form.Item>
           )}
         </div>
