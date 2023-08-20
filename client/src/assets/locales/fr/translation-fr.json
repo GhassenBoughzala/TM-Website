@@ -120,5 +120,17 @@
   "sco-abt-3": "Il rêvait d'une nouvelle génération d'hommes politiques et a fondé 'Nouvelle Génération جيل جديد', un mouvement de jeunes militants en avril 2011. Il a ensuite rejoint la campagne 'Manish Msameh مانيش مسامح' contre l'impunité, avant à la tête de l'académie politique 'Courant démocrate التيّار الديمقراطي'. Malek est décédé le 10 juin 2021 à l'âge de 35 ans alors qu'il sauvait un ami de la noyade. Il a vécu et est mort pour les valeurs auxquelles il croyait. Avec la bénédiction de l'épouse de Malek, Azza, nous sommes fiers de nommer cette bourse après Malek, avec l'espoir que ses rêves puissent un jour devenir la réalité de la Tunisie.",
   "sco-ft": "Premier boursier :",
   "sco-f2": "Simone’s work experience and motivation letter demonstrated a clear link between the principles Malek Sghiri stood for, and Simone’s own motivations and principles. Simone was with the Taa Marbouta Language Centre from September 2022 until December 2022 and Taa Marbouta Language Centre connected him with the Tunisian Forum for Economic and Social Rights (FTDES) to support research on migration. We were delighted to support him in the early stages of his career.  ",
-  "sco-f1": "The first recipient of the Malek Sghiri Scholarship was Simone Trucco from Italy. Simone completed an internship with the UN’s refugee agency, UNHCR, in Tunis in early 2022, working on issues related to migration rights. He also completed a Master’s degree in Euro-Mediterranean Cooperation and Migration Studies, a joint programme between Ca’ Foscari University in Venice and Paul Valery University in Montpellier. He previously studied some Arabic in Egypt and Tunisia."
+  "sco-f1": "The first recipient of the Malek Sghiri Scholarship was Simone Trucco from Italy. Simone completed an internship with the UN’s refugee agency, UNHCR, in Tunis in early 2022, working on issues related to migration rights. He also completed a Master’s degree in Euro-Mediterranean Cooperation and Migration Studies, a joint programme between Ca’ Foscari University in Venice and Paul Valery University in Montpellier. He previously studied some Arabic in Egypt and Tunisia.",
+  "firstName": "Prénom",
+  "lastName": "Nom de famille",
+  "co": "Pays",
+  "ci": "Ville",
+  "ph": "Numéro de téléphone",
+  "pwdc": "Confirmation du mot de passe",
+  "check": "Acceptez les conditions d'utilisation et la politique de confidentialité de TaaMarbouta.",
+  "acc": "Vous avez déjà un compte ?",
+  "lo": "Connexion",
+  "create": "Créer un compte",
+  "login": "Connexion",
+  "X": ""
 }

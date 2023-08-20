@@ -13,10 +13,12 @@ import { Link } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 //const State = require("country-state-city").State;
 const { Content } = Layout;
 
 export const Register = ({ ...props }) => {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const uppercaseRegExp = /(?=.*?[A-Z])/;
@@ -159,7 +161,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="First name"
+                            label={t("firstName")}
                             name="firstName"
                             rules={[
                               {
@@ -175,7 +177,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="Last name"
+                            label={t("lastName")}
                             name="lastName"
                             rules={[
                               {
@@ -193,7 +195,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="Country"
+                            label={t("co")}
                             name="country"
                             rules={[
                               {
@@ -216,7 +218,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="City"
+                            label={t("ci")}
                             name="city"
                             rules={[
                               {
@@ -252,7 +254,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="Phone number"
+                            label={t("ph")}
                             name="phone"
                             rules={[
                               {
@@ -270,7 +272,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="Password"
+                            label={t("pwd")}
                             name="password"
                             rules={ArrayOfRules}
                             hasFeedback
@@ -284,7 +286,7 @@ export const Register = ({ ...props }) => {
                         <div className="form-outline text-start">
                           <Form.Item
                             name="confirm"
-                            label="Password confirmation"
+                            label={t("pwdc")}
                             dependencies={["password"]}
                             hasFeedback
                             rules={ArrayOfConfirmationRules}
@@ -294,10 +296,7 @@ export const Register = ({ ...props }) => {
                         </div>
                       </div>
                       <Checkbox onChange={onChangeCheck}>
-                        <span className="text-start">
-                          By checking, you agree to TaaMarbouta’s Terms of Use &
-                          Privacy Policy.
-                        </span>
+                        <span className="text-start">{t("check")}</span>
                       </Checkbox>
                     </div>
 
@@ -309,11 +308,11 @@ export const Register = ({ ...props }) => {
                           onClick={handleFormSubmit}
                           disabled={!policy}
                         >
-                          Create an account
+                          {t("create")}
                         </Button>
                       </Form.Item>
                       <p>
-                        Already have an account? <Link to="/login">Log in</Link>
+                        {t("acc")} <Link to="/login">{t("lo")}</Link>
                       </p>
                     </div>
                   </Form>

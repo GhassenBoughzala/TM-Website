@@ -134,7 +134,7 @@ export const Login = ({ ...props }) => {
                             type="primary"
                             htmlType="submit"
                           >
-                            Submit
+                            {t("login")}
                           </Button>
                         </Form.Item>
                         <p>
