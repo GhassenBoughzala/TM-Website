@@ -1,6 +1,10 @@
 import React from "react";
 import { Layout } from "antd";
-import { InstagramFilled, FacebookFilled } from "@ant-design/icons";
+import {
+  InstagramFilled,
+  FacebookFilled,
+  LinkedinFilled,
+} from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 //import TM from "../assets/images/TM.png";
@@ -20,34 +24,33 @@ export const HomeFooter = () => {
             </div>
 
             <div className="col col-lg-6 col-xs-12">
-            <div>
-                  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <p className="montserrat_regular text-start">
-                      <FontAwesomeIcon icon="fa-solid fa-phone" /> +216 24 223
-                      422
-                    </p>
-                  </div>
-                  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <p className="montserrat_regular text-start">
-                      <FontAwesomeIcon icon="fa-solid fa-phone" />
-                      +216 22 920 666
-                    </p>
-                  </div>
+              <div>
+                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p className="montserrat_regular text-start">
-                    <FontAwesomeIcon
-                      icon="fa-solid fa-envelope"
-                      className="mx-1"
-                    />
-                    info@taamarbouta.com
-                  </p>
-                  <p className="montserrat_regular text-start">
-                    <FontAwesomeIcon
-                      icon="fa-solid fa-location-dot"
-                      className="mx-1"
-                    />
-                    15 Rue Taieb Mehiri, Site archéologique de Carthage 2016
+                    <FontAwesomeIcon icon="fa-solid fa-phone" /> +216 24 223 422
                   </p>
                 </div>
+                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <p className="montserrat_regular text-start">
+                    <FontAwesomeIcon icon="fa-solid fa-phone" />
+                    +216 22 920 666
+                  </p>
+                </div>
+                <p className="montserrat_regular text-start">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-envelope"
+                    className="mx-1"
+                  />
+                  info@taamarbouta.com
+                </p>
+                <p className="montserrat_regular text-start">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-location-dot"
+                    className="mx-1"
+                  />
+                  15 Rue Taieb Mehiri, Site archéologique de Carthage 2016
+                </p>
+              </div>
             </div>
           </div>
 
@@ -55,24 +58,43 @@ export const HomeFooter = () => {
             <p>© 2023 Taa Marbouta</p>
             <ul className="list-unstyled d-flex">
               <li className="ms-3 w-25">
-                <a
-                  href="https://www.instagram.com/taa_marbouta/"
-                  className="link-dark"
-                >
-                  <h2>
-                    <InstagramFilled />
-                  </h2>
-                </a>
+                <h2>
+                  <InstagramFilled
+                    onClick={() =>
+                      window.open(
+                        "https://www.instagram.com/taa_marbouta/",
+                        "_blank",
+                        "noreferrer"
+                      )
+                    }
+                  />
+                </h2>
               </li>
               <li className="ms-3">
-                <a
-                  href="https://www.facebook.com/TaaMarboutaTunis/"
-                  className="link-dark"
-                >
-                  <h2>
-                    <FacebookFilled />
-                  </h2>
-                </a>
+                <h2>
+                  <FacebookFilled
+                    onClick={() =>
+                      window.open(
+                        "https://www.facebook.com/TaaMarboutaTunis/",
+                        "_blank",
+                        "noreferrer"
+                      )
+                    }
+                  />
+                </h2>
+              </li>
+              <li className="ms-3">
+                <h2>
+                  <LinkedinFilled
+                    onClick={() =>
+                      window.open(
+                        "https://www.linkedin.com/company/taa-marbouta-language-centre/",
+                        "_blank",
+                        "noreferrer"
+                      )
+                    }
+                  />
+                </h2>
               </li>
             </ul>
           </div>
