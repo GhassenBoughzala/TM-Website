@@ -5,10 +5,12 @@ const SubscriptionSchema = new mongoose.Schema({
   user: {
     type: ObjectId,
     ref: "User",
+    require: true,
   },
   course: {
     type: ObjectId,
     ref: "Course",
+    require: true,
   },
   payment: {
     type: Boolean,
@@ -18,6 +20,11 @@ const SubscriptionSchema = new mongoose.Schema({
     type: String,
     enum: ["pending", "test", "confirmed"],
   },
+  type: {
+    type: String,
+    enum: ["private", "Evening"],
+    require: true,
+  },
   level: {
     type: String,
     enum: ["Beginner", "Intermediate", "Advanced"],
@@ -25,6 +32,9 @@ const SubscriptionSchema = new mongoose.Schema({
   },
   notes: {
     type: String,
+  },
+  hours: {
+    type: Number,
   },
   sessions: {
     type: Array,

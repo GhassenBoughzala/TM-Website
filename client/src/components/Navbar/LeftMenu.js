@@ -35,10 +35,10 @@ const LeftMenu = ({ ...props }) => {
   ];
 
   return (
-    <>
+    <div className={`${props.open ? "d-inline-grid gap-2 " : ""}`}>
       <Button
         type="link"
-        className="ant-btn-menu"
+        className="ant-btn-menu text-start"
         onClick={() => {
           navTo("/");
           props.setOpen(false);
@@ -47,6 +47,8 @@ const LeftMenu = ({ ...props }) => {
         {t("Home")}
       </Button>
       <Dropdown
+        placement="bottom"
+        arrow
         menu={{
           items,
           onClick,
@@ -54,7 +56,7 @@ const LeftMenu = ({ ...props }) => {
       >
         <Button
           type="link"
-          className="ant-btn-menu"
+          className="ant-btn-menu text-start"
           onClick={() => {
             navTo("/language-courses");
             props.setOpen(false);
@@ -65,7 +67,7 @@ const LeftMenu = ({ ...props }) => {
       </Dropdown>
       <Button
         type="link"
-        className="ant-btn-menu"
+        className="ant-btn-menu text-start"
         onClick={() => {
           navTo("/student-life");
           props.setOpen(false);
@@ -75,17 +77,17 @@ const LeftMenu = ({ ...props }) => {
       </Button>
       <Button
         type="link"
-        className="ant-btn-menu"
+        className="ant-btn-menu text-start"
         onClick={() => {
           navTo("/about");
           props.setOpen(false);
         }}
       >
         {t("About")}
-      </Button>{" "}
+      </Button>
       <Button
         type="link"
-        className="ant-btn-menu"
+        className="ant-btn-menu text-start"
         onClick={() => {
           navTo("/contact");
           props.setOpen(false);
@@ -93,7 +95,7 @@ const LeftMenu = ({ ...props }) => {
       >
         Contact
       </Button>
-    </>
+    </div>
   );
 };
 

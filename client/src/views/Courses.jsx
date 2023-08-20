@@ -54,7 +54,7 @@ export const Courses = ({ ...props }) => {
         <div className="container mb-lg-5">
           <h1 className="titre mt-5">
             {t("LanguageCourses")}
-            <p className=" fs-5 mt-3">
+            <p className=" fs-5 mt-3 text-muted">
             {t("courses-ph")}
             </p>
           </h1>
