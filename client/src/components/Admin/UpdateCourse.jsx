@@ -59,6 +59,12 @@ export const UpdateCourse = ({ ...props }) => {
     });
   };
 
+  const handleDescPriceChange = () => {
+    form.setFieldsValue({
+      priceDescription: [],
+    });
+  };
+
   const handleSessionsChange = () => {
     form.setFieldsValue({
       sessions: [],
@@ -102,7 +108,6 @@ export const UpdateCourse = ({ ...props }) => {
         name="basic"
         layout="vertical"
         size={"medium"}
-        style={{ maxWidth: 600 }}
         onFinish={onFinish}
         role="form"
         autoComplete="off"
@@ -155,6 +160,7 @@ export const UpdateCourse = ({ ...props }) => {
         <Form.List name="description" onChange={handleDescChange}>
           {(fields, { add, remove }) => (
             <>
+              <p className="yellow-text">List of descriptions :</p>
               {fields.map((field) => (
                 <Space key={field.key}>
                   <Form.Item
@@ -167,10 +173,10 @@ export const UpdateCourse = ({ ...props }) => {
                     {() => (
                       <Form.Item
                         {...field}
-                        label="Description"
+                        label={`Description ${field.key + 1}`}
                         name={[field.name, "description"]}
                       >
-                        <TextArea rows={4} />
+                        <TextArea rows={4} className="" />
                       </Form.Item>
                     )}
                   </Form.Item>
@@ -200,6 +206,7 @@ export const UpdateCourse = ({ ...props }) => {
         <Form.List name="sessions" onChange={handleSessionsChange}>
           {(fields, { add, remove }) => (
             <>
+              <p className="yellow-text">List of sessions :</p>
               {fields.map((field) => (
                 <Space key={field.key}>
                   <Form.Item
@@ -210,8 +217,13 @@ export const UpdateCourse = ({ ...props }) => {
                     }
                   >
                     {() => (
-                      <Form.Item {...field} label="Sessions" name={field.name}>
-                        <RangePicker format={dateFormat} />
+                      <Form.Item
+                        {...field}
+                        label={`Session ${field.key + 1}`}
+                        name={field.name}
+                        className=" bg-white rounded"
+                      >
+                        <RangePicker format={dateFormat} className="m-2" />
                       </Form.Item>
                     )}
                   </Form.Item>
@@ -238,9 +250,67 @@ export const UpdateCourse = ({ ...props }) => {
           )}
         </Form.List>
 
-        <Form.Item name="priceDescription" label="Price description">
-          <TextArea rows={2} />
-        </Form.Item>
+        <Form.List name="priceDescription" onChange={handleDescPriceChange}>
+          {(fields, { add, remove }) => (
+            <>
+              <p className="yellow-text">List of price descriptions :</p>
+
+              <p className=" text-info">
+                If you don't have a note leave it empty
+              </p>
+              {fields.map((field) => (
+                <Space key={field.key}>
+                  <Form.Item
+                    noStyle
+                    shouldUpdate={(prevValues, curValues) =>
+                      prevValues.area !== curValues.area ||
+                      prevValues.sights !== curValues.sights
+                    }
+                  >
+                    {() => (
+                      <div className=" bg-white rounded">
+                        <Form.Item
+                          {...field}
+                          className="m-2"
+                          label="Price description"
+                          name={[field.name, "priceDescription"]}
+                        >
+                          <TextArea rows={2} />
+                        </Form.Item>
+                        <Form.Item
+                          {...field}
+                          className="m-2"
+                          label="Note"
+                          name={[field.name, "notes"]}
+                        >
+                          <TextArea rows={2} className="mb-2" />
+                        </Form.Item>
+                      </div>
+                    )}
+                  </Form.Item>
+
+                  <MinusCircleOutlined
+                    className="mx-1 text-danger"
+                    onClick={() => remove(field.name)}
+                  />
+                </Space>
+              ))}
+
+              <Form.Item>
+                <Button
+                  className="text-start"
+                  type="dashed"
+                  onClick={() => add()}
+                  block
+                  icon={<PlusOutlined />}
+                >
+                  Add price descriptions
+                </Button>
+              </Form.Item>
+            </>
+          )}
+        </Form.List>
+
         <div className="row">
           <div className="col">
             <div className="form-outline text-end">

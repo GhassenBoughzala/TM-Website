@@ -151,12 +151,12 @@ export const StudentLife = () => {
 
           <div className="row mt-5">
             <h1 className="titre">{t("sco-T")}</h1>
-            <h4>{t("sco-ovt")}</h4>
+            <h4 className="blue-text">{t("sco-ovt")}</h4>
             <div className="parag_style style_link mb-4">
               <p className="fs-6">{t("sco-ov")}</p>
             </div>
             <div className="mb-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
-              <h4>{t("sco-objt")}</h4>
+              <h4 className="blue-text">{t("sco-objt")}</h4>
               <div className="parag_style style_link text-start">
                 <ul class="list-unstyled text-start">
                   <li>
@@ -180,7 +180,7 @@ export const StudentLife = () => {
               </div>
             </div>
             <div className="mb-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
-              <h4>{t("sco-elt")}</h4>
+              <h4 className="blue-text">{t("sco-elt")}</h4>
               <div className="parag_style style_link text-start">
                 <ul class="list-unstyled text-start">
                   <li>
@@ -198,20 +198,20 @@ export const StudentLife = () => {
                   </li>
                 </ul>
               </div>
-              <h4>{t("sco-howt")}</h4>
+            </div>
+            <div className="row">
+              <h4 className="yellow-text">{t("sco-howt")}</h4>
               <div className="parag_style style_link mb-4">
                 <p className="fs-6">{t("sco-how")}</p>
               </div>
-            </div>
-            <div className="row">
-              <h4>{t("sco-ft")}</h4>
+              <h4 className="blue-text">{t("sco-ft")}</h4>
               <div className="parag_style style_link mb-4">
                 <p className="fs-6">{t("sco-f1")}</p>
                 <p className="fs-6">{t("sco-f2")}</p>
               </div>
             </div>
             <div className="row">
-              <h4>{t("sco-abt")}</h4>
+              <h4 className="yellow-text">{t("sco-abt")}</h4>
               <div className="mb-3 col-lg-8 col-md-12 col-sm-12 col-xs-12">
                 <div className="parag_style style_link mb-4">
                   <p className="fs-6">{t("sco-abt-1")}</p>
