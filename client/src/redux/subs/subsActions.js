@@ -70,7 +70,7 @@ export const Subscribe = (values) => async (dispatch) => {
   }
 };
 
-export const updateSub = (values, id) => async (dispatch) => {
+export const updateSubProcess = (values, id) => async (dispatch) => {
   const config = { headers: { "Content-Type": "application/json" } };
   const body = JSON.stringify(values);
   dispatch({ type: UPDATE_SUBS_LOADING });

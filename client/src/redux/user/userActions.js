@@ -52,9 +52,9 @@ export const getUsers = () => (dispatch) => {
     });
 };
 
-export const updateSub = (id, status) => async (dispatch) => {
+export const updateSub = (id, values) => async (dispatch) => {
   const config = { headers: { "Content-Type": "application/json" } };
-  const body = JSON.stringify({ status: status });
+  const body = JSON.stringify(values);
   dispatch({ type: UPDATE_SUBS_LOADING });
   setAuthToken(localStorage.accessToken);
   try {

@@ -23,7 +23,8 @@ const StatusMessages = ({ messages, type }) =>
   );
 
 const maybeLink = (m) => {
-  const piDashboardBase = "https://dashboard.stripe.com/test/payments";
+  //https://dashboard.stripe.com/test/payments
+  const piDashboardBase = "";
   return (
     <span
       dangerouslySetInnerHTML={{

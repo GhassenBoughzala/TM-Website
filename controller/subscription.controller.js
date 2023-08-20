@@ -24,7 +24,8 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { course, level, notes, sessions, title, type, hours, currency } = req.body;
+      let { course, level, notes, sessions, title, type, hours, currency } =
+        req.body;
       const selectedUser = await User.findById(req.user.id);
       if (!selectedUser) {
         return res.status(400).json({
@@ -55,7 +56,7 @@ router.post(
           type,
           hours,
           title,
-          currency
+          currency,
         });
         if (level != "Beginner") {
           newSubs.status = "pending";

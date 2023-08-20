@@ -3,12 +3,13 @@
 import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
-import { getUsers, updateSub } from "../../redux/user/userActions";
+import { getUsers } from "../../redux/user/userActions";
 import {
   Button,
   Collapse,
   Divider,
   Empty,
+  Form,
   Input,
   InputNumber,
   List,
@@ -21,6 +22,7 @@ import usePrevious from "../../helpers/usePrevious";
 import { toast } from "react-toastify";
 import PaginationComponent from "../../helpers/pagination";
 import moment from "moment";
+import { updateSubProcess } from "../../redux/subs/subsActions";
 
 export const UsersList = ({ ...props }) => {
   useEffect(() => {
@@ -44,29 +46,28 @@ export const UsersList = ({ ...props }) => {
   const options = [
     { label: "Language Test", value: "test" },
     { label: "Payment Access", value: "request" },
-    { label: "Payment", value: "confirmed" },
+    /* { label: "Payment", value: "confirmed" }, */
   ];
 
-  const [status, setStatus] = useState("");
-  const [topay, setToPay] = useState(null);
   const [showUpdate, setShowUpdate] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
 
   const handleUpdate = () => {
-    if (status === "") {
-      toast.warn("Select a status !");
-    } else {
-      const values = { status: status, topay: topay };
-      props.UpdateStatus(values, selectedIndex?._id);
-      setShowUpdate(false);
-    }
+    form
+      .validateFields()
+      .then((values) => {
+        props.update(values,selectedIndex?._id,);
+        setShowUpdate(false);
+      })
+      .catch((errorInfo) => {
+        toast.error("Somthing went wrong !");
+        console.log("errorInfo ...", errorInfo);
+      });
   };
 
   const handleCancel = () => {
     setShowUpdate(false);
-    setStatus("");
     setSelectedIndex(undefined);
-    setToPay(null);
   };
 
   const { token } = theme.useToken();
@@ -89,7 +90,9 @@ export const UsersList = ({ ...props }) => {
     }
   }, [props.loadingStatus, props.usersList]);
 
+  const [status, setStatus] = useState("");
   const [Search, setSearch] = useState("");
+  const [form] = Form.useForm();
   const [pageNumber, setPageNumber] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const offresPerPage = 10;
@@ -144,7 +147,7 @@ export const UsersList = ({ ...props }) => {
                   <Fragment key={index}>
                     <>
                       <p>
-                        Course {index + 1}
+                        {su.title} Course
                         <Button
                           type="default"
                           className="mx-2"
@@ -196,7 +199,10 @@ export const UsersList = ({ ...props }) => {
   const [format, setFormat] = useState(0);
   const handleAmountChange = (e) => {
     setFormat(e / 100);
-    setToPay(e);
+  };
+
+  const handleStatus = async (val, options) => {
+    setStatus(val);
   };
 
   return (
@@ -243,46 +249,76 @@ export const UsersList = ({ ...props }) => {
         open={showUpdate}
         onCancel={handleCancel}
         width={400}
-        bodyStyle={{ height: 150 }}
+        bodyStyle={{ height: "100%" }}
+        style={{ top: 0 }}
         footer={null}
         centered={true}
         closeIcon={null}
       >
         <div className="container text-center">
-          <div className="row mt-4">
-            <div className="col col-7">
-              <Select
-                style={{ width: "100%" }}
-                options={options}
-                onSelect={(value) => {
-                  setStatus(value);
-                }}
-              ></Select>
+          <Form
+            form={form}
+            className="form justify-content-center"
+            name="basic"
+            layout="vertical"
+            size={" medium "}
+            labelCol={{ span: 20 }}
+          >
+            <div className="row mt-4">
+              <div className="form-outline text-start">
+                <Form.Item
+                  label="Select status"
+                  name="status"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input status",
+                    },
+                  ]}
+                >
+                  <Select
+                    style={{ width: "100%" }}
+                    options={options}
+                    onSelect={(val, options) => handleStatus(val, options)}
+                  ></Select>
+                </Form.Item>
+              </div>
+              {status === "request" && (
+                <>
+                  <div className="form-outline text-start">
+                    <Form.Item
+                      label="Price to pay"
+                      name="topay"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input price",
+                        },
+                      ]}
+                    >
+                      <InputNumber
+                        style={{ width: "100%" }}
+                        min={100}
+                        onChange={handleAmountChange}
+                        addonAfter="cents"
+                      />
+                    </Form.Item>
+                  </div>
+                  <Divider orientation="center">
+                    <h4 className=" blue-text">
+                      {format.toFixed(2)} {selectedIndex?.currency}
+                    </h4>
+                  </Divider>
+                </>
+              )}
+
+              <Form.Item>
+                <Button type="primary" htmltype="submit" onClick={handleUpdate}>
+                  Update
+                </Button>
+              </Form.Item>
             </div>
-            <div className="col col-5">
-              <InputNumber
-                style={{ width: "100%" }}
-                min={100}
-                onChange={handleAmountChange}
-                //addonBefore={currency}
-                addonAfter="cents"
-              />
-            </div>
-            <Divider orientation="center">
-              <h4 className=" blue-text">
-                {format.toFixed(2)} {selectedIndex?.currency}
-              </h4>
-            </Divider>
-            <Button
-              type="default"
-              loading={props.loadingStatus}
-              onClick={() => {
-                handleUpdate(selectedIndex._id);
-              }}
-            >
-              Update status
-            </Button>
-          </div>
+          </Form>
         </div>
       </Modal>
     </div>
@@ -291,7 +327,7 @@ export const UsersList = ({ ...props }) => {
 
 const mapActionToProps = {
   AllUsers: getUsers,
-  UpdateStatus: updateSub,
+  update: updateSubProcess,
 };
 const mapStateToProps = (state) => ({
   usersList: state.user.users,
