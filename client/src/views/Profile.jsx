@@ -79,6 +79,7 @@ export const Profile = ({ ...props }) => {
   const items = [
     { title: "Subscription" },
     { title: "Language Test" },
+    { title: "Payment Request"},
     { title: "Payment" },
   ];
   const statusOfSub = (status) => {
@@ -181,7 +182,7 @@ export const Profile = ({ ...props }) => {
       <Content className="container-fluid">
         <div className="container my-5 ">
           <div className="row">
-            <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 align">
+            <div className="col col-lg-4 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
                 className="overflow-y-scroll overflow-x-hidden mb-3"
@@ -376,7 +377,7 @@ export const Profile = ({ ...props }) => {
             </div>
 
             {/* Course by users */}
-            <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 align">
+            <div className="col col-lg-8 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
                 className=" overflow-y-scroll overflow-x-hidden mb-3"
@@ -443,7 +444,7 @@ export const Profile = ({ ...props }) => {
             open={openModal}
             onCancel={handleCancel}
             width={600}
-            bodyStyle={{ height: 550 }}
+            bodyStyle={{ height: 380 }}
             footer={null}
           >
             {!props.loadingSubs ? (

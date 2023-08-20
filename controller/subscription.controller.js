@@ -224,7 +224,7 @@ router.post("/create-payment", async (req, res) => {
     const { currency, amount, subId } = req.body;
     const selected = await Subscription.findById(subId);
     if (selected) {
-      if (selected.status === "test") {
+      if (selected.status === "request") {
         const params = {
           amount: amount,
           currency: currency,
@@ -256,7 +256,7 @@ router.put("/confirm-payment/:subId", verifyAccessToken, async (req, res) => {
   try {
     const selected = await Subscription.findById(req.params.subId);
     if (selected) {
-      if (selected.status === "test") {
+      if (selected.status === "request") {
         const updated = await Subscription.findByIdAndUpdate(
           req.params.subId,
           {

@@ -20,6 +20,7 @@ import {
 import usePrevious from "../../helpers/usePrevious";
 import { toast } from "react-toastify";
 import PaginationComponent from "../../helpers/pagination";
+import moment from "moment";
 
 export const UsersList = ({ ...props }) => {
   useEffect(() => {
@@ -51,11 +52,12 @@ export const UsersList = ({ ...props }) => {
   const [showUpdate, setShowUpdate] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
 
-  const handleUpdate = (id) => {
+  const handleUpdate = () => {
     if (status === "") {
       toast.warn("Select a status !");
     } else {
-      props.UpdateStatus(id, { status: status, topay: topay });
+      const values = { status: status, topay: topay };
+      props.UpdateStatus(values, selectedIndex?._id);
       setShowUpdate(false);
     }
   };
@@ -64,7 +66,7 @@ export const UsersList = ({ ...props }) => {
     setShowUpdate(false);
     setStatus("");
     setSelectedIndex(undefined);
-    setToPay(null)
+    setToPay(null);
   };
 
   const { token } = theme.useToken();
@@ -165,6 +167,18 @@ export const UsersList = ({ ...props }) => {
                             {su.hours != null ? `- ${su.hours}h` : ``}
                           </span>
                         </span>
+                        {su.sessions.length !== 0 && (
+                          <span>
+                            Sessions:
+                            {su.sessions.map((se, inedx) => {
+                              return (
+                                <span key={index} className="blue-text mx-1">
+                                  • {moment(se).format("MMM Do YYYY")}
+                                </span>
+                              );
+                            })}
+                          </span>
+                        )}
                         <p>Notes: {su.notes}</p>
                         <Steps current={statusOfSub(su.status)} items={items} />
                       </div>
