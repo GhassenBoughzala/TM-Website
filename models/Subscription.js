@@ -22,7 +22,7 @@ const SubscriptionSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["Private", "Evening"],
+    enum: ["Private", "Evening", "Intensive"],
     require: true,
   },
   level: {
@@ -36,11 +36,15 @@ const SubscriptionSchema = new mongoose.Schema({
   title: {
     type: String,
   },
+  currency: {
+    type: String,
+  },
   hours: {
     type: Number,
   },
   topay: {
     type: Number,
+    default: 0
   },
   sessions: {
     type: Array,

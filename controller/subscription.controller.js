@@ -24,7 +24,7 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { course, level, notes, sessions, title, type, hours } = req.body;
+      let { course, level, notes, sessions, title, type, hours, currency } = req.body;
       const selectedUser = await User.findById(req.user.id);
       if (!selectedUser) {
         return res.status(400).json({
@@ -55,6 +55,7 @@ router.post(
           type,
           hours,
           title,
+          currency
         });
         if (level != "Beginner") {
           newSubs.status = "pending";
@@ -167,7 +168,7 @@ router.put("/:subId", verifyAccessToken, async (req, res) => {
       const updated = await Subscription.findByIdAndUpdate(
         req.params.subId,
         {
-          $set: { status: req.body.status },
+          $set: req.body,
         },
         { new: true }
       );

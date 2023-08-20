@@ -16,7 +16,7 @@ export const PaymentForm = ({ ...props }) => {
   const [messages, addMessage] = useMessages();
   const [types, setTypes] = useState("");
 
-  const [currency, setCurrency] = useState(" $ ");
+  const [currency, setCurrency] = useState(" ");
   const [format, setFormat] = useState(0);
   const [isLoading, setisLoading] = useState(false);
 

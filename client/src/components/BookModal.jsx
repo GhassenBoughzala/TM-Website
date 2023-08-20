@@ -8,12 +8,12 @@ import { toast } from "react-toastify";
 import { connect } from "react-redux";
 import { Subscribe } from "../redux/subs/subsActions";
 import { RedoOutlined } from "@ant-design/icons";
+import { currencies } from "../helpers/Constants";
 const { Option } = Select;
 const { TextArea } = Input;
 
 export const BookModal = ({ ...props }) => {
   const navTo = useNavigate();
-  //const { t } = useTranslation();
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
   const handleFormSubmit = () => {
@@ -28,6 +28,7 @@ export const BookModal = ({ ...props }) => {
           title: currentObj.title,
           type: type,
           hours: values.hours,
+          currency: values.currency,
         });
         props.setOpenModal(false);
         navTo("/subscription");
@@ -62,8 +63,8 @@ export const BookModal = ({ ...props }) => {
       className="form"
       name="basic"
       layout="vertical"
-      size={"large"}
-      labelCol={{ span: 15 }}
+      size={"medium"}
+      labelCol={{ span: 20 }}
       autoComplete="off"
     >
       <div className="row">
@@ -128,7 +129,6 @@ export const BookModal = ({ ...props }) => {
           )}
         </div>
       </div>
-
       <div className="row">
         <Form.Item
           label="Pick an option"
@@ -157,26 +157,49 @@ export const BookModal = ({ ...props }) => {
                 Private Classes
               </Button>
             </div>
+            <div className="col">
+              <Button
+                type={`${type === "Intensive" ? "primary" : "default"}`}
+                onClick={() => setType("Private")}
+              >
+                Intensive Classes
+              </Button>
+            </div>
           </div>
         </Form.Item>
       </div>
-      {type === "Private" && (
-        <div className="row">
+      <div className="row">
+        <div className=" col col-6">
           <Form.Item
-            label="Mention the number of hours"
-            name="hours"
+            label="Payment currency"
+            name="currency"
             rules={[
               {
-                required: type === "Private" && true,
-                message: "This field is required",
+                required: true,
+                message: "Currency is required",
               },
             ]}
           >
-            <InputNumber />
+            <Select options={currencies} />
           </Form.Item>
         </div>
-      )}
-
+        <div className=" col col-6">
+          {type === "Private" && (
+            <Form.Item
+              label="Number of hours"
+              name="hours"
+              rules={[
+                {
+                  required: type === "Private" && true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <InputNumber />
+            </Form.Item>
+          )}
+        </div>
+      </div>
       <div className="form-outline text-center mt-1">
         <Form.Item>
           <Button type="primary" htmltype="submit" onClick={handleFormSubmit}>

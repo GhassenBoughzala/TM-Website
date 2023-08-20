@@ -7,8 +7,10 @@ import { getUsers, updateSub } from "../../redux/user/userActions";
 import {
   Button,
   Collapse,
+  Divider,
   Empty,
   Input,
+  InputNumber,
   List,
   Modal,
   Select,
@@ -27,30 +29,33 @@ export const UsersList = ({ ...props }) => {
   const statusOfSub = (status) => {
     if (status === "pending") return 1;
     else if (status === "test") return 2;
-    else if (status === "confirmed") return 3;
+    else if (status === "request") return 3;
+    else if (status === "confirmed") return 4;
   };
 
   const items = [
     { title: "Subscription" },
     { title: "Language Test" },
+    { title: "Payment Access" },
     { title: "Payment" },
   ];
 
   const options = [
-    { label: "Subscription", value: "pending" },
     { label: "Language Test", value: "test" },
+    { label: "Payment Access", value: "request" },
     { label: "Payment", value: "confirmed" },
   ];
 
   const [status, setStatus] = useState("");
+  const [topay, setToPay] = useState(null);
   const [showUpdate, setShowUpdate] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState();
 
   const handleUpdate = (id) => {
     if (status === "") {
       toast.warn("Select a status !");
     } else {
-      props.UpdateStatus(id, status);
+      props.UpdateStatus(id, { status: status, topay: topay });
       setShowUpdate(false);
     }
   };
@@ -58,7 +63,8 @@ export const UsersList = ({ ...props }) => {
   const handleCancel = () => {
     setShowUpdate(false);
     setStatus("");
-    setSelectedIndex(null);
+    setSelectedIndex(undefined);
+    setToPay(null)
   };
 
   const { token } = theme.useToken();
@@ -144,17 +150,23 @@ export const UsersList = ({ ...props }) => {
                           loading={props.loadingStatus}
                           onClick={() => {
                             setShowUpdate(true);
-                            setSelectedIndex(su._id);
+                            setSelectedIndex(su);
                           }}
                         >
-                          Update status
+                          Update process
                         </Button>
                       </p>
 
                       <div className="row my-3">
+                        <span>
+                          Type:
+                          <span className="blue-text mx-1">
+                            {su.type} Class
+                            {su.hours != null ? `- ${su.hours}h` : ``}
+                          </span>
+                        </span>
                         <p>Notes: {su.notes}</p>
                         <Steps current={statusOfSub(su.status)} items={items} />
-                        
                       </div>
                     </>
                   </Fragment>
@@ -166,6 +178,12 @@ export const UsersList = ({ ...props }) => {
       ),
       style: panelStyle,
     }));
+
+  const [format, setFormat] = useState(0);
+  const handleAmountChange = (e) => {
+    setFormat(e / 100);
+    setToPay(e);
+  };
 
   return (
     <div className="row">
@@ -181,7 +199,6 @@ export const UsersList = ({ ...props }) => {
               setSearch(event.target.value);
               setCurrentPage(1);
             }}
-            
           />
           <List itemLayout="horizontal">
             <Collapse ghost accordion items={subsList} />
@@ -208,11 +225,11 @@ export const UsersList = ({ ...props }) => {
       )}
 
       <Modal
-        title={"Update user subscription status"}
+        title={"Update user subscription process"}
         open={showUpdate}
         onCancel={handleCancel}
         width={400}
-        bodyStyle={{ height: 50 }}
+        bodyStyle={{ height: 150 }}
         footer={null}
         centered={true}
         closeIcon={null}
@@ -229,16 +246,28 @@ export const UsersList = ({ ...props }) => {
               ></Select>
             </div>
             <div className="col col-5">
-              <Button
-                type="default"
-                loading={props.loadingStatus}
-                onClick={() => {
-                  handleUpdate(selectedIndex);
-                }}
-              >
-                Update status
-              </Button>
+              <InputNumber
+                style={{ width: "100%" }}
+                min={100}
+                onChange={handleAmountChange}
+                //addonBefore={currency}
+                addonAfter="cents"
+              />
             </div>
+            <Divider orientation="center">
+              <h4 className=" blue-text">
+                {format.toFixed(2)} {selectedIndex?.currency}
+              </h4>
+            </Divider>
+            <Button
+              type="default"
+              loading={props.loadingStatus}
+              onClick={() => {
+                handleUpdate(selectedIndex._id);
+              }}
+            >
+              Update status
+            </Button>
           </div>
         </div>
       </Modal>

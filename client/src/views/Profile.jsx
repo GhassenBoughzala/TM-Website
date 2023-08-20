@@ -166,16 +166,16 @@ export const Profile = ({ ...props }) => {
     ),
   }));
 
-  const [ciso, setCiso] = useState("");
+  //const [ciso, setCiso] = useState("");
   /*   const cities = State.getStatesOfCountry(ciso);
   const cityList = Object.entries(cities).map(([code, country]) => ({
     label: country.name,
     value: country.name,
-  })); */
+  })); 
   const handleCountry = async (val, options) => {
     setCiso(options.code);
   };
-
+*/
   return (
     <>
       <Content className="container-fluid">
@@ -218,9 +218,8 @@ export const Profile = ({ ...props }) => {
                           )}
                           {User.city && (
                             <p>
-                              Country:{" "}
+                              Country:
                               <b>
-                                {" "}
                                 {User.country} - {User.city}
                               </b>
                             </p>
@@ -322,9 +321,9 @@ export const Profile = ({ ...props }) => {
                               <Form.Item label="Country" name="country">
                                 <Select
                                   showSearch
-                                  onSelect={(val, options) =>
+                                  /* onSelect={(val, options) =>
                                     handleCountry(val, options)
-                                  }
+                                  } */
                                   defaultValue={User.country}
                                   options={countryList}
                                 ></Select>
@@ -336,7 +335,7 @@ export const Profile = ({ ...props }) => {
                               <Form.Item label="City" name="city">
                                 <Input
                                   defaultValue={User.city}
-                                  disabled={ciso === "" ? true : false}
+                                  //disabled={ciso === "" ? true : false}
                                 />
                               </Form.Item>
                             </div>
