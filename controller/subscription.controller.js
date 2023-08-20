@@ -24,7 +24,7 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { course, level, notes, sessions, title } = req.body;
+      let { course, level, notes, sessions, title, type, hours } = req.body;
       const selectedUser = await User.findById(req.user.id);
       if (!selectedUser) {
         return res.status(400).json({
@@ -45,50 +45,42 @@ router.post(
         $and: [{ user: req.user.id }, { course: course }],
       });
 
-      if (verify.length == 0) {
-        if (level != "Beginner") {
-          const newSubs = new Subscription({
-            user: req.user.id,
-            status: "pending",
-            course,
-            level,
-            sessions,
-            notes,
-          });
-          newSubs.save().then(() => res.status(200).json(newSubs));
-          await User.findByIdAndUpdate(
-            req.user.id,
-            { $push: { subscription: newSubs } },
-            { new: true }
-          );
+      const sendEmail = await subConfirmation(
+        selectedUser.email,
+        title,
+        selectedUser.firstName,
+        selectedUser.lastName
+      ).catch((err) => console.log(err));
 
-          await subConfirmation(
-            selectedUser.email,
-            title,
-            selectedUser.firstName,
-            selectedUser.lastName
-          ).catch((err) => console.log(err));
-        } else {
-          const newSubs = new Subscription({
-            user: req.user.id,
-            status: "test",
-            course,
-            level,
-            sessions,
-            notes,
-          });
+      if (verify.length == 0) {
+        const newSubs = new Subscription({
+          user: req.user.id,
+          course,
+          level,
+          sessions,
+          notes,
+          type,
+          hours,
+          title,
+        });
+        if (level != "Beginner") {
+          newSubs.status = "pending";
           newSubs.save().then(() => res.status(200).json(newSubs));
           await User.findByIdAndUpdate(
             req.user.id,
             { $push: { subscription: newSubs } },
             { new: true }
           );
-          await subConfirmation(
-            selectedUser.email,
-            title,
-            selectedUser.firstName,
-            selectedUser.lastName
-          ).catch((err) => console.log(err));
+          sendEmail;
+        } else {
+          newSubs.status = "test";
+          newSubs.save().then(() => res.status(200).json(newSubs));
+          await User.findByIdAndUpdate(
+            req.user.id,
+            { $push: { subscription: newSubs } },
+            { new: true }
+          );
+          sendEmail;
         }
       } else {
         res.status(400).json({

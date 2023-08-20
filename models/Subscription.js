@@ -18,11 +18,11 @@ const SubscriptionSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["pending", "test", "confirmed"],
+    enum: ["pending", "test", "request", "confirmed"],
   },
   type: {
     type: String,
-    enum: ["private", "Evening"],
+    enum: ["Private", "Evening"],
     require: true,
   },
   level: {
@@ -33,7 +33,13 @@ const SubscriptionSchema = new mongoose.Schema({
   notes: {
     type: String,
   },
+  title: {
+    type: String,
+  },
   hours: {
+    type: Number,
+  },
+  topay: {
     type: Number,
   },
   sessions: {
