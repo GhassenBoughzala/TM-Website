@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import {
   UserOutlined,
   LogoutOutlined,
-  SettingOutlined,
   GlobalOutlined,
 } from "@ant-design/icons";
 import { logout } from "../../redux/auth/authActions";
@@ -16,11 +15,11 @@ import { useTranslation } from "react-i18next";
 const RightMenu = ({ ...props }) => {
   const navTo = useNavigate();
   const { t } = useTranslation();
-  const [User] = useState(() => {
+/*   const [User] = useState(() => {
     const saved = localStorage.getItem("user");
     const initialValue = JSON.parse(saved);
     return initialValue || "";
-  });
+  }); */
 
   const handleLanguage = () => {
     if (props.open) {
@@ -34,19 +33,7 @@ const RightMenu = ({ ...props }) => {
     <>
       {props.isAuth ? (
         <div className="mt-1 mx-3">
-          {User.role === "admin" && (
-            <Button
-              type="default"
-              size="default"
-              shape="circle"
-              className="blue-text mx-3"
-              icon={<SettingOutlined />}
-              onClick={() => {
-                navTo("/admin-dashboard");
-                props.setOpen(false);
-              }}
-            ></Button>
-          )}
+         
           <Tooltip
             placement="bottom"
             title={t("Language")}

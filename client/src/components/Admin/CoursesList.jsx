@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -11,7 +12,6 @@ import {
 import { Button, Modal, Empty } from "antd";
 import {
   EyeOutlined,
-  DeleteOutlined,
   LoadingOutlined,
   EditOutlined,
 } from "@ant-design/icons";
@@ -67,7 +67,7 @@ export const CoursesList = ({ ...props }) => {
   return (
     <div className="row">
       <h3 className="yellow-text">
-        Course Management 
+        Course Management
         <Button
           className=" mx-3 mb-3"
           type="default"
@@ -78,19 +78,7 @@ export const CoursesList = ({ ...props }) => {
           View Language Courses Page
         </Button>
       </h3>
-
-      <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
-        {!showUpdate ? (
-          <AddCourse Create={props.Add} />
-        ) : (
-          <UpdateCourse
-            {...{ toUpdate, setShowUpdate }}
-            Update={props.Update}
-          />
-        )}
-      </div>
-
-      <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+      <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12">
         {props.isLoading ? (
           <table className="table">
             {props.courses.length !== 0 ? (
@@ -113,27 +101,30 @@ export const CoursesList = ({ ...props }) => {
                             <Button
                               type="default"
                               size="small"
-                              shape="circle"
                               className="mx-2"
                               icon={<EyeOutlined />}
                               onClick={() => {
                                 setIsModalOpen(true);
                                 setCurrentObj(course);
                               }}
-                            />
+                            >
+                              View
+                            </Button>
                             <Button
                               color="primary"
                               className="blue-text"
                               type="default"
                               size="small"
-                              shape="circle"
                               onClick={() => {
                                 setToUpdate(course);
                                 setShowUpdate(true);
                               }}
                               icon={<EditOutlined />}
-                            />
-                            <Button
+                            >
+                              Update
+                            </Button>
+
+                            {/*  <Button
                               danger
                               className="mx-2"
                               type="default"
@@ -144,7 +135,7 @@ export const CoursesList = ({ ...props }) => {
                                 setSelctedId(course._id);
                               }}
                               icon={<DeleteOutlined />}
-                            />
+                            /> */}
                           </td>
                         </tr>
                       </Fragment>
@@ -167,6 +158,17 @@ export const CoursesList = ({ ...props }) => {
           </div>
         )}
       </div>
+      <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        {!showUpdate ? (
+          <><AddCourse Create={props.Add} /></>
+        ) : (
+          <UpdateCourse
+            {...{ toUpdate, setShowUpdate }}
+            Update={props.Update}
+          />
+        )}
+      </div>
+
       <Modal
         open={isModalOpen}
         onCancel={handleCancel}

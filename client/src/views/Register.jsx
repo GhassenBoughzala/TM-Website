@@ -5,7 +5,7 @@ import "../assets/css/login.css";
 import Art from "../assets/images/Artboard-5-100.jpg";
 import Logo from "../assets/images/logo_footer.png";
 import { register } from "../redux/auth/authActions";
-import { Layout, Button, Form, Input, Select } from "antd";
+import { Layout, Button, Form, Input, Select, Checkbox } from "antd";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
@@ -13,10 +13,12 @@ import { Link } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { Helmet } from "react-helmet-async";
-const State = require("country-state-city").State;
+import { useTranslation } from "react-i18next";
+//const State = require("country-state-city").State;
 const { Content } = Layout;
 
 export const Register = ({ ...props }) => {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const uppercaseRegExp = /(?=.*?[A-Z])/;
@@ -73,11 +75,12 @@ export const Register = ({ ...props }) => {
   ];
 
   const [ciso, setCiso] = useState("");
-  const cities = State.getStatesOfCountry(ciso);
-  const cityList = Object.entries(cities).map(([code, country]) => ({
+  const [policy, setPolicy] = useState(false);
+  /*  const cities = State.getStatesOfCountry(ciso);
+   const cityList = Object.entries(cities).map(([code, country]) => ({
     label: country.name,
     value: country.name,
-  }));
+  })); */
 
   const handleFormSubmit = () => {
     form
@@ -104,6 +107,15 @@ export const Register = ({ ...props }) => {
 
   const handleCountry = async (val, options) => {
     setCiso(options.code);
+  };
+
+  const onChangeCheck = (e) => {
+    console.log(`checked = ${e.target.checked}`);
+    if (e.target.checked) {
+      setPolicy(true);
+    } else {
+      setPolicy(false);
+    }
   };
 
   return (
@@ -149,7 +161,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="First name"
+                            label={t("firstName")}
                             name="firstName"
                             rules={[
                               {
@@ -165,7 +177,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="Last name"
+                            label={t("lastName")}
                             name="lastName"
                             rules={[
                               {
@@ -183,7 +195,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="Country"
+                            label={t("co")}
                             name="country"
                             rules={[
                               {
@@ -206,7 +218,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="City"
+                            label={t("ci")}
                             name="city"
                             rules={[
                               {
@@ -215,17 +227,13 @@ export const Register = ({ ...props }) => {
                               },
                             ]}
                           >
-                            <Select
-                              disabled={ciso === "" ? true : false}
-                              showSearch
-                              options={cityList}
-                            ></Select>
+                            <Input disabled={ciso === "" ? true : false} />
                           </Form.Item>
                         </div>
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col col-md-6">
+                      <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
                             label="Email"
@@ -243,10 +251,10 @@ export const Register = ({ ...props }) => {
                         </div>
                       </div>
 
-                      <div className="col col-md-6">
+                      <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="Phone number"
+                            label={t("ph")}
                             name="phone"
                             rules={[
                               {
@@ -264,7 +272,7 @@ export const Register = ({ ...props }) => {
                       <div className="col-md-6">
                         <div className="form-outline text-start">
                           <Form.Item
-                            label="Password"
+                            label={t("pwd")}
                             name="password"
                             rules={ArrayOfRules}
                             hasFeedback
@@ -278,7 +286,7 @@ export const Register = ({ ...props }) => {
                         <div className="form-outline text-start">
                           <Form.Item
                             name="confirm"
-                            label="Password confirmation"
+                            label={t("pwdc")}
                             dependencies={["password"]}
                             hasFeedback
                             rules={ArrayOfConfirmationRules}
@@ -287,19 +295,24 @@ export const Register = ({ ...props }) => {
                           </Form.Item>
                         </div>
                       </div>
+                      <Checkbox onChange={onChangeCheck}>
+                        <span className="text-start">{t("check")}</span>
+                      </Checkbox>
                     </div>
+
                     <div className="form-outline text-center">
                       <Form.Item>
                         <Button
                           type="primary"
                           htmltype="submit"
                           onClick={handleFormSubmit}
+                          disabled={!policy}
                         >
-                          Submit
+                          {t("create")}
                         </Button>
                       </Form.Item>
                       <p>
-                        Already have an account? <Link to="/login">Log in</Link>
+                        {t("acc")} <Link to="/login">{t("lo")}</Link>
                       </p>
                     </div>
                   </Form>

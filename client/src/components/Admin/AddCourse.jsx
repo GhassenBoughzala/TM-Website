@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import {
@@ -82,7 +83,7 @@ export const AddCourse = ({ ...props }) => {
   }, [props.isLoading, props.msg]);
 
   return (
-    <Card>
+    <>
       {!props.isLoadingUp ? (
         <div className="text-center mt-5 row">
           <LoadingOutlined
@@ -96,7 +97,7 @@ export const AddCourse = ({ ...props }) => {
         </div>
       ) : (
         <>
-          <h2 className=" blue-text">Add Course</h2>
+        {/*   <h2 className=" blue-text">Add Course</h2>
           <Form
             form={form}
             className="form"
@@ -253,10 +254,10 @@ export const AddCourse = ({ ...props }) => {
                 </div>
               </div>
             </div>
-          </Form>
+          </Form> */}
         </>
       )}
-    </Card>
+    </>
   );
 };
 

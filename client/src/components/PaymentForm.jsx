@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+/* eslint-disable array-callback-return */
+import React, { useState, useEffect } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { Button, Divider, Form, InputNumber, Select } from "antd";
+import { Button, Divider, Form } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StatusMessages, { useMessages } from "../components/StatusMessages";
 import { currencies } from "../helpers/Constants";
@@ -16,8 +17,7 @@ export const PaymentForm = ({ ...props }) => {
   const [messages, addMessage] = useMessages();
   const [types, setTypes] = useState("");
 
-  const [currency, setCurrency] = useState(" $ ");
-  const [format, setFormat] = useState(0);
+  const [currency, setCurrency] = useState(" ");
   const [isLoading, setisLoading] = useState(false);
 
   const [User] = useState(() => {
@@ -26,82 +26,82 @@ export const PaymentForm = ({ ...props }) => {
     return initialValue || "";
   });
 
-  const handleAmountChange = (e) => {
-    setFormat(e / 100);
-    form.setFieldValue({ amount: format.toFixed(2) });
-  };
-
   const handleFormSubmit = async () => {
     if (!stripe || !elements) {
       return;
     }
     const cardElement = elements.getElement(CardElement);
-
-    form
-      .validateFields()
-      .then(async (values) => {
-        setisLoading(true);
-        addMessage("");
-        const { error: backendError, clientSecret } = await fetch(
-          `/api/subscription/create-payment`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              paymentMethodType: "card",
-              currency: values.currency,
-              amount: values.amount,
-              subId: props.subObj._id,
-              receipt_email: User.email,
-              description: `Payment for ${props.subObj.course[0].title}`,
-            }),
-          }
-        ).then((r) => r.json());
-
-        if (backendError) {
-          addMessage(backendError.message);
-          setTypes("error");
-          return;
+    try {
+      setisLoading(true);
+      addMessage("");
+      const { error: backendError, clientSecret } = await fetch(
+        `/api/subscription/create-payment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            paymentMethodType: "card",
+            currency: props.subObj?.currency,
+            amount: props.subObj?.topay,
+            subId: props.subObj?._id,
+            receipt_email: User.email,
+            description: `Payment for ${props.subObj.title}`,
+          }),
         }
+      ).then((r) => r.json());
 
-        //addMessage("Client secret returned");
-        const { error: stripeError, paymentIntent } =
-          await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-              card: cardElement,
-              billing_details: {
-                name: `${User.firstName} ${User.lastName}`,
-              },
+      if (backendError) {
+        addMessage(backendError.message);
+        setTypes("error");
+        console.log(backendError);
+        return;
+      }
+
+      //addMessage("Client secret returned");
+      const { error: stripeError, paymentIntent } =
+        await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: `${User.firstName} ${User.lastName}`,
             },
-          });
+          },
+        });
 
-        if (stripeError) {
-          // Show error to your customer (e.g., insufficient funds)
-          addMessage(stripeError.message);
-          setTypes("warning");
-          setisLoading(false);
-          return;
-        }
+      if (stripeError) {
+        // Show error to your customer (e.g., insufficient funds)
+        addMessage(stripeError.message);
+        setTypes("warning");
+        setisLoading(false);
+        return;
+      }
 
-        // Show a success message to your customer
-        // There's a risk of the customer closing the window before callback
-        // execution. Set up a webhook or plugin to listen for the
-        // payment_intent.succeeded event that handles any business critical
-        // post-payment actions.
+      // Show a success message to your customer
+      // There's a risk of the customer closing the window before callback
+      // execution. Set up a webhook or plugin to listen for the
+      // payment_intent.succeeded event that handles any business critical
+      // post-payment actions.
 
-        //addMessage(`Payment ${paymentIntent.status} ${paymentIntent.id}`);
-        addMessage(`Payment ${paymentIntent.status}`);
-        setTypes("success");
-        props.Confirm(props.subObj._id);
-        navTo("/payment-result");
-        form.resetFields();
-      })
-      .catch((errorInfo) => {
-        console.log("errorInfo ...", errorInfo);
-      });
+      //addMessage(`Payment ${paymentIntent.status} ${paymentIntent.id}`);
+      addMessage(`Payment ${paymentIntent.status}`);
+      setTypes("success");
+      props.Confirm(props.subObj._id);
+      navTo("/payment-result");
+      form.resetFields();
+    } catch (errorInfo) {
+      console.log("errorInfo ...", errorInfo);
+    }
   };
+
+  useEffect(() => {
+    currencies.map((c) => {
+      if (props.subObj.currency === c.label) {
+        setCurrency(c.code);
+      }
+    });
+  }, [props.subObj.currency]);
 
   return (
     <>
@@ -142,56 +142,11 @@ export const PaymentForm = ({ ...props }) => {
           </div>
         </div>
 
-        <div className="row justify-content-center">
-          <div className="col col-4">
-            <div className="form-outline text-start">
-              <Form.Item
-                label="Currency"
-                name="currency"
-                rules={[
-                  {
-                    required: true,
-                    message: "Currency is required",
-                  },
-                ]}
-              >
-                <Select
-                  options={currencies}
-                  onSelect={(val, options) => {
-                    setCurrency(options.code);
-                  }}
-                />
-              </Form.Item>
-            </div>
-          </div>
-          <div className="col col-4">
-            <div className="form-outline text-start">
-              <Form.Item
-                label="Amount"
-                name="amount"
-                rules={[
-                  {
-                    required: true,
-                    message: "Amount is required",
-                  },
-                ]}
-              >
-                <InputNumber
-                  style={{ width: "100%" }}
-                  min={100}
-                  onChange={handleAmountChange}
-                  addonBefore={currency}
-                  addonAfter="cents"
-                />
-              </Form.Item>
-            </div>
-          </div>
-        </div>
         <div className="row">
           <div className="form-outline text-center">
             <Divider orientation="center">
               <h4 className=" blue-text">
-                {format.toFixed(2)} {currency}
+                {(props.subObj.topay / 100).toFixed(2)} {currency}
               </h4>
             </Divider>
           </div>

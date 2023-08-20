@@ -62,7 +62,7 @@
   background: "#364d79";
 }
 
-.ant-card .ant-card-meta-detail >div:not(:last-child){
+.ant-card .ant-card-meta-detail > div:not(:last-child) {
   margin-bottom: 0px;
 }
 
@@ -101,9 +101,17 @@
   background-color: var(--venice_blue) !important;
 }
 
+.ant-btn-primary:disabled {
+  background-color: gray !important;
+}
+
 /*---Input  */
-.ant-input-lg {
-  font-family: "averiaseriflibre_regular", Fallback, sans-serif;
+.ant-input {
+  font-family: "averiaseriflibre_regular", Fallback, sans-serif !important;
+}
+
+.ant-input-number .ant-input-number-input {
+  font-family: "averiaseriflibre_regular", Fallback, sans-serif !important;
 }
 
 /*-- subscription button  */

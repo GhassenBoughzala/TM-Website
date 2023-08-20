@@ -26,8 +26,9 @@ import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 import PaymentForm from "../components/PaymentForm";
+import moment from "moment";
 const { Content } = Layout;
-const State = require("country-state-city").State;
+//const State = require("country-state-city").State;
 
 export const Profile = ({ ...props }) => {
   useEffect(() => {
@@ -78,12 +79,14 @@ export const Profile = ({ ...props }) => {
   const items = [
     { title: "Subscription" },
     { title: "Language Test" },
+    { title: "Payment Request"},
     { title: "Payment" },
   ];
   const statusOfSub = (status) => {
     if (status === "pending") return 1;
     else if (status === "test") return 2;
-    else if (status === "confirmed") return 3;
+    else if (status === "request") return 3;
+    else if (status === "confirmed") return 4;
   };
 
   const subsList = props.user_subs.map((su, index) => ({
@@ -92,6 +95,23 @@ export const Profile = ({ ...props }) => {
     children: (
       <div>
         <div className="row my-2 mb-3">
+          <span>
+            Type:
+            <span className="blue-text mx-1">{su.type} Class</span>
+          </span>
+          {su.sessions.length !== 0 && (
+            <span>
+              Sessions:
+              {su.sessions.map((se, inedx) => {
+                return (
+                  <span key={index} className="blue-text mx-1">
+                    • {moment(se).format("MMM Do YYYY")}
+                  </span>
+                );
+              })}
+            </span>
+          )}
+
           <Divider orientation="center">
             <p className=" blue-text">Subscription process</p>
           </Divider>
@@ -129,7 +149,7 @@ export const Profile = ({ ...props }) => {
           )}
 
           <div className="col">
-            {su.status === "test" && (
+            {su.status === "request" && (
               <div className="text-end">
                 <Button
                   size="small"
@@ -147,22 +167,22 @@ export const Profile = ({ ...props }) => {
     ),
   }));
 
-  const [ciso, setCiso] = useState("");
-  const cities = State.getStatesOfCountry(ciso);
+  //const [ciso, setCiso] = useState("");
+  /*   const cities = State.getStatesOfCountry(ciso);
   const cityList = Object.entries(cities).map(([code, country]) => ({
     label: country.name,
     value: country.name,
-  }));
+  })); 
   const handleCountry = async (val, options) => {
     setCiso(options.code);
   };
-
+*/
   return (
     <>
       <Content className="container-fluid">
         <div className="container my-5 ">
           <div className="row">
-            <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 align">
+            <div className="col col-lg-4 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
                 className="overflow-y-scroll overflow-x-hidden mb-3"
@@ -199,9 +219,8 @@ export const Profile = ({ ...props }) => {
                           )}
                           {User.city && (
                             <p>
-                              Country:{" "}
+                              Country:
                               <b>
-                                {" "}
                                 {User.country} - {User.city}
                               </b>
                             </p>
@@ -216,6 +235,18 @@ export const Profile = ({ ...props }) => {
                             >
                               Update profile
                             </Button>
+                            {User.role === "admin" && (
+                              <Button
+                                type="default"
+                                size="default"
+                                className="mx-2"
+                                onClick={() => {
+                                  navTo("/admin-dashboard");
+                                }}
+                              >
+                                Admin Dashboard
+                              </Button>
+                            )}
                           </div>
                         </div>
                       ) : (
@@ -291,9 +322,9 @@ export const Profile = ({ ...props }) => {
                               <Form.Item label="Country" name="country">
                                 <Select
                                   showSearch
-                                  onSelect={(val, options) =>
+                                  /* onSelect={(val, options) =>
                                     handleCountry(val, options)
-                                  }
+                                  } */
                                   defaultValue={User.country}
                                   options={countryList}
                                 ></Select>
@@ -303,11 +334,10 @@ export const Profile = ({ ...props }) => {
                           <div className="col-md-6">
                             <div className="form-outline text-start">
                               <Form.Item label="City" name="city">
-                                <Select
-                                  showSearch
+                                <Input
                                   defaultValue={User.city}
-                                  options={cityList}
-                                ></Select>
+                                  //disabled={ciso === "" ? true : false}
+                                />
                               </Form.Item>
                             </div>
                           </div>
@@ -347,7 +377,7 @@ export const Profile = ({ ...props }) => {
             </div>
 
             {/* Course by users */}
-            <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 align">
+            <div className="col col-lg-8 col-md-12 col-sm-12 col-xs-12 align">
               <Card
                 style={{ height: 500, width: 1000 }}
                 className=" overflow-y-scroll overflow-x-hidden mb-3"
@@ -414,7 +444,7 @@ export const Profile = ({ ...props }) => {
             open={openModal}
             onCancel={handleCancel}
             width={600}
-            bodyStyle={{ height: 550 }}
+            bodyStyle={{ height: 380 }}
             footer={null}
           >
             {!props.loadingSubs ? (

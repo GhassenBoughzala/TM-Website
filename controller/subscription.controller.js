@@ -24,7 +24,8 @@ router.post(
   isRequestValidated,
   async (req, res) => {
     try {
-      let { course, level, notes, sessions, title } = req.body;
+      let { course, level, notes, sessions, title, type, hours, currency } =
+        req.body;
       const selectedUser = await User.findById(req.user.id);
       if (!selectedUser) {
         return res.status(400).json({
@@ -46,55 +47,56 @@ router.post(
       });
 
       if (verify.length == 0) {
+        const newSubs = new Subscription({
+          user: req.user.id,
+          course,
+          level,
+          sessions,
+          notes,
+          type,
+          hours,
+          title,
+          currency,
+        });
         if (level != "Beginner") {
-          const newSubs = new Subscription({
-            user: req.user.id,
-            status: "pending",
-            course,
-            level,
-            sessions,
-            notes,
-          });
+          newSubs.status = "pending";
           newSubs.save().then(() => res.status(200).json(newSubs));
           await User.findByIdAndUpdate(
             req.user.id,
             { $push: { subscription: newSubs } },
             { new: true }
+          ).then(
+            async () =>
+              await subConfirmation(
+                selectedUser.email,
+                title,
+                selectedUser.firstName,
+                selectedUser.lastName
+              ).catch((err) => console.log(err))
           );
-
-          await subConfirmation(
-            selectedUser.email,
-            title,
-            selectedUser.firstName,
-            selectedUser.lastName
-          ).catch((err) => console.log(err));
         } else {
-          const newSubs = new Subscription({
-            user: req.user.id,
-            status: "test",
-            course,
-            level,
-            sessions,
-            notes,
-          });
+          newSubs.status = "test";
           newSubs.save().then(() => res.status(200).json(newSubs));
           await User.findByIdAndUpdate(
             req.user.id,
             { $push: { subscription: newSubs } },
             { new: true }
+          ).then(
+            async () =>
+              await subConfirmation(
+                selectedUser.email,
+                title,
+                selectedUser.firstName,
+                selectedUser.lastName
+              ).catch((err) => console.log(err))
           );
-          await subConfirmation(
-            selectedUser.email,
-            title,
-            selectedUser.firstName,
-            selectedUser.lastName
-          ).catch((err) => console.log(err));
         }
       } else {
         res.status(400).json({
           error: true,
           msg: "Subscription already exists",
         });
+        console.log("Subscription already exists");
       }
     } catch (error) {
       res.status(500).json({
@@ -167,7 +169,7 @@ router.put("/:subId", verifyAccessToken, async (req, res) => {
       const updated = await Subscription.findByIdAndUpdate(
         req.params.subId,
         {
-          $set: { status: req.body.status },
+          $set: req.body,
         },
         { new: true }
       );
@@ -223,7 +225,7 @@ router.post("/create-payment", async (req, res) => {
     const { currency, amount, subId } = req.body;
     const selected = await Subscription.findById(subId);
     if (selected) {
-      if (selected.status === "test") {
+      if (selected.status === "request") {
         const params = {
           amount: amount,
           currency: currency,
@@ -255,7 +257,7 @@ router.put("/confirm-payment/:subId", verifyAccessToken, async (req, res) => {
   try {
     const selected = await Subscription.findById(req.params.subId);
     if (selected) {
-      if (selected.status === "test") {
+      if (selected.status === "request") {
         const updated = await Subscription.findByIdAndUpdate(
           req.params.subId,
           {

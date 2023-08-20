@@ -1,13 +1,17 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
-import { getUsers, updateSub } from "../../redux/user/userActions";
+import { getUsers } from "../../redux/user/userActions";
 import {
   Button,
   Collapse,
+  Divider,
   Empty,
+  Form,
+  Input,
+  InputNumber,
   List,
   Modal,
   Select,
@@ -16,6 +20,9 @@ import {
 } from "antd";
 import usePrevious from "../../helpers/usePrevious";
 import { toast } from "react-toastify";
+import PaginationComponent from "../../helpers/pagination";
+import moment from "moment";
+import { updateSubProcess } from "../../redux/subs/subsActions";
 
 export const UsersList = ({ ...props }) => {
   useEffect(() => {
@@ -25,38 +32,42 @@ export const UsersList = ({ ...props }) => {
   const statusOfSub = (status) => {
     if (status === "pending") return 1;
     else if (status === "test") return 2;
-    else if (status === "confirmed") return 3;
+    else if (status === "request") return 3;
+    else if (status === "confirmed") return 4;
   };
 
   const items = [
     { title: "Subscription" },
     { title: "Language Test" },
+    { title: "Payment Access" },
     { title: "Payment" },
   ];
 
   const options = [
-    { label: "Subscription", value: "pending" },
     { label: "Language Test", value: "test" },
-    { label: "Payment", value: "confirmed" },
+    { label: "Payment Access", value: "request" },
+    /* { label: "Payment", value: "confirmed" }, */
   ];
 
-  const [status, setStatus] = useState("");
   const [showUpdate, setShowUpdate] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState();
 
-  const handleUpdate = (id) => {
-    if (status === "") {
-      toast.warn("Select a status !");
-    } else {
-      props.UpdateStatus(id, status);
-      setShowUpdate(false);
-    }
+  const handleUpdate = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        props.update(values,selectedIndex?._id,);
+        setShowUpdate(false);
+      })
+      .catch((errorInfo) => {
+        toast.error("Somthing went wrong !");
+        console.log("errorInfo ...", errorInfo);
+      });
   };
 
   const handleCancel = () => {
     setShowUpdate(false);
-    setStatus("");
-    setSelectedIndex(null);
+    setSelectedIndex(undefined);
   };
 
   const { token } = theme.useToken();
@@ -67,7 +78,43 @@ export const UsersList = ({ ...props }) => {
     border: "none",
   };
 
-  const subsList = props.usersList
+  const prev_loadingUp = usePrevious(props.loadingStatus);
+  useEffect(() => {
+    if (prev_loadingUp && !props.isLoadingUpdate) {
+      if (props.msg === 1) {
+        props.AllUsers();
+      }
+      if (props.msg === 0) {
+        //toast.warn("Something went wrong !");
+      }
+    }
+  }, [props.loadingStatus, props.usersList]);
+
+  const [status, setStatus] = useState("");
+  const [Search, setSearch] = useState("");
+  const [form] = Form.useForm();
+  const [pageNumber, setPageNumber] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const offresPerPage = 10;
+  const data = props.usersList;
+  const dataToSearch = useMemo(() => {
+    let computed = data;
+    if (Search) {
+      computed = computed.filter(
+        (i) =>
+          i.lastName.toLowerCase().includes(Search.toLowerCase()) ||
+          i.firstName.toLowerCase().includes(Search.toLowerCase()) ||
+          i.email.toLowerCase().includes(Search.toLowerCase())
+      );
+    }
+    setPageNumber(computed.length);
+    return computed.slice(
+      (currentPage - 1) * offresPerPage,
+      (currentPage - 1) * offresPerPage + offresPerPage
+    );
+  }, [data, currentPage, Search]);
+
+  const subsList = dataToSearch
     .filter((user) => {
       if (user.role === "user") {
         return user;
@@ -88,7 +135,7 @@ export const UsersList = ({ ...props }) => {
         />
       ),
       children: (
-        <div className="my-4">
+        <div className="my-1">
           {item.subscription.length === 0 ? (
             <>
               <Empty description="No booked courses"></Empty>
@@ -100,7 +147,7 @@ export const UsersList = ({ ...props }) => {
                   <Fragment key={index}>
                     <>
                       <p>
-                        Course {index + 1}
+                        {su.title} Course
                         <Button
                           type="default"
                           className="mx-2"
@@ -108,14 +155,34 @@ export const UsersList = ({ ...props }) => {
                           loading={props.loadingStatus}
                           onClick={() => {
                             setShowUpdate(true);
-                            setSelectedIndex(su._id);
+                            setSelectedIndex(su);
                           }}
                         >
-                          Update status
+                          Update process
                         </Button>
                       </p>
 
                       <div className="row my-3">
+                        <span>
+                          Type:
+                          <span className="blue-text mx-1">
+                            {su.type} Class
+                            {su.hours != null ? `- ${su.hours}h` : ``}
+                          </span>
+                        </span>
+                        {su.sessions.length !== 0 && (
+                          <span>
+                            Sessions:
+                            {su.sessions.map((se, inedx) => {
+                              return (
+                                <span key={index} className="blue-text mx-1">
+                                  • {moment(se).format("MMM Do YYYY")}
+                                </span>
+                              );
+                            })}
+                          </span>
+                        )}
+                        <p>Notes: {su.notes}</p>
                         <Steps current={statusOfSub(su.status)} items={items} />
                       </div>
                     </>
@@ -129,28 +196,42 @@ export const UsersList = ({ ...props }) => {
       style: panelStyle,
     }));
 
-  const prev_loadingUp = usePrevious(props.loadingStatus);
-  useEffect(() => {
-    if (prev_loadingUp && !props.isLoadingUpdate) {
-      if (props.msg === 1) {
-        props.AllUsers();
-      }
-      if (props.msg === 0) {
-        //toast.warn("Something went wrong !");
-      }
-    }
-  }, [props.loadingStatus, props.usersList]);
+  const [format, setFormat] = useState(0);
+  const handleAmountChange = (e) => {
+    setFormat(e / 100);
+  };
+
+  const handleStatus = async (val, options) => {
+    setStatus(val);
+  };
 
   return (
     <div className="row">
       <h3 className="yellow-text">Users Management</h3>
 
       {!props.isLoading ? (
-        <>
+        <div className=" container-fluid">
+          <Input
+            placeholder="Search by First name, Last name or email"
+            size="large"
+            className="w-50 d-block m-auto mb-4"
+            onChange={(event) => {
+              setSearch(event.target.value);
+              setCurrentPage(1);
+            }}
+          />
           <List itemLayout="horizontal">
             <Collapse ghost accordion items={subsList} />
           </List>
-        </>
+          {!Search && (
+            <PaginationComponent
+              total={pageNumber}
+              itemsPerPage={offresPerPage}
+              currentPage={currentPage}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
+          )}
+        </div>
       ) : (
         <div className="text-center mt-5 yellow-text">
           <LoadingOutlined
@@ -164,38 +245,80 @@ export const UsersList = ({ ...props }) => {
       )}
 
       <Modal
-        title={"Update user subscription status"}
+        title={"Update user subscription process"}
         open={showUpdate}
         onCancel={handleCancel}
         width={400}
-        bodyStyle={{ height: 50 }}
+        bodyStyle={{ height: "100%" }}
+        style={{ top: 0 }}
         footer={null}
         centered={true}
         closeIcon={null}
       >
         <div className="container text-center">
-          <div className="row mt-4">
-            <div className="col col-7">
-              <Select
-                style={{ width: "100%" }}
-                options={options}
-                onSelect={(value) => {
-                  setStatus(value);
-                }}
-              ></Select>
+          <Form
+            form={form}
+            className="form justify-content-center"
+            name="basic"
+            layout="vertical"
+            size={" medium "}
+            labelCol={{ span: 20 }}
+          >
+            <div className="row mt-4">
+              <div className="form-outline text-start">
+                <Form.Item
+                  label="Select status"
+                  name="status"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input status",
+                    },
+                  ]}
+                >
+                  <Select
+                    style={{ width: "100%" }}
+                    options={options}
+                    onSelect={(val, options) => handleStatus(val, options)}
+                  ></Select>
+                </Form.Item>
+              </div>
+              {status === "request" && (
+                <>
+                  <div className="form-outline text-start">
+                    <Form.Item
+                      label="Price to pay"
+                      name="topay"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input price",
+                        },
+                      ]}
+                    >
+                      <InputNumber
+                        style={{ width: "100%" }}
+                        min={100}
+                        onChange={handleAmountChange}
+                        addonAfter="cents"
+                      />
+                    </Form.Item>
+                  </div>
+                  <Divider orientation="center">
+                    <h4 className=" blue-text">
+                      {format.toFixed(2)} {selectedIndex?.currency}
+                    </h4>
+                  </Divider>
+                </>
+              )}
+
+              <Form.Item>
+                <Button type="primary" htmltype="submit" onClick={handleUpdate}>
+                  Update
+                </Button>
+              </Form.Item>
             </div>
-            <div className="col col-5">
-              <Button
-                type="default"
-                loading={props.loadingStatus}
-                onClick={() => {
-                  handleUpdate(selectedIndex);
-                }}
-              >
-                Update status
-              </Button>
-            </div>
-          </div>
+          </Form>
         </div>
       </Modal>
     </div>
@@ -204,7 +327,7 @@ export const UsersList = ({ ...props }) => {
 
 const mapActionToProps = {
   AllUsers: getUsers,
-  UpdateStatus: updateSub,
+  update: updateSubProcess,
 };
 const mapStateToProps = (state) => ({
   usersList: state.user.users,

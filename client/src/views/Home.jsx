@@ -8,7 +8,6 @@ import Footer from "../components/Footer";
 import Partners from "../components/Carousel";
 import HeaderHome from "../assets/images/header_home.png";
 import Fresh from "../assets/images/french.png";
-import Libyan from "../assets/images/libyan.png";
 import Land from "../assets/images/landscape.png";
 import Ev from "../assets/images/evening_classes.png";
 import Cul from "../assets/images/culture-1.png";
@@ -94,6 +93,13 @@ export const Home = () => {
               </div>
             </div>
           </div>
+          <div className="container">
+            <div className="row">
+              <div className="parag_style">
+                <p className="w-75 d-block m-auto">{t("HomeP4")}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="container">
@@ -109,7 +115,7 @@ export const Home = () => {
                   <p className="text-start">{t("HomeP3")}</p>
                   <Button
                     size="large"
-                    onClick={() => navTo("/language-courses")}
+                    onClick={() => navTo("/learn-french")}
                     type="primary"
                   >
                     {t("HomeDiscover")}
@@ -121,7 +127,7 @@ export const Home = () => {
               </Col>
             </div>
 
-            <div className="row">
+            {/*           <div className="row">
               <Col span={8}>
                 <img alt="example" src={Libyan} className="w-100" />
               </Col>
@@ -138,7 +144,7 @@ export const Home = () => {
                   </Button>
                 </div>
               </Col>
-            </div>
+            </div> */}
           </div>
         </div>
         <motion.div

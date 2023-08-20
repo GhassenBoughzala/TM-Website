@@ -1,16 +1,44 @@
 import React from "react";
-import { Button } from "antd";
+import { Button, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const LeftMenu = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
+
+  const onClick = ({ key }) => {
+    navTo(`${key}`);
+  };
+
+  const items = [
+    {
+      label: <span className=" blue-text">Modern Standard Arabic</span>,
+      key: "/learn-arabic",
+    },
+    {
+      label: <span className=" blue-text">Tunisian Arabic</span>,
+      key: "/learn-tunisian-arabic",
+    },
+    {
+      label: <span className=" blue-text">Libyan Arabic</span>,
+      key: "/learn-libyan-arabic",
+    },
+    {
+      label: <span className=" blue-text">French</span>,
+      key: "/learn-french",
+    },
+    {
+      label: <span className=" blue-text">English</span>,
+      key: "/learn-english",
+    },
+  ];
+
   return (
-    <>
+    <div className={`${props.open ? "d-inline-grid gap-2 " : ""}`}>
       <Button
         type="link"
-        className="ant-btn-menu"
+        className="ant-btn-menu text-start"
         onClick={() => {
           navTo("/");
           props.setOpen(false);
@@ -18,19 +46,28 @@ const LeftMenu = ({ ...props }) => {
       >
         {t("Home")}
       </Button>
-      <Button
-        type="link"
-        className="ant-btn-menu"
-        onClick={() => {
-          navTo("/language-courses");
-          props.setOpen(false);
+      <Dropdown
+        placement="bottom"
+        arrow
+        menu={{
+          items,
+          onClick,
         }}
       >
-        {t("LanguageCourses")}
-      </Button>
+        <Button
+          type="link"
+          className="ant-btn-menu text-start"
+          onClick={() => {
+            navTo("/language-courses");
+            props.setOpen(false);
+          }}
+        >
+          {t("LanguageCourses")}
+        </Button>
+      </Dropdown>
       <Button
         type="link"
-        className="ant-btn-menu"
+        className="ant-btn-menu text-start"
         onClick={() => {
           navTo("/student-life");
           props.setOpen(false);
@@ -40,17 +77,17 @@ const LeftMenu = ({ ...props }) => {
       </Button>
       <Button
         type="link"
-        className="ant-btn-menu"
+        className="ant-btn-menu text-start"
         onClick={() => {
           navTo("/about");
           props.setOpen(false);
         }}
       >
         {t("About")}
-      </Button>{" "}
+      </Button>
       <Button
         type="link"
-        className="ant-btn-menu"
+        className="ant-btn-menu text-start"
         onClick={() => {
           navTo("/contact");
           props.setOpen(false);
@@ -58,7 +95,7 @@ const LeftMenu = ({ ...props }) => {
       >
         Contact
       </Button>
-    </>
+    </div>
   );
 };
 
