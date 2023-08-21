@@ -131,7 +131,7 @@ export const CourseModal = ({ ...props }) => {
                           <FontAwesomeIcon
                             icon="fas fa-circle"
                             style={{ fontSize: 8, marginBottom: 2 }}
-                          />{" "}
+                          />
                           {p.priceDescription}
                         </span>
                       </li>
@@ -162,9 +162,9 @@ export const CourseModal = ({ ...props }) => {
                         <Fragment key={index}>
                           <p className="blue-text fs-6">
                             <b className="mx-1">
-                              {moment(s[1]).format("MMM Do")}
+                              {moment(s[0]).format("MMM Do")}
                             </b>
-                            <b>- {moment(s[0]).format("MMM Do YYYY")}</b>
+                            <b>- {moment(s[1]).format("MMM Do YYYY")}</b>
                           </p>
                         </Fragment>
                       );

@@ -20,11 +20,11 @@ export const HomeCourses = () => {
             src={C1}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="montserrat_bold text-center blue-text mb-3">
+            <h4 className="montserrat_bold text-center blue-text mb-3">
               {t("LearnAR")}
-            </h3>
+            </h4>
 
-            <p className=" parag_style text-black text-center">
+            <p className=" parag_style text-black text-center text-wrap">
               {t("LearnAR-P")}
             </p>
           </div>
@@ -42,9 +42,9 @@ export const HomeCourses = () => {
             src={C1}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="montserrat_bold text-center yellow-text mb-5">
+            <h4 className="montserrat_bold text-center yellow-text mb-5">
               {t("LearnLB")}
-            </h3>
+            </h4>
 
             <p className=" parag_style text-black text-center">
               {t("LearnLB-P")}
@@ -64,9 +64,9 @@ export const HomeCourses = () => {
             src={C1}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="montserrat_bold text-center blue-text mb-5">
+            <h4 className="montserrat_bold text-center blue-text mb-5">
               {t("LearnTN")}
-            </h3>
+            </h4>
 
             <p className=" parag_style text-black text-center">
               {t("LearnTN-P")}
