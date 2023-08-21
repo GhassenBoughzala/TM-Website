@@ -10,8 +10,6 @@ const courseRoute = require("./controller/courses.controller");
 const userRoute = require("./controller/user.controller");
 const subsRoute = require("./controller/subscription.controller");
 const contactRoute = require("./controller/contact.controller");
-//process.env.STRIPE_SECRET_KEY
-const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
 
 connectDB();
 
