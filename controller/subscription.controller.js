@@ -12,7 +12,9 @@ const User = require("../models/User");
 const adminAuth = require("../middleware/adminAuth");
 const { ObjectId } = require("bson");
 const { contactUs, subConfirmation } = require("../middleware/mailer");
-const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
+
+//STRIPE_TEST_SECRET_KEY
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // @route   POST api/
 // @desc    Book a course
@@ -321,34 +323,7 @@ router.post("/test", async (req, res) => {
 router.get("/config", (req, res) => {
   /* STRIPE_TEST_PUBLIC_KEY */
   /* STRIPE_PUBLIC_KEY */
-  res.status(200).json(process.env.STRIPE_TEST_PUBLIC_KEY);
+  res.status(200).json(process.env.STRIPE_PUBLIC_KEY);
 });
-
-router.post(
-  "/webhook",
-  express.raw({ type: "application/json" }),
-  (request, response) => {
-    const sig = request.headers["stripe-signature"];
-
-    let event;
-
-    try {
-      event = stripe.webhooks.constructEvent(
-        request.body,
-        sig,
-        process.env.WEBHOOK_SECRET
-      );
-    } catch (err) {
-      response.status(400).send(`Webhook Error: ${err.message}`);
-      return;
-    }
-
-    // Handle the event
-    console.log(`Unhandled event type ${event.type}`);
-
-    // Return a 200 response to acknowledge receipt of the event
-    response.send();
-  }
-);
 
 module.exports = router;

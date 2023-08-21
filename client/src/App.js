@@ -39,6 +39,7 @@ import axios from "axios";
 import PaymentResult from "./views/PaymentResult";
 import ContactUs from "./views/ContactUs";
 import ScrollToTop from "./helpers/scrollToTop";
+import Scholarships from "./views/Scholarships";
 
 function App() {
   useEffect(() => {
@@ -155,6 +156,11 @@ function App() {
                   ></Route>
 
                   <Route exact path="/contact" Component={ContactUs}></Route>
+                  <Route
+                    exact
+                    path="/scholarships"
+                    Component={Scholarships}
+                  ></Route>
 
                   <Route exact path="/profil" element={<UserRoute />}>
                     <Route exact path="/profil" Component={Profile}></Route>

@@ -79,6 +79,16 @@ const LeftMenu = ({ ...props }) => {
         type="link"
         className="ant-btn-menu text-start"
         onClick={() => {
+          navTo("/scholarships");
+          props.setOpen(false);
+        }}
+      >
+        {t("sco")}
+      </Button>
+      <Button
+        type="link"
+        className="ant-btn-menu text-start"
+        onClick={() => {
           navTo("/about");
           props.setOpen(false);
         }}
