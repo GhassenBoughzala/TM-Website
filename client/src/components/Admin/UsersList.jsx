@@ -56,7 +56,7 @@ export const UsersList = ({ ...props }) => {
     form
       .validateFields()
       .then((values) => {
-        props.update(values,selectedIndex?._id,);
+        props.update(values, selectedIndex?._id);
         setShowUpdate(false);
       })
       .catch((errorInfo) => {
@@ -173,7 +173,7 @@ export const UsersList = ({ ...props }) => {
                         {su.sessions.length !== 0 && (
                           <span>
                             Sessions:
-                            {su.sessions.map((se, inedx) => {
+                            {su.sessions.map((se, index) => {
                               return (
                                 <span key={index} className="blue-text mx-1">
                                   • {moment(se).format("MMM Do YYYY")}
@@ -201,7 +201,7 @@ export const UsersList = ({ ...props }) => {
     setFormat(e / 100);
   };
 
-  const handleStatus = async (val, options) => {
+  const handleStatus = async (val) => {
     setStatus(val);
   };
 
@@ -245,7 +245,6 @@ export const UsersList = ({ ...props }) => {
       )}
 
       <Modal
-        title={"Update user subscription process"}
         open={showUpdate}
         onCancel={handleCancel}
         width={400}
@@ -256,6 +255,22 @@ export const UsersList = ({ ...props }) => {
         closeIcon={null}
       >
         <div className="container text-center">
+          <h5 className=" blue-text">
+            {selectedIndex?.type} Class
+            {selectedIndex?.hours != null ? ` - ${selectedIndex?.hours}h` : ``}
+          </h5>
+          {selectedIndex?.sessions.length !== 0 && (
+            <span>
+              {selectedIndex?.sessions.length} sessions:
+              {selectedIndex?.sessions.map((se, index) => {
+                return (
+                  <span key={index} className="blue-text mx-1">
+                    • {moment(se).format("MMM Do YYYY")}
+                  </span>
+                );
+              })}
+            </span>
+          )}
           <Form
             form={form}
             className="form justify-content-center"
@@ -279,7 +294,7 @@ export const UsersList = ({ ...props }) => {
                   <Select
                     style={{ width: "100%" }}
                     options={options}
-                    onSelect={(val, options) => handleStatus(val, options)}
+                    onSelect={(val) => handleStatus(val)}
                   ></Select>
                 </Form.Item>
               </div>
