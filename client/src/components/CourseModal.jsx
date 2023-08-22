@@ -125,30 +125,24 @@ export const CourseModal = ({ ...props }) => {
               {currentObj.priceDescription.map((p, index) => {
                 return (
                   <Fragment key={index}>
-                    <ul>
-                      <li>
-                        <span className="fs-6">
-                          <FontAwesomeIcon
-                            icon="fas fa-circle"
-                            style={{ fontSize: 8, marginBottom: 2 }}
-                          />
-                          {p.priceDescription}
-                        </span>
-                      </li>
+                    <div className="row">
+                      <span className="fs-6">
+                        <FontAwesomeIcon
+                          icon="fas fa-circle "
+                          style={{ fontSize: 8, marginBottom: 2 }}
+                        />
+                        <span className="mx-1">{p.priceDescription}</span>
+                      </span>
                       {p.notes && p.notes !== null && (
-                        <ul>
-                          <li>
-                            <p className="fs-6 text-muted">
-                              <FontAwesomeIcon
-                                icon="fas fa-info-circle"
-                                className=" mx-1 blue-text"
-                              />
-                              {p.notes}
-                            </p>
-                          </li>
-                        </ul>
+                        <p className="mx-4 my-2 fs-6 text-muted">
+                          <FontAwesomeIcon
+                            icon="fas fa-info-circle"
+                            className="mx-1 blue-text"
+                          />
+                          {p.notes}
+                        </p>
                       )}
-                    </ul>
+                    </div>
                   </Fragment>
                 );
               })}

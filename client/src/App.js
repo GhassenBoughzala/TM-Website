@@ -108,7 +108,7 @@ function App() {
             <Space
               direction="vertical"
               style={{ width: "100%" }}
-              size={[0, 48]}
+              
             >
               <Layout style={{ backgroundColor: "white" }}>
                 <Navbar />

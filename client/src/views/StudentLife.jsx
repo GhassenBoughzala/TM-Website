@@ -103,7 +103,7 @@ export const StudentLife = () => {
         />
         <link rel="canonical" href="/student-life" />
       </Helmet>
-      <div className="page_style full_espace_padding overflow-x-hidden overflow-y-scroll">
+      <div className="page_style m-5 overflow-x-hidden overflow-y-scroll">
         <div className="container-fluid">
           <div className="row">
             <h1 className="titre">{t("StudentLife")}</h1>
@@ -131,7 +131,7 @@ export const StudentLife = () => {
                         showModal(index);
                       }}
                     >
-                      <div className="mb-3 align_all">
+                      <div className="mb-2 align_all">
                         <Button
                           style={{ width: 120, height: 120, fontSize: 55 }}
                           type="primary"
