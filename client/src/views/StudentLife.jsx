@@ -148,13 +148,12 @@ export const StudentLife = () => {
             </div>
           </div>
 
-         
-
           <Modal
             open={ClassesModal}
             onCancel={handleCancel}
             width={1200}
             bodyStyle={{ height: 700 }}
+            style={{ top: 0 }}
             footer={null}
           >
             <div className="row">
@@ -205,6 +204,7 @@ export const StudentLife = () => {
             onCancel={handleCancel}
             width={1200}
             bodyStyle={{ height: 700 }}
+            style={{ top: 0 }}
             footer={null}
           >
             <Accommodation />
@@ -215,6 +215,7 @@ export const StudentLife = () => {
             onCancel={handleCancel}
             width={1200}
             bodyStyle={{ height: 600 }}
+            style={{ top: 0 }}
             footer={null}
           >
             <Travel />
@@ -225,6 +226,7 @@ export const StudentLife = () => {
             onCancel={handleCancel}
             width={1200}
             bodyStyle={{ height: 700 }}
+            style={{ top: 0 }}
             footer={null}
           >
             <LivingInTunis />
@@ -235,6 +237,7 @@ export const StudentLife = () => {
             onCancel={handleCancel}
             width={1200}
             bodyStyle={{ height: 700 }}
+            style={{ top: 0 }}
             footer={null}
           >
             <Work />
