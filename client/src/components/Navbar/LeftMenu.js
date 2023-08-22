@@ -8,6 +8,7 @@ const LeftMenu = ({ ...props }) => {
   const navTo = useNavigate();
 
   const onClick = ({ key }) => {
+    props.setOpen(false);
     navTo(`${key}`);
   };
 
@@ -59,7 +60,6 @@ const LeftMenu = ({ ...props }) => {
           className="ant-btn-menu text-start"
           onClick={() => {
             navTo("/language-courses");
-            props.setOpen(false);
           }}
         >
           {t("LanguageCourses")}
