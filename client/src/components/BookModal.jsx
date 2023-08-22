@@ -108,8 +108,8 @@ export const BookModal = ({ ...props }) => {
             },
           ]}
         >
-          <div className="row text-center">
-            <div className="col col-4">
+          <div className="row text-start">
+            <div className="col-lg-4 col-xs-12 my-1">
               <Button
                 type={`${type === "Evening" ? "primary" : "default"}`}
                 onClick={() => setType("Evening")}
@@ -117,7 +117,7 @@ export const BookModal = ({ ...props }) => {
                 Next Evening Class
               </Button>
             </div>
-            <div className="col col-4">
+            <div className="col col-lg-4 col-xs-12 my-1">
               <Button
                 type={`${type === "Private" ? "primary" : "default"}`}
                 onClick={() => setType("Private")}
@@ -125,7 +125,7 @@ export const BookModal = ({ ...props }) => {
                 Private Classes
               </Button>
             </div>
-            <div className="col col-4">
+            <div className="col-lg-4 col-xs-12 my-1">
               <Button
                 type={`${type === "Intensive" ? "primary" : "default"}`}
                 onClick={() => setType("Intensive")}
