@@ -125,7 +125,7 @@ export const StudentLife = () => {
                   return (
                     <motion.div
                       key={index}
-                      className="item montserrat_bold center_element col col-2"
+                      className="item montserrat_bold center_element col-lg-2"
                       variants={item}
                       onClick={() => {
                         showModal(index);
