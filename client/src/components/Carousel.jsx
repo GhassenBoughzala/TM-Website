@@ -2,6 +2,7 @@ import Ames from "../assets/images/AMES-LOGO-V4.png";
 import Mi from "../assets/images/mdinti.png";
 import Mn from "../assets/images/Mnara.png";
 import Na from "../assets/images/Nafsa.jpeg";
+import B from "../assets/images/BeingWell Abroad-logo.png";
 import Uni from "../assets/images/University-of-Exeter_Crest_Logo_RGB_Uni_Landscape_Pos_Lrg-1568x1032.png";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -46,6 +47,9 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src={Uni} alt="Taa Marbouta" style={{ width: "80%" }} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={B} alt="Taa Marbouta" style={{ width: "80%" }} />
         </SwiperSlide>
       </Swiper>
     </>

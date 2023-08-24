@@ -72,7 +72,7 @@ export const SubscriptionResult = ({ ...props }) => {
                       )
                     }
                   >
-                    Contact us for accomodations
+                    Contact us for accommodation
                   </Button>,
                   <Button
                     size="large"

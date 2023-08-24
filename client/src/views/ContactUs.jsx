@@ -57,7 +57,7 @@ export const ContactUs = ({ ...props }) => {
                 <img
                   src={Logo}
                   alt="TaaMarbouta"
-                  style={{ width: "5%" }}
+                  style={{ width: "10%" }}
                   className="mb-3"
                 />
                 <Form
