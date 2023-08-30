@@ -1,5 +1,4 @@
 import React from "react";
-import C1 from "../assets/images/pxfuel.jpg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -16,13 +15,15 @@ export const HomeCourses = () => {
         >
           <img
             className="course-card-img-ar embed-responsive-item"
-            alt="example"
-            src={C1}
+            alt="example1"
+            src="/images/pxfuel.jpg"
+            width={"100%"}
+            height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h4 className="montserrat_bold text-center blue-text mb-3">
+            <h3 className="montserrat_bold text-center blue-text mb-3">
               {t("LearnAR")}
-            </h4>
+            </h3>
 
             <p className=" parag_style text-black text-center text-wrap">
               {t("LearnAR-P")}
@@ -38,13 +39,15 @@ export const HomeCourses = () => {
         >
           <img
             className="course-card-img-ar embed-responsive-item"
-            alt="example"
-            src={C1}
+            alt="example2"
+            src="/images/pxfuel.jpg"
+            width={"100%"}
+            height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h4 className="montserrat_bold text-center yellow-text mb-5">
+            <h3 className="montserrat_bold text-center yellow-text mb-5">
               {t("LearnLB")}
-            </h4>
+            </h3>
 
             <p className=" parag_style text-black text-center">
               {t("LearnLB-P")}
@@ -60,13 +63,15 @@ export const HomeCourses = () => {
         >
           <img
             className="course-card-img-ar embed-responsive-item"
-            alt="example"
-            src={C1}
+            alt="example2"
+            src="/images/pxfuel.jpg"
+            width={"100%"}
+            height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h4 className="montserrat_bold text-center blue-text mb-5">
+            <h3 className="montserrat_bold text-center blue-text mb-5">
               {t("LearnTN")}
-            </h4>
+            </h3>
 
             <p className=" parag_style text-black text-center">
               {t("LearnTN-P")}
