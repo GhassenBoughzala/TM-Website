@@ -46,21 +46,21 @@ export const Home = () => {
               fade={true}
             >
               <img
-                src="/images/hbg-1.png"
+                src="/images/hbg-1.webp"
                 alt="Taa Marbouta"
                 className="h-50"
                 width={"100%"}
                 height={"auto"}
               />
               <img
-                src="/images/hbg-2.png"
+                src="/images/hbg-2.webp"
                 alt="Taa Marbouta"
                 className="h-50"
                 width={"100%"}
                 height={"auto"}
               />
               <img
-                src="/images/hbg-3.png"
+                src="/images/hbg-3.webp"
                 alt="Taa Marbouta"
                 className="h-50"
                 width={"100%"}
@@ -85,7 +85,7 @@ export const Home = () => {
                   </div>
                   <div className="col col-lg-7 col-md-7 col-sm-6 col-xs-6">
                     <img
-                      src="/images/header_home.png"
+                      src="/images/header_home.webp"
                       alt="Taa Marbouta"
                       width={"100%"}
                       height={"auto"}

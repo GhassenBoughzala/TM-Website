@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BookModal from "./BookModal";
+import shortid from "shortid";
 
 export const CourseModal = ({ ...props }) => {
   const navTo = useNavigate();
@@ -79,7 +80,7 @@ export const CourseModal = ({ ...props }) => {
               {currentObj.description ? (
                 currentObj.description.map((d, index) => {
                   return (
-                    <Fragment key={index}>
+                    <Fragment key={shortid.generate() + index}>
                       <p className="text-secondary fs-6">{d.description}</p>
                     </Fragment>
                   );
@@ -124,7 +125,7 @@ export const CourseModal = ({ ...props }) => {
 
               {currentObj.priceDescription.map((p, index) => {
                 return (
-                  <Fragment key={index}>
+                  <Fragment key={shortid.generate() + index}>
                     <div className="row">
                       <span className="fs-6">
                         <FontAwesomeIcon
@@ -153,7 +154,7 @@ export const CourseModal = ({ ...props }) => {
                     <h5 className="yellow-text">{t("sessions")}</h5>
                     {currentObj.sessions.map((s, index) => {
                       return (
-                        <Fragment key={index}>
+                        <Fragment key={shortid.generate() + index}>
                           <p className="blue-text fs-6">
                             <b className="mx-1">
                               {moment(s[0]).format("MMM Do")}
@@ -170,7 +171,7 @@ export const CourseModal = ({ ...props }) => {
                 <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
                   {currentObj.image.map((img, index) => {
                     return (
-                      <Fragment key={index}>
+                      <Fragment key={shortid.generate() + index}>
                         <Image
                           width={"75%"}
                           src={img.base64}

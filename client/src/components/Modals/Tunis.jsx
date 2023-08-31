@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel, Image } from "antd";
 import { useTranslation } from "react-i18next";
 import { imagesListTNH, imagesListTNW } from "../../helpers/Constants";
+import shortid from  "shortid";
 
 export const LivingInTunis = (props) => {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ export const LivingInTunis = (props) => {
         >
           {imagesListTNH.map((i, index) => {
             return (
-              <div className="px-3" key={index}>
+              <div className="px-3" key={shortid.generate() + index}>
                 <Image src={i} alt="Taa Marbouta" className="rounded" />
               </div>
             );
@@ -35,7 +36,7 @@ export const LivingInTunis = (props) => {
         <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
           {imagesListTNW.map((i, index) => {
             return (
-              <div className="px-3" key={index}>
+              <div className="px-3" key={shortid.generate() + index}>
                 <Image src={i} alt="Taa Marbouta" className="rounded" />
               </div>
             );

@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Carousel, Image } from "antd";
 import { image1List, image2List } from "../../helpers/Constants";
+import shortid from  "shortid";
 
 export const Accommodation = () => {
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ export const Accommodation = () => {
         <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
           {image2List.map((i, index) => {
             return (
-              <div className="px-3" key={index}>
+              <div className="px-3" key={shortid.generate() + index}>
                 <Image
                   alt="Taa Marbouta"
                   className="rounded"
@@ -36,7 +37,7 @@ export const Accommodation = () => {
         <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
           {image1List.map((i, index) => {
             return (
-              <div className="px-3" key={index}>
+              <div className="px-3" key={shortid.generate() + index}>
                 <Image
                   src={i}
                   alt="Taa Marbouta"
