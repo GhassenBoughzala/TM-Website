@@ -174,6 +174,7 @@ export const CourseModal = ({ ...props }) => {
                       <Fragment key={shortid.generate() + index}>
                         <Image
                           width={"75%"}
+                          height={"auto"}
                           src={img.base64}
                           alt={index}
                           preview={false}
