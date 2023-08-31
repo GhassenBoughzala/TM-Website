@@ -11,10 +11,12 @@ const userRoute = require("./controller/user.controller");
 const subsRoute = require("./controller/subscription.controller");
 const contactRoute = require("./controller/contact.controller");
 var expressStaticGzip = require("express-static-gzip");
+var compression = require("compression");
 
 connectDB();
 
-let app = express();
+var app = express();
+app.use(compression());
 
 app.use(function (req, res, next) {
   res.set("Access-Control-Allow-Origin", "*");

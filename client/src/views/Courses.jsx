@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
+import shortid from  "shortid";
 const { Content } = Layout;
 
 export const Courses = ({ ...props }) => {
@@ -54,9 +55,7 @@ export const Courses = ({ ...props }) => {
         <div className="container mb-lg-5">
           <h1 className="titre mt-5">
             {t("LanguageCourses")}
-            <p className=" fs-5 mt-3 text-muted">
-            {t("courses-ph")}
-            </p>
+            <p className=" fs-5 mt-3 text-muted">{t("courses-ph")}</p>
           </h1>
 
           {props.isLoading ? (
@@ -64,7 +63,7 @@ export const Courses = ({ ...props }) => {
               <div className="row">
                 {props.courses.map((course, index) => {
                   return (
-                    <Fragment key={index}>
+                    <Fragment key={shortid.generate() + index}>
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -84,6 +83,8 @@ export const Courses = ({ ...props }) => {
                               src={course.backgroundImage.map((i) =>
                                 !i.base64 ? i.thumbUrl : i.base64
                               )}
+                              width={"100%"}
+                              height={"auto"}
                               className="w-50 my-2"
                             />
                           }

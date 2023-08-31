@@ -13,6 +13,7 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Meta from "antd/es/card/Meta";
+import shortid from  "shortid";
 
 const { Content } = Layout;
 
@@ -129,7 +130,7 @@ export const About = () => {
                     >
                       {reviews.map((re, index) => {
                         return (
-                          <SwiperSlide key={index}>
+                          <SwiperSlide key={shortid.generate() + index}>
                             <Card
                               style={{ height: 250, width: 300 }}
                               className=" overflow-x-hidden overflow-y-scroll"

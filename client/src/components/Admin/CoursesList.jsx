@@ -20,6 +20,7 @@ import Courses from "../../views/Courses";
 import CourseModal from "../CourseModal";
 import usePrevious from "../../helpers/usePrevious";
 import UpdateCourse from "./UpdateCourse";
+import shortid from  "shortid";
 
 export const CoursesList = ({ ...props }) => {
   useEffect(() => {
@@ -93,7 +94,7 @@ export const CoursesList = ({ ...props }) => {
                 <tbody>
                   {props.courses.map((course, index) => {
                     return (
-                      <Fragment key={index}>
+                      <Fragment key={shortid.generate() + index}>
                         <tr>
                           <td>{index + 1}</td>
                           <td>{course.title}</td>

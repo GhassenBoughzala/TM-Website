@@ -27,6 +27,7 @@ import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 import PaymentForm from "../components/PaymentForm";
 import moment from "moment";
+import shortid from  "shortid";
 const { Content } = Layout;
 //const State = require("country-state-city").State;
 
@@ -104,7 +105,7 @@ export const Profile = ({ ...props }) => {
               Sessions:
               {su.sessions.map((se, inedx) => {
                 return (
-                  <span key={index} className="blue-text mx-1">
+                  <span key={shortid.generate() + index} className="blue-text mx-1">
                     • {moment(se).format("MMM Do YYYY")}
                   </span>
                 );

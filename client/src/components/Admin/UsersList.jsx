@@ -23,6 +23,7 @@ import { toast } from "react-toastify";
 import PaginationComponent from "../../helpers/pagination";
 import moment from "moment";
 import { updateSubProcess } from "../../redux/subs/subsActions";
+import shortid from "shortid";
 
 export const UsersList = ({ ...props }) => {
   useEffect(() => {
@@ -144,7 +145,7 @@ export const UsersList = ({ ...props }) => {
             <>
               {item.subscription.map((su, index) => {
                 return (
-                  <Fragment key={index}>
+                  <Fragment key={shortid.generate() + index}>
                     <>
                       <p>
                         {su.title} Course
@@ -175,7 +176,10 @@ export const UsersList = ({ ...props }) => {
                             Sessions:
                             {su.sessions.map((se, index) => {
                               return (
-                                <span key={index} className="blue-text mx-1">
+                                <span
+                                  key={shortid.generate() + index}
+                                  className="blue-text mx-1"
+                                >
                                   • {moment(se).format("MMM Do YYYY")}
                                 </span>
                               );
@@ -264,7 +268,10 @@ export const UsersList = ({ ...props }) => {
               {selectedIndex?.sessions.length} sessions:
               {selectedIndex?.sessions.map((se, index) => {
                 return (
-                  <span key={index} className="blue-text mx-1">
+                  <span
+                    key={shortid.generate() + index}
+                    className="blue-text mx-1"
+                  >
                     • {moment(se).format("MMM Do YYYY")}
                   </span>
                 );

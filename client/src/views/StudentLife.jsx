@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { imagesListH, imagesListW } from "../helpers/Constants";
+import shortid from "shortid";
 
 const { Content } = Layout;
 export const StudentLife = () => {
@@ -120,7 +121,7 @@ export const StudentLife = () => {
                 {icons.map((i, index) => {
                   return (
                     <motion.div
-                      key={index}
+                      key={shortid.generate() + index}
                       className="item montserrat_bold center_element col-lg-2"
                       variants={item}
                       onClick={() => {
@@ -166,7 +167,7 @@ export const StudentLife = () => {
                 <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
                   {imagesListW.map((img, index) => {
                     return (
-                      <Fragment key={index}>
+                      <Fragment key={shortid.generate() + index}>
                         <Image
                           width={"80%"}
                           src={img}
@@ -180,7 +181,7 @@ export const StudentLife = () => {
                 <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
                   {imagesListH.map((img, index) => {
                     return (
-                      <Fragment key={index}>
+                      <Fragment key={shortid.generate() + index}>
                         <Image
                           width={"80%"}
                           src={img}

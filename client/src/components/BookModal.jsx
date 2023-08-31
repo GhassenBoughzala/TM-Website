@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { Subscribe } from "../redux/subs/subsActions";
 import { RedoOutlined } from "@ant-design/icons";
 import { currencies } from "../helpers/Constants";
+import shortid from  "shortid";
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -109,7 +110,7 @@ export const BookModal = ({ ...props }) => {
           ]}
         >
           <div className="row text-start">
-            <div className="col-lg-4 col-xs-12 my-1">
+            <div className="col-lg-4 col-xs-12 my-1 text-center">
               <Button
                 type={`${type === "Evening" ? "primary" : "default"}`}
                 onClick={() => setType("Evening")}
@@ -117,7 +118,7 @@ export const BookModal = ({ ...props }) => {
                 Next Evening Class
               </Button>
             </div>
-            <div className="col col-lg-4 col-xs-12 my-1">
+            <div className="col-lg-4 col-xs-12 my-1 text-center">
               <Button
                 type={`${type === "Private" ? "primary" : "default"}`}
                 onClick={() => setType("Private")}
@@ -125,7 +126,7 @@ export const BookModal = ({ ...props }) => {
                 Private Classes
               </Button>
             </div>
-            <div className="col-lg-4 col-xs-12 my-1">
+            <div className="col-lg-4 col-xs-12 my-1 text-center">
               <Button
                 type={`${type === "Intensive" ? "primary" : "default"}`}
                 onClick={() => setType("Intensive")}
@@ -148,10 +149,10 @@ export const BookModal = ({ ...props }) => {
                 <Select mode="multiple" maxLength={3}>
                   {currentObj.sessions.map((s, index) => {
                     return (
-                      <Fragment key={index}>
+                      <Fragment key={shortid.generate() + index}>
                         <Option
                           value={s[0]}
-                          key={index}
+                          key={s.id}
                           label={`${moment(s[0]).format("MMMM")} session`}
                         >
                           <p className=" text-dark">
