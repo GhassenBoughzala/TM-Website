@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Card,
   Layout,
@@ -27,7 +27,10 @@ import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 import PaymentForm from "../components/PaymentForm";
 import moment from "moment";
-import shortid from  "shortid";
+import shortid from "shortid";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import axios from "axios";
 const { Content } = Layout;
 //const State = require("country-state-city").State;
 
@@ -80,7 +83,7 @@ export const Profile = ({ ...props }) => {
   const items = [
     { title: "Subscription" },
     { title: "Language Test" },
-    { title: "Payment Request"},
+    { title: "Payment Request" },
     { title: "Payment" },
   ];
   const statusOfSub = (status) => {
@@ -105,7 +108,10 @@ export const Profile = ({ ...props }) => {
               Sessions:
               {su.sessions.map((se, inedx) => {
                 return (
-                  <span key={shortid.generate() + index} className="blue-text mx-1">
+                  <span
+                    key={shortid.generate() + index}
+                    className="blue-text mx-1"
+                  >
                     • {moment(se).format("MMM Do YYYY")}
                   </span>
                 );
@@ -178,8 +184,28 @@ export const Profile = ({ ...props }) => {
     setCiso(options.code);
   };
 */
+
+  const [PK, setPK] = useState("");
+  useEffect(() => {
+    const getPK = async () => {
+      await axios
+        .get(`/api/subscription/config`)
+        .then((r) => {
+          console.log("$");
+          setPK(r.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    getPK();
+  }, []);
+
+  const stripePromise = useMemo(() => loadStripe(`${PK}`), [PK]);
+
   return (
-    <>
+    <Elements stripe={stripePromise}>
       <Content className="container-fluid">
         <div className="container my-5 ">
           <div className="row">
@@ -467,7 +493,7 @@ export const Profile = ({ ...props }) => {
         </div>
       </Content>
       <Footer />
-    </>
+    </Elements>
   );
 };
 

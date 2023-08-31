@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Partners from "../components/Carousel";
 import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
+
 const { Content } = Layout;
 
 export const Home = () => {

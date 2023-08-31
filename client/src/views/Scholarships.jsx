@@ -30,7 +30,7 @@ export const Scholarships = () => {
             <div className="mb-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
               <h4 className="blue-text">{t("sco-objt")}</h4>
               <div className="parag_style style_link text-start">
-                <ul class="list-unstyled text-start">
+                <ul className="list-unstyled text-start">
                   <li>
                     <p>{t("sco-objt2")} </p>
                     <ul>
@@ -54,7 +54,7 @@ export const Scholarships = () => {
             <div className="mb-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
               <h4 className="blue-text">{t("sco-elt")}</h4>
               <div className="parag_style style_link text-start">
-                <ul class="list-unstyled text-start">
+                <ul className="list-unstyled text-start">
                   <li>
                     <ul>
                       <li>

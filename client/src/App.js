@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-const-assign */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -33,9 +34,6 @@ import CourseLB from "./views/courses/CourseLB";
 import CourseAR from "./views/courses/CourseAR";
 import CourseEN from "./views/courses/CourseEN";
 import SubscriptionResult from "./views/SubscriptionResult";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import axios from "axios";
 import PaymentResult from "./views/PaymentResult";
 import ContactUs from "./views/ContactUs";
 import ScrollToTop from "./helpers/scrollToTop";
@@ -60,6 +58,7 @@ function App() {
       }
     });
   }, []);
+
   if (localStorage.accessToken) {
     setAuthToken(localStorage.accessToken);
     store.dispatch(verifUser());
@@ -79,122 +78,85 @@ function App() {
     }
   }, []);
 
-  const [PK, setPK] = useState("");
-  useEffect(() => {
-    const getPK = async () => {
-      await axios
-        .get(`/api/subscription/config`)
-        .then((r) => {
-          console.log("$");
-          setPK(r.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
-    getPK();
-  }, []);
-
-  const stripePromise = loadStripe(`${PK}`);
-
   return (
     <Provider store={store}>
-      <Elements stripe={stripePromise}>
-        <BrowserRouter>
-          <ScrollToTop />
-          <ToastContainer position="bottom-right" />
-          <HelmetProvider>
-            <Space
-              direction="vertical"
-              style={{ width: "100%" }}
-              
-            >
-              <Layout style={{ backgroundColor: "white" }}>
-                <Navbar />
-                <Routes>
-                  <Route exact path="/" Component={Home}></Route>
-                  <Route exact path="*" Component={PageNotFound}></Route>
-                  <Route exact path="/login" Component={Login}></Route>
-                  <Route exact path="/register" Component={Register}></Route>
-                  <Route
-                    exact
-                    path="/student-life"
-                    Component={StudentLife}
-                  ></Route>
-                  <Route exact path="/about" Component={About}></Route>
+      <BrowserRouter>
+        <ScrollToTop />
+        <ToastContainer position="bottom-right" />
+        <HelmetProvider>
+          <Space direction="vertical" style={{ width: "100%" }}>
+            <Layout style={{ backgroundColor: "white" }}>
+              <Navbar />
+              <Routes>
+                <Route exact path="/" Component={Home}></Route>
+                <Route exact path="*" Component={PageNotFound}></Route>
+                <Route exact path="/login" Component={Login}></Route>
+                <Route exact path="/register" Component={Register}></Route>
+                <Route
+                  exact
+                  path="/student-life"
+                  Component={StudentLife}
+                ></Route>
+                <Route exact path="/about" Component={About}></Route>
 
-                  <Route
-                    exact
-                    path="/language-courses"
-                    Component={Courses}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/learn-arabic"
-                    Component={CourseAR}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/learn-tunisian-arabic"
-                    Component={CourseTN}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/learn-libyan-arabic"
-                    Component={CourseLB}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/learn-french"
-                    Component={CourseFR}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/learn-english"
-                    Component={CourseEN}
-                  ></Route>
+                <Route
+                  exact
+                  path="/language-courses"
+                  Component={Courses}
+                ></Route>
+                <Route exact path="/learn-arabic" Component={CourseAR}></Route>
+                <Route
+                  exact
+                  path="/learn-tunisian-arabic"
+                  Component={CourseTN}
+                ></Route>
+                <Route
+                  exact
+                  path="/learn-libyan-arabic"
+                  Component={CourseLB}
+                ></Route>
+                <Route exact path="/learn-french" Component={CourseFR}></Route>
+                <Route exact path="/learn-english" Component={CourseEN}></Route>
 
-                  <Route exact path="/contact" Component={ContactUs}></Route>
+                <Route exact path="/contact" Component={ContactUs}></Route>
+                <Route
+                  exact
+                  path="/scholarships"
+                  Component={Scholarships}
+                ></Route>
+
+                <Route exact path="/profil" element={<UserRoute />}>
+                  <Route exact path="/profil" Component={Profile}></Route>
+                </Route>
+
+                <Route exact path="/subscription" element={<UserRoute />}>
                   <Route
                     exact
-                    path="/scholarships"
-                    Component={Scholarships}
+                    path="/subscription"
+                    Component={SubscriptionResult}
                   ></Route>
+                </Route>
 
-                  <Route exact path="/profil" element={<UserRoute />}>
-                    <Route exact path="/profil" Component={Profile}></Route>
-                  </Route>
+                <Route exact path="/payment-result" element={<UserRoute />}>
+                  <Route
+                    exact
+                    path="/payment-result"
+                    Component={PaymentResult}
+                  ></Route>
+                </Route>
 
-                  <Route exact path="/subscription" element={<UserRoute />}>
-                    <Route
-                      exact
-                      path="/subscription"
-                      Component={SubscriptionResult}
-                    ></Route>
-                  </Route>
-
-                  <Route exact path="/payment-result" element={<UserRoute />}>
-                    <Route
-                      exact
-                      path="/payment-result"
-                      Component={PaymentResult}
-                    ></Route>
-                  </Route>
-
-                  <Route exact path="/admin-dashboard" element={<AdminRoute />}>
-                    <Route
-                      exact
-                      path="/admin-dashboard"
-                      Component={AdminView}
-                    ></Route>
-                  </Route>
-                </Routes>
-              </Layout>
-            </Space>
-          </HelmetProvider>
-        </BrowserRouter>
-      </Elements>
+                <Route exact path="/admin-dashboard" element={<AdminRoute />}>
+                  <Route
+                    exact
+                    path="/admin-dashboard"
+                    Component={AdminView}
+                  ></Route>
+                </Route>
+              </Routes>
+            </Layout>
+          </Space>
+        </HelmetProvider>
+      </BrowserRouter>
     </Provider>
   );
 }
