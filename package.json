@@ -1,6 +1,6 @@
 {
   "name": "tm-website",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "TaaMarbouta ",
   "main": "server.js",
   "scripts": {
