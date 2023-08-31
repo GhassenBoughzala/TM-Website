@@ -8,7 +8,6 @@ import TextArea from "antd/es/input/TextArea";
 import { connect } from "react-redux";
 import { sendContact } from "../redux/user/userActions";
 import { motion } from "framer-motion";
-import Logo from "../assets/images/logo_footer.png";
 
 const { Content } = Layout;
 export const ContactUs = ({ ...props }) => {
@@ -55,9 +54,11 @@ export const ContactUs = ({ ...props }) => {
             >
               <div className="text-center justify-content-center">
                 <img
-                  src={Logo}
+                  src="/images/logo_footer.png"
+                  width={"100%"}
+                  height={"auto"}
                   alt="TaaMarbouta"
-                  style={{ width: "10%" }}
+                  style={{ width: "8%" }}
                   className="mb-3"
                 />
                 <Form

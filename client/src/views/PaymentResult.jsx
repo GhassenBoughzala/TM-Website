@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { LoadingOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import TM from "../assets/images/TM.png";
 import axios from "axios";
 
 export const SubscriptionResult = ({ ...props }) => {
@@ -51,9 +50,10 @@ export const SubscriptionResult = ({ ...props }) => {
             <>
               <div className="my-3 text-center">
                 <img
+                  src="/images/TM.png"
+                  height={"auto"}
                   width={300}
                   className="mx-auto d-block"
-                  src={TM}
                   alt="Quality Team"
                 />
               </div>

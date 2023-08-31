@@ -9,6 +9,7 @@ import Work from "../components/Modals/Work";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
+import { imagesListH, imagesListW } from "../helpers/Constants";
 
 const { Content } = Layout;
 export const StudentLife = () => {
@@ -55,11 +56,6 @@ export const StudentLife = () => {
       desc: <FontAwesomeIcon icon="fa-solid fa-atom" />,
     },
   ];
-
-  const imagesW = require.context("../assets/images/student/Course/W", true);
-  const imagesListW = imagesW.keys().map((image) => imagesW(image));
-  const imagesH = require.context("../assets/images/student/Course/H", true);
-  const imagesListH = imagesH.keys().map((image) => imagesH(image));
 
   const [ClassesModal, setClassesModal] = useState(false);
   const [AccModal, setAccModal] = useState(false);

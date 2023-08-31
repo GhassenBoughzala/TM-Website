@@ -1,15 +1,10 @@
 import React from "react";
 import { Carousel, Image } from "antd";
 import { useTranslation } from "react-i18next";
+import { imagesListTNH, imagesListTNW } from "../../helpers/Constants";
 
 export const LivingInTunis = (props) => {
   const { t } = useTranslation();
-  const images = require.context("../../assets/images/student/Tunis/H", true);
-  const imagesList = images.keys().map((image) => images(image));
-
-  const imagesW = require.context("../../assets/images/student/Tunis/W", true);
-  const imagesListW = imagesW.keys().map((image) => imagesW(image));
-
   return (
     <div className="row">
       <h3 className="blue-text">Living in Tunis</h3>
@@ -22,8 +17,14 @@ export const LivingInTunis = (props) => {
         <p>{t("ST-LV6")}</p>
       </div>
       <div className="mb-3 col-lg-5 col-md-12 col-sm-12 col-xs-12">
-        <Carousel autoplay speed={1500} slidesToShow={1} dots={false} className="mb-3">
-          {imagesListW.map((i, index) => {
+        <Carousel
+          autoplay
+          speed={1500}
+          slidesToShow={1}
+          dots={false}
+          className="mb-3"
+        >
+          {imagesListTNH.map((i, index) => {
             return (
               <div className="px-3" key={index}>
                 <Image src={i} alt="Taa Marbouta" className="rounded" />
@@ -32,7 +33,7 @@ export const LivingInTunis = (props) => {
           })}
         </Carousel>
         <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
-          {imagesList.map((i, index) => {
+          {imagesListTNW.map((i, index) => {
             return (
               <div className="px-3" key={index}>
                 <Image src={i} alt="Taa Marbouta" className="rounded" />

@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
-import Art from "../assets/images/Artboard-5-100.jpg";
-import Logo from "../assets/images/logo_footer.png";
 import { register } from "../redux/auth/authActions";
 import { Layout, Button, Form, Input, Select, Checkbox } from "antd";
 import { connect } from "react-redux";
@@ -141,7 +139,9 @@ export const Register = ({ ...props }) => {
               <div className="card cascading-right">
                 <div className="card-body p-5 shadow-5 text-center mb-5">
                   <img
-                    src={Logo}
+                    src="/images/logo_footer.png"
+                    width={"100%"}
+                    height={"auto"}
                     alt="TaaMarbouta"
                     style={{ width: "12%" }}
                     className="mb-3"
@@ -319,9 +319,14 @@ export const Register = ({ ...props }) => {
                 </div>
               </div>
             </div>
-
             <div className="col-lg-6 mb-5 mb-lg-0">
-              <img src={Art} className="w-100 rounded-4 shadow-4" alt="" />
+              <img
+                src="/images/Artboard-5-100.jpg"
+                width={"100%"}
+                height={"auto"}
+                className="w-100 rounded-4 shadow-4"
+                alt="board"
+              />
             </div>
           </div>
         </motion.div>

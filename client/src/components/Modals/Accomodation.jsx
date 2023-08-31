@@ -1,21 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Carousel, Image } from "antd";
+import { image1List, image2List } from "../../helpers/Constants";
 
 export const Accommodation = () => {
   const { t } = useTranslation();
-  const images_1 = require.context(
-    "../../assets/images/student/Accommodation/1",
-    true
-  );
-
-  const images_2 = require.context(
-    "../../assets/images/student/Accommodation/2",
-    true
-  );
-  const image1List = images_1.keys().map((image) => images_1(image));
-  const image2List = images_2.keys().map((image) => images_2(image));
-
   return (
     <div className="row">
       <h3 className="blue-text">Accommodation</h3>
@@ -32,7 +21,13 @@ export const Accommodation = () => {
           {image2List.map((i, index) => {
             return (
               <div className="px-3" key={index}>
-                <Image src={i} alt="Taa Marbouta" className="rounded" />
+                <Image
+                  alt="Taa Marbouta"
+                  className="rounded"
+                  src={i}
+                  width={"100%"}
+                  height={"auto"}
+                />
               </div>
             );
           })}
@@ -42,7 +37,13 @@ export const Accommodation = () => {
           {image1List.map((i, index) => {
             return (
               <div className="px-3" key={index}>
-                <Image src={i} alt="Taa Marbouta" className="rounded" />
+                <Image
+                  src={i}
+                  alt="Taa Marbouta"
+                  className="rounded"
+                  width={"100%"}
+                  height={"auto"}
+                />
               </div>
             );
           })}

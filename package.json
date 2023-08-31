@@ -1,6 +1,6 @@
 {
   "name": "tm-website",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "TaaMarbouta ",
   "main": "server.js",
   "scripts": {
@@ -36,6 +36,7 @@
     "express": "^4.17.1",
     "express-jwt": "^8.4.1",
     "express-session": "^1.17.2",
+    "express-static-gzip": "^2.1.7",
     "express-validator": "^6.14.0",
     "formidable": "^2.0.1",
     "gravatar": "^1.8.2",

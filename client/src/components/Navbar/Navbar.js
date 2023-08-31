@@ -3,7 +3,6 @@ import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
 import { Drawer, Button } from "antd";
 import { Link, Navigate } from "react-router-dom";
-import Logo from "../../assets/images/logo_footer.png";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -35,7 +34,13 @@ const Navbar = () => {
     <nav className="align header_one navbar">
       <div className="logo">
         <Link to="/">
-          <img src={Logo} alt="logo" className="logo-header" />
+          <img
+            alt="logo"
+            className="logo-header"
+            src="/images/logo_footer.png"
+            width={"100%"}
+            height={"auto"}
+          />
         </Link>
       </div>
       <div className="navbar-menu">

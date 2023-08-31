@@ -10,6 +10,7 @@ const courseRoute = require("./controller/courses.controller");
 const userRoute = require("./controller/user.controller");
 const subsRoute = require("./controller/subscription.controller");
 const contactRoute = require("./controller/contact.controller");
+var expressStaticGzip = require("express-static-gzip");
 
 connectDB();
 
@@ -31,6 +32,7 @@ app.use(function (req, res, next) {
     next();
   }
 });
+
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -59,7 +61,12 @@ if (process.env.NODE_ENV === "development") {
 }
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(
+    expressStaticGzip(path.join(__dirname, "client/build"), {
+      enableBrotli: true,
+    })
+  );
+  //app.use(express.static(path.join(__dirname, "client/build")));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });

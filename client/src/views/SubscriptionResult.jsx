@@ -6,13 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import TM from "../assets/images/TM.png";
 import { Helmet } from "react-helmet-async";
 
 export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
   const { t } = useTranslation();
-
 
   return (
     <div className=" container-fluid">
@@ -45,10 +43,11 @@ export const SubscriptionResult = ({ ...props }) => {
             <>
               <div className="my-3 text-center">
                 <img
-                  width={300}
                   className="mx-auto d-block"
-                  src={TM}
                   alt="Quality Team"
+                  src="/images/TM.png"
+                  width={300}
+                  height={"auto"}
                 />
               </div>
               <Result

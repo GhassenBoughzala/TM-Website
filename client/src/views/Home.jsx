@@ -3,18 +3,8 @@ import { Button, Col, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-
 import Footer from "../components/Footer";
 import Partners from "../components/Carousel";
-import HeaderHome from "../assets/images/header_home.png";
-import Fresh from "../assets/images/french.png";
-import Land from "../assets/images/landscape.png";
-import Ev from "../assets/images/evening_classes.png";
-import Cul from "../assets/images/culture-1.png";
-import Ex from "../assets/images/experience-1.png";
-import BG1 from "../assets/images/hbg-1.png";
-import BG2 from "../assets/images/hbg-2.png";
-import BG3 from "../assets/images/hbg-3.png";
 import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
 const { Content } = Layout;
@@ -55,9 +45,27 @@ export const Home = () => {
               dots={false}
               fade={true}
             >
-              <img src={BG1} alt="Taa Marbouta" className="h-50" />
-              <img src={BG2} alt="Taa Marbouta" className="h-50" />
-              <img src={BG3} alt="Taa Marbouta" className="h-50" />
+              <img
+                src="/images/hbg-1.png"
+                alt="Taa Marbouta"
+                className="h-50"
+                width={"100%"}
+                height={"auto"}
+              />
+              <img
+                src="/images/hbg-2.png"
+                alt="Taa Marbouta"
+                className="h-50"
+                width={"100%"}
+                height={"auto"}
+              />
+              <img
+                src="/images/hbg-3.png"
+                alt="Taa Marbouta"
+                className="h-50"
+                width={"100%"}
+                height={"auto"}
+              />
             </Carousel>
             <div className="card-img-overlay justify-content-center overflow-x-hidden overflow-y-scroll">
               <div className="container my-5">
@@ -67,16 +75,21 @@ export const Home = () => {
                       <h1 className="averiaseriflibre_bold blue-text">
                         Taa Marbouta
                       </h1>
-                      <h3 className="averiaseriflibre_bold mb-4">
+                      <h2 className="averiaseriflibre_bold mb-4">
                         {t("LanguageCourses")}
-                      </h3>
+                      </h2>
                       <div className="parag_style">
                         <p className="text-dark">{t("HomeP1")}</p>
                       </div>
                     </div>
                   </div>
                   <div className="col col-lg-7 col-md-7 col-sm-6 col-xs-6">
-                    <img src={HeaderHome} alt="Taa Marbouta" />
+                    <img
+                      src="/images/header_home.png"
+                      alt="Taa Marbouta"
+                      width={"100%"}
+                      height={"auto"}
+                    />
                   </div>
                 </div>
               </div>
@@ -123,7 +136,13 @@ export const Home = () => {
                 </div>
               </Col>
               <Col span={8}>
-                <img alt="example" src={Fresh} className="w-100" />
+                <img
+                  alt="example"
+                  src="/images/french.png"
+                  width={"100%"}
+                  height={"auto"}
+                  className="w-100"
+                />
               </Col>
             </div>
 
@@ -161,41 +180,50 @@ export const Home = () => {
               >
                 <h2 className="title title_center">{t("HomeWhy")}</h2>
                 <div className="card bg-light h-auto border-0 overflow-x-hidden overflow-y-scroll">
-                  <img className="card-img" alt="example" src={Land} />
+                  <img
+                    className="card-img"
+                    alt="example"
+                    src="/images/landscape.png"
+                    width={170}
+                    height={"auto"}
+                  />
                   <div className="card-img-overlay">
                     <div className="row m-3 display-flex">
                       <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
                         <img
                           width={170}
+                          height={"auto"}
                           className=" mx-auto d-block"
-                          src={Ev}
                           alt="Quality Team"
+                          src="/images/evening_classes.png"
                         />
-                        <h4 className="text-center blue-text">
+                        <h3 className="text-center blue-text">
                           {t("HomeTeam")}
-                        </h4>
+                        </h3>
                       </div>
                       <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
                         <img
-                          width={170}
                           className="mx-auto d-block"
-                          src={Cul}
                           alt="Quality Team"
+                          src="/images/culture-1.png"
+                          width={170}
+                          height={"auto"}
                         />
-                        <h4 className="text-center blue-text">
+                        <h3 className="text-center blue-text">
                           {t("HomeCul")}
-                        </h4>
+                        </h3>
                       </div>
                       <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
                         <img
                           width={170}
+                          height={"auto"}
                           className="mx-auto d-block"
-                          src={Ex}
+                          src="/images/experience-1.png"
                           alt="Quality Team"
                         />
-                        <h4 className="text-center blue-text">
+                        <h3 className="text-center blue-text">
                           {t("HomeWork")}
-                        </h4>
+                        </h3>
                       </div>
                     </div>
                   </div>
