@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Layout, Carousel, Card, Avatar, Rate } from "antd";
-import TM from "../assets/images/logo_footer.png";
-import A1 from "../assets/images/about-1.jpeg";
-import Land from "../assets/images/landscape.png";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
@@ -69,8 +66,20 @@ export const About = () => {
 
                 <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mb-5">
                   <Carousel autoplay speed={1000} slidesToShow={1} dots={false}>
-                    <img src={TM} alt="About0" className="w-25" />
-                    <img src={A1} alt="About1" className="rounded w-75" />
+                    <img
+                      src="/images/logo_footer.png"
+                      width={"100%"}
+                      height={"auto"}
+                      alt="About0"
+                      className="w-25"
+                    />
+                    <img
+                      src="/images/about-1.jpeg"
+                      width={"100%"}
+                      height={"auto"}
+                      alt="About00"
+                      className="w-75"
+                    />
                   </Carousel>
                 </div>
               </div>
@@ -191,7 +200,13 @@ export const About = () => {
                   <p>{t("AboutP7")}</p>
                 </div>
                 <div className="card bg-light h-auto border-0 overflow-y-scroll overflow-x-hidden">
-                  <img className="card-img" alt="example" src={Land} />
+                  <img
+                    className="card-img"
+                    alt="example"
+                    src="/images/landscape.png"
+                    width={"100%"}
+                    height={"auto"}
+                  />
                   <div className="card-img-overlay">
                     <div className="row m-3 display-flex">
                       <div className="d-block col-lg-4 col-md-4 col-sm-4 col-xs-4">

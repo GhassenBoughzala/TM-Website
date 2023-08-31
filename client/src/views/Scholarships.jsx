@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
-import SCO from "../assets/images/sco.jpeg";
 import { Layout } from "antd";
 
 const { Content } = Layout;
@@ -93,7 +92,13 @@ export const Scholarships = () => {
                 </div>
               </div>
               <div className="mb-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                <img alt="example" src={SCO} className="w-100 rounded my-5" />
+                <img
+                  alt="example"
+                  src="/images/sco.jpeg"
+                  width={"100%"}
+                  height={"auto"}
+                  className="w-100 rounded my-5"
+                />
               </div>
             </div>
           </div>

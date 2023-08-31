@@ -101,7 +101,7 @@ export const WorkDesc = [
 export const countryList = Object.entries(countries).map(([code, country]) => ({
   label: `${country.emoji}   ${country.name}`,
   value: country.name,
-  code: code
+  code: code,
 }));
 
 export const currencies = [
@@ -125,6 +125,58 @@ export const currencies = [
     label: "CAD",
     code: " C $ ",
   },
+];
+
+export const imagesListW = [
+  "/images/student/Course/W/w1.jpeg",
+  "/images/student/Course/W/w2.jpeg",
+  "/images/student/Course/W/w3.jpeg",
+  "/images/student/Course/W/w4.jpeg",
+  "/images/student/Course/W/w5.jpeg",
+  "/images/student/Course/W/w6.jpeg",
+  "/images/student/Course/W/w7.jpeg",
+  "/images/student/Course/W/w8.jpeg",
+  "/images/student/Course/W/w9.jpeg",
+  "/images/student/Course/W/w10.jpeg",
+  "/images/student/Course/W/w11.jpeg",
+  "/images/student/Course/W/w12.jpeg",
+  "/images/student/Course/W/w13.jpeg",
+  "/images/student/Course/W/w14.jpeg",
+  "/images/student/Course/W/w15.jpeg",
+  "/images/student/Course/W/w16.jpeg",
+];
+export const imagesListH = [
+  "/images/student/Course/H/h1.jpeg",
+  "/images/student/Course/H/h2.jpeg",
+  "/images/student/Course/H/h3.jpeg",
+  "/images/student/Course/H/h4.jpeg",
+  "/images/student/Course/H/h5.jpeg",
+  "/images/student/Course/H/h6.jpeg",
+  "/images/student/Course/H/h7.jpeg",
+  "/images/student/Course/H/h8.jpeg",
+  "/images/student/Course/H/h9.jpeg",
+];
+export const imagesListTNW = [
+  "/images/student/Tunis/W/wtn1.jpeg",
+  "/images/student/Tunis/W/wtn2.jpeg",
+  "/images/student/Tunis/W/wtn3.jpeg",
+];
+export const imagesListTNH = [
+  "/images/student/Tunis/H/htn1.jpeg",
+  "/images/student/Tunis/H/htn2.jpeg",
+  "/images/student/Tunis/H/htn3.jpeg",
+];
+
+export const image1List = [
+  "/images/student/Accommodation/1/a4.jpeg",
+  "/images/student/Accommodation/1/a6.jpeg",
+  "/images/student/Accommodation/1/a11.jpeg",
+  "/images/student/Accommodation/1/a12.jpeg",
+];
+export const image2List = [
+  "/images/student/Accommodation/2/a3.jpeg",
+  "/images/student/Accommodation/2/a5.jpeg",
+  "/images/student/Accommodation/2/a8.jpeg",
 ];
 
 /* export const WorkDesc = [

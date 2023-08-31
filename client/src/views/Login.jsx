@@ -8,8 +8,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 
-import Art from "../assets/images/Artboard-4-100.jpg";
-import Logo from "../assets/images/logo_footer.png";
 import { login } from "../redux/auth/authActions";
 import usePrevious from "../helpers/usePrevious";
 import { Helmet } from "react-helmet-async";
@@ -67,7 +65,9 @@ export const Login = ({ ...props }) => {
               <div className="card cascading-right">
                 <div className="card-body p-5 shadow-5 text-center">
                   <img
-                    src={Logo}
+                    src="/images/logo_footer.png"
+                    width={"100%"}
+                    height={"auto"}
                     alt="TaaMarbouta"
                     style={{ width: "12%" }}
                     className="mb-3"
@@ -163,7 +163,13 @@ export const Login = ({ ...props }) => {
             </div>
 
             <div className="col-lg-6 mb-5 mb-lg-0">
-              <img src={Art} className="w-100 rounded-4 shadow-4" alt="" />
+              <img
+                src="/images/Artboard-5-100.jpg"
+                width={"100%"}
+                height={"auto"}
+                className="w-100 rounded-4 shadow-4"
+                alt="board"
+              />
             </div>
           </div>
         </motion.div>

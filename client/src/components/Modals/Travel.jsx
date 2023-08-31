@@ -4,8 +4,6 @@ import { useTranslation } from "react-i18next";
 
 export const Travel = () => {
   const { t } = useTranslation();
-  const images = require.context("../../assets/images/student/Travel", true);
-  const imagesList = images.keys().map((image) => images(image));
   return (
     <div className="row">
       <h3 className="blue-text">Travel</h3>
@@ -18,13 +16,33 @@ export const Travel = () => {
       </div>
       <div className="mb-3 col-lg-5 col-md-12 col-sm-12 col-xs-12">
         <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
-          {imagesList.map((i, index) => {
-            return (
-              <div className="px-3" key={index}>
-                <Image src={i} alt="Taa Marbouta" className="rounded" />
-              </div>
-            );
-          })}
+          <div className="px-3">
+            <Image
+              src="/images/student/Travel/Carthage1.jpeg"
+              width={"100%"}
+              height={"auto"}
+              alt="Taa Marbouta"
+              className="rounded"
+            />
+          </div>{" "}
+          <div className="px-3">
+            <Image
+              src="/images/student/Travel/Carthage2.jpeg"
+              width={"100%"}
+              height={"auto"}
+              alt="Taa Marbouta"
+              className="rounded"
+            />
+          </div>{" "}
+          <div className="px-3">
+            <Image
+              src="/images/student/Travel/View.jpeg"
+              width={"100%"}
+              height={"auto"}
+              alt="Taa Marbouta"
+              className="rounded"
+            />
+          </div>
         </Carousel>
       </div>
     </div>
