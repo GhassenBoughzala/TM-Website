@@ -10,6 +10,7 @@ const courseRoute = require("./controller/courses.controller");
 const userRoute = require("./controller/user.controller");
 const subsRoute = require("./controller/subscription.controller");
 const contactRoute = require("./controller/contact.controller");
+var expressStaticGzip = require("express-static-gzip");
 
 connectDB();
 
@@ -62,10 +63,10 @@ if (process.env.NODE_ENV === "development") {
 if (process.env.NODE_ENV === "production") {
   app.use(
     expressStaticGzip(path.join(__dirname, "client/build"), {
-      enableBrotli: true, // only if you have brotli files too
+      enableBrotli: true,
     })
   );
-  app.use(express.static(path.join(__dirname, "client/build")));
+  //app.use(express.static(path.join(__dirname, "client/build")));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
