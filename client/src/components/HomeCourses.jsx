@@ -16,9 +16,9 @@ export const HomeCourses = () => {
           <img
             className="course-card-img-ar embed-responsive-item"
             alt="example1"
-            src="/images/pxfuel.jpg"
+            src="/images/pxfuel.webp"
             width={"100%"}
-            height={"auto"}
+            height={"100%"}
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center blue-text mb-3">
@@ -40,9 +40,9 @@ export const HomeCourses = () => {
           <img
             className="course-card-img-ar embed-responsive-item"
             alt="example2"
-            src="/images/pxfuel.jpg"
+            src="/images/pxfuel.webp"
             width={"100%"}
-            height={"auto"}
+            height={"100%"}
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center yellow-text mb-5">
@@ -64,9 +64,9 @@ export const HomeCourses = () => {
           <img
             className="course-card-img-ar embed-responsive-item"
             alt="example2"
-            src="/images/pxfuel.jpg"
+            src="/images/pxfuel.webp"
             width={"100%"}
-            height={"auto"}
+            height={"100%"}
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="montserrat_bold text-center blue-text mb-5">

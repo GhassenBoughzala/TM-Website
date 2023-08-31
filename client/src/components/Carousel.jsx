@@ -30,7 +30,7 @@ const CarouselAntd = () => {
         <SwiperSlide>
           <img
             alt="Taa Marbouta"
-            src="/images/AMES-LOGO-V4.png"
+            src="/images/AMES-LOGO-V4.webp"
             width={"50%"}
             height={"auto"}
             style={{ width: "50%" }}
@@ -38,7 +38,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/mdinti.png"
+            src="/images/mdinti.webp"
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -47,7 +47,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/Mnara.png"
+            src="/images/Mnara.webp"
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -56,7 +56,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/Nafsa.jpeg"
+            src="/images/Nafsa.webp"
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -65,7 +65,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/uni.png"
+            src="/images/uni.webp"
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -74,7 +74,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/bew.png"
+            src="/images/bew.webp"
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
