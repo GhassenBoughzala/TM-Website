@@ -321,7 +321,7 @@ export const Register = ({ ...props }) => {
             </div>
             <div className="col-lg-6 mb-5 mb-lg-0">
               <img
-                src="/images/Artboard-5-100.jpg"
+                src="/images/Artboard-5-100.webp"
                 width={"100%"}
                 height={"auto"}
                 className="w-100 rounded-4 shadow-4"

@@ -2,42 +2,44 @@
 /* eslint-disable no-const-assign */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import React, { useEffect } from "react";
-import "./App.css";
+import React, { useEffect, lazy, Suspense } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import Home from "./views/Home";
-import Navbar from "./components/Navbar/Navbar";
 import { Layout, Space } from "antd";
 import { Provider } from "react-redux";
 import { HelmetProvider } from "react-helmet-async";
-import store from "./redux/store";
-import Login from "./views/Login";
-import Register from "./views/Register";
-import PageNotFound from "./views/Page404";
-import Courses from "./views/Courses";
 import setAuthToken from "./helpers/authToken";
 import { refreshJwt, verifUser } from "./redux/auth/authActions";
 import decode from "jwt-decode";
+import store from "./redux/store";
 
 import UserRoute from "./helpers/routes/UserRoute";
 import AdminRoute from "./helpers/routes/AdminRoute";
+
 import Profile from "./views/Profile";
 import AdminView from "./views/AdminView";
-import StudentLife from "./views/StudentLife";
-import About from "./views/About";
-import CourseFR from "./views/courses/CourseFR";
-import CourseTN from "./views/courses/CourseTN";
-import CourseLB from "./views/courses/CourseLB";
-import CourseAR from "./views/courses/CourseAR";
-import CourseEN from "./views/courses/CourseEN";
 import SubscriptionResult from "./views/SubscriptionResult";
 import PaymentResult from "./views/PaymentResult";
-import ContactUs from "./views/ContactUs";
 import ScrollToTop from "./helpers/scrollToTop";
-import Scholarships from "./views/Scholarships";
+import Navbar from "./components/Navbar/Navbar";
+import "./App.css";
+
+const ContactUs = lazy(() => import('./views/ContactUs'));
+const Home = lazy(() => import('./views/Home'));
+const PageNotFound = lazy(() => import('./views/Page404'));
+const StudentLife = lazy(() => import('./views/StudentLife'));
+const About = lazy(() => import('./views/About'));
+const Scholarships = lazy(() => import('./views/Scholarships'));
+const Login = lazy(() => import('./views/Login'));
+const Register = lazy(() => import('./views/Register'));
+const Courses = lazy(() => import('./views/Courses'));
+const CourseFR = lazy(() => import('./views/courses/CourseFR'));
+const CourseTN = lazy(() => import('./views/courses/CourseTN'));
+const CourseLB = lazy(() => import('./views/courses/CourseLB'));
+const CourseAR = lazy(() => import('./views/courses/CourseAR'));
+const CourseEN = lazy(() => import('./views/courses/CourseEN'));
 
 function App() {
   useEffect(() => {
@@ -88,70 +90,40 @@ function App() {
             <Layout style={{ backgroundColor: "white" }}>
               <Navbar />
               <Routes>
-                <Route exact path="/" Component={Home}></Route>
-                <Route exact path="*" Component={PageNotFound}></Route>
-                <Route exact path="/login" Component={Login}></Route>
-                <Route exact path="/register" Component={Register}></Route>
-                <Route
-                  exact
-                  path="/student-life"
-                  Component={StudentLife}
-                ></Route>
-                <Route exact path="/about" Component={About}></Route>
 
-                <Route
-                  exact
-                  path="/language-courses"
-                  Component={Courses}
-                ></Route>
-                <Route exact path="/learn-arabic" Component={CourseAR}></Route>
-                <Route
-                  exact
-                  path="/learn-tunisian-arabic"
-                  Component={CourseTN}
-                ></Route>
-                <Route
-                  exact
-                  path="/learn-libyan-arabic"
-                  Component={CourseLB}
-                ></Route>
-                <Route exact path="/learn-french" Component={CourseFR}></Route>
-                <Route exact path="/learn-english" Component={CourseEN}></Route>
+                <Route exact path="/" element={<Suspense fallback={<>...</>}> <Home/></Suspense>}/>
+                <Route exact path="*" element={<Suspense fallback={<>...</>}> <PageNotFound/></Suspense>}/>
+                <Route exact path="/student-life" element={<Suspense fallback={<>...</>}> <StudentLife/></Suspense>}/>
+                <Route exact path="/about" element={<Suspense fallback={<>...</>}> <About/></Suspense>}/>
+                <Route exact path="/contact" element={<Suspense fallback={<>...</>}> <ContactUs/></Suspense>}/>
+                <Route exact path="/scholarships" element={<Suspense fallback={<>...</>}> <Scholarships/></Suspense>}/>
 
-                <Route exact path="/contact" Component={ContactUs}></Route>
-                <Route
-                  exact
-                  path="/scholarships"
-                  Component={Scholarships}
-                ></Route>
+                <Route exact path="/login" element={<Suspense fallback={<>...</>}> <Login/></Suspense>}/>
+                <Route exact path="/register" element={<Suspense fallback={<>...</>}> <Register/></Suspense>}/>
 
+                <Route exact path="/language-courses" element={<Suspense fallback={<>...</>}> <Courses/></Suspense>}/>
+                <Route exact path="/learn-arabic" element={<Suspense fallback={<>...</>}> <CourseAR/></Suspense>}/>
+                <Route exact path="/learn-tunisian-arabic" element={<Suspense fallback={<>...</>}> <CourseTN/></Suspense>}/>
+                <Route exact path="/learn-libyan-arabic" element={<Suspense fallback={<>...</>}> <CourseLB/></Suspense>}/>
+                <Route exact path="/learn-french" element={<Suspense fallback={<>...</>}> <CourseFR/></Suspense>}/>
+                <Route exact path="/learn-english" element={<Suspense fallback={<>...</>}> <CourseEN/></Suspense>}/>
+                
+                {/* User Routes */}
                 <Route exact path="/profil" element={<UserRoute />}>
                   <Route exact path="/profil" Component={Profile}></Route>
                 </Route>
-
                 <Route exact path="/subscription" element={<UserRoute />}>
-                  <Route
-                    exact
-                    path="/subscription"
-                    Component={SubscriptionResult}
-                  ></Route>
+                  <Route exact path="/subscription" Component={SubscriptionResult}></Route>
                 </Route>
-
                 <Route exact path="/payment-result" element={<UserRoute />}>
-                  <Route
-                    exact
-                    path="/payment-result"
-                    Component={PaymentResult}
-                  ></Route>
+                  <Route exact path="/payment-result" Component={PaymentResult}></Route>
                 </Route>
 
+                {/* Admin Routes */}
                 <Route exact path="/admin-dashboard" element={<AdminRoute />}>
-                  <Route
-                    exact
-                    path="/admin-dashboard"
-                    Component={AdminView}
-                  ></Route>
+                  <Route exact path="/admin-dashboard" Component={AdminView}></Route>
                 </Route>
+
               </Routes>
             </Layout>
           </Space>
