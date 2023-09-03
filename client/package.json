@@ -34,6 +34,7 @@
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-http-backend": "^2.2.1",
     "moment": "^2.29.4",
+    "moment-locales-webpack-plugin": "^1.2.0",
     "react": "^18.2.0",
     "react-currency-input-field": "^3.6.11",
     "react-dom": "^18.2.0",
@@ -57,7 +58,8 @@
     "@babel/eslint-parser": "7.22.5",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.22.5",
-    "@babel/preset-env": "7.22.5"
+    "@babel/preset-env": "7.22.5",
+    "terser-webpack-plugin": "^5.3.9"
   },
   "eslintConfig": {
     "extends": [
