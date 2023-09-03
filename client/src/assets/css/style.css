@@ -28,26 +28,6 @@
   font-family: "montserrat_regular", Fallback, sans-serif;
 }
 
-@font-face {
-  font-family: "montserrat_medium";
-  src: url("../fonts/Montserrat/Montserrat-Medium.ttf");
-  font-display: swap;
-}
-
-.montserrat_medium {
-  font-family: "montserrat_medium", Fallback, sans-serif;
-}
-
-@font-face {
-  font-family: "montserrat_bold";
-  src: url("../fonts/Montserrat/Montserrat-Bold.ttf");
-  font-display: swap;
-}
-
-.montserrat_bold {
-  font-family: "montserrat_bold", Fallback, sans-serif;
-}
-
 html,
 body,
 ul,
