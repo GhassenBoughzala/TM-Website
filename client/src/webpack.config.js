@@ -1,5 +1,16 @@
+const TerserPlugin = require("terser-webpack-plugin");
+
 module.exports = {
   mode: "production",
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      minSize: 10000,
+      maxSize: 250000,
+    },
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
   //...
   devServer: {
     client: {
