@@ -63,12 +63,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 if (process.env.NODE_ENV === "production") {
-  app.use(
-    expressStaticGzip(path.join(__dirname, "client/build"), {
-      enableBrotli: true,
-    })
-  );
-  //app.use(express.static(path.join(__dirname, "client/build")));
+  // serve static assets from the build folder
+  app.use(express.static(path.join(__dirname, "client/build")));
+  // serve index.html for all remaining routes
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });

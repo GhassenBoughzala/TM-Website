@@ -25,6 +25,7 @@ import PaymentResult from "./views/PaymentResult";
 import ScrollToTop from "./helpers/scrollToTop";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
+import Loader from "./components/Loader";
 
 const ContactUs = lazy(() => import('./views/ContactUs'));
 const Home = lazy(() => import('./views/Home'));
@@ -91,15 +92,15 @@ function App() {
               <Navbar />
               <Routes>
 
-                <Route exact path="/" element={<Suspense fallback={<>...</>}> <Home/></Suspense>}/>
-                <Route exact path="*" element={<Suspense fallback={<>...</>}> <PageNotFound/></Suspense>}/>
-                <Route exact path="/student-life" element={<Suspense fallback={<>...</>}> <StudentLife/></Suspense>}/>
-                <Route exact path="/about" element={<Suspense fallback={<>...</>}> <About/></Suspense>}/>
-                <Route exact path="/contact" element={<Suspense fallback={<>...</>}> <ContactUs/></Suspense>}/>
-                <Route exact path="/scholarships" element={<Suspense fallback={<>...</>}> <Scholarships/></Suspense>}/>
+                <Route exact path="/" element={<Suspense fallback={<Loader/>}> <Home/></Suspense>}/>
+                <Route exact path="*" element={<Suspense fallback={<Loader/>}> <PageNotFound/></Suspense>}/>
+                <Route exact path="/student-life" element={<Suspense fallback={<Loader/>}> <StudentLife/></Suspense>}/>
+                <Route exact path="/about" element={<Suspense fallback={<Loader/>}> <About/></Suspense>}/>
+                <Route exact path="/contact" element={<Suspense fallback={<Loader/>}> <ContactUs/></Suspense>}/>
+                <Route exact path="/scholarships" element={<Suspense fallback={<Loader/>}> <Scholarships/></Suspense>}/>
 
-                <Route exact path="/login" element={<Suspense fallback={<>...</>}> <Login/></Suspense>}/>
-                <Route exact path="/register" element={<Suspense fallback={<>...</>}> <Register/></Suspense>}/>
+                <Route exact path="/login" element={<Suspense fallback={<Loader/>}> <Login/></Suspense>}/>
+                <Route exact path="/register" element={<Suspense fallback={<Loader/>}> <Register/></Suspense>}/>
 
                 <Route exact path="/language-courses" element={<Suspense fallback={<>...</>}> <Courses/></Suspense>}/>
                 <Route exact path="/learn-arabic" element={<Suspense fallback={<>...</>}> <CourseAR/></Suspense>}/>
