@@ -21,7 +21,7 @@ export const HomeCourses = () => {
             height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="montserrat_bold text-center blue-text mb-3">
+            <h3 className="title text-center blue-text mb-3">
               {t("LearnAR")}
             </h3>
 
@@ -45,7 +45,7 @@ export const HomeCourses = () => {
             height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="montserrat_bold text-center yellow-text mb-5">
+            <h3 className="title text-center yellow-text mb-5">
               {t("LearnLB")}
             </h3>
 
@@ -69,7 +69,7 @@ export const HomeCourses = () => {
             height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="montserrat_bold text-center blue-text mb-5">
+            <h3 className="title text-center blue-text mb-5">
               {t("LearnTN")}
             </h3>
 
