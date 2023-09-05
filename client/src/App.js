@@ -24,7 +24,6 @@ import SubscriptionResult from "./views/SubscriptionResult";
 import PaymentResult from "./views/PaymentResult";
 import ScrollToTop from "./helpers/scrollToTop";
 import Navbar from "./components/Navbar/Navbar";
-import "./App.css";
 import Loader from "./components/Loader";
 
 const ContactUs = lazy(() => import('./views/ContactUs'));
