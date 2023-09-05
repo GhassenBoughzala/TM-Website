@@ -3,10 +3,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import React, { useEffect, lazy, Suspense } from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
 import { Layout, Space } from "antd";
 import { Provider } from "react-redux";
 import { HelmetProvider } from "react-helmet-async";
@@ -23,7 +19,6 @@ import AdminView from "./views/AdminView";
 import SubscriptionResult from "./views/SubscriptionResult";
 import PaymentResult from "./views/PaymentResult";
 import ScrollToTop from "./helpers/scrollToTop";
-import Navbar from "./components/Navbar/Navbar";
 import Loader from "./components/Loader";
 
 const ContactUs = lazy(() => import('./views/ContactUs'));
@@ -40,6 +35,7 @@ const CourseTN = lazy(() => import('./views/courses/CourseTN'));
 const CourseLB = lazy(() => import('./views/courses/CourseLB'));
 const CourseAR = lazy(() => import('./views/courses/CourseAR'));
 const CourseEN = lazy(() => import('./views/courses/CourseEN'));
+const Navbar = lazy(() => import('./components/Navbar/Navbar'));
 
 function App() {
   useEffect(() => {
@@ -88,9 +84,8 @@ function App() {
         <HelmetProvider>
           <Space direction="vertical" style={{ width: "100%" }}>
             <Layout style={{ backgroundColor: "white" }}>
-              <Navbar />
+              <Suspense fallback={<></>}> <Navbar/></Suspense>
               <Routes>
-
                 <Route exact path="/" element={<Suspense fallback={<Loader/>}> <Home/></Suspense>}/>
                 <Route exact path="*" element={<Suspense fallback={<Loader/>}> <PageNotFound/></Suspense>}/>
                 <Route exact path="/student-life" element={<Suspense fallback={<Loader/>}> <StudentLife/></Suspense>}/>
@@ -132,6 +127,4 @@ function App() {
     </Provider>
   );
 }
-
-library.add(fab, fas, far);
 export default App;

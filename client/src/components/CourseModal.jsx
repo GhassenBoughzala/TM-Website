@@ -2,14 +2,13 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Image, Empty, Carousel, Button, Modal, Form } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BookModal from "./BookModal";
 import shortid from "shortid";
 
@@ -128,18 +127,12 @@ export const CourseModal = ({ ...props }) => {
                   <Fragment key={shortid.generate() + index}>
                     <div className="row">
                       <span className="fs-6">
-                        <FontAwesomeIcon
-                          icon="fas fa-circle "
-                          style={{ fontSize: 8, marginBottom: 2 }}
-                        />
+                        <i className="bi bi-dot"></i>
                         <span className="mx-1">{p.priceDescription}</span>
                       </span>
                       {p.notes && p.notes !== null && (
                         <p className="mx-4 my-2 fs-6 text-muted">
-                          <FontAwesomeIcon
-                            icon="fas fa-info-circle"
-                            className="mx-1 blue-text"
-                          />
+                          <i className="bi bi-info-circle-fill mx-1"></i>
                           {p.notes}
                         </p>
                       )}
@@ -157,9 +150,9 @@ export const CourseModal = ({ ...props }) => {
                         <Fragment key={shortid.generate() + index}>
                           <p className="blue-text fs-6">
                             <b className="mx-1">
-                              {moment(s[0]).format("MMM Do")}
+                              {dayjs(s[0]).format("MMM D")}
                             </b>
-                            <b>- {moment(s[1]).format("MMM Do YYYY")}</b>
+                            <b>- {dayjs(s[1]).format("MMM D YYYY")}</b>
                           </p>
                         </Fragment>
                       );

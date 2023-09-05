@@ -26,13 +26,13 @@ import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 import PaymentForm from "../components/PaymentForm";
-import moment from "moment";
 import shortid from "shortid";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
+import dayjs from "dayjs";
 const { Content } = Layout;
-//const State = require("country-state-city").State;
+
 
 export const Profile = ({ ...props }) => {
   useEffect(() => {
@@ -112,7 +112,7 @@ export const Profile = ({ ...props }) => {
                     key={shortid.generate() + index}
                     className="blue-text mx-1"
                   >
-                    • {moment(se).format("MMM Do YYYY")}
+                    • {dayjs(se).format("MMM D YYYY")}
                   </span>
                 );
               })}
@@ -174,17 +174,6 @@ export const Profile = ({ ...props }) => {
     ),
   }));
 
-  //const [ciso, setCiso] = useState("");
-  /*   const cities = State.getStatesOfCountry(ciso);
-  const cityList = Object.entries(cities).map(([code, country]) => ({
-    label: country.name,
-    value: country.name,
-  })); 
-  const handleCountry = async (val, options) => {
-    setCiso(options.code);
-  };
-*/
-
   const [PK, setPK] = useState("");
   useEffect(() => {
     const getPK = async () => {
@@ -205,7 +194,7 @@ export const Profile = ({ ...props }) => {
   const stripePromise = useMemo(() => loadStripe(`${PK}`), [PK]);
 
   return (
-    <Elements stripe={stripePromise}>
+    <>
       <Content className="container-fluid">
         <div className="container my-5 ">
           <div className="row">
@@ -471,7 +460,7 @@ export const Profile = ({ ...props }) => {
             open={openModal}
             onCancel={handleCancel}
             width={600}
-            bodyStyle={{ height: "100%" }}
+            bodyStyle={{ height: "80%" }}
             footer={null}
           >
             {!props.loadingSubs ? (
@@ -486,14 +475,18 @@ export const Profile = ({ ...props }) => {
               </div>
             ) : (
               <>
-                <PaymentForm {...{ subObj, setOpenModal }} />
+                {openModal && (
+                  <Elements stripe={stripePromise}>
+                    <PaymentForm {...{ subObj, setOpenModal }} />
+                  </Elements>
+                )}
               </>
             )}
           </Modal>
         </div>
       </Content>
       <Footer />
-    </Elements>
+    </>
   );
 };
 

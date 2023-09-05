@@ -21,7 +21,7 @@ import {
 import usePrevious from "../../helpers/usePrevious";
 import { toast } from "react-toastify";
 import PaginationComponent from "../../helpers/pagination";
-import moment from "moment";
+import dayjs from "dayjs";
 import { updateSubProcess } from "../../redux/subs/subsActions";
 import shortid from "shortid";
 
@@ -180,7 +180,7 @@ export const UsersList = ({ ...props }) => {
                                   key={shortid.generate() + index}
                                   className="blue-text mx-1"
                                 >
-                                  • {moment(se).format("MMM Do YYYY")}
+                                  • {dayjs(se).format("MMM D YYYY")}
                                 </span>
                               );
                             })}
@@ -272,7 +272,7 @@ export const UsersList = ({ ...props }) => {
                     key={shortid.generate() + index}
                     className="blue-text mx-1"
                   >
-                    • {moment(se).format("MMM Do YYYY")}
+                    • {dayjs(se).format("MMM D YYYY")}
                   </span>
                 );
               })}

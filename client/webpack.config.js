@@ -51,6 +51,9 @@ const config = {
   },
   resolve: {
     extensions: [".js", ".jsx"],
+    alias: {
+      "react-is": path.resolve(__dirname, "./node_modules/react-is"),
+    },
   },
   optimization: {
     splitChunks: {
@@ -65,7 +68,6 @@ const config = {
     new CopyWebpackPlugin({
       patterns: [
         { from: "./public/images", to: "images" },
-        { from: "./src/assets/fonts", to: "fonts" },
         { from: "./public/favicon.ico", to: "" },
         { from: "./public/manifest.json", to: "" },
         { from: "./public/robots.txt", to: "" },
@@ -88,6 +90,18 @@ const config = {
     hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    compress: true,
+    port: 3000,
+    proxy: {
+      context: () => true,
+      target: "http://localhost:5500",
+      "changeOrigin" : true
+    },
   },
 };
 

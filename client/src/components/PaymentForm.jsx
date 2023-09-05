@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Button, Divider, Form } from "antd";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StatusMessages, { useMessages } from "../components/StatusMessages";
 import { currencies } from "../helpers/Constants";
 import { connect } from "react-redux";
@@ -112,33 +111,14 @@ export const PaymentForm = ({ ...props }) => {
         layout="vertical"
         size={" medium "}
         labelCol={{ span: 20 }}
-        style={{ height: 550 }}
+        style={{ height: 450 }}
       >
         <div className="row text-center">
           <h4 className=" blue-text my-4 mb-4">
-            {props.subObj.course[0].title} Invoice{" "}
+            {props.subObj.course[0].title} Invoice
           </h4>
           <div className="text-center mb-4">
-            <FontAwesomeIcon
-              icon="fa-brands fa-cc-visa"
-              fontSize={50}
-              className="blue-text"
-            />
-            <FontAwesomeIcon
-              icon="fa-brands fa-cc-mastercard"
-              fontSize={50}
-              className="mx-2 blue-text"
-            />
-            <FontAwesomeIcon
-              icon="fa-brands fa-cc-amex"
-              fontSize={50}
-              className="blue-text"
-            />
-            <FontAwesomeIcon
-              icon="fa-brands fa-cc-jcb"
-              fontSize={50}
-              className="mx-2 blue-text"
-            />
+            
           </div>
         </div>
 

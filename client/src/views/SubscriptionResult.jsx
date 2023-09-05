@@ -7,6 +7,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 
 export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
@@ -45,7 +46,7 @@ export const SubscriptionResult = ({ ...props }) => {
                 <img
                   className="mx-auto d-block"
                   alt="Quality Team"
-                  src="/images/TM.png"
+                  src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/TM.png`}
                   width={300}
                   height={"auto"}
                 />

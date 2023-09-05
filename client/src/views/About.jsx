@@ -3,8 +3,8 @@ import axios from "axios";
 import { Layout, Carousel, Card, Avatar, Rate } from "antd";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import moment from "moment";
 import {
   LoadingOutlined,
   MinusCircleOutlined,
@@ -13,8 +13,11 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Meta from "antd/es/card/Meta";
-import shortid from  "shortid";
+import shortid from "shortid";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
+import dayjs from "dayjs";
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 const { Content } = Layout;
 
@@ -44,17 +47,22 @@ export const About = () => {
 
   return (
     <>
-      <Content className="container-fluid">
-        <Helmet>
-          <title>About Taa Marbouta</title>
-          <meta
-            name="description"
-            content="Taa Marbouta is a language school based in Carthage,
+      <Helmet>
+        <title>About Taa Marbouta</title>
+        <meta
+          name="description"
+          content="Taa Marbouta is a language school based in Carthage,
           Tunis. We aim to better connect Tunisia with the world."
-          />
-          <link rel="canonical" href="/about" />
-        </Helmet>
-        <div className="container">
+        />
+        <link rel="canonical" href="/about" />
+      </Helmet>
+      <Content className="container-fluid">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="container"
+        >
           <div className="aboutus_page full_espace_padding">
             <div className="container-fluid">
               <h1 className="titre mt-5">{t("About")} Taa Marbouta</h1>
@@ -148,15 +156,14 @@ export const About = () => {
                                   />
                                 }
                                 title={re.reviewer_name}
-                                description={moment
-                                  .unix(re.published_at)
-                                  .fromNow()}
-                              />
-                              <Rate
-                                disabled
-                                defaultValue={re.rating}
-                                style={{ fontSize: 15 }}
-                                className="text-start"
+                                description={
+                                  <Rate
+                                    disabled
+                                    defaultValue={re.rating}
+                                    style={{ fontSize: 15 }}
+                                    className="text-start"
+                                  />
+                                }
                               />
 
                               <p className="text-start">
@@ -241,7 +248,7 @@ export const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Content>
       <Footer />
     </>

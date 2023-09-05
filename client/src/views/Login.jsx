@@ -165,7 +165,7 @@ export const Login = ({ ...props }) => {
 
             <div className="col-lg-6 mb-5 mb-lg-0">
               <img
-                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Artboard-4-100.jpeg`}
+                src="/images/Artboard-4-100.webp"
                 width={"100%"}
                 height={"auto"}
                 className="w-100 rounded-4 shadow-4"

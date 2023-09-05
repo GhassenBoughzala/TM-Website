@@ -9,11 +9,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import usePrevious from "../helpers/usePrevious";
-import {
-  cloudinaryBaseUrl,
-  countryList,
-  imageParams,
-} from "../helpers/Constants";
+import { cloudinaryBaseUrl, countryList, imageParams } from "../helpers/Constants";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 //const State = require("country-state-city").State;
@@ -325,7 +321,7 @@ export const Register = ({ ...props }) => {
             </div>
             <div className="col-lg-6 mb-5 mb-lg-0">
               <img
-                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Artboard-5-100.jpeg`}
+                src="/images/Artboard-5-100.webp"
                 width={"100%"}
                 height={"auto"}
                 className="w-100 rounded-4 shadow-4"
