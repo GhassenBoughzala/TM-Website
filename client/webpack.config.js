@@ -6,6 +6,7 @@ const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack
 const CompressionPlugin = require("compression-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
 const stylesHandler = isProduction
@@ -16,13 +17,14 @@ const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "js/[name].[contenthash].js",
-    chunkFilename: "chunks/[name].[chunkhash].js",
-    assetModuleFilename: "media/[name][hash][ext][query]",
+    publicPath: "",
+    filename: "[name].js",
+    chunkFilename: "[name].js",
+    //assetModuleFilename: "media/[name][hash][ext][query]",
   },
   externals: {
     externals: {
-      "react": "react",
+      react: "react",
       "react-dom": "react-dom",
       "react-router-dom": "react-router-dom",
       "react-router": "react-router",
@@ -54,25 +56,22 @@ const config = {
     splitChunks: {
       minSize: 10000,
       maxSize: 250000,
-      cacheGroups: {
-        vendors: {
-          test: /node_modules\/(?!antd\/).*/,
-          name: "vendors",
-          chunks: "all",
-        },
-        // This can be your own design library.
-        antd: {
-          test: /node_modules\/(antd\/).*/,
-          name: "antd",
-          chunks: "all",
-        },
-      },
     },
     runtimeChunk: {
       name: "manifest",
     },
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "./public/images", to: "images" },
+        { from: "./src/assets/fonts", to: "fonts" },
+        { from: "./public/favicon.ico", to: "" },
+        { from: "./public/manifest.json", to: "" },
+        { from: "./public/robots.txt", to: "" },
+        { from: "./public/sitemap.txt", to: "" },
+      ],
+    }),
     new DuplicatePackageCheckerPlugin(),
     new HtmlWebPackPlugin({
       template: "./public/index.html",
@@ -89,10 +88,6 @@ const config = {
     hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
-  },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: "./public",
   },
 };
 

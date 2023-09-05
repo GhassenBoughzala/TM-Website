@@ -12,6 +12,7 @@ import { login } from "../redux/auth/authActions";
 import usePrevious from "../helpers/usePrevious";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 const { Content } = Layout;
 
 export const Login = ({ ...props }) => {
@@ -65,7 +66,7 @@ export const Login = ({ ...props }) => {
               <div className="card cascading-right">
                 <div className="card-body p-5 shadow-5 text-center">
                   <img
-                    src="/images/logo_footer.png"
+                    src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/logo_footer.png`}
                     width={"100%"}
                     height={"auto"}
                     alt="TaaMarbouta"
@@ -164,7 +165,7 @@ export const Login = ({ ...props }) => {
 
             <div className="col-lg-6 mb-5 mb-lg-0">
               <img
-                src="/images/Artboard-4-100.webp"
+                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Artboard-4-100.jpeg`}
                 width={"100%"}
                 height={"auto"}
                 className="w-100 rounded-4 shadow-4"

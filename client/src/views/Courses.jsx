@@ -61,7 +61,7 @@ export const Courses = ({ ...props }) => {
           {props.isLoading ? (
             <>
               <div className="row">
-                {props.courses.map((course, index) => {
+                {props.courses?.map((course, index) => {
                   return (
                     <Fragment key={shortid.generate() + index}>
                       <motion.div
