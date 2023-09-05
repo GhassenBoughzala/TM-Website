@@ -164,7 +164,7 @@ export const StudentLife = () => {
                 <p>{t("STC-6")}</p>
               </div>
               <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12 text-center">
-                <Carousel autoplay speed={1500} slidesToShow={1} dots={false}>
+                <Carousel autoplay speed={1500} slidesToShow={1} dots={false} className="my-2">
                   {imagesListW.map((img, index) => {
                     return (
                       <Fragment key={shortid.generate() + index}>

@@ -14,6 +14,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Meta from "antd/es/card/Meta";
 import shortid from  "shortid";
+import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 
 const { Content } = Layout;
 
@@ -68,7 +69,7 @@ export const About = () => {
                 <div className="col col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mb-5">
                   <Carousel autoplay speed={1000} slidesToShow={1} dots={false}>
                     <img
-                      src="/images/logo_footer.png"
+                      src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/logo_footer.png`}
                       width={"100%"}
                       height={"auto"}
                       alt="About0"
@@ -79,7 +80,7 @@ export const About = () => {
                       width={"100%"}
                       height={"auto"}
                       alt="About00"
-                      className="w-75"
+                      className="w-75 rounded"
                     />
                   </Carousel>
                 </div>
@@ -204,7 +205,7 @@ export const About = () => {
                   <img
                     className="card-img"
                     alt="example"
-                    src="/images/landscape.png"
+                    src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
                     width={"100%"}
                     height={"auto"}
                   />

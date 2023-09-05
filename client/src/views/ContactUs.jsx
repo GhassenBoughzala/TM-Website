@@ -8,6 +8,7 @@ import TextArea from "antd/es/input/TextArea";
 import { connect } from "react-redux";
 import { sendContact } from "../redux/user/userActions";
 import { motion } from "framer-motion";
+import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 
 const { Content } = Layout;
 export const ContactUs = ({ ...props }) => {
@@ -54,7 +55,7 @@ export const ContactUs = ({ ...props }) => {
             >
               <div className="text-center justify-content-center">
                 <img
-                  src="/images/logo_footer.png"
+                  src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/logo_footer.png`}
                   width={"100%"}
                   height={"auto"}
                   alt="TaaMarbouta"
