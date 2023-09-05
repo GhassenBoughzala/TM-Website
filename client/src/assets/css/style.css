@@ -131,6 +131,12 @@ video {
   color: var(--venice_blue);
   font-family: "averiaseriflibre_bold", Fallback, sans-serif;
 }
+.subtitle {
+  font-size: 25px;
+  margin-bottom: 35px;
+  color: var(--venice_blue);
+  font-family: "averiaseriflibre_bold", Fallback, sans-serif;
+}
 
 .title_center {
   text-align: center;

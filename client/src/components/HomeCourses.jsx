@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 
 export const HomeCourses = () => {
   const navTo = useNavigate();
   const { t } = useTranslation();
+
 
   return (
     <div className="row justify-content-center">
@@ -16,12 +18,12 @@ export const HomeCourses = () => {
           <img
             className="course-card-img-ar embed-responsive-item"
             alt="example1"
-            src="/images/pxfuel.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}
             width={"100%"}
             height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="title text-center blue-text mb-3">
+            <h3 className="subtitle text-center blue-text mb-3">
               {t("LearnAR")}
             </h3>
 
@@ -40,12 +42,12 @@ export const HomeCourses = () => {
           <img
             className="course-card-img-ar embed-responsive-item"
             alt="example2"
-            src="/images/pxfuel.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}
             width={"100%"}
             height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="title text-center yellow-text mb-5">
+            <h3 className="subtitle text-center yellow-text mb-5">
               {t("LearnLB")}
             </h3>
 
@@ -64,12 +66,12 @@ export const HomeCourses = () => {
           <img
             className="course-card-img-ar embed-responsive-item"
             alt="example2"
-            src="/images/pxfuel.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}
             width={"100%"}
             height={"auto"}
           />
           <div className=" card-img-overlay d-block ">
-            <h3 className="title text-center blue-text mb-5">
+            <h3 className="subtitle text-center blue-text mb-5">
               {t("LearnTN")}
             </h3>
 

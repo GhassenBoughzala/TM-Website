@@ -179,6 +179,10 @@ export const image2List = [
   "/images/student/Accommodation/2/a8.jpeg",
 ];
 
+export const cloudinaryBaseUrl = `https://res.cloudinary.com/taamarbouta/image/upload`;
+export const imageParams = `c_fill,g_auto,f_auto`;
+
+
 /* export const WorkDesc = [
 {
     desc: "",
