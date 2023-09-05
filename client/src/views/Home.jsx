@@ -189,7 +189,6 @@ export const Home = () => {
                     className="card-img"
                     alt="example"
                     src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
-                    
                     width={170}
                     height={"auto"}
                   />
