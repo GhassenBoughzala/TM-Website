@@ -5,7 +5,6 @@ import {
   FacebookFilled,
   LinkedinFilled,
 } from "@ant-design/icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 //import TM from "../assets/images/TM.png";
 const { Footer } = Layout;
@@ -27,27 +26,21 @@ export const HomeFooter = () => {
               <div>
                 <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p className="montserrat_regular text-start">
-                    <FontAwesomeIcon icon="fa-solid fa-phone" /> +216 24 223 422
+                    <i className="bi bi-telephone-fill mx-1"></i> +216 24 223 422
                   </p>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p className="montserrat_regular text-start">
-                    <FontAwesomeIcon icon="fa-solid fa-phone" />
+                    <i className="bi bi-telephone-fill mx-1"></i>
                     +216 22 920 666
                   </p>
                 </div>
                 <p className="montserrat_regular text-start">
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-envelope"
-                    className="mx-1"
-                  />
+                  <i className="bi bi-envelope-fill mx-1"></i>
                   info@taamarbouta.com
                 </p>
                 <p className="montserrat_regular text-start">
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-location-dot"
-                    className="mx-1"
-                  />
+                  <i className="bi bi-geo-alt-fill mx-1"></i>
                   15 Rue Taieb Mehiri, Site archéologique de Carthage 2016
                 </p>
               </div>

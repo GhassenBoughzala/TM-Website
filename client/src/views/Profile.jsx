@@ -471,7 +471,7 @@ export const Profile = ({ ...props }) => {
             open={openModal}
             onCancel={handleCancel}
             width={600}
-            bodyStyle={{ height: "100%" }}
+            bodyStyle={{ height: "80%" }}
             footer={null}
           >
             {!props.loadingSubs ? (

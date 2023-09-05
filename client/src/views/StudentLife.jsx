@@ -7,7 +7,6 @@ import Travel from "../components/Modals/Travel";
 import LivingInTunis from "../components/Modals/Tunis";
 import Work from "../components/Modals/Work";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { imagesListH, imagesListW } from "../helpers/Constants";
 import shortid from "shortid";
@@ -38,23 +37,23 @@ export const StudentLife = () => {
   const icons = [
     {
       value: t("Classes"),
-      desc: <FontAwesomeIcon icon="fa-solid fa-puzzle-piece" />,
+      desc: <i className="bi bi-puzzle-fill"></i>,
     },
     {
       value: t("Accommodation"),
-      desc: <FontAwesomeIcon icon="fa-solid fa-house-chimney" />,
+      desc: <i className="bi bi-house-door-fill"></i>
     },
     {
       value: t("Travel"),
-      desc: <FontAwesomeIcon icon="fa-solid fa-plane" />,
+      desc: <i className="bi bi-airplane-fill"></i>,
     },
     {
       value: t("Living in Tunis"),
-      desc: <FontAwesomeIcon icon="fa-solid fa-star-and-crescent" />,
+      desc: <i className="bi bi-moon-stars-fill"></i>,
     },
     {
       value: t("WorkResearch"),
-      desc: <FontAwesomeIcon icon="fa-solid fa-atom" />,
+      desc: <i className="bi bi-globe-europe-africa"></i>
     },
   ];
 
