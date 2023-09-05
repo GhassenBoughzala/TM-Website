@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { Button, Col, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -28,6 +28,13 @@ export const Home = () => {
       transition: { duration: 0.8, delay: 0.2, ease: [0, 0.71, 0.2, 1.01] },
     },
   };
+
+  const [state, setstate] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setstate(false);
+    }, 1000);
+  }, []);
 
   return (
     <>
@@ -102,143 +109,145 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <Suspense
-          fallback={
-            <div className="text-center">
-              <LoadingOutlined
-                className="blue-text classes-loader"
-                style={{
-                  fontSize: 40,
-                  marginTop: 330,
-                  marginBottom: 330,
-                }}
-                spin
-              />
-            </div>
-          }
-        >
-          <div className="category_details row mt-5">
-            <div className="container">
-              <div className="row">
-                <h2 className="title title_center">{t("HomeT2")}</h2>
-                <div className="parag_style">
-                  <p className="w-75 d-block m-auto">{t("HomeP2")}</p>
-                </div>
+        {!state && (
+          <Suspense
+            fallback={
+              <div className="text-center">
+                <LoadingOutlined
+                  className="blue-text classes-loader"
+                  style={{
+                    fontSize: 40,
+                    marginTop: 330,
+                    marginBottom: 330,
+                  }}
+                  spin
+                />
               </div>
-            </div>
-            <div className="container">
-              <div className="row">
-                <div className="parag_style">
-                  <p className="w-75 d-block m-auto">{t("HomeP4")}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="container">
-            <HomeCourses />
-          </div>
-          <div className="category_details row m-2">
-            <div className="container">
-              <div className="row">
-                <Col span={16}>
-                  <h2 className="title text-start">{t("HomeT3")}</h2>
-                  <div className="parag_style text-start">
-                    <p className="text-start">{t("HomeP3")}</p>
-                    <Button
-                      size="large"
-                      onClick={() => navTo("/learn-french")}
-                      type="primary"
-                    >
-                      {t("HomeDiscover")}
-                    </Button>
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <img
-                    alt="example"
-                    src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/french.png`}
-                    width={"100%"}
-                    height={"auto"}
-                    className="w-100"
-                  />
-                </Col>
-              </div>
-            </div>
-          </div>
-          <motion.div
-            initial="offScreen"
-            whileInView="onScreen"
-            viewport={{ once: true, amount: 0.5 }}
-            className="why_taamarbouta"
+            }
           >
-            <div>
-              <div className="row">
-                <motion.div
-                  variants={cardVariantts}
-                  className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                >
-                  <h2 className="title title_center">{t("HomeWhy")}</h2>
-                  <div className="card bg-light h-auto border-0 overflow-x-hidden overflow-y-scroll">
+            <div className="category_details row mt-5">
+              <div className="container">
+                <div className="row">
+                  <h2 className="title title_center">{t("HomeT2")}</h2>
+                  <div className="parag_style">
+                    <p className="w-75 d-block m-auto">{t("HomeP2")}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="container">
+                <div className="row">
+                  <div className="parag_style">
+                    <p className="w-75 d-block m-auto">{t("HomeP4")}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="container">
+              <HomeCourses />
+            </div>
+            <div className="category_details row m-2">
+              <div className="container">
+                <div className="row">
+                  <Col span={16}>
+                    <h2 className="title text-start">{t("HomeT3")}</h2>
+                    <div className="parag_style text-start">
+                      <p className="text-start">{t("HomeP3")}</p>
+                      <Button
+                        size="large"
+                        onClick={() => navTo("/learn-french")}
+                        type="primary"
+                      >
+                        {t("HomeDiscover")}
+                      </Button>
+                    </div>
+                  </Col>
+                  <Col span={8}>
                     <img
-                      className="card-img"
                       alt="example"
-                      src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
-                      width={170}
+                      src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/french.png`}
+                      width={"100%"}
                       height={"auto"}
+                      className="w-100"
                     />
-                    <div className="card-img-overlay">
-                      <div className="row m-3 display-flex">
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
-                          <img
-                            width={170}
-                            height={"auto"}
-                            className=" mx-auto d-block"
-                            alt="Quality Team"
-                            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/evening_classes.png`}
-                          />
-                          <h3 className="text-center blue-text">
-                            {t("HomeTeam")}
-                          </h3>
-                        </div>
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
-                          <img
-                            className="mx-auto d-block"
-                            alt="Quality Team"
-                            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/culture-1.png`}
-                            width={170}
-                            height={"auto"}
-                          />
-                          <h3 className="text-center blue-text">
-                            {t("HomeCul")}
-                          </h3>
-                        </div>
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
-                          <img
-                            width={170}
-                            height={"auto"}
-                            className="mx-auto d-block"
-                            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
-                            alt="Quality Team"
-                          />
-                          <h3 className="text-center blue-text">
-                            {t("HomeWork")}
-                          </h3>
+                  </Col>
+                </div>
+              </div>
+            </div>
+            <motion.div
+              initial="offScreen"
+              whileInView="onScreen"
+              viewport={{ once: true, amount: 0.5 }}
+              className="why_taamarbouta"
+            >
+              <div>
+                <div className="row">
+                  <motion.div
+                    variants={cardVariantts}
+                    className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                  >
+                    <h2 className="title title_center">{t("HomeWhy")}</h2>
+                    <div className="card bg-light h-auto border-0 overflow-x-hidden overflow-y-scroll">
+                      <img
+                        className="card-img"
+                        alt="example"
+                        src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
+                        width={170}
+                        height={"auto"}
+                      />
+                      <div className="card-img-overlay">
+                        <div className="row m-3 display-flex">
+                          <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
+                            <img
+                              width={170}
+                              height={"auto"}
+                              className=" mx-auto d-block"
+                              alt="Quality Team"
+                              src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/evening_classes.png`}
+                            />
+                            <h3 className="text-center blue-text">
+                              {t("HomeTeam")}
+                            </h3>
+                          </div>
+                          <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
+                            <img
+                              className="mx-auto d-block"
+                              alt="Quality Team"
+                              src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/culture-1.png`}
+                              width={170}
+                              height={"auto"}
+                            />
+                            <h3 className="text-center blue-text">
+                              {t("HomeCul")}
+                            </h3>
+                          </div>
+                          <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
+                            <img
+                              width={170}
+                              height={"auto"}
+                              className="mx-auto d-block"
+                              src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
+                              alt="Quality Team"
+                            />
+                            <h3 className="text-center blue-text">
+                              {t("HomeWork")}
+                            </h3>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+            <div className="m-2 mb-5 my-5">
+              <div className="container">
+                <div className="row">
+                  <Partners />
+                </div>
               </div>
             </div>
-          </motion.div>
-          <div className="m-2 mb-5 my-5">
-            <div className="container">
-              <div className="row">
-                <Partners />
-              </div>
-            </div>
-          </div>
-        </Suspense>
+          </Suspense>
+        )}
       </Content>
       <Footer />
     </>
