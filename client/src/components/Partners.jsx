@@ -1,8 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 
-const CarouselAntd = () => {
+
+const Partners = () => {
   const { t } = useTranslation();
 
   return (
@@ -30,7 +32,7 @@ const CarouselAntd = () => {
         <SwiperSlide>
           <img
             alt="Taa Marbouta"
-            src="/images/AMES-LOGO-V4.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/AMES-LOGO-V4.png`}
             width={"50%"}
             height={"auto"}
             style={{ width: "50%" }}
@@ -38,7 +40,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/mdinti.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/mdinti.png`}
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -47,7 +49,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/Mnara.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Mnara.png`}
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -56,7 +58,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/Nafsa.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Nafsa.png`}
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -65,7 +67,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/uni.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/uni.png`}
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -74,7 +76,7 @@ const CarouselAntd = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="/images/bew.webp"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/bew.png`}
             alt="Taa Marbouta"
             width={"50%"}
             height={"auto"}
@@ -85,4 +87,4 @@ const CarouselAntd = () => {
     </>
   );
 };
-export default CarouselAntd;
+export default Partners;

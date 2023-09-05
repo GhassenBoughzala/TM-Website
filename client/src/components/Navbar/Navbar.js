@@ -3,6 +3,7 @@ import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
 import { Drawer, Button } from "antd";
 import { Link, Navigate } from "react-router-dom";
+import { cloudinaryBaseUrl, imageParams } from "../../helpers/Constants";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -37,7 +38,7 @@ const Navbar = () => {
           <img
             alt="logo"
             className="logo-header"
-            src="/images/logo_footer.png"
+            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/logo_footer.png`}
             width={"100%"}
             height={"auto"}
           />
