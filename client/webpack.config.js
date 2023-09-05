@@ -65,7 +65,6 @@ const config = {
     new CopyWebpackPlugin({
       patterns: [
         { from: "./public/images", to: "images" },
-        { from: "./src/assets/fonts", to: "fonts" },
         { from: "./public/favicon.ico", to: "" },
         { from: "./public/manifest.json", to: "" },
         { from: "./public/robots.txt", to: "" },
