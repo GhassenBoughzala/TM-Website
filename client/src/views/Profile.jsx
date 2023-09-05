@@ -174,17 +174,6 @@ export const Profile = ({ ...props }) => {
     ),
   }));
 
-  //const [ciso, setCiso] = useState("");
-  /*   const cities = State.getStatesOfCountry(ciso);
-  const cityList = Object.entries(cities).map(([code, country]) => ({
-    label: country.name,
-    value: country.name,
-  })); 
-  const handleCountry = async (val, options) => {
-    setCiso(options.code);
-  };
-*/
-
   const [PK, setPK] = useState("");
   useEffect(() => {
     const getPK = async () => {
@@ -205,7 +194,7 @@ export const Profile = ({ ...props }) => {
   const stripePromise = useMemo(() => loadStripe(`${PK}`), [PK]);
 
   return (
-    <Elements stripe={stripePromise}>
+    <>
       <Content className="container-fluid">
         <div className="container my-5 ">
           <div className="row">
@@ -486,14 +475,18 @@ export const Profile = ({ ...props }) => {
               </div>
             ) : (
               <>
-                <PaymentForm {...{ subObj, setOpenModal }} />
+                {openModal && (
+                  <Elements stripe={stripePromise}>
+                    <PaymentForm {...{ subObj, setOpenModal }} />
+                  </Elements>
+                )}
               </>
             )}
           </Modal>
         </div>
       </Content>
       <Footer />
-    </Elements>
+    </>
   );
 };
 
