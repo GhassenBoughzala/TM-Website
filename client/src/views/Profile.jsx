@@ -26,13 +26,13 @@ import usePrevious from "../helpers/usePrevious";
 import { countryList } from "../helpers/Constants";
 import { deleteSub, getSubsByUser } from "../redux/subs/subsActions";
 import PaymentForm from "../components/PaymentForm";
-import moment from "moment";
 import shortid from "shortid";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
+import dayjs from "dayjs";
 const { Content } = Layout;
-//const State = require("country-state-city").State;
+
 
 export const Profile = ({ ...props }) => {
   useEffect(() => {
@@ -112,7 +112,7 @@ export const Profile = ({ ...props }) => {
                     key={shortid.generate() + index}
                     className="blue-text mx-1"
                   >
-                    • {moment(se).format("MMM Do YYYY")}
+                    • {dayjs(se).format("MMM D YYYY")}
                   </span>
                 );
               })}

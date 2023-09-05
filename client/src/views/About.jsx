@@ -4,7 +4,6 @@ import { Layout, Carousel, Card, Avatar, Rate } from "antd";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import moment from "moment";
 import {
   LoadingOutlined,
   MinusCircleOutlined,
@@ -13,8 +12,9 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Meta from "antd/es/card/Meta";
-import shortid from  "shortid";
+import shortid from "shortid";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
+import dayjs from "dayjs";
 
 const { Content } = Layout;
 
@@ -148,9 +148,7 @@ export const About = () => {
                                   />
                                 }
                                 title={re.reviewer_name}
-                                description={moment
-                                  .unix(re.published_at)
-                                  .fromNow()}
+                                description={dayjs(re.published_at).fromNow()}
                               />
                               <Rate
                                 disabled

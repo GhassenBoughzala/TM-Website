@@ -1,8 +1,7 @@
 /* eslint-disable no-mixed-operators */
 import React, { Fragment, useState } from "react";
 import { Button, Form, Select, Input, InputNumber } from "antd";
-//import { useTranslation } from "react-i18next";
-import moment from "moment";
+import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
@@ -153,13 +152,13 @@ export const BookModal = ({ ...props }) => {
                         <Option
                           value={s[0]}
                           key={s.id}
-                          label={`${moment(s[0]).format("MMMM")} session`}
+                          label={`${dayjs(s[0]).format("MMMM")} session`}
                         >
                           <p className=" text-dark">
                             <b className="mx-1">
-                              {moment(s[0]).format("MMM Do")}
+                              {dayjs(s[0]).format("MMM D")}
                             </b>
-                            <b>- {moment(s[1]).format("MMM Do YYYY")}</b>
+                            <b>- {dayjs(s[1]).format("MMM D YYYY")}</b>
                           </p>
                         </Option>
                       </Fragment>
