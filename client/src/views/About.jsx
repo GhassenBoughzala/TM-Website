@@ -3,6 +3,7 @@ import axios from "axios";
 import { Layout, Carousel, Card, Avatar, Rate } from "antd";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import {
   LoadingOutlined,
@@ -46,17 +47,22 @@ export const About = () => {
 
   return (
     <>
-      <Content className="container-fluid">
-        <Helmet>
-          <title>About Taa Marbouta</title>
-          <meta
-            name="description"
-            content="Taa Marbouta is a language school based in Carthage,
+      <Helmet>
+        <title>About Taa Marbouta</title>
+        <meta
+          name="description"
+          content="Taa Marbouta is a language school based in Carthage,
           Tunis. We aim to better connect Tunisia with the world."
-          />
-          <link rel="canonical" href="/about" />
-        </Helmet>
-        <div className="container">
+        />
+        <link rel="canonical" href="/about" />
+      </Helmet>
+      <Content className="container-fluid">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="container"
+        >
           <div className="aboutus_page full_espace_padding">
             <div className="container-fluid">
               <h1 className="titre mt-5">{t("About")} Taa Marbouta</h1>
@@ -242,7 +248,7 @@ export const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Content>
       <Footer />
     </>

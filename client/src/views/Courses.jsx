@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
-import shortid from  "shortid";
+import shortid from "shortid";
 const { Content } = Layout;
 
 export const Courses = ({ ...props }) => {
@@ -42,17 +42,23 @@ export const Courses = ({ ...props }) => {
 
   return (
     <>
-      <Content className="container-fluid">
-        <Helmet>
-          <title>Language Courses</title>
-          <meta
-            name="description"
-            content="Taa Marbouta is a language school based in Carthage,
+      {" "}
+      <Helmet>
+        <title>Language Courses</title>
+        <meta
+          name="description"
+          content="Taa Marbouta is a language school based in Carthage,
           Tunis. We aim to better connect Tunisia with the world."
-          />
-          <link rel="canonical" href="/language-courses" />
-        </Helmet>
-        <div className="container mb-lg-5">
+        />
+        <link rel="canonical" href="/language-courses" />
+      </Helmet>
+      <Content className="container-fluid">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          className="container mb-lg-5"
+        >
           <h1 className="titre mt-5">
             {t("LanguageCourses")}
             <p className=" fs-5 mt-3 text-muted">{t("courses-ph")}</p>
@@ -110,7 +116,7 @@ export const Courses = ({ ...props }) => {
               />
             </div>
           )}
-        </div>
+        </motion.div>
       </Content>
       <Footer />
     </>

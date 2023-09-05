@@ -10,6 +10,7 @@ import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 import { LoadingOutlined } from "@ant-design/icons";
+import Loader from "../components/Loader";
 
 const { Content } = Layout;
 
@@ -109,23 +110,14 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        {!state && (
-          <Suspense
-            fallback={
-              <div className="text-center">
-                <LoadingOutlined
-                  className="blue-text classes-loader"
-                  style={{
-                    fontSize: 40,
-                    marginTop: 330,
-                    marginBottom: 330,
-                  }}
-                  spin
-                />
-              </div>
-            }
-          >
-            <div className="category_details row mt-5">
+        {!state ? (
+          <Suspense fallback={<Loader />}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="category_details row mt-5"
+            >
               <div className="container">
                 <div className="row">
                   <h2 className="title title_center">{t("HomeT2")}</h2>
@@ -141,7 +133,7 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
             <div className="container">
               <HomeCourses />
             </div>
@@ -247,6 +239,8 @@ export const Home = () => {
               </div>
             </div>
           </Suspense>
+        ) : (
+          <Loader />
         )}
       </Content>
       <Footer />
