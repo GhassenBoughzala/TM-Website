@@ -90,7 +90,7 @@ export const Home = () => {
                   </div>
                   <div className="col col-lg-7 col-md-7 col-sm-6 col-xs-6">
                     <img
-                      src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/header_home.png`}
+                      src={`${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_40/v1693852960/TM/header_home.png`}
                       alt="Taa Marbouta"
                       width={"100%"}
                       height={"auto"}
