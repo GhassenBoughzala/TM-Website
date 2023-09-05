@@ -7,6 +7,7 @@ import { LoadingOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 
 export const SubscriptionResult = ({ ...props }) => {
   const navTo = useNavigate();
@@ -50,7 +51,7 @@ export const SubscriptionResult = ({ ...props }) => {
             <>
               <div className="my-3 text-center">
                 <img
-                  src="/images/TM.png"
+                  src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/TM.png`}
                   height={"auto"}
                   width={300}
                   className="mx-auto d-block"

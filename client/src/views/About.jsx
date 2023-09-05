@@ -15,6 +15,8 @@ import Meta from "antd/es/card/Meta";
 import shortid from "shortid";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 import dayjs from "dayjs";
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 const { Content } = Layout;
 
@@ -148,13 +150,14 @@ export const About = () => {
                                   />
                                 }
                                 title={re.reviewer_name}
-                                description={dayjs(re.published_at).fromNow()}
-                              />
-                              <Rate
-                                disabled
-                                defaultValue={re.rating}
-                                style={{ fontSize: 15 }}
-                                className="text-start"
+                                description={
+                                  <Rate
+                                    disabled
+                                    defaultValue={re.rating}
+                                    style={{ fontSize: 15 }}
+                                    className="text-start"
+                                  />
+                                }
                               />
 
                               <p className="text-start">
