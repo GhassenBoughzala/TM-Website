@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { Button, Col, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
@@ -7,6 +8,7 @@ import Footer from "../components/Footer";
 import Partners from "../components/Partners";
 import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
+import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 
 const { Content } = Layout;
 
@@ -25,6 +27,8 @@ export const Home = () => {
       transition: { duration: 0.8, delay: 0.2, ease: [0, 0.71, 0.2, 1.01] },
     },
   };
+
+
 
   return (
     <>
@@ -47,21 +51,21 @@ export const Home = () => {
               fade={true}
             >
               <img
-                src="/images/hbg-1.webp"
+                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-1.png`}
                 alt="Taa Marbouta"
                 className="h-50"
                 width={"100%"}
                 height={"auto"}
               />
               <img
-                src="/images/hbg-2.webp"
+                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-2.png`}
                 alt="Taa Marbouta"
                 className="h-50"
                 width={"100%"}
                 height={"auto"}
               />
               <img
-                src="/images/hbg-3.webp"
+                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-3.png`}
                 alt="Taa Marbouta"
                 className="h-50"
                 width={"100%"}
@@ -86,7 +90,7 @@ export const Home = () => {
                   </div>
                   <div className="col col-lg-7 col-md-7 col-sm-6 col-xs-6">
                     <img
-                      src="/images/header_home.webp"
+                      src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/header_home.png`}
                       alt="Taa Marbouta"
                       width={"100%"}
                       height={"auto"}
@@ -139,7 +143,7 @@ export const Home = () => {
               <Col span={8}>
                 <img
                   alt="example"
-                  src="/images/french.webp"
+                  src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/french.png`}
                   width={"100%"}
                   height={"auto"}
                   className="w-100"
@@ -184,7 +188,8 @@ export const Home = () => {
                   <img
                     className="card-img"
                     alt="example"
-                    src="/images/landscape.webp"
+                    src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
+                    
                     width={170}
                     height={"auto"}
                   />
@@ -196,7 +201,7 @@ export const Home = () => {
                           height={"auto"}
                           className=" mx-auto d-block"
                           alt="Quality Team"
-                          src="/images/evening_classes.webp"
+                          src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/evening_classes.png`}
                         />
                         <h3 className="text-center blue-text">
                           {t("HomeTeam")}
@@ -206,7 +211,7 @@ export const Home = () => {
                         <img
                           className="mx-auto d-block"
                           alt="Quality Team"
-                          src="/images/culture-1.webp"
+                          src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/culture-1.png`}
                           width={170}
                           height={"auto"}
                         />
@@ -219,7 +224,7 @@ export const Home = () => {
                           width={170}
                           height={"auto"}
                           className="mx-auto d-block"
-                          src="/images/experience-1.webp"
+                          src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
                           alt="Quality Team"
                         />
                         <h3 className="text-center blue-text">
