@@ -28,13 +28,6 @@ export const Home = () => {
     },
   };
 
-/*   const [state, setstate] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setstate(false);
-    }, 1000);
-  }, []); */
-
   const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_50/v1693852960/TM/header_home.png`;
   const [imgsLoaded, setImgsLoaded] = useState(false);
 
@@ -91,7 +84,7 @@ export const Home = () => {
                 height={"auto"}
               />
             </Carousel>
-            <div className="card-img-overlay justify-content-center overflow-x-hidden overflow-y-scroll">
+            <div className="card-img-overlay justify-content-center">
               <div className="container my-5">
                 <div className="row">
                   <div className="col col-lg-5 col-md-5 col-sm-5 col-xs-3 align">
