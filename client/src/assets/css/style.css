@@ -414,7 +414,13 @@ footer p {
   display: block;
   margin: auto;
   object-fit: cover;
-  width: 100%;
+  width: 275px;
+  height: 600px;
+}
+
+.why-images{
+  height: 175px;
+  width: 175px;
 }
 .cover-img-contact {
   filter: blur(2px);
