@@ -9,7 +9,6 @@ import Partners from "../components/Partners";
 import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
-//import Loader from "../components/Loader";
 
 const { Content } = Layout;
 
