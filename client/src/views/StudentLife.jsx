@@ -36,23 +36,23 @@ export const StudentLife = () => {
 
   const icons = [
     {
-      value: t("Classes"),
+      value: <h6 className="averiaseriflibre_bold">{t("Classes")}</h6>,
       desc: <i className="bi bi-puzzle-fill"></i>,
     },
     {
-      value: t("Accommodation"),
+      value: <h6 className="averiaseriflibre_bold">{t("Accommodation")}</h6>,
       desc: <i className="bi bi-house-door-fill"></i>
     },
     {
-      value: t("Travel"),
+      value:  <h6 className="averiaseriflibre_bold">{t("Travel")}</h6>,
       desc: <i className="bi bi-airplane-fill"></i>,
     },
     {
-      value: t("Living in Tunis"),
+      value:  <h6 className="averiaseriflibre_bold">{t("Living in Tunis")}</h6>,
       desc: <i className="bi bi-moon-stars-fill"></i>,
     },
     {
-      value: t("WorkResearch"),
+      value: <h6 className="averiaseriflibre_bold">{t("WorkResearch")}</h6>,
       desc: <i className="bi bi-globe-europe-africa"></i>
     },
   ];

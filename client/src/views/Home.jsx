@@ -34,21 +34,19 @@ export const Home = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(false);
   const handleWindowSizeChange = () => {
-          setWidth(window.innerWidth);
-  }
+    setWidth(window.innerWidth);
+  };
 
   useEffect(() => {
-      window.addEventListener('resize', handleWindowSizeChange);
-      if(width <= 768){
-        setIsMobile(true)
-      }else setIsMobile(false)
-      return () => {
-          window.removeEventListener('resize', handleWindowSizeChange);
-      }    
+    window.addEventListener("resize", handleWindowSizeChange);
+    if (width <= 768) {
+      setIsMobile(true);
+    } else setIsMobile(false);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
   }, [width]);
 
-    
-  
   useEffect(() => {
     const loadImage = (image) => {
       return new Promise((resolve, reject) => {
@@ -89,15 +87,17 @@ export const Home = () => {
             >
               <img
                 src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-1.png`}
-                alt="Taa Marbouta"
-                width={"100%"}
-                height={"600px"}
+                alt="Taa Marbouta-bg-1"
+                className=" h-cover"
+                width={640}
+                height={360}
               />
               <img
                 src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-2.png`}
-                alt="Taa Marbouta"
-                width={"100%"}
-                height={"600px"}
+                alt="Taa Marbouta-bg-2"
+                className=" h-cover"
+                width={640}
+                height={360}
               />
             </Carousel>
             <div className="card-img-overlay justify-content-center mt-4">
@@ -199,7 +199,9 @@ export const Home = () => {
                   <h2 className="title title_center">{t("HomeWhy")}</h2>
                   <div className="card bg-light h-auto border-0">
                     <img
-                      className={`card-img  ${isMobile ? ("mobile-cover-margin"):("")}`}
+                      className={`card-img  ${
+                        isMobile ? "mobile-cover-margin" : ""
+                      }`}
                       alt="example"
                       src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
                       width={270}

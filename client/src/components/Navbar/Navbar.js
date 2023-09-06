@@ -37,10 +37,10 @@ const Navbar = () => {
         <Link to="/">
           <img
             alt="logo"
-            className="logo-header"
+            className="logo-header h-25"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/logo_footer.png`}
-            width={"100%"}
-            height={"45px"}
+            width={125}
+            height={200}
           />
         </Link>
       </div>
@@ -52,7 +52,7 @@ const Navbar = () => {
         <div className="rightMenu">
           <RightMenu {...{ open, setOpen }} />
         </div>
-        <Button className="menuButton" type="text" onClick={showDrawer}>
+        <Button className="menuButton" name="drawer" type="text" onClick={showDrawer}>
           <span className="barsBtn"></span>
         </Button>
         <Drawer
