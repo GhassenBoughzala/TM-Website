@@ -31,6 +31,24 @@ export const Home = () => {
   const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_70/v1693852960/TM/header_home.png`;
   const [imgsLoaded, setImgsLoaded] = useState(false);
 
+  const [width, setWidth] = useState(window.innerWidth);
+  const [isMobile, setIsMobile] = useState(false);
+  const handleWindowSizeChange = () => {
+          setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+      window.addEventListener('resize', handleWindowSizeChange);
+      if(width <= 768){
+        setIsMobile(true)
+      }else setIsMobile(false)
+      return () => {
+          window.removeEventListener('resize', handleWindowSizeChange);
+      }    
+  }, [width]);
+
+    
+  
   useEffect(() => {
     const loadImage = (image) => {
       return new Promise((resolve, reject) => {
@@ -73,20 +91,20 @@ export const Home = () => {
                 src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-1.png`}
                 alt="Taa Marbouta"
                 width={"100%"}
-                height={"800px"}
+                height={"600px"}
               />
               <img
                 src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-2.png`}
                 alt="Taa Marbouta"
                 width={"100%"}
-                height={"800px"}
+                height={"600px"}
               />
             </Carousel>
-            <div className="card-img-overlay justify-content-center">
+            <div className="card-img-overlay justify-content-center mt-4">
               <div className="container">
                 <div className="row">
-                  <div className="col col-lg-5 col-md-12 col-sm-12 col-xs-12 align">
-                    <div className="contenu_header_home">
+                  <div className="col col-lg-5 col-md-12 col-sm-12 col-12 align">
+                    <div className="contenu_header_home mt-3">
                       <h1 className="averiaseriflibre_bold blue-text">
                         Taa Marbouta
                       </h1>
@@ -98,7 +116,7 @@ export const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                  <div className="col col-lg-7 col-md-12 col-sm-12 col-12 order-lg-last order-first">
                     {imgsLoaded && (
                       <motion.div
                         initial={{ opacity: 0 }}
@@ -177,25 +195,22 @@ export const Home = () => {
           >
             <div>
               <div className="row">
-                <motion.div
-                  variants={cardVariantts}
-                  className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                >
+                <motion.div variants={cardVariantts}>
                   <h2 className="title title_center">{t("HomeWhy")}</h2>
-                  <div className="card bg-light h-auto border-0 overflow-x-hidden overflow-y-scroll">
+                  <div className="card bg-light h-auto border-0">
                     <img
-                      className="card-img"
+                      className={`card-img  ${isMobile ? ("mobile-cover-margin"):("")}`}
                       alt="example"
                       src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
-                      width={170}
-                      height={"auto"}
+                      width={270}
+                      height={"500px"}
                     />
                     <div className="card-img-overlay">
-                      <div className="row m-3 display-flex">
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
+                      <div className="row m-3 justify-content-center">
+                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-12 mb-4">
                           <img
                             width={170}
-                            height={"auto"}
+                            height={170}
                             className=" mx-auto d-block"
                             alt="Quality Team"
                             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/evening_classes.png`}
@@ -204,22 +219,22 @@ export const Home = () => {
                             {t("HomeTeam")}
                           </h3>
                         </div>
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
+                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 mb-4">
                           <img
                             className="mx-auto d-block"
                             alt="Quality Team"
                             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/culture-1.png`}
                             width={170}
-                            height={"auto"}
+                            height={170}
                           />
                           <h3 className="text-center blue-text">
                             {t("HomeCul")}
                           </h3>
                         </div>
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-4">
+                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 ">
                           <img
                             width={170}
-                            height={"auto"}
+                            height={170}
                             className="mx-auto d-block"
                             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
                             alt="Quality Team"
