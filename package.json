@@ -1,6 +1,6 @@
 {
   "name": "tm-website",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "TaaMarbouta ",
   "main": "server.js",
   "scripts": {
@@ -26,21 +26,17 @@
     "node": "v16.13.1"
   },
   "dependencies": {
-    "@fightmegg/transferwise": "^0.0.3",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.19.0",
+    "bson": "^6.0.0",
     "compression": "^1.7.4",
-    "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-jwt": "^8.4.1",
-    "express-session": "^1.17.2",
     "express-static-gzip": "^2.1.7",
     "express-validator": "^6.14.0",
-    "formidable": "^2.0.1",
-    "gravatar": "^1.8.2",
+    "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
     "mailgen": "^2.0.27",
@@ -48,9 +44,7 @@
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.4",
     "nodemon": "^2.0.15",
-    "passport": "^0.6.0",
-    "stripe": "^12.14.0",
-    "uuid": "^8.3.2"
+    "stripe": "^12.14.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
