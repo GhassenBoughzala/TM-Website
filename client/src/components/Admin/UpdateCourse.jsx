@@ -71,8 +71,6 @@ export const UpdateCourse = ({ ...props }) => {
     });
   };
 
-  //console.log(props.toUpdate.sessions.map((x) => [dayjs(x[1]), dayjs(x[0])]));
-
   const fieldsToUpdate = [
     { name: ["title"], value: props.toUpdate.title },
     { name: ["backgroundImage"], value: props.toUpdate.backgroundImage },

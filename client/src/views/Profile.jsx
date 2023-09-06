@@ -352,7 +352,6 @@ export const Profile = ({ ...props }) => {
                               <Form.Item label="City" name="city">
                                 <Input
                                   defaultValue={User.city}
-                                  //disabled={ciso === "" ? true : false}
                                 />
                               </Form.Item>
                             </div>

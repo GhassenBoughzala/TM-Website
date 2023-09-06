@@ -145,7 +145,6 @@ export const ContactUs = ({ ...props }) => {
                   <div className="form-outline text-center">
                     <Form.Item>
                       <Button
-                        //loading={true ? props.loading : props.loading}
                         type="primary"
                         htmltype="submit"
                         onClick={handleFormSubmit}
