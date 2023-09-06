@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Suspense, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import Partners from "../components/Partners";
 import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
-import Loader from "../components/Loader";
+//import Loader from "../components/Loader";
 
 const { Content } = Layout;
 
@@ -36,7 +36,7 @@ export const Home = () => {
     }, 1000);
   }, []); */
 
-  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_40/v1693852960/TM/header_home.png`;
+  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_auto/v1693852960/TM/header_home.png`;
   const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
@@ -137,7 +137,7 @@ export const Home = () => {
           </div>
         </div>
 
-        <Suspense fallback={<Loader />}>
+        <div>
           <div className="category_details row mt-5">
             <div className="container">
               <div className="row">
@@ -259,7 +259,7 @@ export const Home = () => {
               </div>
             </div>
           </div>
-        </Suspense>
+        </div>
       </Content>
       <Footer />
     </>
