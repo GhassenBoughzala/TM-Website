@@ -456,6 +456,10 @@ footer p {
   margin-top: 300px;
 }
 
+.h-cover{
+  height: 600px;
+}
+
 .blue-text {
   color: var(--venice_blue);
 }

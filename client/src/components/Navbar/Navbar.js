@@ -37,10 +37,10 @@ const Navbar = () => {
         <Link to="/">
           <img
             alt="logo"
-            className="logo-header"
+            className="logo-header h-25"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/logo_footer.png`}
-            width={"100%"}
-            height={"45px"}
+            width={125}
+            height={200}
           />
         </Link>
       </div>
