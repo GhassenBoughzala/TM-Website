@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Button, Col, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -126,8 +126,9 @@ export const Home = () => {
                         <img
                           src={firstImage}
                           alt="Taa Marbouta"
-                          width={"100%"}
-                          height={"auto"}
+                          className="h-auto"
+                          width={1330}
+                          height={787}
                         />
                       </motion.div>
                     )}
@@ -179,9 +180,9 @@ export const Home = () => {
                   <img
                     alt="example"
                     src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/french.png`}
-                    width={"100%"}
-                    height={"auto"}
-                    className="w-100"
+                    width={1000}
+                    height={1000}
+                    className="h-auto"
                   />
                 </Col>
               </div>
@@ -199,23 +200,23 @@ export const Home = () => {
                   <h2 className="title title_center">{t("HomeWhy")}</h2>
                   <div className="card bg-light h-auto border-0">
                     <img
-                      className={`card-img  ${
+                      className={`card-img ${
                         isMobile ? "mobile-cover-margin" : ""
                       }`}
                       alt="example"
                       src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
-                      width={270}
-                      height={"500px"}
+                      width={3000}
+                      height={685}
                     />
                     <div className="card-img-overlay">
                       <div className="row m-3 justify-content-center">
                         <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-12 mb-4">
                           <img
-                            width={170}
-                            height={170}
-                            className=" mx-auto d-block"
                             alt="Quality Team"
+                            className=" mx-auto d-block why-images"
                             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/evening_classes.png`}
+                            width={1000}
+                            height={1000}
                           />
                           <h3 className="text-center blue-text">
                             {t("HomeTeam")}
@@ -223,11 +224,11 @@ export const Home = () => {
                         </div>
                         <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 mb-4">
                           <img
-                            className="mx-auto d-block"
+                            className="mx-auto d-block why-images"
                             alt="Quality Team"
                             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/culture-1.png`}
-                            width={170}
-                            height={170}
+                            width={1000}
+                            height={1000}
                           />
                           <h3 className="text-center blue-text">
                             {t("HomeCul")}
@@ -235,11 +236,11 @@ export const Home = () => {
                         </div>
                         <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 ">
                           <img
-                            width={170}
-                            height={170}
-                            className="mx-auto d-block"
-                            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
                             alt="Quality Team"
+                            className="mx-auto d-block why-images"
+                            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
+                            width={1000}
+                            height={1000}
                           />
                           <h3 className="text-center blue-text">
                             {t("HomeWork")}

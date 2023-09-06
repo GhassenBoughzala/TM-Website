@@ -34,8 +34,8 @@ const Partners = () => {
           <img
             alt="Taa Marbouta"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/AMES-LOGO-V4.png`}
-            width={"50%"}
-            height={"auto"}
+            width={1120}
+            height={1120}
             style={{ width: "50%" }}
           />
         </SwiperSlide>
@@ -43,8 +43,8 @@ const Partners = () => {
           <img
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/mdinti.png`}
             alt="Taa Marbouta"
-            width={"50%"}
-            height={"auto"}
+            width={500}
+            height={287}
             style={{ width: "80%" }}
           />
         </SwiperSlide>
@@ -52,8 +52,8 @@ const Partners = () => {
           <img
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Mnara.png`}
             alt="Taa Marbouta"
-            width={"50%"}
-            height={"auto"}
+            width={1568}
+            height={1568}
             style={{ width: "80%" }}
           />
         </SwiperSlide>
@@ -61,8 +61,8 @@ const Partners = () => {
           <img
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Nafsa.png`}
             alt="Taa Marbouta"
-            width={"50%"}
-            height={"auto"}
+            width={1280}
+            height={583}
             style={{ width: "80%" }}
           />
         </SwiperSlide>
@@ -70,8 +70,8 @@ const Partners = () => {
           <img
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/uni.png`}
             alt="Taa Marbouta"
-            width={"50%"}
-            height={"auto"}
+            width={1568}
+            height={1032}
             style={{ width: "80%" }}
           />
         </SwiperSlide>
@@ -79,8 +79,8 @@ const Partners = () => {
           <img
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/bew.png`}
             alt="Taa Marbouta"
-            width={"50%"}
-            height={"auto"}
+            width={727}
+            height={354}
             style={{ width: "80%" }}
           />
         </SwiperSlide>
