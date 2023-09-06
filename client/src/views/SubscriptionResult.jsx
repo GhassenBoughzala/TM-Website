@@ -54,7 +54,6 @@ export const SubscriptionResult = ({ ...props }) => {
               <Result
                 status="success"
                 title={t("SubsResult-1")}
-                //subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
                 extra={[
                   <Button
                     size="large"

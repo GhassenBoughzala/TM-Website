@@ -186,7 +186,6 @@ export const About = () => {
                                   <MinusCircleOutlined
                                     style={{
                                       fontSize: 20,
-                                      //marginBottom: 15,
                                     }}
                                   />
                                 )}

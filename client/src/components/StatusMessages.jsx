@@ -1,9 +1,6 @@
-// A small set of helpers for displaying messages while in development.
+
 import { Alert } from "antd";
 import React, { useReducer } from "react";
-
-// `StatusMessages` is a helper component for displaying messages while in
-// development. This has no impact on your integration and can be deleted.
 const StatusMessages = ({ messages, type }) =>
   messages.length ? (
     <div id="messages" role="alert">
@@ -23,7 +20,6 @@ const StatusMessages = ({ messages, type }) =>
   );
 
 const maybeLink = (m) => {
-  //https://dashboard.stripe.com/test/payments
   const piDashboardBase = "";
   return (
     <span
@@ -37,11 +33,8 @@ const maybeLink = (m) => {
   );
 };
 
-// Small hook for adding a message to a list of messages.
 const useMessages = () => {
-  // helper for displaying status messages.
   return useReducer((messages, message) => {
-    // Embed link
     if (message === "") {
       return [];
     } else {

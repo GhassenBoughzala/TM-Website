@@ -131,7 +131,6 @@ export const Login = ({ ...props }) => {
                       <div className="form-outline text-center">
                         <Form.Item>
                           <Button
-                            //loading={props.isLoading}
                             type="primary"
                             htmlType="submit"
                           >

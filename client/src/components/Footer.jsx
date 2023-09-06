@@ -6,7 +6,6 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
-//import TM from "../assets/images/TM.png";
 const { Footer } = Layout;
 
 export const HomeFooter = () => {
