@@ -40,7 +40,7 @@ const Navbar = () => {
             className="logo-header"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/logo_footer.png`}
             width={"100%"}
-            height={"auto"}
+            height={"45px"}
           />
         </Link>
       </div>

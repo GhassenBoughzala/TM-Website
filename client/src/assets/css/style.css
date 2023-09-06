@@ -413,7 +413,6 @@ footer p {
   opacity: 25%;
   display: block;
   margin: auto;
-  padding-top: 160px;
   object-fit: cover;
   width: 100%;
 }
@@ -451,6 +450,10 @@ footer p {
   margin: auto;
   object-fit: cover;
   max-height: 50vh;
+}
+
+.mobile-cover-margin{
+  margin-top: 300px;
 }
 
 .blue-text {
