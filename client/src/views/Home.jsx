@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, Suspense } from "react";
-import { Button, Col, Layout, Carousel } from "antd";
+import { Button, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -9,7 +9,6 @@ import Partners from "../components/Partners";
 import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
-
 const { Content } = Layout;
 
 export const Home = () => {
@@ -163,7 +162,7 @@ export const Home = () => {
           <div className="category_details row m-2">
             <div className="container">
               <div className="row">
-                <Col span={16}>
+                <div className="col col-lg-8 col-md-8 col-sm-8 col-8">
                   <h2 className="title text-start">{t("HomeT3")}</h2>
                   <div className="parag_style text-start">
                     <p className="text-start">{t("HomeP3")}</p>
@@ -175,8 +174,8 @@ export const Home = () => {
                       {t("HomeDiscover")}
                     </Button>
                   </div>
-                </Col>
-                <Col span={8}>
+                </div>
+                <div className="col col-lg-4 col-md-4 col-sm-4 col-4">
                   <img
                     alt="example"
                     src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/french.png`}
@@ -184,7 +183,7 @@ export const Home = () => {
                     height={1000}
                     className="h-auto"
                   />
-                </Col>
+                </div>
               </div>
             </div>
           </div>
