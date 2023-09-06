@@ -7,7 +7,6 @@ export const HomeCourses = () => {
   const navTo = useNavigate();
   const { t } = useTranslation();
 
-
   return (
     <div className="row justify-content-center">
       <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-3">
@@ -16,11 +15,11 @@ export const HomeCourses = () => {
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
           <img
-            className="course-card-img-ar embed-responsive-item"
+            className="course-card-img-ar embed-responsive-item h-auto"
             alt="example1"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}
-            width={"100%"}
-            height={"auto"}
+            width={213}
+            height={319}
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="subtitle text-center blue-text mb-3">
@@ -40,11 +39,11 @@ export const HomeCourses = () => {
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
           <img
-            className="course-card-img-ar embed-responsive-item"
+            className="course-card-img-ar embed-responsive-item h-auto"
             alt="example2"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}
-            width={"100%"}
-            height={"auto"}
+            width={213}
+            height={319}
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="subtitle text-center yellow-text mb-5">
@@ -64,11 +63,11 @@ export const HomeCourses = () => {
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
           <img
-            className="course-card-img-ar embed-responsive-item"
+            className="course-card-img-ar embed-responsive-item h-auto"
             alt="example2"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}
-            width={"100%"}
-            height={"auto"}
+            width={213}
+            height={319}
           />
           <div className=" card-img-overlay d-block ">
             <h3 className="subtitle text-center blue-text mb-5">
