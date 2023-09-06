@@ -91,13 +91,6 @@ export const Home = () => {
                 width={"100%"}
                 height={"auto"}
               />
-{/*               <img
-                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-3.png`}
-                alt="Taa Marbouta"
-                className="h-50"
-                width={"100%"}
-                height={"auto"}
-              /> */}
             </Carousel>
             <div className="card-img-overlay justify-content-center overflow-x-hidden overflow-y-scroll">
               <div className="container my-5">

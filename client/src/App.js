@@ -14,10 +14,7 @@ import store from "./redux/store";
 import UserRoute from "./helpers/routes/UserRoute";
 import AdminRoute from "./helpers/routes/AdminRoute";
 
-import Profile from "./views/Profile";
-import AdminView from "./views/AdminView";
-import SubscriptionResult from "./views/SubscriptionResult";
-import PaymentResult from "./views/PaymentResult";
+
 import ScrollToTop from "./helpers/scrollToTop";
 import Loader from "./components/Loader";
 
@@ -36,6 +33,11 @@ const CourseLB = lazy(() => import('./views/courses/CourseLB'));
 const CourseAR = lazy(() => import('./views/courses/CourseAR'));
 const CourseEN = lazy(() => import('./views/courses/CourseEN'));
 const Navbar = lazy(() => import('./components/Navbar/Navbar'));
+const PaymentResult = lazy(() => import('./views/PaymentResult'));
+const SubscriptionResult = lazy(() => import('./views/SubscriptionResult'));
+const AdminView = lazy(() => import('./views/AdminView'));
+const Profile = lazy(() => import('./views/Profile'));
+
 
 function App() {
   useEffect(() => {
@@ -96,29 +98,28 @@ function App() {
                 <Route exact path="/login" element={<Suspense fallback={<Loader/>}> <Login/></Suspense>}/>
                 <Route exact path="/register" element={<Suspense fallback={<Loader/>}> <Register/></Suspense>}/>
 
-                <Route exact path="/language-courses" element={<Suspense fallback={<>...</>}> <Courses/></Suspense>}/>
-                <Route exact path="/learn-arabic" element={<Suspense fallback={<>...</>}> <CourseAR/></Suspense>}/>
-                <Route exact path="/learn-tunisian-arabic" element={<Suspense fallback={<>...</>}> <CourseTN/></Suspense>}/>
-                <Route exact path="/learn-libyan-arabic" element={<Suspense fallback={<>...</>}> <CourseLB/></Suspense>}/>
-                <Route exact path="/learn-french" element={<Suspense fallback={<>...</>}> <CourseFR/></Suspense>}/>
-                <Route exact path="/learn-english" element={<Suspense fallback={<>...</>}> <CourseEN/></Suspense>}/>
+                <Route exact path="/language-courses" element={<Suspense fallback={<></>}> <Courses/></Suspense>}/>
+                <Route exact path="/learn-arabic" element={<Suspense fallback={<></>}> <CourseAR/></Suspense>}/>
+                <Route exact path="/learn-tunisian-arabic" element={<Suspense fallback={<></>}> <CourseTN/></Suspense>}/>
+                <Route exact path="/learn-libyan-arabic" element={<Suspense fallback={<></>}> <CourseLB/></Suspense>}/>
+                <Route exact path="/learn-french" element={<Suspense fallback={<></>}> <CourseFR/></Suspense>}/>
+                <Route exact path="/learn-english" element={<Suspense fallback={<></>}> <CourseEN/></Suspense>}/>
                 
                 {/* User Routes */}
                 <Route exact path="/profil" element={<UserRoute />}>
-                  <Route exact path="/profil" Component={Profile}></Route>
+                  <Route exact path="/profil" element={<Suspense fallback={<></>}> <Profile/></Suspense>}/>
                 </Route>
                 <Route exact path="/subscription" element={<UserRoute />}>
-                  <Route exact path="/subscription" Component={SubscriptionResult}></Route>
+                  <Route exact path="/subscription" element={<Suspense fallback={<></>}> <SubscriptionResult/></Suspense>}/>
                 </Route>
                 <Route exact path="/payment-result" element={<UserRoute />}>
-                  <Route exact path="/payment-result" Component={PaymentResult}></Route>
+                  <Route exact path="/payment-result" element={<Suspense fallback={<></>}> <PaymentResult/></Suspense>}/>
                 </Route>
 
                 {/* Admin Routes */}
                 <Route exact path="/admin-dashboard" element={<AdminRoute />}>
-                  <Route exact path="/admin-dashboard" Component={AdminView}></Route>
+                  <Route exact path="/admin-dashboard" element={<Suspense fallback={<></>}> <AdminView/></Suspense>}/>
                 </Route>
-
               </Routes>
             </Layout>
           </Space>
