@@ -28,7 +28,7 @@ export const Home = () => {
     },
   };
 
-  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_50/v1693852960/TM/header_home.png`;
+  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_70/v1693852960/TM/header_home.png`;
   const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
