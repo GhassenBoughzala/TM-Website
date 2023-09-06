@@ -9,7 +9,6 @@ import Partners from "../components/Partners";
 import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
-import { LoadingOutlined } from "@ant-design/icons";
 import Loader from "../components/Loader";
 
 const { Content } = Layout;
@@ -35,6 +34,27 @@ export const Home = () => {
     setTimeout(() => {
       setstate(false);
     }, 1000);
+  }, []);
+
+  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_40/v1693852960/TM/header_home.png`;
+  const [imgsLoaded, setImgsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadImage = (image) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = image;
+        loadImg.onload = () =>
+          setTimeout(() => {
+            resolve(image);
+          }, 100);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+    loadImage(firstImage)
+      .then(() => setImgsLoaded(true))
+      .catch((err) => console.log("Failed to load image", err));
   }, []);
 
   return (
@@ -96,14 +116,20 @@ export const Home = () => {
                     </div>
                   </div>
                   <div className="col col-lg-7 col-md-7 col-sm-6 col-xs-6">
-                    <Suspense fallback={<LoadingOutlined />}>
-                      <img
-                        src={`${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_40/v1693852960/TM/header_home.png`}
-                        alt="Taa Marbouta"
-                        width={"100%"}
-                        height={"auto"}
-                      />
-                    </Suspense>
+                    {imgsLoaded && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1 }}
+                      >
+                        <img
+                          src={firstImage}
+                          alt="Taa Marbouta"
+                          width={"100%"}
+                          height={"auto"}
+                        />
+                      </motion.div>
+                    )}
                   </div>
                 </div>
               </div>
