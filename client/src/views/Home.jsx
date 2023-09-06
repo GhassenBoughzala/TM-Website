@@ -36,7 +36,7 @@ export const Home = () => {
     }, 1000);
   }, []); */
 
-  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_auto/v1693852960/TM/header_home.png`;
+  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_50/v1693852960/TM/header_home.png`;
   const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
@@ -91,13 +91,13 @@ export const Home = () => {
                 width={"100%"}
                 height={"auto"}
               />
-              <img
+{/*               <img
                 src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-3.png`}
                 alt="Taa Marbouta"
                 className="h-50"
                 width={"100%"}
                 height={"auto"}
-              />
+              /> */}
             </Carousel>
             <div className="card-img-overlay justify-content-center overflow-x-hidden overflow-y-scroll">
               <div className="container my-5">
