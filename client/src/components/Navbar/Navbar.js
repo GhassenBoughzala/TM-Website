@@ -52,7 +52,7 @@ const Navbar = () => {
         <div className="rightMenu">
           <RightMenu {...{ open, setOpen }} />
         </div>
-        <Button className="menuButton" type="text" onClick={showDrawer}>
+        <Button className="menuButton" name="drawer" type="text" onClick={showDrawer}>
           <span className="barsBtn"></span>
         </Button>
         <Drawer
