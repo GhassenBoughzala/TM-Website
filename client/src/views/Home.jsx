@@ -28,7 +28,7 @@ export const Home = () => {
     },
   };
 
-  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_50/v1693852960/TM/header_home.png`;
+  const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_70/v1693852960/TM/header_home.png`;
   const [imgsLoaded, setImgsLoaded] = useState(false);
 
   useEffect(() => {
@@ -72,27 +72,25 @@ export const Home = () => {
               <img
                 src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-1.png`}
                 alt="Taa Marbouta"
-                className="h-50"
                 width={"100%"}
-                height={"auto"}
+                height={"800px"}
               />
               <img
                 src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/hbg-2.png`}
                 alt="Taa Marbouta"
-                className="h-50"
                 width={"100%"}
-                height={"auto"}
+                height={"800px"}
               />
             </Carousel>
             <div className="card-img-overlay justify-content-center">
-              <div className="container my-5">
+              <div className="container">
                 <div className="row">
-                  <div className="col col-lg-5 col-md-5 col-sm-5 col-xs-3 align">
+                  <div className="col col-lg-5 col-md-12 col-sm-12 col-xs-12 align">
                     <div className="contenu_header_home">
                       <h1 className="averiaseriflibre_bold blue-text">
                         Taa Marbouta
                       </h1>
-                      <h2 className="averiaseriflibre_bold mb-4">
+                      <h2 className="averiaseriflibre_bold">
                         {t("LanguageCourses")}
                       </h2>
                       <div className="parag_style">
@@ -100,7 +98,7 @@ export const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col col-lg-7 col-md-7 col-sm-6 col-xs-6">
+                  <div className="col col-lg-7 col-md-12 col-sm-12 col-xs-12">
                     {imgsLoaded && (
                       <motion.div
                         initial={{ opacity: 0 }}
