@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 
 export const HomeCourses = () => {
   const navTo = useNavigate();
@@ -14,7 +16,7 @@ export const HomeCourses = () => {
           onClick={() => navTo("/learn-arabic")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
-          <img
+          <LazyLoadImage
             className="course-card-img-ar embed-responsive-item h-auto"
             alt="example1"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}
@@ -38,7 +40,7 @@ export const HomeCourses = () => {
           onClick={() => navTo("/learn-libyan-arabic")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
-          <img
+          <LazyLoadImage
             className="course-card-img-ar embed-responsive-item h-auto"
             alt="example2"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}
@@ -62,7 +64,7 @@ export const HomeCourses = () => {
           onClick={() => navTo("/learn-tunisian-arabic")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
         >
-          <img
+          <LazyLoadImage
             className="course-card-img-ar embed-responsive-item h-auto"
             alt="example2"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/pxfuel.jpg`}

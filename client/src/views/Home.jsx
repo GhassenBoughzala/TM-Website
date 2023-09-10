@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, Suspense } from "react";
-import { Button, Col, Layout, Carousel } from "antd";
+import { Button, Layout, Carousel } from "antd";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -9,7 +9,7 @@ import Partners from "../components/Partners";
 import HomeCourses from "../components/HomeCourses";
 import { useTranslation } from "react-i18next";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const { Content } = Layout;
 
 export const Home = () => {
@@ -29,8 +29,6 @@ export const Home = () => {
   };
 
   const firstImage = `${cloudinaryBaseUrl}/c_fill,g_auto,f_auto,q_70/v1693852960/TM/header_home.png`;
-  const [imgsLoaded, setImgsLoaded] = useState(false);
-
   const [width, setWidth] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(false);
   const handleWindowSizeChange = () => {
@@ -46,24 +44,6 @@ export const Home = () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, [width]);
-
-  useEffect(() => {
-    const loadImage = (image) => {
-      return new Promise((resolve, reject) => {
-        const loadImg = new Image();
-        loadImg.src = image;
-        loadImg.onload = () =>
-          setTimeout(() => {
-            resolve(image);
-          }, 100);
-
-        loadImg.onerror = (err) => reject(err);
-      });
-    };
-    loadImage(firstImage)
-      .then(() => setImgsLoaded(true))
-      .catch((err) => console.log("Failed to load image", err));
-  }, []);
 
   return (
     <>
@@ -117,21 +97,13 @@ export const Home = () => {
                     </div>
                   </div>
                   <div className="col col-lg-7 col-md-12 col-sm-12 col-12 order-lg-last order-first">
-                    {imgsLoaded && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1 }}
-                      >
-                        <img
-                          src={firstImage}
-                          alt="Taa Marbouta"
-                          className="h-auto"
-                          width={1330}
-                          height={787}
-                        />
-                      </motion.div>
-                    )}
+                    <LazyLoadImage
+                      src={firstImage}
+                      alt="Taa Marbouta"
+                      className="h-auto"
+                      width={1330}
+                      height={787}
+                    />
                   </div>
                 </div>
               </div>
@@ -163,7 +135,7 @@ export const Home = () => {
           <div className="category_details row m-2">
             <div className="container">
               <div className="row">
-                <Col span={16}>
+                <div className="col col-lg-8 col-md-8 col-sm-8 col-8">
                   <h2 className="title text-start">{t("HomeT3")}</h2>
                   <div className="parag_style text-start">
                     <p className="text-start">{t("HomeP3")}</p>
@@ -175,16 +147,16 @@ export const Home = () => {
                       {t("HomeDiscover")}
                     </Button>
                   </div>
-                </Col>
-                <Col span={8}>
-                  <img
+                </div>
+                <div className="col col-lg-4 col-md-4 col-sm-4 col-4">
+                  <LazyLoadImage
                     alt="example"
                     src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/french.png`}
                     width={1000}
                     height={1000}
                     className="h-auto"
                   />
-                </Col>
+                </div>
               </div>
             </div>
           </div>
@@ -199,7 +171,7 @@ export const Home = () => {
                 <motion.div variants={cardVariantts}>
                   <h2 className="title title_center">{t("HomeWhy")}</h2>
                   <div className="card bg-light h-auto border-0">
-                    <img
+                    <LazyLoadImage
                       className={`card-img ${
                         isMobile ? "mobile-cover-margin" : ""
                       }`}
@@ -211,7 +183,7 @@ export const Home = () => {
                     <div className="card-img-overlay">
                       <div className="row m-3 justify-content-center">
                         <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-12 mb-4">
-                          <img
+                          <LazyLoadImage
                             alt="Quality Team"
                             className=" mx-auto d-block why-images"
                             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/evening_classes.png`}
@@ -223,7 +195,7 @@ export const Home = () => {
                           </h3>
                         </div>
                         <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 mb-4">
-                          <img
+                          <LazyLoadImage
                             className="mx-auto d-block why-images"
                             alt="Quality Team"
                             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/culture-1.png`}
@@ -235,7 +207,7 @@ export const Home = () => {
                           </h3>
                         </div>
                         <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 ">
-                          <img
+                          <LazyLoadImage
                             alt="Quality Team"
                             className="mx-auto d-block why-images"
                             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
