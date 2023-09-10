@@ -1,6 +1,6 @@
 {
   "name": "taamarbouta",
-  "version": "2.8.4",
+  "version": "2.8.5",
   "private": true,
   "homepage": ".",
   "scripts": {
@@ -34,6 +34,7 @@
     "react-dom": "^18.2.0",
     "react-helmet-async": "^1.3.0",
     "react-i18next": "^13.0.2",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
     "react-scripts": "^5.0.1",
