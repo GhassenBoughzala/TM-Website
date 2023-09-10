@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 const Partners = () => {
@@ -31,7 +32,7 @@ const Partners = () => {
         }}
       >
         <SwiperSlide>
-          <img
+          <LazyLoadImage
             alt="Taa Marbouta"
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/AMES-LOGO-V4.png`}
             width={1120}
@@ -40,7 +41,7 @@ const Partners = () => {
           />
         </SwiperSlide>
         <SwiperSlide>
-          <img
+          <LazyLoadImage
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/mdinti.png`}
             alt="Taa Marbouta"
             width={500}
@@ -49,7 +50,7 @@ const Partners = () => {
           />
         </SwiperSlide>
         <SwiperSlide>
-          <img
+          <LazyLoadImage
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Mnara.png`}
             alt="Taa Marbouta"
             width={1568}
@@ -58,7 +59,7 @@ const Partners = () => {
           />
         </SwiperSlide>
         <SwiperSlide>
-          <img
+          <LazyLoadImage
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Nafsa.png`}
             alt="Taa Marbouta"
             width={1280}
@@ -67,7 +68,7 @@ const Partners = () => {
           />
         </SwiperSlide>
         <SwiperSlide>
-          <img
+          <LazyLoadImage
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/uni.png`}
             alt="Taa Marbouta"
             width={1568}
@@ -76,7 +77,7 @@ const Partners = () => {
           />
         </SwiperSlide>
         <SwiperSlide>
-          <img
+          <LazyLoadImage
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/bew.png`}
             alt="Taa Marbouta"
             width={727}
