@@ -132,106 +132,110 @@ export const Home = () => {
           <div className="container">
             <HomeCourses />
           </div>
-          <div className="category_details row m-2">
-            <div className="container">
-              <div className="row">
-                <div className="col col-lg-8 col-md-8 col-sm-8 col-8">
-                  <h2 className="title text-start">{t("HomeT3")}</h2>
-                  <div className="parag_style text-start">
-                    <p className="text-start">{t("HomeP3")}</p>
-                    <Button
-                      size="large"
-                      onClick={() => navTo("/learn-french")}
-                      type="primary"
-                    >
-                      {t("HomeDiscover")}
-                    </Button>
-                  </div>
-                </div>
-                <div className="col col-lg-4 col-md-4 col-sm-4 col-4">
-                  <LazyLoadImage
-                    alt="example"
-                    src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/french.png`}
-                    width={1000}
-                    height={1000}
-                    className="h-auto"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <motion.div
-            initial="offScreen"
-            whileInView="onScreen"
-            viewport={{ once: true, amount: 0.5 }}
-            className="why_taamarbouta"
-          >
+          <Suspense fallback={<></>}>
             <div>
-              <div className="row">
-                <motion.div variants={cardVariantts}>
-                  <h2 className="title title_center">{t("HomeWhy")}</h2>
-                  <div className="card bg-light h-auto border-0">
-                    <LazyLoadImage
-                      className={`card-img ${
-                        isMobile ? "mobile-cover-margin" : ""
-                      }`}
-                      alt="example"
-                      src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
-                      width={3000}
-                      height={685}
-                    />
-                    <div className="card-img-overlay">
-                      <div className="row m-3 justify-content-center">
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-12 mb-4">
-                          <LazyLoadImage
-                            alt="Quality Team"
-                            className=" mx-auto d-block why-images"
-                            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/evening_classes.png`}
-                            width={1000}
-                            height={1000}
-                          />
-                          <h3 className="text-center blue-text">
-                            {t("HomeTeam")}
-                          </h3>
-                        </div>
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 mb-4">
-                          <LazyLoadImage
-                            className="mx-auto d-block why-images"
-                            alt="Quality Team"
-                            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/culture-1.png`}
-                            width={1000}
-                            height={1000}
-                          />
-                          <h3 className="text-center blue-text">
-                            {t("HomeCul")}
-                          </h3>
-                        </div>
-                        <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 ">
-                          <LazyLoadImage
-                            alt="Quality Team"
-                            className="mx-auto d-block why-images"
-                            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
-                            width={1000}
-                            height={1000}
-                          />
-                          <h3 className="text-center blue-text">
-                            {t("HomeWork")}
-                          </h3>
-                        </div>
+              <div className="category_details row m-2">
+                <div className="container">
+                  <div className="row">
+                    <div className="col col-lg-8 col-md-8 col-sm-8 col-8">
+                      <h2 className="title text-start">{t("HomeT3")}</h2>
+                      <div className="parag_style text-start">
+                        <p className="text-start">{t("HomeP3")}</p>
+                        <Button
+                          size="large"
+                          onClick={() => navTo("/learn-french")}
+                          type="primary"
+                        >
+                          {t("HomeDiscover")}
+                        </Button>
                       </div>
                     </div>
+                    <div className="col col-lg-4 col-md-4 col-sm-4 col-4">
+                      <LazyLoadImage
+                        alt="example"
+                        src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/french.png`}
+                        width={1000}
+                        height={1000}
+                        className="h-auto"
+                      />
+                    </div>
                   </div>
-                </motion.div>
+                </div>
+              </div>
+              <motion.div
+                initial="offScreen"
+                whileInView="onScreen"
+                viewport={{ once: true, amount: 0.5 }}
+                className="why_taamarbouta"
+              >
+                <div>
+                  <div className="row">
+                    <motion.div variants={cardVariantts}>
+                      <h2 className="title title_center">{t("HomeWhy")}</h2>
+                      <div className="card bg-light h-auto border-0">
+                        <LazyLoadImage
+                          className={`card-img ${
+                            isMobile ? "mobile-cover-margin" : ""
+                          }`}
+                          alt="example"
+                          src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/landscape.png`}
+                          width={3000}
+                          height={685}
+                        />
+                        <div className="card-img-overlay">
+                          <div className="row m-3 justify-content-center">
+                            <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-4 col-12 mb-4">
+                              <LazyLoadImage
+                                alt="Quality Team"
+                                className=" mx-auto d-block why-images"
+                                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/evening_classes.png`}
+                                width={1000}
+                                height={1000}
+                              />
+                              <h3 className="text-center blue-text">
+                                {t("HomeTeam")}
+                              </h3>
+                            </div>
+                            <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 mb-4">
+                              <LazyLoadImage
+                                className="mx-auto d-block why-images"
+                                alt="Quality Team"
+                                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/culture-1.png`}
+                                width={1000}
+                                height={1000}
+                              />
+                              <h3 className="text-center blue-text">
+                                {t("HomeCul")}
+                              </h3>
+                            </div>
+                            <div className="col d-block m-auto col-lg-4 col-md-4 col-sm-12 col-12 ">
+                              <LazyLoadImage
+                                alt="Quality Team"
+                                className="mx-auto d-block why-images"
+                                src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/experience-1.png`}
+                                width={1000}
+                                height={1000}
+                              />
+                              <h3 className="text-center blue-text">
+                                {t("HomeWork")}
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+              <div className="m-2 mb-5 my-5">
+                <div className="container">
+                  <div className="row">
+                    <Partners />
+                  </div>
+                </div>
               </div>
             </div>
-          </motion.div>
-          <div className="m-2 mb-5 my-5">
-            <div className="container">
-              <div className="row">
-                <Partners />
-              </div>
-            </div>
-          </div>
+          </Suspense>
         </div>
       </Content>
       <Footer />
