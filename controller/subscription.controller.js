@@ -10,7 +10,7 @@ const {
 } = require("../middleware/validators/validatorSubs");
 const User = require("../models/User");
 const adminAuth = require("../middleware/adminAuth");
-const { ObjectId } = require("bson");
+const mongoose = require("mongoose");
 const { contactUs, subConfirmation } = require("../middleware/mailer");
 
 //STRIPE_TEST_SECRET_KEY
@@ -137,8 +137,9 @@ router.get("/all", verifyAccessToken, adminAuth, async (req, res) => {
 // @access  User
 router.get("/byuser", verifyAccessToken, async (req, res) => {
   try {
+    const id = new mongoose.Types.ObjectId(req.user.id)
     let subs = await Subscription.aggregate([
-      { $match: { user: ObjectId(req.user.id) } },
+      { $match: { user: id } },
       {
         $lookup: {
           from: "courses",
