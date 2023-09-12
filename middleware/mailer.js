@@ -15,7 +15,7 @@ const subConfirmation = async (userEmail, title, firstName, lastName) => {
   let MailGenerator = new Mailgen({
     theme: "salted",
     product: {
-      logo: "https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/308672381_441069094786546_7287956685567192158_n.jpg?_nc_cat=106&cb=99be929b-59f725be&ccb=1-7&_nc_sid=be3454&_nc_ohc=kWUp2ZjVqV4AX-4cLfY&_nc_ht=scontent.ftun9-1.fna&oh=00_AfBIlPed9FedR07YLZa4-IzqgZofcf_91d49IQBhdc-BiQ&oe=64DA92F9",
+      logo: "https://res.cloudinary.com/taamarbouta/image/upload/v1693852932/TM/TM.png",
       logoHeight: "200px",
       name: "Taa Marbouta",
       link: "https://www.taamarbouta.com/",
@@ -84,7 +84,7 @@ const contactUs = async (text, firstName, lastName, email) => {
   let MailGenerator = new Mailgen({
     theme: "salted",
     product: {
-      logo: "https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/308672381_441069094786546_7287956685567192158_n.jpg?_nc_cat=106&cb=99be929b-59f725be&ccb=1-7&_nc_sid=be3454&_nc_ohc=kWUp2ZjVqV4AX-4cLfY&_nc_ht=scontent.ftun9-1.fna&oh=00_AfBIlPed9FedR07YLZa4-IzqgZofcf_91d49IQBhdc-BiQ&oe=64DA92F9",
+      logo: "https://res.cloudinary.com/taamarbouta/image/upload/v1693852932/TM/TM.png",
       logoHeight: "200px",
       name: "Taa Marbouta",
       link: "https://www.taamarbouta.com/",
