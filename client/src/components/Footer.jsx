@@ -6,6 +6,7 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 const { Footer } = Layout;
 
 export const HomeFooter = () => {
@@ -24,23 +25,47 @@ export const HomeFooter = () => {
             <div className="col col-lg-6 col-xs-12">
               <div>
                 <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <p className="montserrat_regular text-start text-dark">
-                    <i className="bi bi-telephone-fill mx-1"></i> +216 24 223 422
+                  <p className="montserrat_regular text-start">
+                    <i className="bi bi-telephone-fill mx-1 text-dark"></i>
+                    <a
+                      href="tel:+21624223422"
+                      className="montserrat_regular text-decoration-none text-dark"
+                    >
+                      +216 24 223 422
+                    </a>
                   </p>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <p className="montserrat_regular text-start text-dark">
-                    <i className="bi bi-telephone-fill mx-1"></i>
-                    +216 22 920 666
+                  <p className="montserrat_regular text-start">
+                    <i className="bi bi-telephone-fill mx-1 text-dark"></i>
+                    <a
+                      href="tel:+21622920666"
+                      className="montserrat_regular text-decoration-none text-dark"
+                    >
+                      +216 22 920 666
+                    </a>
                   </p>
                 </div>
-                <p className="montserrat_regular text-start text-dark">
-                  <i className="bi bi-envelope-fill mx-1"></i>
-                  info@taamarbouta.com
-                </p>
-                <p className="montserrat_regular text-start text-dark">
-                  <i className="bi bi-geo-alt-fill mx-1"></i>
-                  15 Rue Taieb Mehiri, Site archéologique de Carthage 2016
+                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <p className="montserrat_regular text-start">
+                    <i className="bi bi-envelope-fill mx-1 text-black"></i>
+                    <a
+                      href="mailto:info@taamarbouta.com"
+                      className="montserrat_regular text-decoration-none text-dark mx-1"
+                    >
+                      info@taamarbouta.com
+                    </a>
+                  </p>
+                </div>
+                <p className="montserrat_regular text-start">
+                  <i className="bi bi-geo-alt-fill mx-1 text-dark"></i>
+                  <a
+                    target="_blank"
+                    href="https://www.google.com/maps/place/15+Rue+Taieb+Mhiri,+Site+arch%C3%A9ologique+de+Carthage"
+                    className="montserrat_regular text-decoration-none text-dark"
+                  >
+                    15 Rue Taieb Mehiri, Site archéologique de Carthage 2016
+                  </a>
                 </p>
               </div>
             </div>
@@ -91,8 +116,8 @@ export const HomeFooter = () => {
             </ul>
           </div>
         </footer>
-      </div>
-    </Footer>
+      </div >
+    </Footer >
   );
 };
 
