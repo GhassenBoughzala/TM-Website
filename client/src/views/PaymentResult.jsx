@@ -69,7 +69,7 @@ export const SubscriptionResult = ({ ...props }) => {
                     key="num1"
                     onClick={() =>
                       openInNewTab(
-                        `https://api.whatsapp.com/send?phone=${contact.mobile}`
+                        `https://wa.me/${contact.mobile}`
                       )
                     }
                   >
@@ -82,7 +82,7 @@ export const SubscriptionResult = ({ ...props }) => {
                     key="num2"
                     onClick={() =>
                       openInNewTab(
-                        `https://api.whatsapp.com/send?phone=${contact.work}`
+                        `https://wa.me/${contact.work}`
                       )
                     }
                   >

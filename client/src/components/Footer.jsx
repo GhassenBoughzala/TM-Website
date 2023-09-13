@@ -18,27 +18,66 @@ export const HomeFooter = () => {
           <div className="row">
             <div className="col col-lg-6 col-xs-12">
               <h2 className="averiaseriflibre_bold text-start">Taa Marbouta</h2>
-              <p className="montserrat_regular text-start text-dark">{t("Footer")}</p>
+              <p className="montserrat_regular text-start text-dark">
+                {t("Footer")}
+              </p>
             </div>
 
             <div className="col col-lg-6 col-xs-12">
               <div>
                 <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <p className="montserrat_regular text-start text-dark">
-                    <i className="bi bi-telephone-fill mx-1"></i> +216 24 223 422
+                  <p
+                    className="montserrat_regular text-start text-dark pointer"
+                    onClick={() =>
+                      window.open(
+                        "https://wa.me/+21624223422",
+                        "_blank",
+                        "noreferrer"
+                      )
+                    }
+                  >
+                    <i className="bi bi-telephone-fill mx-1"></i>
+                    +216 24 223 422
                   </p>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <p className="montserrat_regular text-start text-dark">
+                  <p
+                    className="montserrat_regular text-start text-dark pointer"
+                    onClick={() =>
+                      window.open(
+                        "https://wa.me/+21622920666",
+                        "_blank",
+                        "noreferrer"
+                      )
+                    }
+                  >
                     <i className="bi bi-telephone-fill mx-1"></i>
                     +216 22 920 666
                   </p>
                 </div>
-                <p className="montserrat_regular text-start text-dark">
+                <p
+                  className="montserrat_regular text-start text-dark pointer"
+                  onClick={() =>
+                    window.open(
+                      "mailto:info@taamarbouta.com",
+                      "_blank",
+                      "noreferrer"
+                    )
+                  }
+                >
                   <i className="bi bi-envelope-fill mx-1"></i>
                   info@taamarbouta.com
                 </p>
-                <p className="montserrat_regular text-start text-dark">
+                <p
+                  className="montserrat_regular text-start text-dark pointer"
+                  onClick={() =>
+                    window.open(
+                      "https://goo.gl/maps/aimTSB3dzKoHUr7c6",
+                      "_blank",
+                      "noreferrer"
+                    )
+                  }
+                >
                   <i className="bi bi-geo-alt-fill mx-1"></i>
                   15 Rue Taieb Mehiri, Site archéologique de Carthage 2016
                 </p>
