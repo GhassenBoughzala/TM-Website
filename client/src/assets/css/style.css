@@ -525,3 +525,7 @@ footer p {
   bottom: 0;
   right: 0;
 }
+
+.pointer{
+  cursor: pointer;
+}
