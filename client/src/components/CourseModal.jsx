@@ -150,9 +150,9 @@ export const CourseModal = ({ ...props }) => {
                         <Fragment key={shortid.generate() + index}>
                           <p className="blue-text fs-6">
                             <b className="mx-1">
-                              {dayjs(s[0]).format("MMM D")}
+                              {dayjs(s.startDate).format("MMM D")}
                             </b>
-                            <b>- {dayjs(s[1]).format("MMM D YYYY")}</b>
+                            <b>- {dayjs(s.endDate).format("MMM D YYYY")}</b>
                           </p>
                         </Fragment>
                       );
