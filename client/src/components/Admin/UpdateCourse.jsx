@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   PlusOutlined,
   MinusCircleOutlined,
@@ -14,6 +14,8 @@ const { TextArea } = Input;
 
 export const UpdateCourse = ({ ...props }) => {
   const dateFormat = "YYYY/MM/DD";
+
+  const [dates, setDates] = useState(null);
 
   useEffect(() => {
     if (!props.isLoading) props.setShowUpdate(false);
@@ -78,11 +80,17 @@ export const UpdateCourse = ({ ...props }) => {
     { name: ["description"], value: props.toUpdate.description },
     {
       name: ["sessions"],
-      value: props.toUpdate.sessions.map((x) => [dayjs(x[1]), dayjs(x[0])]),
+      value: props.toUpdate.sessions.map((x) => {
+        return { startDate: dayjs(x.startDate), endDate: dayjs(x.endDate) };
+      }),
     },
     { name: ["priceDescription"], value: props.toUpdate.priceDescription },
   ];
-
+  console.log(
+    props.toUpdate.sessions.map((x) => {
+      return { startDate: dayjs(x.startDate), endDate: dayjs(x.endDate) };
+    })
+  );
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -206,7 +214,11 @@ export const UpdateCourse = ({ ...props }) => {
             <>
               <p className="yellow-text">List of sessions :</p>
               {fields.map((field) => (
-                <Space key={field.key}>
+                <Space
+                  size={"small"}
+                  className="bg-white rounded my-2"
+                  key={field.key}
+                >
                   <Form.Item
                     noStyle
                     shouldUpdate={(prevValues, curValues) =>
@@ -215,19 +227,32 @@ export const UpdateCourse = ({ ...props }) => {
                     }
                   >
                     {() => (
-                      <Form.Item
-                        {...field}
-                        label={`Session ${field.key + 1}`}
-                        name={field.name}
-                        className=" bg-white rounded"
-                      >
-                        <RangePicker format={dateFormat} className="m-2" />
-                      </Form.Item>
+                      <div className="row m-1">
+                        <span className="m-1 blue-text">
+                          {`Session ${field.key + 1}`}
+                        </span>
+                        <Form.Item
+                          {...field}
+                          className="col m-1"
+                          label="Start date"
+                          name={[field.name, "startDate"]}
+                        >
+                          <DatePicker />
+                        </Form.Item>
+                        <Form.Item
+                          {...field}
+                          className="col m-1"
+                          label="End date"
+                          name={[field.name, "endDate"]}
+                        >
+                          <DatePicker />
+                        </Form.Item>
+                      </div>
                     )}
                   </Form.Item>
 
                   <MinusCircleOutlined
-                    className="mx-1"
+                    className="mx-2 text-danger"
                     onClick={() => remove(field.name)}
                   />
                 </Space>
