@@ -54,7 +54,9 @@ router.put("/", verifyAccessToken, async (req, res) => {
 // @access  Public
 router.get("/all", verifyAccessToken, AdminAccess, async (req, res) => {
   try {
-    let users = await User.find({}).select("-subscription");
+    let users = await User.find({})
+      .sort({ createdAt: -1 })
+      .select("-subscription");
     res.status(200).json(users);
   } catch (error) {
     console.log(error);
