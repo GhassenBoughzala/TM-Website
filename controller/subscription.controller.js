@@ -121,6 +121,7 @@ router.get("/all", verifyAccessToken, adminAuth, async (req, res) => {
     let usersList = await User.find({})
       .select("-password")
       .select("-__v")
+      .sort({ createdAt: -1 })
       .populate("subscription");
     res.status(200).json(usersList);
   } catch (error) {

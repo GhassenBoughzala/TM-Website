@@ -150,15 +150,15 @@ export const BookModal = ({ ...props }) => {
                     return (
                       <Fragment key={shortid.generate() + index}>
                         <Option
-                          value={s[0]}
+                          value={s.startDate}
                           key={s.id}
-                          label={`${dayjs(s[0]).format("MMMM")} session`}
+                          label={`${dayjs(s.startDate).format("MMMM")} session`}
                         >
                           <p className=" text-dark">
                             <b className="mx-1">
-                              {dayjs(s[0]).format("MMM D")}
+                            {dayjs(s.startDate).format("MMM D")}
                             </b>
-                            <b>- {dayjs(s[1]).format("MMM D YYYY")}</b>
+                            <b>- {dayjs(s.endDate).format("MMM D YYYY")}</b>
                           </p>
                         </Option>
                       </Fragment>
