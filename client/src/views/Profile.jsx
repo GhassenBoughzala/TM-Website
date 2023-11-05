@@ -33,7 +33,6 @@ import axios from "axios";
 import dayjs from "dayjs";
 const { Content } = Layout;
 
-
 export const Profile = ({ ...props }) => {
   useEffect(() => {
     props.GetUser();
@@ -106,13 +105,13 @@ export const Profile = ({ ...props }) => {
           {su.sessions.length !== 0 && (
             <span>
               Sessions:
-              {su.sessions.map((se, inedx) => {
+              {su.sessions.map((se, index) => {
                 return (
                   <span
                     key={shortid.generate() + index}
                     className="blue-text mx-1"
                   >
-                    • {dayjs(se).format("MMM D YYYY")}
+                    • S{index + 1} : {dayjs(se).format("MMM D YYYY")}
                   </span>
                 );
               })}
@@ -351,9 +350,7 @@ export const Profile = ({ ...props }) => {
                           <div className="col-md-6">
                             <div className="form-outline text-start">
                               <Form.Item label="City" name="city">
-                                <Input
-                                  defaultValue={User.city}
-                                />
+                                <Input defaultValue={User.city} />
                               </Form.Item>
                             </div>
                           </div>
