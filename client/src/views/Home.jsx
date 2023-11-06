@@ -92,7 +92,7 @@ export const Home = () => {
                         {t("LanguageCourses")}
                       </h2>
                       <div className="parag_style">
-                        <p className="text-dark merciiii">{t("HomeP1")}</p>
+                        <p className="text-dark">{t("HomeP1")}</p>
                       </div>
                     </div>
                   </div>
