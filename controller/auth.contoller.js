@@ -53,7 +53,7 @@ router.post(
         console.log(error);
         res.status(500).json({
           error: true,
-          msg: "Erreur lors de l'inscription !!",
+          msg: "Erreur lors de l'inscription",
         });
       }
     }
