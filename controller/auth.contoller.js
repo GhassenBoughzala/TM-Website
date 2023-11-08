@@ -32,6 +32,7 @@ router.post(
     } else {
       try {
         user = new User({ firstName, lastName, email, phone, country ,city, password });
+        console.log("Avant d'enregistrer l'utilisateur dans la base de données"); 
         const savedUser = await user.save();
         if (!savedUser) {
           throw Error("Something went wrong saving the user");
