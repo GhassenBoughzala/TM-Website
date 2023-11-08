@@ -22,6 +22,7 @@ export const Register = ({ ...props }) => {
   const uppercaseRegExp = /(?=.*?[A-Z])/;
   const lowercaseRegExp = /(?=.*?[a-z])/;
   const digitsRegExp = /(?=.*?[0-9])/;
+  const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
   const minLengthRegExp = /.{8,}/;
   const ArrayOfRules = [
     {
@@ -47,6 +48,11 @@ export const Register = ({ ...props }) => {
       pattern: digitsRegExp,
       warningOnly: true,
       message: "At least one digit",
+    },
+    {
+      pattern: specialCharRegExp,
+      warningOnly: false,
+      message: "At least one Special Characters (?, !, @, $,&)",
     },
   ];
   const ArrayOfConfirmationRules = [
