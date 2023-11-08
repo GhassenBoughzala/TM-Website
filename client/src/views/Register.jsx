@@ -273,7 +273,7 @@ export const Register = ({ ...props }) => {
 
                     <div className="row">
                       <div className="col-md-12">
-                        <div className="form-outline text-start">
+                        <div className="form-outline text-start">                      
                           <Form.Item
                             label={t("ui")}
                             name="institution"
@@ -281,7 +281,6 @@ export const Register = ({ ...props }) => {
                               {
                                 required: true,
                                 message: `${t("Please input your")} ${t("ui")} !`,
-                                type: "email",
                               },
                             ]}
                           >
