@@ -51,7 +51,7 @@ export const Register = ({ ...props }) => {
     },
     {
       pattern: specialCharRegExp,
-      warningOnly: false,
+      warningOnly: true,
       message: "At least one Special Characters (?, !, @, $,&)",
     },
   ];
