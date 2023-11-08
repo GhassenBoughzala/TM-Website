@@ -49,11 +49,11 @@ export const Register = ({ ...props }) => {
       warningOnly: true,
       message: "At least one digit",
     },
-    /*{
+    {
       pattern: specialCharRegExp,
-      warningOnly: true,
+      warningOnly: false,
       message: "At least one Special Characters",
-    },*/
+    },
   ];
   const ArrayOfConfirmationRules = [
     {
