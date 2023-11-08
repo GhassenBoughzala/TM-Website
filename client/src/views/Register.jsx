@@ -22,9 +22,7 @@ export const Register = ({ ...props }) => {
   const uppercaseRegExp = /(?=.*?[A-Z])/;
   const lowercaseRegExp = /(?=.*?[a-z])/;
   const digitsRegExp = /(?=.*?[0-9])/;
-  //const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
-  const specialCharRegExp = /(?=.*?[-#?!@$%^&*])/;
-
+  const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
   const minLengthRegExp = /.{8,}/;
   const ArrayOfRules = [
     {
@@ -270,6 +268,29 @@ export const Register = ({ ...props }) => {
                         </div>
                       </div>
                     </div>
+
+                    
+
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-outline text-start">
+                          <Form.Item
+                            label={t("ui")}
+                            name="institution"
+                            rules={[
+                              {
+                                required: true,
+                                message: `${t("Please input your")} ${t("ui")} !`,
+                                type: "email",
+                              },
+                            ]}
+                          >
+                            <Input />
+                          </Form.Item>
+                        </div>
+                      </div>
+                    </div>
+                    
                     <div className="row mb-5">
                       <div className="col-md-6">
                         <div className="form-outline text-start">
