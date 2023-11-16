@@ -39,9 +39,9 @@ export const BookModal = ({ ...props }) => {
         //navTo("/subscription");
         console.log('props.msg', props.msg);
         // Assuming `props.msg` is a string or a number
-        if (props.msg === '0') {
+        if (props.msg === 0) {
           toast.warn(t('SubsResult-0')); // Assuming 'SubsResult-0' is a translation key
-        } else if (props.msg === '1') {
+        } else if (props.msg === 1) {
           toast.success(t('SubsResult-1')); // Assuming 'SubsResult-1' is a translation key
         }
       })
