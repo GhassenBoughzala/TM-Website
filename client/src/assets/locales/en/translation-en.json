@@ -130,5 +130,6 @@
   "lo": "Login",
   "create": "Create an account",
   "login": "Login",
-  "x": ""
+  "x": "",
+  "msg_test_level": "The next step will be taking a placement test."
 }

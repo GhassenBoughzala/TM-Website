@@ -134,5 +134,6 @@
   "lo": "Connexion",
   "create": "Créer un compte",
   "login": "Connexion",
-  "X": ""
+  "X": "",
+  "msg_test_level": "La prochaine étape consiste à passer un test de niveau."
 }

@@ -9,13 +9,18 @@ import { Subscribe } from "../redux/subs/subsActions";
 import { RedoOutlined } from "@ant-design/icons";
 import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
+import { useTranslation } from "react-i18next";
+
 const { Option } = Select;
 const { TextArea } = Input;
 
 export const BookModal = ({ ...props }) => {
+  const { t } = useTranslation();
   const navTo = useNavigate();
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
+  const [showLevelMessage, setShowLevelMessage] = useState(false);
+
   const handleFormSubmit = () => {
     form
       .validateFields()
@@ -31,7 +36,7 @@ export const BookModal = ({ ...props }) => {
           currency: values.currency,
         });
         props.setOpenModal(false);
-        //navTo("/subscription");
+        navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
@@ -51,6 +56,11 @@ export const BookModal = ({ ...props }) => {
     });
   };
 
+  const levelChange = (value) => {
+    // Check if the selected level is not "Beginner"
+    setShowLevelMessage(value !== "Beginner");
+  };
+
   const [form] = Form.useForm();
   const reset = () => {
     form.resetFields();
@@ -67,25 +77,26 @@ export const BookModal = ({ ...props }) => {
       labelCol={{ span: 20 }}
       autoComplete="off"
     >
-      {props.msg && (
-      <div className="row">
-        <p className="error-message">{props.msg}</p>
-      </div>
-    )}
       <div className="row">
         <div className="form-outline text-start">
-          <Form.Item
-            label="Select your level !!"
-            name="level"
-            rules={[
-              {
-                required: true,
-                message: "Please select your level",
-              },
-            ]}
-          >
-            <Select options={options} />
-          </Form.Item>
+          <div className="mb-4">
+            <Form.Item
+              label="Select your level"
+              name="level"
+              className="mb-0"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select your level",
+                },
+              ]}
+            >
+              <Select options={options} onChange={levelChange} />
+            </Form.Item>
+            {showLevelMessage && (
+              <p className="msg_test_level">{t("msg_test_level")}</p>
+            )}
+          </div>
         </div>
       </div>
       <div className="row">
