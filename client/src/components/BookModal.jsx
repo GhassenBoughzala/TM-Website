@@ -35,9 +35,9 @@ export const BookModal = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-        props.setOpenModal(false);
+        //props.setOpenModal(false);
         //navTo("/subscription");
-
+        console.log('props.msg', props.msg);
         // Assuming `props.msg` is a string or a number
         if (props.msg === '0') {
           toast.warn(t('SubsResult-0')); // Assuming 'SubsResult-0' is a translation key
