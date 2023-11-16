@@ -31,7 +31,7 @@ export const BookModal = ({ ...props }) => {
           currency: values.currency,
         });
         props.setOpenModal(false);
-        navTo("/subscription");
+        //navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
@@ -67,6 +67,11 @@ export const BookModal = ({ ...props }) => {
       labelCol={{ span: 20 }}
       autoComplete="off"
     >
+      {props.msg && (
+      <div className="row">
+        <p className="error-message">{props.msg}</p>
+      </div>
+    )}
       <div className="row">
         <div className="form-outline text-start">
           <Form.Item
