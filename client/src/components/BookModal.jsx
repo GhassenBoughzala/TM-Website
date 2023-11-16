@@ -37,11 +37,11 @@ export const BookModal = ({ ...props }) => {
         });
         //props.setOpenModal(false);
         //navTo("/subscription");
-        console.log('props.msg', props.msg);
+        console.log('props.msg', state.subs.codeMsg);
         // Assuming `props.msg` is a string or a number
-        if (props.msg === 0) {
+        if (state.subs.codeMsg === 0) {
           toast.warn(t('SubsResult-0')); // Assuming 'SubsResult-0' is a translation key
-        } else if (props.msg === 1) {
+        } else if (state.subs.codeMsg === 1) {
           toast.success(t('SubsResult-1')); // Assuming 'SubsResult-1' is a translation key
         }
       })
@@ -88,7 +88,7 @@ export const BookModal = ({ ...props }) => {
         <div className="form-outline text-start">
           <div className="mb-4">
             <Form.Item
-              label="Select your level"
+              label="Select your level !!"
               name="level"
               className="mb-0"
               rules={[
@@ -252,7 +252,7 @@ const mapActionToProps = {
 const mapToStateProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
   loadingSub: state.subs.loading_create,
-  msg: state.subs.codeMsg,
+  //msg: state.subs.codeMsg,
 });
 
 export default connect(mapToStateProps, mapActionToProps)(BookModal);
