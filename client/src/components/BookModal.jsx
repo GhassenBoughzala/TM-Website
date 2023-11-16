@@ -252,7 +252,7 @@ const mapActionToProps = {
 const mapToStateProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
   loadingSub: state.subs.loading_create,
-  //msg: state.subs.codeMsg,
+  msg: state.subs.codeMsg,
 });
 
 export default connect(mapToStateProps, mapActionToProps)(BookModal);
