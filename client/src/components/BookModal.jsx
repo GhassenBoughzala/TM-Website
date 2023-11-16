@@ -88,7 +88,7 @@ export const BookModal = ({ ...props }) => {
         <div className="form-outline text-start">
           <div className="mb-4">
             <Form.Item
-              label="Select your level !!"
+              label="Select your level"
               name="level"
               className="mb-0"
               rules={[
