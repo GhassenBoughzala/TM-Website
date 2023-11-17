@@ -26,8 +26,9 @@ export const BookModal = ({ ...props }) => {
 
   // useEffect to check if everything is okay whenever props.msg changes
   useEffect(() => {
-    // Assuming props.msg is a code where 0 means an error and 1 means success
-    setIsEverythingOkay(props.msg === 1);
+    // Assuming props.msg is a code where 0 means an error and 1 means success.
+    console.log('props.msg', props.msg);
+    setIsEverythingOkay(props.msg == 1);
   }, [props.msg]);
 
   const handleFormSubmit = () => {
