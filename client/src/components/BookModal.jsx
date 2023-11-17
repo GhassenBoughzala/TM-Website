@@ -28,7 +28,7 @@ export const BookModal = ({ ...props }) => {
   useEffect(() => {
     // Assuming props.msg is a code where 0 means an error and 1 means success.
     console.log('props.msg', props.msg);
-    setIsEverythingOkay(props.msg == 1);
+    setIsEverythingOkay(props.msg);
   }, [props.msg]);
 
   const handleFormSubmit = () => {
@@ -47,6 +47,8 @@ export const BookModal = ({ ...props }) => {
         });
         //props.setOpenModal(false);
         //navTo("/subscription");
+        console.log('isEverythingOkay', isEverythingOkay);
+        console.log('props.msg 1', props.msg);
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
