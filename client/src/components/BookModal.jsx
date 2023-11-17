@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-operators */
 import React, { Fragment, useState } from "react";
-import { Button, Form, Select, Input, InputNumber, Carousel } from "antd";
+import { Button, Form, Select, Input, InputNumber } from "antd";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -58,7 +58,6 @@ export const BookModal = ({ ...props }) => {
   };
 
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={true}>
     <Form
       form={form}
       className="form"
@@ -221,8 +220,6 @@ export const BookModal = ({ ...props }) => {
         </Form.Item>
       </div>
     </Form>
-    <div>2</div>
-    </Carousel>
   );
 };
 
