@@ -21,14 +21,15 @@ export const BookModal = ({ ...props }) => {
   const [type, setType] = useState("");
   const [showLevelMessage, setShowLevelMessage] = useState(false);
 
-  // State to track whether everything is okay
-  const [isEverythingOkay, setIsEverythingOkay] = useState(false);
-
   // useEffect to check if everything is okay whenever props.msg changes
   useEffect(() => {
     // Assuming props.msg is a code where 0 means an error and 1 means success.
-    console.log('props.msg', props.msg);
-    setIsEverythingOkay(props.msg);
+    if (props.msg == 0) {
+      props.setOpenModal(false);
+      navTo("/subscription");
+    } else if (props.msg == 1) {
+      toast.success(t('SubsResult-1')); // Assuming 'SubsResult-1' is a translation key
+    }
   }, [props.msg]);
 
   const handleFormSubmit = () => {
@@ -47,8 +48,6 @@ export const BookModal = ({ ...props }) => {
         });
         //props.setOpenModal(false);
         //navTo("/subscription");
-        console.log('isEverythingOkay', isEverythingOkay);
-        console.log('props.msg 1', props.msg);
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
@@ -77,22 +76,6 @@ export const BookModal = ({ ...props }) => {
   const reset = () => {
     form.resetFields();
     setType("");
-  };
-  
-  /*if (props.msg == 0) {
-    toast.warn(t('SubsResult-0')); // Assuming 'SubsResult-0' is a translation key
-  } else if (props.msg == 1) {
-    toast.success(t('SubsResult-1')); // Assuming 'SubsResult-1' is a translation key
-  }*/
-
-  const handleEverythingOkay = () => {
-    if (isEverythingOkay) {
-      // Do something when everything is okay
-      console.log("Everything is okay!");
-    } else {
-      // Do something when there's an issue
-      console.log("There's an issue.");
-    }
   };
 
   return (
