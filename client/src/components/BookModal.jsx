@@ -58,6 +58,7 @@ export const BookModal = ({ ...props }) => {
   };
 
   return (
+    <Carousel speed={1500} slidesToShow={1} dots={true}>
     <Form
       form={form}
       className="form"
@@ -220,6 +221,8 @@ export const BookModal = ({ ...props }) => {
         </Form.Item>
       </div>
     </Form>
+    <div>2</div>
+    </Carousel>
   );
 };
 
