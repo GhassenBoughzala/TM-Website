@@ -37,6 +37,7 @@ export const BookModal = ({ ...props }) => {
           currency: values.currency,
         });
         setFormSubmissionCompleted(true);
+        console.log('success');
         //props.setOpenModal(false);
         //navTo("/subscription");
       })
