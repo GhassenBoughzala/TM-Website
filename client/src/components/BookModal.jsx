@@ -48,7 +48,6 @@ export const BookModal = ({ ...props }) => {
         setFormSubmissionCompleted(false);
       });
   };
-  console.log('formSubmissionCompleted', formSubmissionCompleted);
 
   const options = [
     { label: "Beginner", value: "Beginner" },
@@ -67,6 +66,7 @@ export const BookModal = ({ ...props }) => {
     form.resetFields();
     setType("");
   };
+  console.log('formSubmissionCompleted', formSubmissionCompleted);
 
   return (
     <Form
