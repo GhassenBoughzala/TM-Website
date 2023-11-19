@@ -18,34 +18,26 @@ export const BookModal = ({ ...props }) => {
   const navTo = useNavigate();
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
-  
-  const [formSubmissionCompleted, setFormSubmissionCompleted] = useState(false);
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = () => {
     form
       .validateFields()
       .then((values) => {
-        console.log("values", values);
         props.AddSub({
           course: currentObj._id,
           level: values.level,
           sessions: values.sessions,
           notes: values.notes,
           title: currentObj.title,
-          type: 'Evening',
+          type: type,
           hours: values.hours,
           currency: values.currency,
         });
-        console.log('success');
-        setFormSubmissionCompleted(true);
-        //props.setOpenModal(false);
-        //navTo("/subscription");
+        props.setOpenModal(false);
+        navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
-        setFormSubmissionCompleted(false);
       });
   };
 
@@ -66,7 +58,6 @@ export const BookModal = ({ ...props }) => {
     form.resetFields();
     setType("");
   };
-  console.log('formSubmissionCompleted', formSubmissionCompleted);
 
   return (
     <Form
@@ -218,11 +209,7 @@ export const BookModal = ({ ...props }) => {
       </div>
       <div className="form-outline text-center mt-1">
         <Form.Item>
-          <Button type="primary" htmltype="submit" 
-            onClick={(e) => {
-              handleFormSubmit(e);
-            }}
-          >
+          <Button type="primary" htmltype="submit" onClick={handleFormSubmit}>
             Confirm
           </Button>
           {type !== "" && (
