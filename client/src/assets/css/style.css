@@ -529,3 +529,54 @@ footer p {
 .pointer{
   cursor: pointer;
 }
+
+
+/*-- msg_test_level */
+.msg_test_level {
+  padding-top: 5px;
+  font-size: 14px;
+  color: var(--lightning_yellow);
+}
+
+/*-- txt_level */
+.txt_level_1 {
+  font-size: 17px;
+  padding-bottom: 35px;
+}
+
+.btn_download {
+  display: table;
+}
+
+.box_listening {
+  height: initial;
+  padding: 25px;
+  border-radius: 25px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .5s;
+}
+
+.box_listening:hover,
+.box_listening:focus {
+  border: 1px solid #0b5291;
+}
+
+.box_listening img {
+  width: 50px;
+}
+
+.modal_test .ant-modal-content {
+  padding: 20px 45px;
+}
+
+.modal_test audio {
+  width: 100%;
+}
+
+.email_info {
+  font-size: 18px;
+  font-weight: 500;
+}

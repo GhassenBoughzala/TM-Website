@@ -131,5 +131,10 @@
   "create": "Create an account",
   "login": "Login",
   "x": "",
-  "msg_test_level": "The next step will be taking a placement test."
+  "msg_test_level": "The next step will be taking a placement test.",
+  "txt_level_1": "This is the first part of the placement test. Please, download the document and answer the questions ON the pages.",
+  "txt_level_2": "This is the second part of the placement test. Please, listen to the conversation and watch the videos respectively then, download the document and answer the questions ON the pages.",
+  "txt_level_end": "Thank you for taking the time to complete the test. The last step consists of sending your tests completed to our email address:",
+  "cliquez_ici": "Click here",
+  "terminer": "Finish"
 }

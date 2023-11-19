@@ -135,5 +135,10 @@
   "create": "Créer un compte",
   "login": "Connexion",
   "X": "",
-  "msg_test_level": "La prochaine étape consiste à passer un test de niveau."
+  "msg_test_level": "La prochaine étape consiste à passer un test de niveau.",
+  "txt_level_1": "Voici la première partie du test de niveau. Veuillez télécharger le document et répondre aux questions SUR les pages.",
+  "txt_level_2": "Voici la deuxième partie du test de niveau. Veuillez écouter la conversation et regarder les vidéos dans l'ordre mentionné puis, veuillez  télécharger le document et répondre aux questions SUR les pages.",
+  "txt_level_end": "Nous vous remercions d'avoir pris le temps de compléter le test de niveau. La dernière étape consiste à envoyer vos tests à notre adresse e-mail:",
+  "click_here": "Cliquez ici",
+  "terminer": "Terminer"
 }
