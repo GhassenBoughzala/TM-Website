@@ -18,6 +18,9 @@ export const BookModal = ({ ...props }) => {
   const navTo = useNavigate();
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
+  
+  const [formSubmissionCompleted, setFormSubmissionCompleted] = useState(false);
+
   const handleFormSubmit = () => {
     form
       .validateFields()
@@ -32,14 +35,17 @@ export const BookModal = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-        props.setOpenModal(false);
-        navTo("/subscription");
+        setFormSubmissionCompleted(true);
+        //props.setOpenModal(false);
+        //navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
+        setFormSubmissionCompleted(false);
       });
   };
+  console.log('formSubmissionCompleted', formSubmissionCompleted);
 
   const options = [
     { label: "Beginner", value: "Beginner" },
