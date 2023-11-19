@@ -87,7 +87,7 @@ export const BookModal = ({ ...props }) => {
       </div>
       <div className="row">
         <Form.Item
-          label="Tell us more about your level : !!"
+          label="Tell us more about your level :"
           name="notes"
           rules={[
             {
