@@ -47,6 +47,17 @@ const config = {
         test: /\.css$/i,
         use: [stylesHandler, "css-loader"],
       },
+      {
+        test: /\.(pdf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
