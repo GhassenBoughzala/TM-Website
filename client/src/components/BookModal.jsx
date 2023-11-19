@@ -9,12 +9,14 @@ import { Subscribe } from "../redux/subs/subsActions";
 import { RedoOutlined } from "@ant-design/icons";
 import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
+import { useTranslation } from "react-i18next";
 import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 export const BookModal = ({ ...props }) => {
+  const { t } = useTranslation();
   const navTo = useNavigate();
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
