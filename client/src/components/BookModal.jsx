@@ -9,7 +9,7 @@ import { Subscribe } from "../redux/subs/subsActions";
 import { RedoOutlined } from "@ant-design/icons";
 import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
-
+import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -72,7 +72,7 @@ export const BookModal = ({ ...props }) => {
       <div className="row">
         <div className="form-outline text-start">
           <Form.Item
-            label="Select your level !!"
+            label="Select your level"
             name="level"
             rules={[
               {
