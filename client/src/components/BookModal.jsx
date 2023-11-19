@@ -21,7 +21,8 @@ export const BookModal = ({ ...props }) => {
   
   const [formSubmissionCompleted, setFormSubmissionCompleted] = useState(false);
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
     form
       .validateFields()
       .then((values) => {
@@ -215,7 +216,11 @@ export const BookModal = ({ ...props }) => {
       </div>
       <div className="form-outline text-center mt-1">
         <Form.Item>
-          <Button type="primary" htmltype="submit" onClick={handleFormSubmit}>
+          <Button type="primary" htmltype="submit" 
+            onClick={(e) => {
+              handleFormSubmit(e);
+            }}
+          >
             Confirm
           </Button>
           {type !== "" && (
