@@ -33,7 +33,7 @@ export const BookModal = ({ ...props }) => {
           sessions: values.sessions,
           notes: values.notes,
           title: currentObj.title,
-          type: type,
+          type: 'Evening',
           hours: values.hours,
           currency: values.currency,
         });
