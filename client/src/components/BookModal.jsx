@@ -70,9 +70,19 @@ export const BookModal = ({ ...props }) => {
       autoComplete="off"
     >
       <div className="row">
+
+      <a
+        href={Doc2Pdf}
+        download="Example-PDF-document"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <button>Download .pdf file</button>
+      </a>
+
         <div className="form-outline text-start">
           <Form.Item
-            label="Select your level ?"
+            label="Select your level"
             name="level"
             rules={[
               {
