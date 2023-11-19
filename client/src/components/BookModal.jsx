@@ -26,6 +26,7 @@ export const BookModal = ({ ...props }) => {
     form
       .validateFields()
       .then((values) => {
+        console.log("values", values);
         props.AddSub({
           course: currentObj._id,
           level: values.level,
