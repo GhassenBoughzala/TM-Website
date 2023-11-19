@@ -20,6 +20,8 @@ export const BookModal = ({ ...props }) => {
   const navTo = useNavigate();
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
+  const [formSubmissionSuccess, setFormSubmissionSuccess] = useState(null);
+
   const handleFormSubmit = () => {
     form
       .validateFields()
@@ -34,15 +36,29 @@ export const BookModal = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-        //props.setOpenModal(false);
-        //navTo("/subscription");
-        toast.success(t('SubsResult-1'));
+
+        // Set form submission success
+        setFormSubmissionSuccess(true);
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
+      
+        // Set form submission failure
+        setFormSubmissionSuccess(false);
       });
-  };
+  };  
+
+  // Use the formSubmissionSuccess state as needed
+  useEffect(() => {
+    if (formSubmissionSuccess === true) {
+      // Do something on success
+      console.log("Form submitted successfully!");
+    } else if (formSubmissionSuccess === false) {
+      // Do something on failure
+      console.log("Form submission failed!");
+    }
+  }, [formSubmissionSuccess]);
 
   const options = [
     { label: "Beginner", value: "Beginner" },
