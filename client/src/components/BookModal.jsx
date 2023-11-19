@@ -37,8 +37,8 @@ export const BookModal = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-        setFormSubmissionCompleted(true);
         console.log('success');
+        setFormSubmissionCompleted(true);
         //props.setOpenModal(false);
         //navTo("/subscription");
       })
