@@ -15,7 +15,7 @@ import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 const { Option } = Select;
 const { TextArea } = Input;
 
-export const BookModal = ({ ...props }) => {
+export const BookModal = ({ selectedId, ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
   const currentObj = props.currentObj;
@@ -30,7 +30,7 @@ export const BookModal = ({ ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
-
+  console.log('selectedId', selectedId);
   useEffect(() => {
     const playMedia = () => {
       if (isModal1Open) {
