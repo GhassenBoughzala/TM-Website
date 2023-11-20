@@ -139,7 +139,7 @@ export const BookModal = ({ ...props }) => {
 
   if (props.msg == 1) {
     console.log('YYY');
-    if (carouselRef.current) {
+    if (carouselRef) {
       console.log('ttt');
       carouselRef.current.goTo(1);
     }
