@@ -31,6 +31,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import dayjs from "dayjs";
+import BookModal from "../../src/components/BookModal";
+
 const { Content } = Layout;
 
 export const Profile = ({ ...props }) => {
@@ -133,6 +135,9 @@ export const Profile = ({ ...props }) => {
                 onClick={() => {
                   setSelctedId(su._id);
                   setDeleteModal(true);
+
+                  // Call the function from OtherFile and pass the booking ID
+                  handleCancelBooking(su._id);
                 }}
               >
                 Cancel booking
