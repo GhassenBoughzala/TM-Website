@@ -50,7 +50,6 @@ export const Profile = ({ ...props }) => {
   const [openModal, setOpenModal] = useState(false);
   const [selctedId, setSelctedId] = useState();
   const [subObj, setsubObj] = useState({});
-  const [selectedId, setSelectedId] = useState();
   
   const navTo = useNavigate();
   const handleCancel = () => {
