@@ -32,8 +32,8 @@ export const BookModal = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-        props.setOpenModal(false);
-        navTo("/subscription");
+        //props.setOpenModal(false);
+        //navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
