@@ -580,3 +580,15 @@ footer p {
   font-size: 18px;
   font-weight: 500;
 }
+
+.back_left {
+  position: relative;
+  padding-bottom: 15px;
+  display: table;
+  text-decoration: none;
+}
+
+.back_left:before {
+  content: '<';
+  padding-right: 5px;
+}
