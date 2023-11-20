@@ -58,7 +58,12 @@ export const BookModal = ({ ...props }) => {
       // Clean up and pause media when component is unmounted
       pauseMedia();
     };
-  }, [isModal1Open, isModal2Open, isModal3Open]);
+  }, [isModal1Open, isModal2Open, isModal3Open]);  
+
+  const levelChange = (value) => {
+    // Check if the selected level is not "Beginner"
+    setShowLevelMessage(value !== "Beginner");
+  };
 
   useEffect(() => {
     if (showLevelMessage !== "Beginner") {
@@ -108,11 +113,6 @@ export const BookModal = ({ ...props }) => {
     form.setFieldValue({
       sessions: [],
     });
-  };
-
-  const levelChange = (value) => {
-    // Check if the selected level is not "Beginner"
-    setShowLevelMessage(value !== "Beginner");
   };
 
   const [form] = Form.useForm();
