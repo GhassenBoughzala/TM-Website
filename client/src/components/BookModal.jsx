@@ -90,11 +90,6 @@ export const BookModal = ({ ...props }) => {
   };
   console.log('formSubmissionCompleted', formSubmissionCompleted);
 
-  if (props.msg == 1) {
-    if (carouselRef.current) {
-      carouselRef.current.goTo(1);
-    }
-  }
   const options = [
     { label: "Beginner", value: "Beginner" },
     { label: "Intermediate", value: "Intermediate" },
@@ -141,6 +136,14 @@ export const BookModal = ({ ...props }) => {
     setIsModal2Open(false);
     setIsModal3Open(false);
   };
+
+  if (props.msg == 1) {
+    console.log('YYY');
+    if (carouselRef.current) {
+      console.log('ttt');
+      carouselRef.current.goTo(1);
+    }
+  }
 
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
