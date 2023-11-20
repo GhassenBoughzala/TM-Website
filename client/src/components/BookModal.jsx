@@ -63,6 +63,7 @@ export const BookModal = ({ ...props }) => {
   useEffect(() => {
     if (props.msg === 1) {
       carouselRef.current.goTo(1);
+      toast.success(t('SubsResult-1'));
     } else if (props.msg === 0) {
       props.setOpenModal(false);
       navTo("/subscription");
