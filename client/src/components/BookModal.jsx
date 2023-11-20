@@ -31,8 +31,6 @@ export const BookModal = ({ ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
-  const nextButtonRef = useRef(null);
-
 
   useEffect(() => {
     const playMedia = () => {
@@ -112,9 +110,7 @@ export const BookModal = ({ ...props }) => {
       // Vous pouvez également utiliser la fonction de navigation ici si nécessaire
       // navTo("/subscription");
       
-      if (nextButtonRef.current) {
-        nextButtonRef.current.click();
-      }
+      goToSlide();
   
     } catch (errorInfo) {
       toast.warn("Check your fields !");
@@ -122,6 +118,10 @@ export const BookModal = ({ ...props }) => {
     }
   };
 
+
+  const goToSlide = () => {
+    carouselRef.current.goTo(1);
+  };
 
   const options = [
     { label: "Beginner", value: "Beginner" },
@@ -173,13 +173,10 @@ export const BookModal = ({ ...props }) => {
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
       <div>
-      <Button
-  type="primary"
-  onClick={() => {
-    carouselRef.current.next();
-  }}
-  ref={nextButtonRef}
->          Next
+      <Button type="primary" onClick={() => {
+        carouselRef.current.next();
+      }}>
+          Next
         </Button>
       <Form
         form={form}
