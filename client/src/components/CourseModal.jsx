@@ -30,7 +30,6 @@ export const CourseModal = ({ ...props }) => {
   }, [props.currentObj]);
 
   const [openModal, setOpenModal] = useState(false);
-  console.log('props', props);
 
   const handleCancel = () => {
     setOpenModal(false);
