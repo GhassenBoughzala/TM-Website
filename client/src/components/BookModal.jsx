@@ -117,9 +117,16 @@ export const BookModal = ({ ...props }) => {
     form.resetFields();
     setType("");
   };
+  
+  /*if (props.msg == 0) {
+    toast.warn(t('SubsResult-0')); // Assuming 'SubsResult-0' is a translation key
+  } else if (props.msg == 1) {
+    toast.success(t('SubsResult-1')); // Assuming 'SubsResult-1' is a translation key
+  }*/
 
   const showModal1 = () => {
     setIsModal1Open(true);
+    carouselRef.current.goTo(1);
   };
 
   const showModal2 = () => {
@@ -329,11 +336,25 @@ export const BookModal = ({ ...props }) => {
           className="subs-btn mt-5 m-auto btn_download"
           size="large"
           type="text"
+          onClick={() => {
+            carouselRef.current.next();
+          }}
         >
           {t("terminer")}
         </Button>
       </div>
       <div>
+        
+        <a
+          href="#"
+          className="back_left"
+          size="large"
+          type="text"
+          onClick={() => {
+            carouselRef.current.prev();
+          }}
+        >return
+        </a>
         <h2 className="txt_level_1">{t("txt_level_2")}</h2>
         
         <div className="row">
@@ -387,12 +408,26 @@ export const BookModal = ({ ...props }) => {
           className="subs-btn mt-5 m-auto btn_download"
           size="large"
           type="text"
+          onClick={() => {
+            carouselRef.current.next();
+          }}
         >
           {t("terminer")}
         </Button>
 
       </div>
       <div>
+        
+        <a
+          href="#"
+          className="back_left"
+          size="large"
+          type="text"
+          onClick={() => {
+            carouselRef.current.prev();
+          }}
+        >return
+        </a>
         <h2 className="txt_level_1">{t("txt_level_end")}</h2>
         <a 
           href="mailto:info@taamarbouta.com"
