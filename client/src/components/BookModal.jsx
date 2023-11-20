@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-operators */
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { Button, Form, Select, Input, InputNumber } from "antd";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
@@ -9,19 +9,15 @@ import { Subscribe } from "../redux/subs/subsActions";
 import { RedoOutlined } from "@ant-design/icons";
 import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
-import { useTranslation } from "react-i18next";
 import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 export const BookModal = ({ ...props }) => {
-  const { t } = useTranslation();
   const navTo = useNavigate();
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
-  const [formSubmissionSuccess, setFormSubmissionSuccess] = useState(null);
-
   const handleFormSubmit = () => {
     form
       .validateFields()
@@ -36,29 +32,14 @@ export const BookModal = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-
-        // Set form submission success
-        setFormSubmissionSuccess(true);
+        props.setOpenModal(false);
+        navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
-      
-        // Set form submission failure
-        setFormSubmissionSuccess(false);
       });
-  };  
-
-  // Use the formSubmissionSuccess state as needed
-  useEffect(() => {
-    if (formSubmissionSuccess === true) {
-      // Do something on success
-      console.log("Form submitted successfully!");
-    } else if (formSubmissionSuccess === false) {
-      // Do something on failure
-      console.log("Form submission failed!");
-    }
-  }, [formSubmissionSuccess]);
+  };
 
   const options = [
     { label: "Beginner", value: "Beginner" },
@@ -77,6 +58,8 @@ export const BookModal = ({ ...props }) => {
     form.resetFields();
     setType("");
   };
+
+  console.log('msg', props.msg);
 
   return (
     <Form
