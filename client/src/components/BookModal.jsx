@@ -30,7 +30,7 @@ export const BookModal = ({ selectedId, ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
-  console.log('selectedId', selectedId);
+  
   useEffect(() => {
     const playMedia = () => {
       if (isModal1Open) {

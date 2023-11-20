@@ -31,8 +31,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import dayjs from "dayjs";
-import BookModal from "../../src/components/BookModal";
-
 const { Content } = Layout;
 
 export const Profile = ({ ...props }) => {
@@ -52,7 +50,6 @@ export const Profile = ({ ...props }) => {
   const [openModal, setOpenModal] = useState(false);
   const [selctedId, setSelctedId] = useState();
   const [subObj, setsubObj] = useState({});
-  
   const navTo = useNavigate();
   const handleCancel = () => {
     setOpenModal(false);
@@ -140,7 +137,6 @@ export const Profile = ({ ...props }) => {
               >
                 Cancel booking
               </Button>
-              <BookModal selctedId={selctedId} />
             </div>
           )}
           {su.status === "pending" && (
