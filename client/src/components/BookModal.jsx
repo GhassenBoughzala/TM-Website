@@ -91,7 +91,9 @@ export const BookModal = ({ ...props }) => {
   console.log('formSubmissionCompleted', formSubmissionCompleted);
 
   if (props.msg == 1) {
-    carouselRef.current.goTo(1);
+    if (carouselRef.current) {
+      carouselRef.current.goTo(1);
+    }
   }
   const options = [
     { label: "Beginner", value: "Beginner" },
