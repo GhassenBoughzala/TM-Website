@@ -117,12 +117,6 @@ export const BookModal = ({ ...props }) => {
     form.resetFields();
     setType("");
   };
-  
-  /*if (props.msg == 0) {
-    toast.warn(t('SubsResult-0')); // Assuming 'SubsResult-0' is a translation key
-  } else if (props.msg == 1) {
-    toast.success(t('SubsResult-1')); // Assuming 'SubsResult-1' is a translation key
-  }*/
 
   const showModal1 = () => {
     setIsModal1Open(true);
@@ -145,11 +139,6 @@ export const BookModal = ({ ...props }) => {
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
       <div>
-      <Button type="primary" onClick={() => {
-        carouselRef.current.next();
-      }}>
-          Next
-        </Button>
       <Form
         form={form}
         className="form"
