@@ -64,8 +64,8 @@ export const BookModal = ({ ...props }) => {
     // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
   };
-  console.log('showLevelMessage', showLevelMessage);
   useEffect(() => {
+    console.log('showLevelMessage', showLevelMessage);
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
         carouselRef.current.goTo(1);
