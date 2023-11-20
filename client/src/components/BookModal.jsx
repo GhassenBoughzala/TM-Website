@@ -137,7 +137,7 @@ export const BookModal = ({ ...props }) => {
   };
 
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
       <div>
       <Form
         form={form}
