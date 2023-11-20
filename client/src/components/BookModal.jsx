@@ -15,8 +15,7 @@ import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 const { Option } = Select;
 const { TextArea } = Input;
 
-export const BookModal = ({ bookingId, ...props }) => {
-  console.log(`Booking with ID ${bookingId} is canceled.`);
+export const BookModal = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
   const currentObj = props.currentObj;
