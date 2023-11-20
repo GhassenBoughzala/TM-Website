@@ -137,7 +137,7 @@ export const Profile = ({ ...props }) => {
                   setDeleteModal(true);
 
                   // Call the function from OtherFile and pass the booking ID
-                  handleCancelBooking(su._id);
+                  BookModal(su._id);
                 }}
               >
                 Cancel booking
