@@ -61,12 +61,14 @@ export const BookModal = ({ ...props }) => {
   }, [isModal1Open, isModal2Open, isModal3Open]);
 
   useEffect(() => {
-    if (props.msg === 1) {
-      carouselRef.current.goTo(1);
-      toast.success(t('SubsResult-1'));
-    } else if (props.msg === 0) {
-      props.setOpenModal(false);
-      navTo("/subscription");
+    if (showLevelMessage !== "Beginner") {
+      if (props.msg === 1) {
+        carouselRef.current.goTo(1);
+        toast.success(t('SubsResult-1'));
+      } else if (props.msg === 0) {
+        props.setOpenModal(false);
+        navTo("/subscription");
+      }
     }
   }, [props.msg]);
 
