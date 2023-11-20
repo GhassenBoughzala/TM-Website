@@ -109,8 +109,11 @@ export const BookModal = ({ ...props }) => {
   
       // Vous pouvez également utiliser la fonction de navigation ici si nécessaire
       // navTo("/subscription");
-      
-      goToSlide();
+      if (form.isSubmitted()) {
+        // La soumission du formulaire a eu lieu
+        console.log("La soumission du formulaire a eu lieu!");
+        goToSlide();
+      }
   
     } catch (errorInfo) {
       toast.warn("Check your fields !");
