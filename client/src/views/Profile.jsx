@@ -140,7 +140,7 @@ export const Profile = ({ ...props }) => {
               >
                 Cancel booking
               </Button>
-              <BookModal selectedId={selectedId} />
+              <BookModal selctedId={selctedId} />
             </div>
           )}
           {su.status === "pending" && (
