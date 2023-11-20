@@ -64,7 +64,7 @@ export const BookModal = ({ ...props }) => {
     // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
   };
-
+  console.log('showLevelMessage', showLevelMessage);
   useEffect(() => {
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
