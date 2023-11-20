@@ -21,7 +21,6 @@ export const BookModal = ({ ...props }) => {
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
   const [showLevelMessage, setShowLevelMessage] = useState(false);
-  const [formSubmissionCompleted, setFormSubmissionCompleted] = useState(false);
 
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
@@ -64,6 +63,9 @@ export const BookModal = ({ ...props }) => {
   useEffect(() => {
     if (props.msg === 1) {
       carouselRef.current.goTo(1);
+    } else if (props.msg === 0) {
+      props.setOpenModal(false);
+      navTo("/subscription");
     }
   }, [props.msg]);
 
@@ -83,7 +85,6 @@ export const BookModal = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-        setFormSubmissionCompleted(true);
         
         //props.setOpenModal(false);
         //navTo("/subscription");
@@ -91,10 +92,9 @@ export const BookModal = ({ ...props }) => {
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
-        setFormSubmissionCompleted(false);
       });
   };
-  console.log('formSubmissionCompleted', formSubmissionCompleted);
+
   const options = [
     { label: "Beginner", value: "Beginner" },
     { label: "Intermediate", value: "Intermediate" },
