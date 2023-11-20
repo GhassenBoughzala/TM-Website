@@ -61,8 +61,13 @@ export const BookModal = ({ ...props }) => {
     };
   }, [isModal1Open, isModal2Open, isModal3Open]);
 
+  useEffect(() => {
+    if (props.msg === 1) {
+      carouselRef.current.goTo(1);
+    }
+  }, [props.msg]);
 
-  /*const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
     form
@@ -79,7 +84,7 @@ export const BookModal = ({ ...props }) => {
           currency: values.currency,
         });
         setFormSubmissionCompleted(true);
-        carouselRef.current.goTo(1);
+        
         //props.setOpenModal(false);
         //navTo("/subscription");
       })
@@ -88,44 +93,8 @@ export const BookModal = ({ ...props }) => {
         console.log("errorInfo ...", errorInfo);
         setFormSubmissionCompleted(false);
       });
-  };*/
-
-  const handleFormSubmit = async () => {
-    try {
-      const values = await form.validateFields();
-      await props.AddSub({
-        course: currentObj._id,
-        level: values.level,
-        sessions: values.sessions,
-        notes: values.notes,
-        title: currentObj.title,
-        type: type,
-        hours: values.hours,
-        currency: values.currency,
-      });
-  
-      // Ajoutez la fonction que vous souhaitez exécuter après le succès ici
-      // Exemple: console.log("La soumission du formulaire a réussi!");
-  
-      // Vous pouvez également utiliser la fonction de navigation ici si nécessaire
-      // navTo("/subscription");
-      if (form.isSubmitted()) {
-        // La soumission du formulaire a eu lieu
-        console.log("La soumission du formulaire a eu lieu!");
-        goToSlide();
-      }
-  
-    } catch (errorInfo) {
-      toast.warn("Check your fields !");
-      console.log("errorInfo ...", errorInfo);
-    }
   };
-
-
-  const goToSlide = () => {
-    carouselRef.current.goTo(1);
-  };
-
+  console.log('formSubmissionCompleted', formSubmissionCompleted);
   const options = [
     { label: "Beginner", value: "Beginner" },
     { label: "Intermediate", value: "Intermediate" },
@@ -451,8 +420,8 @@ const mapActionToProps = {
   AddSub: Subscribe,
 };
 const mapToStateProps = (state) => ({
-  isAuth: state.auth.isAuthenticated,
-  loadingSub: state.subs.loading_create,
+  //isAuth: state.auth.isAuthenticated,
+  //loadingSub: state.subs.loading_create,
   msg: state.subs.codeMsg,
 });
 
