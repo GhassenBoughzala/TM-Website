@@ -144,9 +144,7 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal2Open(false);
     setIsModal3Open(false);
   };
-
-  console.log("Subscribe Action:", Subscribe);
-
+  
   return (
     <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
       <div>
