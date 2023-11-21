@@ -356,7 +356,11 @@ export const BookModalArabic = ({ ...props }) => {
         
         <div className="row">
           <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <Button className="box_listening" onClick={showModal1}>
+          <Button className="box_listening" onClick={(event) => { 
+              event.stopPropagation(); // Add this line
+              showModal1();
+            }}
+          >
               <img src="images/test/audio.png" alt="IconAudio" />          
             </Button>
             <Modal className="modal_test" open={isModal1Open} onCancel={handleCancel} footer={null}>
