@@ -33,7 +33,7 @@ export const CourseAR = ({ ...props }) => {
       });
     setstate(props.selectedCourse);
   }, []);
-  console.log('currentObj', currentObj);
+
   return (
     <>
       <Content className=" container-fluid m-3">
@@ -72,7 +72,7 @@ export const CourseAR = ({ ...props }) => {
 const mapActionToProps = {
   AllCourses: getCourses,
   Select: selectCourse,
-  getSubsAD: () => getSubsAD(),
+  ubsAD: getSubsAD,
 };
 
 const mapStateToProps = (state) => ({

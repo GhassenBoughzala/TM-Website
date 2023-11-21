@@ -93,12 +93,6 @@ export const BookModalArabic = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-
-        // Get the data from the response
-        const data = response.data;
-  
-        // Display the data
-        console.log("Data:", data);
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
