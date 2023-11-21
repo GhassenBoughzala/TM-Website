@@ -27,13 +27,13 @@ export const CourseAR = ({ ...props }) => {
         setloading(true);
         setstate(res.data);
         props.getSubsAD();
+        console.log('all ==>', props.getSubsAD() );
       })
       .catch((err) => {
         console.log(err);
       });
     setstate(props.selectedCourse);
   }, []);
-  console.log('allDataUser', props.getSubsAD());
   return (
     <>
       <Content className=" container-fluid m-3">
