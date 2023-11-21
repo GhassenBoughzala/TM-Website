@@ -10,11 +10,15 @@ import usePrevious from "../helpers/usePrevious";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import BookModal from "./BookModal";
+import BookModalArabic  from "./BookModalArabic";
+import BookModalFrench  from "./BookModalFrench";
 import shortid from "shortid";
 
 export const CourseModal = ({ ...props }) => {
+  console.log('CourseModal props', props);
   const navTo = useNavigate();
   const { t } = useTranslation();
+
   const course = {
     description: [],
     priceDescription: [],
@@ -23,16 +27,37 @@ export const CourseModal = ({ ...props }) => {
   };
   const [form] = Form.useForm();
   const [currentObj, setCurrentObj] = useState(course);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [openModalArabic, setOpenModalArabic] = useState(false);
+  const [openModalFrench, setOpenModalFrench] = useState(false);
+  const [currentModal, setCurrentModal] = useState("BookModal");
+
   useEffect(() => {
     if (props.currentObj) {
       setCurrentObj(props.currentObj);
+
+      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
+        setOpenModalArabic(false);
+        setOpenModalFrench(false); // Close the French modal if it was open
+        setCurrentModal("BookModalArabic");
+      } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
+        setOpenModalArabic(false);
+        setOpenModal(false); // Close the default modal if it was open
+        setCurrentModal("BookModalFrench");
+      } else {
+        setOpenModal(false);
+        setOpenModalArabic(false);
+        setCurrentModal("BookModal");
+      }
     }
   }, [props.currentObj]);
-
-  const [openModal, setOpenModal] = useState(false);
+  
 
   const handleCancel = () => {
     setOpenModal(false);
+    setOpenModalArabic(false);
+    setOpenModalFrench(false);
     form.resetFields();
   };
 
@@ -65,8 +90,16 @@ export const CourseModal = ({ ...props }) => {
                   <Button
                     className="subs-btn"
                     size="large"
-                    type="text"
-                    onClick={() => setOpenModal(true)}
+                    type="text"                    
+                    onClick={() => {
+                      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
+                        setOpenModalArabic(true);
+                      } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
+                        setOpenModalFrench(true);
+                      } else {
+                        setOpenModal(true);
+                      }
+                    }}
                   >
                     Book now
                   </Button>
@@ -97,8 +130,16 @@ export const CourseModal = ({ ...props }) => {
                   <Button
                     className="subs-btn"
                     size="large"
-                    type="text"
-                    onClick={() => setOpenModal(true)}
+                    type="text"             
+                    onClick={() => {
+                      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
+                        setOpenModalArabic(true);
+                      } else if (props.currentObj._id === "v") {
+                        setOpenModalFrench(true);
+                      } else {
+                        setOpenModal(true);
+                      }
+                    }}
                   >
                     Book now
                   </Button>
@@ -182,7 +223,10 @@ export const CourseModal = ({ ...props }) => {
 
             {/* Book Modal */}
             <Modal
-              open={openModal}
+              open={
+                props.currentObj._id === "64c6849913ebbe2aec0e1b1d" ? openModalArabic :
+                props.currentObj._id === "64c684ce13ebbe2aec0e1b20" ? openModalFrench : openModal
+              }
               onCancel={handleCancel}
               width={550}
               bodyStyle={{ height: "100%" }}
@@ -201,12 +245,20 @@ export const CourseModal = ({ ...props }) => {
                 </div>
               ) : (
                 <div className="row">
-                  <h2 className=" blue-text mb-5 text-center mt-4">
+                  <h2 className="blue-text mb-5 text-center mt-4">
                     Book {currentObj.title} Course
                   </h2>
-                  <BookModal
-                    {...{ currentObj, openModal, setOpenModal }}
-                  ></BookModal>
+                  {currentModal === "BookModal" && (
+                    <BookModal {...{ currentObj, openModal, setOpenModal }} />
+                  )}
+
+                  {currentModal === "BookModalArabic" && (
+                    <BookModalArabic {...{ currentObj, openModalArabic, setOpenModalArabic }} />
+                  )}
+
+                  {currentModal === "BookModalFrench" && (
+                    <BookModalFrench {...{ currentObj, openModalFrench, setOpenModalFrench }} />
+                  )}
                 </div>
               )}
             </Modal>
