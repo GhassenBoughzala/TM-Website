@@ -54,7 +54,7 @@ export default function (state = intialState, action) {
     case GET_DATA_USER:
       return { 
         ...state, 
-        user: action.payload, 
+        user_subs: action.payload, 
         loading: true,   
       };
     case GET_FAIL_AD:
