@@ -4,7 +4,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import CourseModal from "../../components/CourseModal";
 import { connect } from "react-redux";
 import { getCourses, selectCourse } from "../../redux/courses/courseActions";
-import { getSubsByUser } from "../../redux/subs/subsActions";
+import { getSubsAD } from "../../redux/subs/subsActions";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
 
@@ -24,7 +24,7 @@ export const CourseAR = ({ ...props }) => {
       .then((res) => {
         setloading(true);
         setstate(res.data);
-        props.getSubsByUser();
+        props.getSubsAD();
       })
       .catch((err) => {
         console.log(err);
@@ -70,7 +70,7 @@ export const CourseAR = ({ ...props }) => {
 const mapActionToProps = {
   AllCourses: getCourses,
   Select: selectCourse,
-  getSubsByUser,
+  getSubsAD,
 };
 
 const mapStateToProps = (state) => ({
