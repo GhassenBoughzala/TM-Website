@@ -146,7 +146,7 @@ export const BookModalArabic = ({ ...props }) => {
   };
 
   console.log("Subscribe Action:", Subscribe);
-  
+
   return (
     <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
       <div>
@@ -455,6 +455,7 @@ const mapToStateProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
   loadingSub: state.subs.loading_create,
   msg: state.subs.codeMsg,
+  Subscribe: Subscribe,
 });
 
 export default connect(mapToStateProps, mapActionToProps)(BookModalArabic);
