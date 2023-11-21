@@ -48,15 +48,22 @@ const config = {
         use: [stylesHandler, "css-loader"],
       },
       {
-        test: /\.(pdf)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-            },
-          },
-        ],
+        test: /\.(pdf)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'pdfs/[name][ext]',
+        },
+      },
+      {
+        test: /\.(docx)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'docx/[name][ext]',
+        },
+      },
+      {
+        test: /\.(docx)$/,
+        use: 'raw-loader',
       },
     ],
   },
