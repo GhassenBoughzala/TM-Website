@@ -17,6 +17,7 @@ export const CourseAR = ({ ...props }) => {
   const [currentObj, setstate] = useState(course);
   const [loading, setloading] = useState(true);
   const [allDataUser, setallDataUser] = useState("");
+  
   useEffect(() => {
     const id = "64c6849913ebbe2aec0e1b1d";
     setloading(false);
@@ -25,14 +26,14 @@ export const CourseAR = ({ ...props }) => {
       .then((res) => {
         setloading(true);
         setstate(res.data);
-        setallDataUser(props.getSubsAD());
+        props.getSubsAD();
       })
       .catch((err) => {
         console.log(err);
       });
     setstate(props.selectedCourse);
   }, []);
-  console.log('allDataUser', allDataUser);
+  console.log('allDataUser', props.getSubsAD());
   return (
     <>
       <Content className=" container-fluid m-3">
