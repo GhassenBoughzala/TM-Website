@@ -16,7 +16,6 @@ export const CourseAR = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setstate] = useState(course);
   const [loading, setloading] = useState(true);
-  const [allDataUser, setallDataUser] = useState("");
   
   useEffect(() => {
     const id = "64c6849913ebbe2aec0e1b1d";
@@ -26,8 +25,11 @@ export const CourseAR = ({ ...props }) => {
       .then((res) => {
         setloading(true);
         setstate(res.data);
-        props.getSubsAD();
-        console.log('all ==>', props.getSubsAD() );
+        props.getSubsAD()
+        .then((subsResult) => {
+          console.log('Subs result ==>', subsResult);
+          // Faites quelque chose avec le résultat, par exemple, mettre à jour l'état
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -72,7 +74,7 @@ export const CourseAR = ({ ...props }) => {
 const mapActionToProps = {
   AllCourses: getCourses,
   Select: selectCourse,
-  getSubsAD,
+  getSubsAD: () => getSubsAD(),
 };
 
 const mapStateToProps = (state) => ({
