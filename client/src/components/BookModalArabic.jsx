@@ -169,7 +169,7 @@ export const BookModalArabic = ({ ...props }) => {
                 <Select options={options} onChange={levelChange} />
               </Form.Item>
               {showLevelMessage && (
-                <p className="msg_test_level">{t("msg_test_level")}</p>
+                <p className="msg_test_level">--{t("msg_test_level")}</p>
               )}
             </div>
           </div>
