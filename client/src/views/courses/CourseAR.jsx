@@ -26,6 +26,7 @@ export const CourseAR = ({ ...props }) => {
         setloading(true);
         setstate(res.data);
         props.getSubsAD();
+        console.log('res', res);
       })
       .catch((err) => {
         console.log(err);
