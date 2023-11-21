@@ -10,7 +10,6 @@ import {
   GET_FAIL_AD,
   GET_SUBS,
   GET_SUBS_AD,
-  GET_DATA_USER,
   LOADING_SUBS,
   PAYMENT_FAILED,
   PAYMENT_LOADING,
@@ -20,20 +19,6 @@ import {
   UPDATE_SUBS_SUCCESS,
 } from "./subsTypes";
 import setAuthToken from "../../helpers/authToken";
-
-export const getSubsUser = () => (dispatch) => {
-  dispatch({ type: LOADING_SUBS });
-  setAuthToken(localStorage.accessToken);
-  return axios
-    .get(`/api/subscription/user`)
-    .then((res) => {
-      dispatch({
-        type: GET_DATA_USER,
-        payload: res.data,
-      });
-    })
-    .catch((err) => console.log(err), GET_FAIL_AD);
-};
 
 export const getSubsAD = () => (dispatch) => {
   dispatch({ type: LOADING_SUBS });

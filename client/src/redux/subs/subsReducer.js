@@ -11,7 +11,6 @@ import {
   GET_FAIL_AD,
   GET_SUBS,
   GET_SUBS_AD,
-  GET_DATA_USER,
   LOADING_SUBS,
   PAYMENT_FAILED,
   PAYMENT_LOADING,
@@ -50,12 +49,6 @@ export default function (state = intialState, action) {
         ...state,
         subs: [...action.payload],
         loading: true,
-      };
-    case GET_DATA_USER:
-      return { 
-        ...state, 
-        user_subs: action.payload, 
-        loading: true,   
       };
     case GET_FAIL_AD:
       return { subs: [], error: true };
