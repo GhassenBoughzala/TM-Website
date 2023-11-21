@@ -36,6 +36,23 @@ export const CourseAR = ({ ...props }) => {
       });
     setstate(props.selectedCourse);
   }, []);
+  
+  useEffect(() => {
+    const id = "64c6849913ebbe2aec0e1b1d";
+    setloading(false);
+    axios
+      .get(`/api/subscription/all`)
+      .then((res) => {
+        setloading(true);
+        setstate(res.data);
+        console.log('==>', res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setstate(props.selectedCourse);
+  }, []);
+
   return (
     <>
       <Content className=" container-fluid m-3">
