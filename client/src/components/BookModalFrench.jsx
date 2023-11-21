@@ -273,7 +273,7 @@ export const BookModalFrench = ({ ...props }) => {
         <h2 className="txt_level_1">{t("txt_level_1")}</h2>
         
         <Button
-          className="btn_download m-auto"
+          className="btn_download url_link m-auto"
           onClick={onDownload1}
         >
           {t("click_here")}

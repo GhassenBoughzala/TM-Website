@@ -547,11 +547,11 @@ footer p {
 .btn_download {
   display: table;
 }
-button.btn_download {
+button.url_link {
   padding: 0;
   border: none;
 }
-button.btn_download span {
+button.url_link span {
   color: rgb(13,110,253);
   text-decoration: underline;
 }
