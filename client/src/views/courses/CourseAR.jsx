@@ -16,7 +16,7 @@ export const CourseAR = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setstate] = useState(course);
   const [loading, setloading] = useState(true);
-  const [allDataUser, setallDataUser] = useState(true);
+  const [allDataUser, setallDataUser] = useState("");
   useEffect(() => {
     const id = "64c6849913ebbe2aec0e1b1d";
     setloading(false);
