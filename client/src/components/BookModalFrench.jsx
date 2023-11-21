@@ -10,7 +10,8 @@ import { RedoOutlined } from "@ant-design/icons";
 import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
-import Doc2Pdf from '../../public/images/test/french/test1.docx';
+//import Doc2Pdf from '../../public/images/test/french/test1.docx';
+import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 
 const { Option } = Select;
 const { TextArea } = Input;
