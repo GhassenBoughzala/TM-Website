@@ -48,6 +48,8 @@
   },
   "devDependencies": {
     "file-loader": "^6.2.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "raw-loader": "^4.0.2",
+    "webpack": "^5.89.0"
   }
 }
