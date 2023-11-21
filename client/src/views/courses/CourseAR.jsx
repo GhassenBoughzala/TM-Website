@@ -25,11 +25,7 @@ export const CourseAR = ({ ...props }) => {
       .then((res) => {
         setloading(true);
         setstate(res.data);
-        props.getSubsAD()
-        .then((subsResult) => {
-          console.log('Subs result ==>', subsResult);
-          // Faites quelque chose avec le résultat, par exemple, mettre à jour l'état
-        })
+        props.getSubsAD();
       })
       .catch((err) => {
         console.log(err);
