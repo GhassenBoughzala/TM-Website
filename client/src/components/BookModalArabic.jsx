@@ -145,6 +145,8 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal3Open(false);
   };
 
+  console.log("Subscribe Action:", Subscribe);
+  
   return (
     <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
       <div>
@@ -450,8 +452,8 @@ const mapActionToProps = {
   AddSub: Subscribe,
 };
 const mapToStateProps = (state) => ({
-  //isAuth: state.auth.isAuthenticated,
-  //loadingSub: state.subs.loading_create,
+  isAuth: state.auth.isAuthenticated,
+  loadingSub: state.subs.loading_create,
   msg: state.subs.codeMsg,
 });
 
