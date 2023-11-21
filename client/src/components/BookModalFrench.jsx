@@ -285,6 +285,26 @@ export const BookModalFrench = ({ ...props }) => {
           {t("terminer")}
         </Button>
       </div>
+      <div>
+        
+        <a
+          href="#"
+          className="back_left"
+          size="large"
+          type="text"
+          onClick={() => {
+            carouselRef.current.prev();
+          }}
+        >return
+        </a>
+        <h2 className="txt_level_1">{t("txt_level_end")}</h2>
+        <a 
+          href="mailto:info@taamarbouta.com"
+          className="btn_download m-auto email_info"
+        >
+          info@taamarbouta.com
+        </a>
+      </div>
     </Carousel>
   );
 };
