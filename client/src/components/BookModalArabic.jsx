@@ -93,9 +93,15 @@ export const BookModalArabic = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-        
         //props.setOpenModal(false);
         //navTo("/subscription");
+      })        
+      .then((responseData) => {
+        // Handle the success case or display the data as needed
+        console.log("Success! Response data:", responseData);
+        // For example, you can update state or show a success message
+        // props.setOpenModal(false);
+        // navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
