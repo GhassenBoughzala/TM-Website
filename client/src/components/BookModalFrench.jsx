@@ -10,8 +10,8 @@ import { RedoOutlined } from "@ant-design/icons";
 import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
-//import Doc2Pdf from '../../public/images/test/french/test1.docx';
-import Doc2Pdf from '../../public/images/test/Doc2.pdf';
+import Doc2Pdf from '../../public/images/test/french/test1.docx';
+//import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -22,44 +22,7 @@ export const BookModalFrench = ({ ...props }) => {
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
   const [showLevelMessage, setShowLevelMessage] = useState(false);
-
-  const [isModal1Open, setIsModal1Open] = useState(false);
-  const [isModal2Open, setIsModal2Open] = useState(false);
-  const [isModal3Open, setIsModal3Open] = useState(false);  
-
-  const audioRef = useRef(null); // Create a ref for the audio element
-  const videoRef1 = useRef(null); // Create a ref for the first video element
-  const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
-  
-  useEffect(() => {
-    const playMedia = () => {
-      if (isModal1Open) {
-        audioRef.current.play();
-      } else if (isModal2Open) {
-        videoRef1.current.play();
-      } else if (isModal3Open) {
-        videoRef2.current.play();
-      }
-    };
-
-    const pauseMedia = () => {
-      if (isModal1Open) {
-        audioRef.current.pause();
-      } else if (isModal2Open) {
-        videoRef1.current.pause();
-      } else if (isModal3Open) {
-        videoRef2.current.pause();
-      }
-    };
-
-    playMedia();
-
-    return () => {
-      // Clean up and pause media when component is unmounted
-      pauseMedia();
-    };
-  }, [isModal1Open, isModal2Open, isModal3Open]);  
 
   const levelChange = (value) => {
     // Check if the selected level is not "Beginner"
@@ -120,31 +83,6 @@ export const BookModalFrench = ({ ...props }) => {
   const reset = () => {
     form.resetFields();
     setType("");
-  };
-  
-  /*if (props.msg == 0) {
-    toast.warn(t('SubsResult-0')); // Assuming 'SubsResult-0' is a translation key
-  } else if (props.msg == 1) {
-    toast.success(t('SubsResult-1')); // Assuming 'SubsResult-1' is a translation key
-  }*/
-
-  const showModal1 = () => {
-    setIsModal1Open(true);
-    carouselRef.current.goTo(1);
-  };
-
-  const showModal2 = () => {
-    setIsModal2Open(true);
-  };
-
-  const showModal3 = () => {
-    setIsModal3Open(true);
-  };
-
-  const handleCancel = () => {
-    setIsModal1Open(false);
-    setIsModal2Open(false);
-    setIsModal3Open(false);
   };
 
   return (
