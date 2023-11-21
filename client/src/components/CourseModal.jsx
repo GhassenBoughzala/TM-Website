@@ -134,7 +134,7 @@ export const CourseModal = ({ ...props }) => {
                     onClick={() => {
                       if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
                         setOpenModalArabic(true);
-                      } else if (props.currentObj._id === "v") {
+                      } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
                         setOpenModalFrench(true);
                       } else {
                         setOpenModal(true);

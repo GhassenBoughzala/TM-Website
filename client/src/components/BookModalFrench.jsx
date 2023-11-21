@@ -88,7 +88,7 @@ export const BookModalFrench = ({ ...props }) => {
   };
 
   const onDownload1 = () => {
-    saveAs(Doc2Pdf, "testFile.docx");
+    saveAs(Doc2Pdf, "test french.docx");
   };
 
   return (
@@ -278,7 +278,7 @@ export const BookModalFrench = ({ ...props }) => {
         >
           {t("click_here")}
         </Button>
-        
+
         <Button
           className="subs-btn mt-5 m-auto btn_download"
           size="large"
