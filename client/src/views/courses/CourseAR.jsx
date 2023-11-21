@@ -32,6 +32,7 @@ export const CourseAR = ({ ...props }) => {
       });
     setstate(props.selectedCourse);
   }, []);
+  console.log('currentObj', currentObj);
   return (
     <>
       <Content className=" container-fluid m-3">
