@@ -10,8 +10,9 @@ import { RedoOutlined } from "@ant-design/icons";
 import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
+import { saveAs } from "file-saver";
 import Doc2Pdf from '../../public/images/test/french/test1.docx';
-//import Doc2Pdf from '../../public/images/test/Doc2.pdf';
+
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -84,6 +85,10 @@ export const BookModalFrench = ({ ...props }) => {
   const reset = () => {
     form.resetFields();
     setType("");
+  };
+
+  const onDownload1 = () => {
+    saveAs(Doc2Pdf, "testFile.docx");
   };
 
   return (
@@ -266,15 +271,14 @@ export const BookModalFrench = ({ ...props }) => {
       </div>
       <div>
         <h2 className="txt_level_1">{t("txt_level_1")}</h2>
-        <a
-          href={Doc2Pdf}
-          download="Test 1"
-          target="_blank"
-          rel="noreferrer"
+        
+        <Button
           className="btn_download m-auto"
+          onClick={onDownload1}
         >
           {t("click_here")}
-        </a>
+        </Button>
+        
         <Button
           className="subs-btn mt-5 m-auto btn_download"
           size="large"

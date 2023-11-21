@@ -547,7 +547,14 @@ footer p {
 .btn_download {
   display: table;
 }
-
+button.btn_download {
+  padding: 0;
+  border: none;
+}
+button.btn_download span {
+  color: rgb(13,110,253);
+  text-decoration: underline;
+}
 .box_listening {
   height: initial;
   padding: 25px;
