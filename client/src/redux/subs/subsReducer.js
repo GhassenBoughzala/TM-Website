@@ -48,6 +48,7 @@ export default function (state = intialState, action) {
       return {
         ...state,
         subs: [...action.payload],
+        user: action.payload,
         loading: true,
       };
     case GET_FAIL_AD:
