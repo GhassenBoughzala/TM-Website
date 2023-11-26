@@ -53,11 +53,11 @@ export const CourseAR = ({ ...props }) => {
   console.log('loading', loading);
   console.log('props', props);
 
-  const user_id = user._id;
+  const user_id = User._id;
   const course_id = "64c6849913ebbe2aec0e1b1d";
 
   const courseExists = alluser.some(user => {
-    return user._id === user_id && user.subscription.some(sub => sub.course === course_id);
+    return User._id === user_id && user.subscription.some(sub => sub.course === course_id);
   });
 
   if (courseExists) {
