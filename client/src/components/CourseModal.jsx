@@ -52,6 +52,12 @@ export const CourseModal = ({ ...props }) => {
     }
   }, [props.currentObj]);
   
+  if (courseExists) {
+    console.log('exists');
+  } else {
+    console.log('does not exist');
+  }
+  
 
   const handleCancel = () => {
     setOpenModal(false);
