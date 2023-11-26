@@ -64,6 +64,12 @@ export const BookModalArabic = ({ ...props }) => {
     // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
   };
+
+  if (courseExists) {
+    props.setOpenModalArabic(false);
+    navTo("/subscription");
+  }
+
   useEffect(() => {
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
