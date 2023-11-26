@@ -65,10 +65,10 @@ export const BookModalArabic = ({ ...props }) => {
     setShowLevelMessage(value !== "Beginner");
   };
 
-  if (courseExists) {
+  /*if (courseExists) {
     props.setOpenModalArabic(false);
     navTo("/subscription");
-  }
+  }*/
 
   useEffect(() => {
     if (showLevelMessage !== "Beginner") {
