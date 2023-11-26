@@ -32,6 +32,12 @@ export const CourseModal = ({ ...props }) => {
   const [openModalFrench, setOpenModalFrench] = useState(false);
   const [currentModal, setCurrentModal] = useState("BookModal");
 
+  const [User] = useState(() => {
+    const saved = localStorage.getItem("user");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+
   useEffect(() => {
     if (props.currentObj) {
       setCurrentObj(props.currentObj);
