@@ -23,7 +23,7 @@ export const CourseAR = ({ ...props }) => {
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   });
-  console.log('user', User);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -49,6 +49,7 @@ export const CourseAR = ({ ...props }) => {
   
   console.log('currentObj', currentObj);
   console.log('allUser', allUser);
+  console.log('user', User);
   console.log('loading', loading);
   console.log('props', props);
 
