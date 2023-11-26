@@ -441,7 +441,7 @@ export const BookModalArabic = ({ ...props }) => {
 };
 
 const mapActionToProps = {
-  AddSub: Subscribe,
+  //AddSub: Subscribe,
 };
 const mapToStateProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
