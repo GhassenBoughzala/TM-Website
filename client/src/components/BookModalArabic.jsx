@@ -96,7 +96,6 @@ export const BookModalArabic = ({ ...props }) => {
 
         
         console.log('showLevelMessage', showLevelMessage);
-        console.log('allUser Modal', allUser);
         console.log('props Modal', props);
         //props.setOpenModal(false);
         //navTo("/subscription");
