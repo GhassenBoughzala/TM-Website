@@ -93,7 +93,8 @@ export const CourseAR = ({ ...props }) => {
             </div>
           </>
         ) : (
-          <CourseModal {...{ currentObj }} />
+          //<CourseModal {...{ currentObj }} />
+          <CourseModal {...{ currentObj, courseExists }} />
         )}
       </Content>
       <Footer />
