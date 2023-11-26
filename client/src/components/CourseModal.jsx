@@ -15,7 +15,6 @@ import BookModalFrench  from "./BookModalFrench";
 import shortid from "shortid";
 
 export const CourseModal = ({ ...props }) => {
-  console.log('CourseModal props', props);
   const navTo = useNavigate();
   const { t } = useTranslation();
 

@@ -15,7 +15,7 @@ const { Content } = Layout;
 export const CourseAR = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setstate] = useState(course);
-  const [currentObj1, setstate1] = useState('');
+  const [allUser, setallUser] = useState('');
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const CourseAR = ({ ...props }) => {
   
         // Fetch subscription data
         const subscriptionResponse = await axios.get(`/api/subscription/all`);
-        setstate1(subscriptionResponse.data);
+        setallUser(subscriptionResponse.data);
   
         setloading(true);
       } catch (err) {
@@ -42,7 +42,7 @@ export const CourseAR = ({ ...props }) => {
   }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
   
   console.log('currentObj', currentObj);
-  console.log('currentObj1', currentObj1);
+  console.log('allUser', allUser);
   console.log('loading', loading);
 
   return (
