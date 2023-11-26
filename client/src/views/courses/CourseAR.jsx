@@ -53,6 +53,19 @@ export const CourseAR = ({ ...props }) => {
   console.log('loading', loading);
   console.log('props', props);
 
+  const user_id = user._id;
+  const course_id = "64c6849913ebbe2aec0e1b1d";
+
+  const courseExists = alluser.some(user => {
+    return user._id === user_id && user.subscription.some(sub => sub.course === course_id);
+  });
+
+  if (courseExists) {
+    console.log(`Course with id ${course_id} exists for user with id ${user_id}`);
+  } else {
+    console.log(`Course with id ${course_id} does not exist for user with id ${user_id}`);
+  }
+
   return (
     <>
       <Content className=" container-fluid m-3">
