@@ -14,7 +14,7 @@ import BookModalArabic  from "./BookModalArabic";
 import BookModalFrench  from "./BookModalFrench";
 import shortid from "shortid";
 
-export const CourseModal = ({ currentObj, courseExists, ...props }) => {
+export const CourseModal = ({ courseExists, ...props }) => {
   const navTo = useNavigate();
   const { t } = useTranslation();
 
