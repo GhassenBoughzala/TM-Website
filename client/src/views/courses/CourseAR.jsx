@@ -18,6 +18,12 @@ export const CourseAR = ({ ...props }) => {
   const [allUser, setallUser] = useState('');
   const [loading, setloading] = useState(true);
 
+  const [User] = useState(() => {
+    const saved = localStorage.getItem("user");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  console.log('user', User);
   useEffect(() => {
     const fetchData = async () => {
       try {
