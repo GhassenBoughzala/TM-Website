@@ -18,6 +18,12 @@ export const CourseFR = ({ ...props }) => {
   const [allUser, setallUser] = useState([]);
   const [loading, setloading] = useState(true);
 
+  const [User] = useState(() => {
+    const saved = localStorage.getItem("user");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,18 +47,18 @@ export const CourseFR = ({ ...props }) => {
     fetchData();
   }, []);
 
-  const user_id = User._id;
-  const course_id = "64c684ce13ebbe2aec0e1b20";
-
-  const courseExists = allUser.some(user => {
-    return user._id === user_id && user.subscription.some(sub => sub.course === course_id);
-  });
-
-  if (courseExists) {
-    console.log(`Course with id ${course_id} exists for user with id ${user_id}`);
-  } else {
-    console.log(`Course with id ${course_id} does not exist for user with id ${user_id}`);
-  }
+  const findCourse = (alluser, user_id, course_id) => {
+    const courseExists = alluser.some(user => {
+      return user._id === user_id && user.subscription.some(sub => sub.course === course_id);
+    });
+  
+    if (courseExists) {
+      return course_id;
+    } else {
+      return null; // or any other value to indicate that the course doesn't exist
+    }
+  };
+  const courseExists = findCourse(allUser, User._id, "64c684ce13ebbe2aec0e1b20");
 
   /*useEffect(() => {
     const id = "64c684ce13ebbe2aec0e1b20";
