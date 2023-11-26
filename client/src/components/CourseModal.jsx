@@ -97,7 +97,9 @@ export const CourseModal = ({ courseExists, ...props }) => {
                     size="large"
                     type="text"                    
                     onClick={() => {
-                      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
+                      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d" && courseExists) {
+                        navTo("/subscription");
+                      } else if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
                         setOpenModalArabic(true);
                       } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
                         setOpenModalFrench(true);
