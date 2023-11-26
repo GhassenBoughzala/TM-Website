@@ -44,6 +44,7 @@ export const CourseAR = ({ ...props }) => {
   console.log('currentObj', currentObj);
   console.log('allUser', allUser);
   console.log('loading', loading);
+  console.log('props', props);
 
   return (
     <>
