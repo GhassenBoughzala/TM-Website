@@ -19,31 +19,31 @@ export const CourseAR = ({ ...props }) => {
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
-    const id = "64c6849913ebbe2aec0e1b1d";
-    setloading(false);
-    axios
-      .get(`/api/courses/${id}`)
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        setloading(false);
+  
+        // Fetch course data
+        const courseResponse = await axios.get(`/api/courses/64c6849913ebbe2aec0e1b1d`);
+        setstate(courseResponse.data);
+  
+        // Fetch subscription data
+        const subscriptionResponse = await axios.get(`/api/subscription/all`);
+        setstate1(subscriptionResponse.data);
+  
         setloading(true);
-        setstate(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-      axios
-      .get(`/api/subscription/all`)
-      .then((data_sub) => {
+      } catch (err) {
+        console.error(err);
         setloading(true);
-        setstate1(data_sub.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    setstate(props.selectedCourse);
-  }, []);
-console.log('currentObj', currentObj);
-console.log('currentObj1', currentObj1);
+      }
+    };
+  
+    fetchData();
+  }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
+  
+  console.log('currentObj', currentObj);
+  console.log('currentObj1', currentObj1);
+  console.log('loading', loading);
 
   return (
     <>
