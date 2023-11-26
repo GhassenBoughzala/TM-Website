@@ -65,7 +65,6 @@ export const BookModalArabic = ({ ...props }) => {
     setShowLevelMessage(value !== "Beginner");
   };
   useEffect(() => {
-    console.log('showLevelMessage', showLevelMessage);
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
         carouselRef.current.goTo(1);
@@ -93,6 +92,10 @@ export const BookModalArabic = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
+
+        
+        console.log('showLevelMessage', showLevelMessage);
+        console.log('allUser Modal', allUser);
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
