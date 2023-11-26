@@ -53,9 +53,9 @@ export const CourseModal = ({ courseExists, ...props }) => {
   }, [props.currentObj]);
   
   if (courseExists) {
-    console.log('exists');
+    console.log('exists', courseExists);
   } else {
-    console.log('does not exist');
+    console.log('does not exist', courseExists);
   }
   
 
