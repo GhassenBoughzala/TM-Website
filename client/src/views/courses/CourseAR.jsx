@@ -42,6 +42,7 @@ export const CourseAR = ({ ...props }) => {
       });
     setstate(props.selectedCourse);
   }, []);
+console.log('currentObj', currentObj);
 console.log('currentObj1', currentObj1);
 
   return (
