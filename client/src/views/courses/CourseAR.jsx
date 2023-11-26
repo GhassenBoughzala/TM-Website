@@ -15,9 +15,8 @@ const { Content } = Layout;
 export const CourseAR = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setstate] = useState(course);
-  const [currentObj1, setstate1] = useState('');
   const [loading, setloading] = useState(true);
-
+  
   useEffect(() => {
     const id = "64c6849913ebbe2aec0e1b1d";
     setloading(false);
@@ -26,24 +25,14 @@ export const CourseAR = ({ ...props }) => {
       .then((res) => {
         setloading(true);
         setstate(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-      axios
-      .get(`/api/subscription/all`)
-      .then((res) => {
-        setloading(true);
-        setstate1(res.data);
+        props.getSubsAD();
+        console.log('res', res);
       })
       .catch((err) => {
         console.log(err);
       });
     setstate(props.selectedCourse);
   }, []);
-console.log('currentObj', currentObj);
-console.log('currentObj1', currentObj1);
 
   return (
     <>
