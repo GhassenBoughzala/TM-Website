@@ -15,7 +15,7 @@ const { Content } = Layout;
 export const CourseAR = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setstate] = useState(course);
-  const [allUser, setallUser] = useState('');
+  const [allUser, setallUser] = useState([]);
   const [loading, setloading] = useState(true);
 
   const [User] = useState(() => {
