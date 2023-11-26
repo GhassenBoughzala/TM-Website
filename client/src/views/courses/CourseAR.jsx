@@ -53,18 +53,18 @@ export const CourseAR = ({ ...props }) => {
   console.log('loading', loading);
   console.log('props', props);
 
-  const user_id = User._id;
-  const course_id = "64c6849913ebbe2aec0e1b1d";
-
-  const courseExists = allUser.some(user => {
-    return user._id === user_id && user.subscription.some(sub => sub.course === course_id);
-  });
-
-  if (courseExists) {
-    console.log(`Course with id ${course_id} exists for user with id ${user_id}`);
-  } else {
-    console.log(`Course with id ${course_id} does not exist for user with id ${user_id}`);
-  }
+  const findCourse = (alluser, user_id, course_id) => {
+    const courseExists = alluser.some(user => {
+      return user._id === user_id && user.subscription.some(sub => sub.course === course_id);
+    });
+  
+    if (courseExists) {
+      return course_id;
+    } else {
+      return null; // or any other value to indicate that the course doesn't exist
+    }
+  };
+  const courseExists = findCourse(allUser, User._id, "64c6849913ebbe2aec0e1b1d");
 
   return (
     <>

@@ -4,6 +4,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import CourseModal from "../../components/CourseModal";
 import { connect } from "react-redux";
 import { getCourses } from "../../redux/courses/courseActions";
+import { getSubsAD } from "../../redux/subs/subsActions";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
 
@@ -14,8 +15,46 @@ const { Content } = Layout;
 export const CourseFR = ({ ...props }) => {
   const course = { description: [], sessions: [] };
   const [currentObj, setstate] = useState(course);
+  const [allUser, setallUser] = useState([]);
   const [loading, setloading] = useState(true);
+
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setloading(false);
+  
+        // Fetch course data
+        const courseResponse = await axios.get(`/api/courses/64c684ce13ebbe2aec0e1b20`);
+        setstate(courseResponse.data);
+  
+        // Fetch subscription data
+        const subscriptionResponse = await axios.get(`/api/subscription/all`);
+        setallUser(subscriptionResponse.data);
+  
+        setloading(true);
+      } catch (err) {
+        console.error(err);
+        setloading(true);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
+  const user_id = User._id;
+  const course_id = "64c684ce13ebbe2aec0e1b20";
+
+  const courseExists = allUser.some(user => {
+    return user._id === user_id && user.subscription.some(sub => sub.course === course_id);
+  });
+
+  if (courseExists) {
+    console.log(`Course with id ${course_id} exists for user with id ${user_id}`);
+  } else {
+    console.log(`Course with id ${course_id} does not exist for user with id ${user_id}`);
+  }
+
+  /*useEffect(() => {
     const id = "64c684ce13ebbe2aec0e1b20";
     setloading(false);
     axios
@@ -28,7 +67,7 @@ export const CourseFR = ({ ...props }) => {
         console.log(err);
       });
     setstate(props.selectedCourse);
-  }, []);
+  }, []);*/
 
   return (
     <>
@@ -57,7 +96,8 @@ export const CourseFR = ({ ...props }) => {
             </div>
           </>
         ) : (
-          <CourseModal {...{ currentObj }} />
+          //<CourseModal {...{ currentObj }} />
+          <CourseModal {...{ currentObj, courseExists }} />
         )}
       </Content>
       <Footer />
