@@ -56,7 +56,7 @@ export const CourseAR = ({ ...props }) => {
   const user_id = User._id;
   const course_id = "64c6849913ebbe2aec0e1b1d";
 
-  const courseExists = alluser.some(user => {
+  const courseExists = allUser.some(user => {
     return user._id === user_id && user.subscription.some(sub => sub.course === course_id);
   });
 
