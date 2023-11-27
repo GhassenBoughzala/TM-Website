@@ -99,13 +99,12 @@ export const BookModalArabic = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
+
         toast.success(t('SubsResult-1'));
         if (values.level !== "Beginner") {
           carouselRef.current.goTo(1);
         }
         
-        console.log('showLevelMessage', showLevelMessage);
-        console.log('props Modal', props);
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
