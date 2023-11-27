@@ -305,6 +305,7 @@ const mapToStateProps = (state) => ({
   loadingSub: state.subs.loading_create,
   loadingUserSubs: state.subs.loading,
   msg: state.subs.codeMsg,
+  subscription: 0,
 });
 
 export default connect(mapToStateProps, mapActionToProps)(CourseModal);
