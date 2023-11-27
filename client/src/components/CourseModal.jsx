@@ -95,14 +95,14 @@ export const CourseModal = ({ courseExists, ...props }) => {
                   <Button
                     className="subs-btn"
                     size="large"
-                    type="text"                    
+                    type="text" 
+                    disabled={
+                      (props.currentObj._id === "64c6849913ebbe2aec0e1b1d" && courseExists === "64c6849913ebbe2aec0e1b1d") ||
+                      (props.currentObj._id === "64c684ce13ebbe2aec0e1b20" && courseExists === "64c684ce13ebbe2aec0e1b20")
+                    }                   
                     onClick={() => {
-                      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d" && courseExists === "64c6849913ebbe2aec0e1b1d") {
-                        navTo("/subscription");
-                      } else if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
+                      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
                         setOpenModalArabic(true);
-                      } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20" && courseExists === "64c684ce13ebbe2aec0e1b20") {
-                        navTo("/subscription");
                       } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
                         setOpenModalFrench(true);
                       } else {
@@ -139,14 +139,14 @@ export const CourseModal = ({ courseExists, ...props }) => {
                   <Button
                     className="subs-btn"
                     size="large"
-                    type="text"             
+                    type="text"          
+                    disabled={
+                      (props.currentObj._id === "64c6849913ebbe2aec0e1b1d" && courseExists === "64c6849913ebbe2aec0e1b1d") ||
+                      (props.currentObj._id === "64c684ce13ebbe2aec0e1b20" && courseExists === "64c684ce13ebbe2aec0e1b20")
+                    }                   
                     onClick={() => {
-                      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d" && courseExists === "64c6849913ebbe2aec0e1b1d") {
-                        navTo("/subscription");
-                      } else if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
+                      if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
                         setOpenModalArabic(true);
-                      } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20" && courseExists === "64c684ce13ebbe2aec0e1b20") {
-                        navTo("/subscription");
                       } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
                         setOpenModalFrench(true);
                       } else {

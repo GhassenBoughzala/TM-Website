@@ -91,30 +91,6 @@ export const SubscriptionResult = ({ ...props }) => {
               ]}
             />
           )}
-          {props.subscription === 0 && (
-            <Result
-              status="error"
-              title={t("SubsResult-0")}
-              extra={[
-                <Button
-                  size="large"
-                  type="primary"
-                  key={1}
-                  onClick={() => navTo("/profil")}
-                >
-                  View booked Courses
-                </Button>,
-                <Button
-                  size="large"
-                  type="primary"
-                  key={2}
-                  onClick={() => navTo("/language-courses")}
-                >
-                  Back to courses
-                </Button>,
-              ]}
-            />
-          )}
         </motion.div>
       )}
     </div>

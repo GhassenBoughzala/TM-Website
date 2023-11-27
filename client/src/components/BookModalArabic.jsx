@@ -101,10 +101,12 @@ export const BookModalArabic = ({ ...props }) => {
         });
 
         toast.success(t('SubsResult-1'));
+        console.log('values', values);
+        console.log('carouselRef', carouselRef.current);
         if (values.level !== "Beginner") {
           carouselRef.current.goTo(1);
         }
-        
+
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
