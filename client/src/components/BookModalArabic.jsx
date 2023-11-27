@@ -31,6 +31,7 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
   const [carouselReady, setCarouselReady] = useState(false);
+  const [getValues, setValues] = useState('');
   
   useEffect(() => {
     const playMedia = () => {
@@ -107,11 +108,8 @@ export const BookModalArabic = ({ ...props }) => {
 
         toast.success(t('SubsResult-1'));
         console.log('values', values);
-        if (values.level !== "Beginner" && carouselReady) {
-          console.log('carouselRef', carouselRef.current.next());
-          carouselRef.current.goTo(1);
-        }
-
+        setValues(values.level);
+        
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
@@ -160,6 +158,10 @@ export const BookModalArabic = ({ ...props }) => {
   const tt = () => {
     carouselRef.current.goTo(1)
   };
+
+  if (getValues !== "Beginner" && carouselReady) {
+    carouselRef.current.goTo(1);
+  }
   
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef} afterChange={handleCarouselReady}>
