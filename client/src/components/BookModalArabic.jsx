@@ -109,6 +109,7 @@ export const BookModalArabic = ({ ...props }) => {
         toast.success(t('SubsResult-1'));
         console.log('values', values);
         setValues(values.level);
+        setCarouselReady(true);setCarouselReady(true);
         
         //props.setOpenModal(false);
         //navTo("/subscription");
