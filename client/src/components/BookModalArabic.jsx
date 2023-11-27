@@ -72,7 +72,7 @@ export const BookModalArabic = ({ ...props }) => {
     navTo("/subscription");
   }*/
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
         carouselRef.current.goTo(1);
@@ -82,7 +82,7 @@ export const BookModalArabic = ({ ...props }) => {
         navTo("/subscription");
       }
     }
-  }, [props.msg]);*/
+  }, [props.msg]);
 
 
   const handleCarouselReady = () => {
@@ -110,14 +110,10 @@ export const BookModalArabic = ({ ...props }) => {
         console.log('values', values);
         //props.setOpenModal(false);
         //navTo("/subscription");
-        if (props.msg === 1) {
-          carouselRef.current.goTo(1);
-          toast.success(t('SubsResult-1'));
-        }
       })     
       .catch((errorInfo) => {
-        console.log("errorInfo ...", errorInfo);
         toast.warn("Check your fields !");
+        console.log("errorInfo ...", errorInfo);
       });
   };
 
