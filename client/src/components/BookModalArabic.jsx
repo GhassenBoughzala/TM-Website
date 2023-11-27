@@ -86,7 +86,7 @@ export const BookModalArabic = ({ ...props }) => {
 
 
   const handleCarouselReady = () => {
-    setCarouselReady(true);
+    //setCarouselReady(true);
   };
 
   const handleFormSubmit = (e) => {
@@ -109,8 +109,9 @@ export const BookModalArabic = ({ ...props }) => {
         toast.success(t('SubsResult-1'));
         console.log('values', values);
         setValues(values.level);
-        setCarouselReady(true);setCarouselReady(true);
-        
+        setCarouselReady(true);
+        console.log('setCarouselReady', setCarouselReady);
+        console.log('carouselReady', carouselReady);
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
@@ -160,6 +161,9 @@ export const BookModalArabic = ({ ...props }) => {
     carouselRef.current.goTo(1)
   };
 
+  console.log('getValues', getValues);
+  console.log('setCarouselReady', setCarouselReady);
+  console.log('carouselReady', carouselReady);
   if (getValues !== "Beginner" && carouselReady) {
     carouselRef.current.goTo(1);
   }
