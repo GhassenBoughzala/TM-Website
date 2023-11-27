@@ -106,18 +106,18 @@ export const BookModalArabic = ({ ...props }) => {
           currency: values.currency,
         });
 
-        toast.success(t('SubsResult-1'));
+        //toast.success(t('SubsResult-1'));
         console.log('values', values);
-        setValues(values.level);
-        setCarouselReady(true);
-        console.log('setCarouselReady', setCarouselReady);
-        console.log('carouselReady', carouselReady);
         //props.setOpenModal(false);
         //navTo("/subscription");
+        if (props.msg === 1) {
+          carouselRef.current.goTo(1);
+          toast.success(t('SubsResult-1'));
+        }
       })     
       .catch((errorInfo) => {
-        toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
+        toast.warn("Check your fields !");
       });
   };
 
@@ -160,13 +160,6 @@ export const BookModalArabic = ({ ...props }) => {
   const tt = () => {
     carouselRef.current.goTo(1)
   };
-
-  console.log('getValues', getValues);
-  console.log('setCarouselReady', setCarouselReady);
-  console.log('carouselReady', carouselReady);
-  if (getValues !== "Beginner" && carouselReady) {
-    carouselRef.current.goTo(1);
-  }
   
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef} afterChange={handleCarouselReady}>
