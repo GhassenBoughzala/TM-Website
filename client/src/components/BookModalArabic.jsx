@@ -105,7 +105,7 @@ export const BookModalArabic = ({ ...props }) => {
         if (values.level !== "Beginner") {
           console.log('carouselRef', carouselRef.current);
           setTimeout(() => {
-            carouselRef.goTo(1);
+            carouselRef.current.goTo(1);
           }, 5000);
         }
 
@@ -153,6 +153,10 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal2Open(false);
     setIsModal3Open(false);
   };
+
+  const tt = () => {
+    carouselRef.current.goTo(1)
+  };
   
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
@@ -166,6 +170,7 @@ export const BookModalArabic = ({ ...props }) => {
         labelCol={{ span: 20 }}
         autoComplete="off"
       >
+        <Button onClick={() => tt()}>Next</Button>
         <div className="row">
           <div className="form-outline text-start">
             <div className="mb-4">
