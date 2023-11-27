@@ -70,7 +70,7 @@ export const BookModalArabic = ({ ...props }) => {
     navTo("/subscription");
   }*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
         carouselRef.current.goTo(1);
@@ -80,7 +80,7 @@ export const BookModalArabic = ({ ...props }) => {
         navTo("/subscription");
       }
     }
-  }, [props.msg]);
+  }, [props.msg]);*/
 
 
   const handleFormSubmit = (e) => {
@@ -99,7 +99,10 @@ export const BookModalArabic = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-
+        toast.success(t('SubsResult-1'));
+        if (values.level !== "Beginner") {
+          carouselRef.current.goTo(1);
+        }
         
         console.log('showLevelMessage', showLevelMessage);
         console.log('props Modal', props);
