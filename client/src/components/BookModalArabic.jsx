@@ -104,7 +104,7 @@ export const BookModalArabic = ({ ...props }) => {
         console.log('values', values);
         if (values.level !== "Beginner") {
           console.log('carouselRef', carouselRef.current);
-          carouselRef.current.goTo(1);
+          carouselRef.current.next();
         }
 
         //props.setOpenModal(false);
