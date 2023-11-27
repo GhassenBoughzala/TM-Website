@@ -103,7 +103,7 @@ export const BookModalArabic = ({ ...props }) => {
         toast.success(t('SubsResult-1'));
         console.log('values', values);
         if (values.level !== "Beginner") {
-          console.log('carouselRef', carouselRef.current.goTo());
+          console.log('carouselRef', carouselRef.current.next());
           carouselRef.current.goTo(1);
         }
 
