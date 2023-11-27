@@ -30,6 +30,7 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
+  const [carouselReady, setCarouselReady] = useState(false);
   
   useEffect(() => {
     const playMedia = () => {
@@ -83,6 +84,10 @@ export const BookModalArabic = ({ ...props }) => {
   }, [props.msg]);*/
 
 
+  const handleCarouselReady = () => {
+    setCarouselReady(true);
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -102,7 +107,7 @@ export const BookModalArabic = ({ ...props }) => {
 
         toast.success(t('SubsResult-1'));
         console.log('values', values);
-        if (values.level !== "Beginner") {
+        if (values.level !== "Beginner" && carouselReady) {
           console.log('carouselRef', carouselRef.current.next());
           carouselRef.current.goTo(1);
         }
@@ -157,7 +162,7 @@ export const BookModalArabic = ({ ...props }) => {
   };
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
+    <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef} afterChange={handleCarouselReady}>
       <div>
       <Form
         form={form}
