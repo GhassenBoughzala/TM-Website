@@ -22,7 +22,7 @@ export const BookModalArabic = ({ ...props }) => {
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
   const [showLevelMessage, setShowLevelMessage] = useState(false);
-  const [getLevel, setLevel] = useState({});
+  const [getLevel, setLevel] = useState('');
 
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
