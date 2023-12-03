@@ -16,6 +16,7 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 let levelValues;
+let indexSlide = 0;
 export const BookModalArabic = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
@@ -31,8 +32,8 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
-  const [carouselReady, setCarouselReady] = useState(false);
-  const [getValues, setValues] = useState(0);
+  //const [carouselReady, setCarouselReady] = useState(false);
+  //const [getValues, setValues] = useState(0);
   
   useEffect(() => {
     const playMedia = () => {
@@ -104,8 +105,8 @@ export const BookModalArabic = ({ ...props }) => {
         });
 
         if (levelValues && levelValues !== "Beginner") {  
-          setValues(1);
-          carouselRef.current.goTo(1);
+          //setValues(1);
+          indexSlide = 1;
           toast.success(t('SubsResult-1'));
           console.log('getValues inside handleFormSubmit', levelValues);
         }
@@ -120,7 +121,7 @@ export const BookModalArabic = ({ ...props }) => {
       });
   };
   
-  console.log('getValues outside handleFormSubmit', getValues);
+  console.log('indexSlide outside handleFormSubmit', indexSlide);
   console.log('levelValues outside handleFormSubmit', levelValues);
   const options = [
     { label: "Beginner", value: "Beginner" },
