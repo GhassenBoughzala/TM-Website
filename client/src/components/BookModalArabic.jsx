@@ -107,12 +107,16 @@ export const BookModalArabic = ({ ...props }) => {
         console.log('values', values);
         //props.setOpenModal(false);
         //navTo("/subscription");
+
+        return values;
       })     
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
       });
   };
+
+  const values = handleFormSubmit();
   console.log('getValues outside handleFormSubmit', getValues);
   const options = [
     { label: "Beginner", value: "Beginner" },
