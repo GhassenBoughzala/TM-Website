@@ -91,6 +91,7 @@ export const BookModalArabic = ({ ...props }) => {
       .validateFields()
       .then((values) => {
         setValues(values.level); 
+        console.log('getValues inside handleFormSubmit', getValues);
         props.AddSub({
           course: currentObj._id,
           level: values.level,
@@ -112,7 +113,7 @@ export const BookModalArabic = ({ ...props }) => {
         console.log("errorInfo ...", errorInfo);
       });
   };
-
+  console.log('getValues outside handleFormSubmit', getValues);
   const options = [
     { label: "Beginner", value: "Beginner" },
     { label: "Intermediate", value: "Intermediate" },
@@ -152,7 +153,6 @@ export const BookModalArabic = ({ ...props }) => {
   const handleFinishSubmit = () => {
     console.log('finish');
   }
-  console.log('getValues', getValues);
   
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
