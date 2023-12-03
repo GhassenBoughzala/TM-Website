@@ -11,6 +11,7 @@ import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
 import Doc2Pdf from '../../public/images/test/Doc2.pdf';
+import axios from "axios";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -30,8 +31,6 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
-  const [carouselReady, setCarouselReady] = useState(false);
-  const [getValues, setValues] = useState('');  
   const [getSub, setSub] = useState({});
   
   useEffect(() => {
