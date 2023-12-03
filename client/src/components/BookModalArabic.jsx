@@ -22,7 +22,7 @@ export const BookModalArabic = ({ ...props }) => {
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
   const [showLevelMessage, setShowLevelMessage] = useState(false);
-  const [getLevel, setLevel] = useState('');
+  const [initialSlide, setInitialSlide] = useState(0);
 
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
@@ -32,7 +32,6 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
-  const [getSub, setSub] = useState({});
   
   useEffect(() => {
     const playMedia = () => {
@@ -77,7 +76,7 @@ export const BookModalArabic = ({ ...props }) => {
     navTo("/subscription");
   }*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
         carouselRef.current.goTo(1);
@@ -87,14 +86,7 @@ export const BookModalArabic = ({ ...props }) => {
         navTo("/subscription");
       }
     }
-  }, [props.msg]);
-
-  console.log('getSub', getSub);
-
-
-  const handleCarouselReady = () => {
-    //setCarouselReady(true);
-  };
+  }, [props.msg]);*/
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -115,10 +107,7 @@ export const BookModalArabic = ({ ...props }) => {
 
         //toast.success(t('SubsResult-1'));
         console.log('values', values);
-        setLevel(values.level);
-        setLevel(values, () => {
-          carouselRef.current.goTo(1)
-        });
+        setInitialSlide(values.level !== "Beginner" ? 1 : 0);
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
@@ -172,7 +161,7 @@ export const BookModalArabic = ({ ...props }) => {
   }
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={0}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={initialSlide}>
       <div>
       <Form
         form={form}
