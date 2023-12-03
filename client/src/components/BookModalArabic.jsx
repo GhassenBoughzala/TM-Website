@@ -90,6 +90,7 @@ export const BookModalArabic = ({ ...props }) => {
     form
       .validateFields()
       .then((values) => {
+        setValues(values.level); 
         props.AddSub({
           course: currentObj._id,
           level: values.level,
@@ -151,6 +152,7 @@ export const BookModalArabic = ({ ...props }) => {
   const handleFinishSubmit = () => {
     console.log('finish');
   }
+  console.log('getValues', getValues);
   
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
