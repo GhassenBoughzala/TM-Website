@@ -31,7 +31,7 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
   const [carouselReady, setCarouselReady] = useState(false);
-  const [getValues, setValues] = useState(0);
+  const [getValues, setValues] = useState('');
   
   useEffect(() => {
     const playMedia = () => {
@@ -84,7 +84,7 @@ export const BookModalArabic = ({ ...props }) => {
     }
   }, [props.msg]);
 
-  /*const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
     form
@@ -110,42 +110,6 @@ export const BookModalArabic = ({ ...props }) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
       });
-  };*/
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-  
-    try {
-      const values = await form.validateFields();
-      const result = await props.AddSub({
-        course: currentObj._id,
-        level: values.level,
-        sessions: values.sessions,
-        notes: values.notes,
-        title: currentObj.title,
-        type: type,
-        hours: values.hours,
-        currency: values.currency,
-      });
-      console.log('result', result);
-      // Check the result and take appropriate actions
-      if (result.success) {
-        // Handle success, e.g., show a success message
-        toast.success(t('SubsResult-1'));
-        console.log('values', values);
-        setValues(1)
-        if (result.level !== "Beginner") {
-        }
-        // props.setOpenModal(false);
-        // navTo("/subscription");
-      } else {
-        // Handle failure, e.g., show an error message
-        toast.error(result.message);
-      }
-    } catch (errorInfo) {
-      toast.warn("Check your fields !");
-      console.log("errorInfo ...", errorInfo);
-    }
   };
 
   const options = [
@@ -183,11 +147,9 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal2Open(false);
     setIsModal3Open(false);
   };
-
-  console.log('getValues', getValues);
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
+    <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
       <div>
       <Form
         form={form}
