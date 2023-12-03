@@ -127,7 +127,7 @@ export const BookModalArabic = ({ ...props }) => {
         hours: values.hours,
         currency: values.currency,
       });
-  
+      console.log('result', result);
       // Check the result and take appropriate actions
       if (result.success) {
         // Handle success, e.g., show a success message
