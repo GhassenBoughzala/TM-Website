@@ -83,7 +83,7 @@ export const BookModalArabic = ({ ...props }) => {
       }
     }
   }, [props.msg]);
-
+  let getValues;
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
