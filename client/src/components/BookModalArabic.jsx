@@ -15,7 +15,7 @@ import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 const { Option } = Select;
 const { TextArea } = Input;
 
-let getValues;
+let levelValues;
 export const BookModalArabic = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
@@ -32,7 +32,7 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
   const [carouselReady, setCarouselReady] = useState(false);
-  //const [getValues, setValues] = useState('');
+  const [getValues, setValues] = useState(0);
   
   useEffect(() => {
     const playMedia = () => {
@@ -91,8 +91,7 @@ export const BookModalArabic = ({ ...props }) => {
     form
       .validateFields()
       .then((values) => {
-        getValues = values.level;
-        console.log('getValues inside handleFormSubmit', getValues);
+        levelValues = values.level;
         props.AddSub({
           course: currentObj._id,
           level: values.level,
@@ -104,9 +103,11 @@ export const BookModalArabic = ({ ...props }) => {
           currency: values.currency,
         });
 
-        if (getValues && getValues !== "Beginner") {  
+        if (levelValues && levelValues !== "Beginner") {  
+          setValues(1);
           carouselRef.current.goTo(1);
           toast.success(t('SubsResult-1'));
+          console.log('getValues inside handleFormSubmit', levelValues);
         }
         //toast.success(t('SubsResult-1'));
         console.log('values', values);
@@ -120,6 +121,7 @@ export const BookModalArabic = ({ ...props }) => {
   };
   
   console.log('getValues outside handleFormSubmit', getValues);
+  console.log('levelValues outside handleFormSubmit', levelValues);
   const options = [
     { label: "Beginner", value: "Beginner" },
     { label: "Intermediate", value: "Intermediate" },
@@ -161,7 +163,7 @@ export const BookModalArabic = ({ ...props }) => {
   }
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
       <div>
       <Form
         form={form}
