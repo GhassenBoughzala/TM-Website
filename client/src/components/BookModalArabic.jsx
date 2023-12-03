@@ -116,6 +116,9 @@ export const BookModalArabic = ({ ...props }) => {
         //toast.success(t('SubsResult-1'));
         console.log('values', values);
         setLevel(values.level);
+        setLevel(values, () => {
+          carouselRef.current.goTo(1)
+        });
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
@@ -162,9 +165,7 @@ export const BookModalArabic = ({ ...props }) => {
   };
 
   let level = 0;
-  setLevel(values, () => {
-    console.log('getLevel', getLevel);
-  });
+ 
   console.log('showLevelMessage', showLevelMessage);
   if (showLevelMessage !== "Beginner") {
     level = 1
