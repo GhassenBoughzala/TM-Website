@@ -147,6 +147,10 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal2Open(false);
     setIsModal3Open(false);
   };
+
+  const handleFinishSubmit = () => {
+    console.log('finish');
+  }
   
   return (
     <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef}>
@@ -159,6 +163,7 @@ export const BookModalArabic = ({ ...props }) => {
         size={"medium"}
         labelCol={{ span: 20 }}
         autoComplete="off"
+        onFinish={handleFinishSubmit}
       >
         <div className="row">
           <div className="form-outline text-start">

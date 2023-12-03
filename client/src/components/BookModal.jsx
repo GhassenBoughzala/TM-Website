@@ -33,7 +33,6 @@ export const BookModal = ({ ...props }) => {
         });
         props.setOpenModal(false);
         navTo("/subscription");
-        console.log('test');
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
