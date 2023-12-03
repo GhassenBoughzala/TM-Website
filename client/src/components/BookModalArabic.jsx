@@ -104,7 +104,7 @@ export const BookModalArabic = ({ ...props }) => {
           currency: values.currency,
         });
 
-        if (getValues !== "Beginner") {  
+        if (getValues && getValues !== "Beginner") {  
           carouselRef.current.goTo(1);
           toast.success(t('SubsResult-1'));
         }
