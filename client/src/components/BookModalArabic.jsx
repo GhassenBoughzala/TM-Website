@@ -72,7 +72,7 @@ export const BookModalArabic = ({ ...props }) => {
     navTo("/subscription");
   }*/
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
         carouselRef.current.goTo(1);
@@ -82,7 +82,7 @@ export const BookModalArabic = ({ ...props }) => {
         navTo("/subscription");
       }
     }
-  }, [props.msg]);*/
+  }, [props.msg]);
 
   console.log('getSub', getSub);
 
@@ -155,13 +155,13 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal3Open(false);
   };
 
-  let level = 0;
+  /*let level = 0;
   if (showLevelMessage !== "Beginner") {
     level = 1
-  }
+  }*/
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={level}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={0}>
       <div>
       <Form
         form={form}
