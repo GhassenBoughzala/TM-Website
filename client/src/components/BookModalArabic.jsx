@@ -22,6 +22,7 @@ export const BookModalArabic = ({ ...props }) => {
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
   const [showLevelMessage, setShowLevelMessage] = useState(false);
+  const [getLevel, setLevel] = useState(false);
 
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
@@ -110,6 +111,7 @@ export const BookModalArabic = ({ ...props }) => {
 
         //toast.success(t('SubsResult-1'));
         console.log('values', values);
+        setLevel(values);
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
@@ -156,6 +158,7 @@ export const BookModalArabic = ({ ...props }) => {
   };
 
   let level = 0;
+  console.log('getLevel', getLevel);
   console.log('showLevelMessage', showLevelMessage);
   if (showLevelMessage !== "Beginner") {
     level = 1
