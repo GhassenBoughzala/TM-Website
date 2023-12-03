@@ -62,6 +62,11 @@ export const BookModalArabic = ({ ...props }) => {
     };
   }, [isModal1Open, isModal2Open, isModal3Open]); 
 
+  useEffect(() => {
+    // Update initial slide when showLevelMessage changes
+    setInitialSlide(showLevelMessage !== "Beginner" ? 1 : 0);
+  }, [showLevelMessage]);
+  
   const levelChange = (value) => {
     // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
