@@ -133,8 +133,8 @@ export const BookModalArabic = ({ ...props }) => {
         // Handle success, e.g., show a success message
         toast.success(t('SubsResult-1'));
         console.log('values', values);
-        if (values.level !== "Beginner") {
-          setValues(1)
+        setValues(1)
+        if (result.level !== "Beginner") {
         }
         // props.setOpenModal(false);
         // navTo("/subscription");
