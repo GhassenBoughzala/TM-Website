@@ -162,7 +162,9 @@ export const BookModalArabic = ({ ...props }) => {
   };
 
   let level = 0;
-  console.log('getLevel', getLevel);
+  setLevel(values, () => {
+    console.log('getLevel', getLevel);
+  });
   console.log('showLevelMessage', showLevelMessage);
   if (showLevelMessage !== "Beginner") {
     level = 1
