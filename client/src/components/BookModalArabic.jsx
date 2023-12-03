@@ -84,12 +84,13 @@ export const BookModalArabic = ({ ...props }) => {
     }
   }, [props.msg]);
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
 
     form
       .validateFields()
       .then((values) => {
-        setValues(values.level); 
+        getValues = values.level;
         console.log('getValues inside handleFormSubmit', getValues);
         props.AddSub({
           course: currentObj._id,
@@ -106,16 +107,13 @@ export const BookModalArabic = ({ ...props }) => {
         console.log('values', values);
         //props.setOpenModal(false);
         //navTo("/subscription");
-
-        return values;
       })     
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
       });
   };
-
-  const values = handleFormSubmit();
+  
   console.log('getValues outside handleFormSubmit', getValues);
   const options = [
     { label: "Beginner", value: "Beginner" },
