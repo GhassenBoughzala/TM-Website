@@ -84,8 +84,7 @@ export const BookModalArabic = ({ ...props }) => {
     }
   }, [props.msg]);
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = () => {
 
     form
       .validateFields()
