@@ -11,7 +11,6 @@ import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
 import Doc2Pdf from '../../public/images/test/Doc2.pdf';
-import axios from "axios";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -22,7 +21,6 @@ export const BookModalArabic = ({ ...props }) => {
   const currentObj = props.currentObj;
   const [type, setType] = useState("");
   const [showLevelMessage, setShowLevelMessage] = useState(false);
-  const [initialSlide, setInitialSlide] = useState(0);
 
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
@@ -32,6 +30,8 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
+  const [carouselReady, setCarouselReady] = useState(false);
+  const [getValues, setValues] = useState(0);
   
   useEffect(() => {
     const playMedia = () => {
@@ -60,7 +60,7 @@ export const BookModalArabic = ({ ...props }) => {
       // Clean up and pause media when component is unmounted
       pauseMedia();
     };
-  }, [isModal1Open, isModal2Open, isModal3Open]); 
+  }, [isModal1Open, isModal2Open, isModal3Open]);  
 
   const levelChange = (value) => {
     // Check if the selected level is not "Beginner"
@@ -72,7 +72,7 @@ export const BookModalArabic = ({ ...props }) => {
     navTo("/subscription");
   }*/
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
         carouselRef.current.goTo(1);
@@ -82,25 +82,9 @@ export const BookModalArabic = ({ ...props }) => {
         navTo("/subscription");
       }
     }
-  }, [props.msg]);*/
+  }, [props.msg]);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('/api/subscription/');
-      // Handle the data from the response
-      console.log('Data from API:', response.data);
-    } catch (error) {
-      // Handle errors
-      console.error('Error fetching data:', error);
-    }
-  };
-  
-  // Call the fetchData function when needed, such as inside useEffect
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleFormSubmit = (e) => {
+  /*const handleFormSubmit = (e) => {
     e.preventDefault();
 
     form
@@ -116,7 +100,7 @@ export const BookModalArabic = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-        
+
         //toast.success(t('SubsResult-1'));
         console.log('values', values);
         //props.setOpenModal(false);
@@ -126,6 +110,42 @@ export const BookModalArabic = ({ ...props }) => {
         toast.warn("Check your fields !");
         console.log("errorInfo ...", errorInfo);
       });
+  };*/
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const values = await form.validateFields();
+      const result = await props.AddSub({
+        course: currentObj._id,
+        level: values.level,
+        sessions: values.sessions,
+        notes: values.notes,
+        title: currentObj.title,
+        type: type,
+        hours: values.hours,
+        currency: values.currency,
+      });
+  
+      // Check the result and take appropriate actions
+      if (result.success) {
+        // Handle success, e.g., show a success message
+        toast.success(t('SubsResult-1'));
+        console.log('values', values);
+        if (values.level !== "Beginner") {
+          setValues(1)
+        }
+        // props.setOpenModal(false);
+        // navTo("/subscription");
+      } else {
+        // Handle failure, e.g., show an error message
+        toast.error(result.message);
+      }
+    } catch (errorInfo) {
+      toast.warn("Check your fields !");
+      console.log("errorInfo ...", errorInfo);
+    }
   };
 
   const options = [
@@ -164,15 +184,10 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal3Open(false);
   };
 
-  let level = 0;
- 
-  console.log('initialSlide', initialSlide);
-  if (showLevelMessage !== "Beginner") {
-    level = 1
-  }
+  console.log('getValues', getValues);
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={initialSlide}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
       <div>
       <Form
         form={form}
