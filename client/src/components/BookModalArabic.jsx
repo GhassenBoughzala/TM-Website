@@ -62,11 +62,6 @@ export const BookModalArabic = ({ ...props }) => {
     };
   }, [isModal1Open, isModal2Open, isModal3Open]); 
 
-  useEffect(() => {
-    // Update initial slide when showLevelMessage changes
-    setInitialSlide(showLevelMessage !== "Beginner" ? 1 : 0);
-  }, [showLevelMessage]);
-  
   const levelChange = (value) => {
     // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
@@ -89,6 +84,22 @@ export const BookModalArabic = ({ ...props }) => {
     }
   }, [props.msg]);*/
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('/api/subscription/');
+      // Handle the data from the response
+      console.log('Data from API:', response.data);
+    } catch (error) {
+      // Handle errors
+      console.error('Error fetching data:', error);
+    }
+  };
+  
+  // Call the fetchData function when needed, such as inside useEffect
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -108,7 +119,6 @@ export const BookModalArabic = ({ ...props }) => {
         
         //toast.success(t('SubsResult-1'));
         console.log('values', values);
-        setInitialSlide(values.level !== "Beginner" ? 1 : 0);
         //props.setOpenModal(false);
         //navTo("/subscription");
       })     
