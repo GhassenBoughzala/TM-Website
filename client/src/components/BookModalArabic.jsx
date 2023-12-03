@@ -68,7 +68,7 @@ export const BookModalArabic = ({ ...props }) => {
 
         // Fetch subscription data
         const subscriptionResponse = await axios.get(`/api/subscription/`);
-        setSub(subscriptionResponse.data);
+        setSub(subscriptionResponse);
   
       } catch (err) {
         console.error(err);
