@@ -15,6 +15,7 @@ import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 const { Option } = Select;
 const { TextArea } = Input;
 
+let getValues;
 export const BookModalArabic = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
@@ -31,7 +32,7 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
   const [carouselReady, setCarouselReady] = useState(false);
-  const [getValues, setValues] = useState('');
+  //const [getValues, setValues] = useState('');
   
   useEffect(() => {
     const playMedia = () => {
@@ -83,7 +84,6 @@ export const BookModalArabic = ({ ...props }) => {
       }
     }
   }, [props.msg]);
-  let getValues;
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
