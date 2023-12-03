@@ -62,10 +62,6 @@ export const BookModalArabic = ({ ...props }) => {
     };
   }, [isModal1Open, isModal2Open, isModal3Open]); 
 
-  useEffect(() => {
-    console.log('getLevel', getLevel);
-  }, [getLevel]);
-
   const levelChange = (value) => {
     // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
