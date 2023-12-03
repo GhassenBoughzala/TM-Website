@@ -31,7 +31,8 @@ export const BookModalArabic = ({ ...props }) => {
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
   const [carouselReady, setCarouselReady] = useState(false);
-  const [getValues, setValues] = useState('');
+  const [getValues, setValues] = useState('');  
+  const [getSub, setSub] = useState({});
   
   useEffect(() => {
     const playMedia = () => {
@@ -60,7 +61,23 @@ export const BookModalArabic = ({ ...props }) => {
       // Clean up and pause media when component is unmounted
       pauseMedia();
     };
-  }, [isModal1Open, isModal2Open, isModal3Open]);  
+  }, [isModal1Open, isModal2Open, isModal3Open]); 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try { 
+
+        // Fetch subscription data
+        const subscriptionResponse = await axios.get(`/api/subscription/`);
+        setSub(subscriptionResponse.data);
+  
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  
+    fetchData();
+  }, []); 
 
   const levelChange = (value) => {
     // Check if the selected level is not "Beginner"
@@ -83,6 +100,8 @@ export const BookModalArabic = ({ ...props }) => {
       }
     }
   }, [props.msg]);
+
+  console.log('getSub', getSub);
 
 
   const handleCarouselReady = () => {
@@ -152,13 +171,9 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal2Open(false);
     setIsModal3Open(false);
   };
-
-  const tt = () => {
-    carouselRef.current.goTo(1)
-  };
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={true} ref={carouselRef} afterChange={handleCarouselReady}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} afterChange={handleCarouselReady}>
       <div>
       <Form
         form={form}
@@ -169,7 +184,6 @@ export const BookModalArabic = ({ ...props }) => {
         labelCol={{ span: 20 }}
         autoComplete="off"
       >
-        <Button onClick={() => tt()}>Next</Button>
         <div className="row">
           <div className="form-outline text-start">
             <div className="mb-4">
