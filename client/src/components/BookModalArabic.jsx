@@ -100,7 +100,7 @@ export const BookModalArabic = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
-
+        
         //toast.success(t('SubsResult-1'));
         console.log('values', values);
         setInitialSlide(values.level !== "Beginner" ? 1 : 0);
@@ -151,7 +151,7 @@ export const BookModalArabic = ({ ...props }) => {
 
   let level = 0;
  
-  console.log('showLevelMessage', showLevelMessage);
+  console.log('initialSlide', initialSlide);
   if (showLevelMessage !== "Beginner") {
     level = 1
   }
