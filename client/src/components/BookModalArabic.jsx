@@ -62,22 +62,6 @@ export const BookModalArabic = ({ ...props }) => {
     };
   }, [isModal1Open, isModal2Open, isModal3Open]); 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try { 
-
-        // Fetch subscription data
-        const subscriptionResponse = await axios.get(`/api/subscription/`);
-        setSub(subscriptionResponse);
-  
-      } catch (err) {
-        console.error(err);
-      }
-    };
-  
-    fetchData();
-  }, []); 
-
   const levelChange = (value) => {
     // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
@@ -88,7 +72,7 @@ export const BookModalArabic = ({ ...props }) => {
     navTo("/subscription");
   }*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
         carouselRef.current.goTo(1);
@@ -98,7 +82,7 @@ export const BookModalArabic = ({ ...props }) => {
         navTo("/subscription");
       }
     }
-  }, [props.msg]);
+  }, [props.msg]);*/
 
   console.log('getSub', getSub);
 
@@ -170,9 +154,14 @@ export const BookModalArabic = ({ ...props }) => {
     setIsModal2Open(false);
     setIsModal3Open(false);
   };
+
+  let level = 0;
+  if (showLevelMessage !== "Beginner") {
+    level = 1
+  }
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} afterChange={handleCarouselReady}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={level}>
       <div>
       <Form
         form={form}
