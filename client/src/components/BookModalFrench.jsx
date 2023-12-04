@@ -17,6 +17,10 @@ import Doc2Pdf from '../../public/images/test/french/test1.docx';
 const { Option } = Select;
 const { TextArea } = Input;
 
+
+let levelValues;
+let indexSlide = 0;
+
 export const BookModalFrench = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
@@ -30,7 +34,7 @@ export const BookModalFrench = ({ ...props }) => {
     setShowLevelMessage(value !== "Beginner");
   };
   console.log('props', props);
-  useEffect(() => {
+  /*useEffect(() => {
     console.log('showLevelMessage', showLevelMessage);
     if (showLevelMessage !== "Beginner") {
       if (props.msg === 1) {
@@ -41,7 +45,7 @@ export const BookModalFrench = ({ ...props }) => {
         navTo("/subscription");
       }
     }
-  }, [props.msg]);
+  }, [props.msg]);*/
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +53,7 @@ export const BookModalFrench = ({ ...props }) => {
     form
       .validateFields()
       .then((values) => {
+        levelValues = values.level;
         props.AddSub({
           course: currentObj._id,
           level: values.level,
@@ -59,6 +64,13 @@ export const BookModalFrench = ({ ...props }) => {
           hours: values.hours,
           currency: values.currency,
         });
+
+        toast.success(t('SubsResult-1'));
+        if (levelValues && levelValues !== "Beginner") {  
+          //setValues(1);
+          indexSlide = 1;
+          console.log('getValues inside handleFormSubmit', levelValues);
+        }
         
         //props.setOpenModal(false);
         //navTo("/subscription");
@@ -93,7 +105,7 @@ export const BookModalFrench = ({ ...props }) => {
   };
 
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide}>
       <div>
       <Form
         form={form}

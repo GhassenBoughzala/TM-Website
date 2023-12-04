@@ -104,10 +104,10 @@ export const BookModalArabic = ({ ...props }) => {
           currency: values.currency,
         });
 
+        toast.success(t('SubsResult-1'));
         if (levelValues && levelValues !== "Beginner") {  
           //setValues(1);
           indexSlide = 1;
-          toast.success(t('SubsResult-1'));
           console.log('getValues inside handleFormSubmit', levelValues);
         }
         //toast.success(t('SubsResult-1'));
