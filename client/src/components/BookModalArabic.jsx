@@ -86,6 +86,8 @@ export const BookModalArabic = ({ ...props }) => {
     }
   }, [props.msg]);*/
   console.log('courseArabExiste', props.courseArabExiste);
+
+  indexSlide = 0;
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -107,7 +109,7 @@ export const BookModalArabic = ({ ...props }) => {
         toast.success(t('SubsResult-1'));
         if (levelValues && levelValues !== "Beginner") {  
           //setValues(1);
-          indexSlide = props.courseArabExiste == false ? 1 : 0;
+          indexSlide = 1;
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
           props.setOpenModal(false);

@@ -47,9 +47,9 @@ export const BookModalFrench = ({ ...props }) => {
     }
   }, [props.msg]);*/
 
+  indexSlide = 0;
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
     form
       .validateFields()
       .then((values) => {
@@ -68,7 +68,7 @@ export const BookModalFrench = ({ ...props }) => {
         toast.success(t('SubsResult-1'));
         if (levelValues && levelValues !== "Beginner") {  
           //setValues(1);
-          indexSlide = props.courseFrenchExiste == false ? 1 : 0;
+          indexSlide = 1;
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
           props.setOpenModal(false);
