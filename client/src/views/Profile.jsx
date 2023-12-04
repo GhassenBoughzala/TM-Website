@@ -92,7 +92,7 @@ export const Profile = ({ ...props }) => {
     else if (status === "confirmed") return 4;
   };
 
-  log('DeleteModal', DeleteModal)
+  console.log('DeleteModal', DeleteModal)
 
   const subsList = props.user_subs.map((su, index) => ({
     key: su.id,
