@@ -58,12 +58,12 @@ export const CourseModal = ({ courseExists, ...props }) => {
     console.log('does not exist', courseExists);
   }
 
-  const courseArabExiste = false;
+  let courseArabExiste = false;
   if (courseExists === "64c6849913ebbe2aec0e1b1d") {
     courseArabExiste = true;
   }
 
-  const courseFrenchExiste = false;
+  let courseFrenchExiste = false;
   if (courseExists === "64c684ce13ebbe2aec0e1b20") {
     courseFrenchExiste = true;
   }
