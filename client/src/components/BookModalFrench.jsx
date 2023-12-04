@@ -12,6 +12,7 @@ import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
 import { saveAs } from "file-saver";
 import Doc2Pdf from '../../public/images/test/french/test1.docx';
+import {indexSlide,BookModalArabic}  from "./BookModalArabic";
 
 
 const { Option } = Select;
@@ -19,7 +20,6 @@ const { TextArea } = Input;
 
 
 let levelValues;
-let indexSlide = parseInt(localStorage.getItem('carouselIndex')) || 0;
 
 export const BookModalFrench = ({ ...props }) => {
   const { t } = useTranslation();
@@ -66,8 +66,7 @@ export const BookModalFrench = ({ ...props }) => {
 
         toast.success(t('SubsResult-1'));
         if (levelValues && levelValues !== "Beginner") {  
-          //setValues(1);
-          indexSlide = 1;
+          indexSlide.idx = 1;
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
           navTo("/subscription");
@@ -106,7 +105,7 @@ export const BookModalFrench = ({ ...props }) => {
   };
 
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide.idx}>
       <div>
       <Form
         form={form}

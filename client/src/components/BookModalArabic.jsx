@@ -16,8 +16,8 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 let levelValues;
-let indexSlide = 0;
-export const BookModalArabic = ({ ...props }) => {
+let indexSlide = {idx:0};
+const BookModalArabicCmp = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
   const currentObj = props.currentObj;
@@ -108,8 +108,7 @@ export const BookModalArabic = ({ ...props }) => {
 
         toast.success(t('SubsResult-1'));
         if (levelValues && levelValues !== "Beginner") {  
-          //setValues(1);
-          indexSlide = 1;
+          indexSlide.idx = 1;
           console.log('indexSlide inside handleFormSubmit', indexSlide);
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
@@ -169,7 +168,7 @@ export const BookModalArabic = ({ ...props }) => {
   }
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide.idx}>
       <div>
       <Form
         form={form}
@@ -478,4 +477,8 @@ const mapToStateProps = (state) => ({
   msg: state.subs.codeMsg,
 });
 
-export default connect(mapToStateProps, mapActionToProps)(BookModalArabic);
+const BookModalArabic = connect(mapToStateProps, mapActionToProps)(BookModalArabicCmp);
+export {
+  indexSlide,
+  BookModalArabic
+};

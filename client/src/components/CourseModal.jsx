@@ -10,7 +10,7 @@ import usePrevious from "../helpers/usePrevious";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import BookModal from "./BookModal";
-import BookModalArabic  from "./BookModalArabic";
+import {indexSlide,BookModalArabic}  from "./BookModalArabic";
 import BookModalFrench  from "./BookModalFrench";
 import shortid from "shortid";
 
@@ -112,8 +112,10 @@ export const CourseModal = ({ courseExists, ...props }) => {
                     }                   
                     onClick={() => {
                       if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
+                        indexSlide.idx = 0;
                         setOpenModalArabic(true);
                       } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
+                        indexSlide.idx = 0;
                         setOpenModalFrench(true);
                       } else {
                         setOpenModal(true);
@@ -156,8 +158,10 @@ export const CourseModal = ({ courseExists, ...props }) => {
                     }                   
                     onClick={() => {
                       if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d") {
+                        indexSlide.idx = 0;
                         setOpenModalArabic(true);
                       } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
+                        indexSlide.idx = 0;
                         setOpenModalFrench(true);
                       } else {
                         setOpenModal(true);

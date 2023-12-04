@@ -91,11 +91,7 @@ export const Profile = ({ ...props }) => {
     else if (status === "request") return 3;
     else if (status === "confirmed") return 4;
   };
-
-  console.log('props', props)
-  console.log('DeleteModal', DeleteModal)
-  localStorage.setItem('carouselIndex', '0');
-
+  
   const subsList = props.user_subs.map((su, index) => ({
     key: su.id,
     label: <>{su.course[0].title}</>,
