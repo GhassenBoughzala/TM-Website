@@ -109,6 +109,8 @@ export const BookModalArabic = ({ ...props }) => {
           //setValues(1);
           indexSlide = 1;
           console.log('getValues inside handleFormSubmit', levelValues);
+        } else {          
+          props.setOpenModal(false);
         }
         //toast.success(t('SubsResult-1'));
         console.log('values', values);
