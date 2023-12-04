@@ -107,7 +107,7 @@ export const BookModalArabic = ({ ...props }) => {
         toast.success(t('SubsResult-1'));
         if (levelValues && levelValues !== "Beginner") {  
           //setValues(1);
-          indexSlide = props.courseArabExiste == false ? 0 : 1;
+          indexSlide = props.courseArabExiste == false ? 1 : 0;
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
           props.setOpenModal(false);
