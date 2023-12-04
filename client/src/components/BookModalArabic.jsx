@@ -87,7 +87,6 @@ export const BookModalArabic = ({ ...props }) => {
   }, [props.msg]);*/
   console.log('courseArabExiste', props.courseArabExiste);
 
-  indexSlide = 0;
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -110,6 +109,7 @@ export const BookModalArabic = ({ ...props }) => {
         if (levelValues && levelValues !== "Beginner") {  
           //setValues(1);
           indexSlide = 1;
+          console.log('indexSlide inside handleFormSubmit', indexSlide);
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
           props.setOpenModal(false);
