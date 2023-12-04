@@ -94,6 +94,7 @@ export const Profile = ({ ...props }) => {
 
   console.log('props', props)
   console.log('DeleteModal', DeleteModal)
+  localStorage.setItem('carouselIndex', '0');
 
   const subsList = props.user_subs.map((su, index) => ({
     key: su.id,
