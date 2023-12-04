@@ -15,11 +15,9 @@ import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 const { Option } = Select;
 const { TextArea } = Input;
 
-
-export const BookModalArabic = ({ ...props }) => {
-  let levelValues;
+let levelValues;
 let indexSlide = 0;
-
+export const BookModalArabic = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
   const currentObj = props.currentObj;
