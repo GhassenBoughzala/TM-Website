@@ -68,10 +68,11 @@ export const BookModalFrench = ({ ...props }) => {
         toast.success(t('SubsResult-1'));
         if (levelValues && levelValues !== "Beginner") {  
           //setValues(1);
-          indexSlide = 1;
+          indexSlide = props.courseFrenchExiste == false ? 0 : 1;
           console.log('getValues inside handleFormSubmit', levelValues);
-        } else {          
+        } else {
           props.setOpenModal(false);
+          navTo("/subscription");
         }
         
         //props.setOpenModal(false);
