@@ -164,7 +164,7 @@ export const BookModalArabic = ({ ...props }) => {
   }
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
+    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide}>
       <div>
       <Form
         form={form}
