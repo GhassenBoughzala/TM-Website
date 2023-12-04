@@ -70,7 +70,6 @@ export const BookModalFrench = ({ ...props }) => {
           indexSlide = 1;
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
-          props.setOpenModal(false);
           navTo("/subscription");
         }
         
