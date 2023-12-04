@@ -15,9 +15,11 @@ import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 const { Option } = Select;
 const { TextArea } = Input;
 
-let levelValues;
-let indexSlide = parseInt(localStorage.getItem('carouselIndex')) || 0;
+
 export const BookModalArabic = ({ ...props }) => {
+  let levelValues;
+let indexSlide = 0;
+
   const { t } = useTranslation();
   const navTo = useNavigate();
   const currentObj = props.currentObj;
@@ -179,7 +181,6 @@ export const BookModalArabic = ({ ...props }) => {
         size={"medium"}
         labelCol={{ span: 20 }}
         autoComplete="off"
-        onFinish={handleFinishSubmit}
       >
         <div className="row">
           <div className="form-outline text-start">
