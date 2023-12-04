@@ -59,13 +59,13 @@ export const CourseModal = ({ courseExists, ...props }) => {
   }
 
   const courseArabExiste = false;
-  if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d" && courseExists === "64c6849913ebbe2aec0e1b1d") {
+  if (courseExists === "64c6849913ebbe2aec0e1b1d") {
     courseArabExiste = true;
   }
 
   const courseFrenchExiste = false;
-  if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20" && courseExists === "64c684ce13ebbe2aec0e1b20") {
-    courseArabExiste = true;
+  if (courseExists === "64c684ce13ebbe2aec0e1b20") {
+    courseFrenchExiste = true;
   }
   
 
