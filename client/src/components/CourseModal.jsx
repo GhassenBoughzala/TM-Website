@@ -57,6 +57,16 @@ export const CourseModal = ({ courseExists, ...props }) => {
   } else {
     console.log('does not exist', courseExists);
   }
+
+  const courseArabExiste = false;
+  if (props.currentObj._id === "64c6849913ebbe2aec0e1b1d" && courseExists === "64c6849913ebbe2aec0e1b1d") {
+    courseArabExiste = true;
+  }
+
+  const courseFrenchExiste = false;
+  if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20" && courseExists === "64c684ce13ebbe2aec0e1b20") {
+    courseArabExiste = true;
+  }
   
 
   const handleCancel = () => {
@@ -266,11 +276,11 @@ export const CourseModal = ({ courseExists, ...props }) => {
                   )}
 
                   {currentModal === "BookModalArabic" && (
-                    <BookModalArabic {...{ currentObj, openModalArabic, setOpenModalArabic }} />
+                    <BookModalArabic {...{ currentObj, openModalArabic, setOpenModalArabic, courseArabExiste }} />
                   )}
 
                   {currentModal === "BookModalFrench" && (
-                    <BookModalFrench {...{ currentObj, openModalFrench, setOpenModalFrench }} />
+                    <BookModalFrench {...{ currentObj, openModalFrench, setOpenModalFrench, courseFrenchExiste }} />
                   )}
                 </div>
               )}

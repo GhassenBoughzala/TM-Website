@@ -85,7 +85,7 @@ export const BookModalArabic = ({ ...props }) => {
       }
     }
   }, [props.msg]);*/
-
+  console.log('courseArabExiste', props.courseArabExiste);
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
