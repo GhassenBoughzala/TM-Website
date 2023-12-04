@@ -16,7 +16,7 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 let levelValues;
-let indexSlide = 0;
+let indexSlide = parseInt(localStorage.getItem('carouselIndex')) || 0;
 export const BookModalArabic = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();

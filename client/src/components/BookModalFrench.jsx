@@ -19,7 +19,7 @@ const { TextArea } = Input;
 
 
 let levelValues;
-let indexSlide = 0;
+let indexSlide = parseInt(localStorage.getItem('carouselIndex')) || 0;
 
 export const BookModalFrench = ({ ...props }) => {
   const { t } = useTranslation();
@@ -47,7 +47,6 @@ export const BookModalFrench = ({ ...props }) => {
     }
   }, [props.msg]);*/
 
-  indexSlide = 0;
   const handleFormSubmit = (e) => {
     e.preventDefault();
     form
