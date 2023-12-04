@@ -92,6 +92,8 @@ export const Profile = ({ ...props }) => {
     else if (status === "confirmed") return 4;
   };
 
+  log('DeleteModal', DeleteModal)
+
   const subsList = props.user_subs.map((su, index) => ({
     key: su.id,
     label: <>{su.course[0].title}</>,
