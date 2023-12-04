@@ -35,6 +35,7 @@ export const BookModalArabic = ({ ...props }) => {
   //const [carouselReady, setCarouselReady] = useState(false);
   //const [getValues, setValues] = useState(0);
   
+  
   useEffect(() => {
     const playMedia = () => {
       if (isModal1Open) {
@@ -112,7 +113,6 @@ export const BookModalArabic = ({ ...props }) => {
           console.log('indexSlide inside handleFormSubmit', indexSlide);
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
-          props.setOpenModal(false);
           navTo("/subscription");
         }
         //toast.success(t('SubsResult-1'));
