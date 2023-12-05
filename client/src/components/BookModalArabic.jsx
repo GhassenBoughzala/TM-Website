@@ -32,8 +32,6 @@ const BookModalArabicCmp = ({ ...props }) => {
   const videoRef1 = useRef(null); // Create a ref for the first video element
   const videoRef2 = useRef(null); // Create a ref for the second video element
   const carouselRef = useRef(); 
-  //const [carouselReady, setCarouselReady] = useState(false);
-  //const [getValues, setValues] = useState(0);
   
   
   useEffect(() => {
@@ -69,25 +67,7 @@ const BookModalArabicCmp = ({ ...props }) => {
     // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
   };
-
-  /*if (courseExists) {
-    props.setOpenModalArabic(false);
-    navTo("/subscription");
-  }*/
-
-  /*useEffect(() => {
-    if (showLevelMessage !== "Beginner") {
-      if (props.msg === 1) {
-        carouselRef.current.goTo(1);
-        toast.success(t('SubsResult-1'));
-      } else if (props.msg === 0) {
-        props.setOpenModalArabic(false);
-        navTo("/subscription");
-      }
-    }
-  }, [props.msg]);*/
-  console.log('courseArabExiste', props.courseArabExiste);
-
+  
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -109,15 +89,9 @@ const BookModalArabicCmp = ({ ...props }) => {
         toast.success(t('SubsResult-1'));
         if (levelValues && levelValues !== "Beginner") {  
           indexSlide.idx = 1;
-          console.log('indexSlide inside handleFormSubmit', indexSlide);
-          console.log('getValues inside handleFormSubmit', levelValues);
         } else {
           navTo("/subscription");
         }
-        //toast.success(t('SubsResult-1'));
-        console.log('values', values);
-        //props.setOpenModal(false);
-        //navTo("/subscription");
       })     
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
@@ -125,8 +99,6 @@ const BookModalArabicCmp = ({ ...props }) => {
       });
   };
   
-  console.log('indexSlide outside handleFormSubmit', indexSlide);
-  console.log('levelValues outside handleFormSubmit', levelValues);
   const options = [
     { label: "Beginner", value: "Beginner" },
     { label: "Intermediate", value: "Intermediate" },
@@ -162,10 +134,6 @@ const BookModalArabicCmp = ({ ...props }) => {
     setIsModal2Open(false);
     setIsModal3Open(false);
   };
-
-  const handleFinishSubmit = () => {
-    console.log('finish');
-  }
   
   return (
     <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide.idx}>

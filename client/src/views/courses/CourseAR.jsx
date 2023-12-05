@@ -46,12 +46,6 @@ export const CourseAR = ({ ...props }) => {
   
     fetchData();
   }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
-  
-  console.log('currentObj', currentObj);
-  console.log('allUser', allUser);
-  console.log('user', User);
-  console.log('loading', loading);
-  console.log('props', props);
 
   const findCourse = (alluser, user_id, course_id) => {
     const courseExists = alluser.some(user => {
