@@ -8,7 +8,7 @@ export const LivingInTunis = (props) => {
   const { t } = useTranslation();
   return (
     <div className="row">
-      <h3 className="blue-text">Living in Tunis</h3>
+    <h3 className="blue-text">{t("Living in Tunis")}</h3>
       <div className="mb-3 col-lg-7 col-md-12 col-sm-12 col-xs-12">
         <p>{t("ST-LV1")}</p>
         <p>{t("ST-LV2")}</p>

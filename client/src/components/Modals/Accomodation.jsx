@@ -8,7 +8,7 @@ export const Accommodation = () => {
   const { t } = useTranslation();
   return (
     <div className="row">
-      <h3 className="blue-text">Accommodation</h3>
+      <h3 className="blue-text">{t("Accommodation")}</h3>
       <div className="mb-3 col-lg-7 col-md-12 col-sm-12 col-xs-12">
         <p>{t("STAC-1")}</p>
         <p>{t("STAC-2")}</p>

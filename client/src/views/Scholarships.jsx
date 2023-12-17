@@ -96,6 +96,7 @@ export const Scholarships = () => {
                     <p className="fs-6">{t("sco-abt-1")}</p>
                     <p className="fs-6">{t("sco-abt-2")}</p>
                     <p className="fs-6">{t("sco-abt-3")}</p>
+                    <p className="fs-6">{t("sco-abt-4")}</p>
                   </div>
                 </div>
                 <div className="mb-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
