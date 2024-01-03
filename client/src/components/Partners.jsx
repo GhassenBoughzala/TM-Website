@@ -59,15 +59,6 @@ const Partners = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/Nafsa.png`}
-            alt="Taa Marbouta"
-            width={1280}
-            height={583}
-            style={{ width: "80%" }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
             src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/uni.png`}
             alt="Taa Marbouta"
             width={1568}
