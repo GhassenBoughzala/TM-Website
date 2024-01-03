@@ -11,7 +11,7 @@ import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
 import { saveAs } from "file-saver";
-import Doc2Pdf from '../../public/images/test/french/test1.docx';
+import Doc2Pdf from '../../public/images/test/french/Test-de-niveau.docx';
 import {indexSlide,BookModalArabic}  from "./BookModalArabic";
 
 
