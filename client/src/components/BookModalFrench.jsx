@@ -289,7 +289,7 @@ export const BookModalFrench = ({ ...props }) => {
           className="btn_download url_link m-auto"
           onClick={onDownload1}
         >
-          {t("click_here")}
+          {t("click_here !")}
         </Button>
 
         <Button
