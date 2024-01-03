@@ -100,8 +100,14 @@ export const BookModalFrench = ({ ...props }) => {
     setType("");
   };
 
-  const onDownload1 = () => {
-    saveAs(Doc2Pdf, "test french.docx");
+  const handleDownload = async () => {
+    try {
+      const response = await fetch('/images/test/french/Test-de-niveau.docx');
+      const blob = await response.blob();
+      saveAs(blob, 'test french.docx');
+    } catch (error) {
+      console.error('Error fetching the file:', error);
+    }
   };
 
   return (
@@ -287,9 +293,9 @@ export const BookModalFrench = ({ ...props }) => {
         
         <Button
           className="btn_download url_link m-auto"
-          onClick={onDownload1}
+          onClick={handleDownload}
         >
-          {t("click_here !")}
+          {t("click_here")}
         </Button>
 
         <Button
