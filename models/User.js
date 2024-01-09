@@ -21,9 +21,9 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      /* Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character */
+      /* Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number */
       match: [
-        /^^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
       ],
     },
     phone: { type: String, required: true },
