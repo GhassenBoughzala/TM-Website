@@ -128,7 +128,7 @@ export const Scholarships = () => {
           <div className="container-fluid">
             <div className="full_espace_padding">
               <div className="banner_header">
-                <img src="/images/banner.png" />
+                <img src="/images/banner.webp" />
               </div>
 
               <div className="titre_page_one">
@@ -156,9 +156,9 @@ export const Scholarships = () => {
                         autoplaySpeed={5000} 
                         className="carousel_box"
                       >
-                          <div><img alt="example" src="/images/slides/1.png" width={"100%"} /></div>
-                          <div><img alt="example" src="/images/slides/2.png" width={"100%"} /></div>
-                          <div><img alt="example" src="/images/slides/3.png" width={"100%"} /></div>
+                          <div><img alt="example" src="/images/slides/1.webp" width={"100%"} /></div>
+                          <div><img alt="example" src="/images/slides/2.webp" width={"100%"} /></div>
+                          <div><img alt="example" src="/images/slides/3.webp" width={"100%"} /></div>
                       </Carousel>
                       <button className="carousel_prev" onClick={carousel_prev}><CaretLeftOutlined /></button>
                       <button className="carousel_next" onClick={carousel_next}><CaretRightOutlined /></button>
