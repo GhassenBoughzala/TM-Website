@@ -24,13 +24,6 @@ router.post("/saveForm", upload.fields([{name:'file_cv',maxCount:1},{name:'file_
     // Extract form data from the request body
     const { firstName, lastName, email, msg } = req.body;
 
-    console.log('firstName', firstName);
-    console.log('lastName', lastName);
-    console.log('email', email);
-    console.log('file_cv', req.files.file_cv);
-    console.log('file_lettreMotivation', req.files.file_lettreMotivation);
-    console.log('msg', msg);
-
     const cv = JSON.stringify(req.files.file_cv);
     const lettreMotivation = JSON.stringify(req.files.file_lettreMotivation);
     // Create a new Scholarship instance with the extracted data
