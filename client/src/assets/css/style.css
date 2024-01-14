@@ -599,3 +599,97 @@ button.url_link span {
   content: '<';
   padding-right: 5px;
 }
+
+/*-- Scholarships */
+.scholarships_page .banner_header {
+  margin-bottom: 45px;
+}
+.scholarships_page .banner_header img {
+  width: 100%;
+}
+.scholarships_page h1 {
+  padding: 0;
+  font-size: 32px;
+  color: var(--baltic_sea);
+  font-family: "averiaseriflibre_bold", Fallback, sans-serif;
+}
+.scholarships_page h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 45px;
+}
+.scholarships_page .carousel_box,
+.scholarships_page .carousel_block {
+  position: relative;
+}
+.scholarships_page .carousel_block:hover .carousel_prev,
+.scholarships_page .carousel_block:hover .carousel_next {
+  top: 45%;
+  opacity: 1;
+}
+.scholarships_page .carousel_box:after {
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  background: transparent;
+}
+
+.carousel_prev,
+.carousel_next {
+  top: 50%;
+  opacity: 0;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  display: flex;
+  transition: .5s;
+  font-size: 20px;
+  border-radius: 50%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  color: var(--lightning_yellow);
+}
+
+.carousel_prev {
+  left: 10px;
+}
+
+/*-- video_block */
+.video_block {
+  margin-bottom: 60px;
+  background: rgb(248,249,250);
+}
+
+.video_block h2 {
+  font-size: 28px;
+}
+
+.video_block ul {
+  padding-left: 20px;
+  list-style: decimal;
+}
+
+.video_block ul li {
+  font-size: 16px;
+  color: var(--raven);
+  margin-bottom: 10px;
+  font-family: "montserrat_regular", Fallback, sans-serif;
+}
+
+.form_page {
+  margin-bottom: 60px;
+}
+
+.form_page .logo_tm {
+  width: 80px;
+  margin-bottom: 45px;
+}
+
+.error-message-upload {
+  color: #ff4d4f;
+}
