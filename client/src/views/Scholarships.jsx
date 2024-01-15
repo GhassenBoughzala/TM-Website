@@ -8,6 +8,7 @@ import { Button, Form, Input, Upload, Layout, Carousel } from "antd";
 import { CaretLeftOutlined, CaretRightOutlined, UploadOutlined } from "@ant-design/icons";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
 import { toast } from "react-toastify";
+import Sticky from 'react-sticky-el';
 import axios from 'axios';
 
 const { Content } = Layout;
@@ -20,7 +21,6 @@ export const Scholarships = () => {
   const [form] = Form.useForm();
   const { t } = useTranslation();
   
-
   const [isApplyNowVisible, setApplyNowVisible] = useState(true);
 
   const carousel_prev = () => {
@@ -30,6 +30,7 @@ export const Scholarships = () => {
   const carousel_next = () => {
     carouselRef.current.next();
   }
+  
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -126,8 +127,6 @@ export const Scholarships = () => {
         .then(response => {
           console.log('Server response:', response.data);
           toast.success(response.data.message);
-          // Handle the response from the server as needed
-          // For example, you can show a success message to the user
         })
         .catch(error => {
           console.error('Error sending form data to server:', error);
@@ -158,7 +157,7 @@ export const Scholarships = () => {
           className="page_style overflow-x-hidden overflow-y-scroll scholarships_page"
         >
           <button ref={applyNowRef} onClick={handleApplyNowClick} className={`apply_now ${isApplyNowVisible ? 'opacityShow' : ''}`}>
-            Apply Now
+            {t("apply_now")}
           </button>
 
           <div className="container-fluid">
@@ -167,21 +166,46 @@ export const Scholarships = () => {
                 <img src="/images/banner.webp" />
               </div>
 
-              <div className="titre_page_one">
-                <h1>Malek Sghiri Scholarships</h1>
-                <h2 className="blue-text">Fully-Funded | <span className="yellow-text">Deadline: 15/01/2024</span></h2>
+              <div className="box_title">
+                <div className="titre_page_one">
+                  <h1>{t("sco-abt-new")}</h1>
+                  <h2 className="blue-text">{t("fully-funded")} | <span className="yellow-text">{t("deadline")}: 31/03/2024</span></h2>
+                </div>
+                <button 
+                  onClick={handleApplyNowClick} 
+                  type="button" 
+                  class="apply_now_static ant-btn css-12jzuas ant-btn-text ant-btn-lg subs-btn"
+                ><span>{t("apply_now")}</span></button>
               </div>
 
               <div className="slide_block">
                 <div className="row">
                   
-                  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div className="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+                    <h3>{t("sco-ovt")}</h3>
                     <div className="parag_style style_link">
-                      <p>{t("sco-ov")}</p>
+                      <p>"{t("sco-ovt-new")}"</p>
                     </div>
+                    
+                    <h3>{t("scholarship_benefits")}</h3>
+                    <div className="parag_style style_link">
+                      <p><strong>{t("sb-1-strong")}</strong> {t("sb-1")}</p>
+                      <p><strong>{t("sb-2-strong")}</strong> {t("sb-2")}</p>
+                      <p><strong>{t("sb-3-strong")}</strong> {t("sb-3")}</p>
+                      <p><strong>{t("sb-4-strong")}</strong> {t("sb-4")}</p>
+                    </div>
+                    
+                    <h3>{t("sco-elt")}</h3>
+                    <ul>
+                      <li>{t("sco-elt1")}</li>
+                      <li>{t("sco-elt2")}</li>
+                      <li>{t("sco-elt3")}</li>
+                    </ul>
+
                   </div>
 
-                  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-slide">
+                  <Sticky boundaryElement=".col-slide" hideOnBoundaryHit={false}>
                     <div className="carousel_block">
                       <Carousel
                         autoplay 
@@ -192,13 +216,14 @@ export const Scholarships = () => {
                         autoplaySpeed={5000} 
                         className="carousel_box"
                       >
-                          <div><img alt="example" src="/images/slides/1.webp" width={"100%"} /></div>
-                          <div><img alt="example" src="/images/slides/2.webp" width={"100%"} /></div>
-                          <div><img alt="example" src="/images/slides/3.webp" width={"100%"} /></div>
+                        <div><img alt="example" src="/images/slides/1.webp" width={"100%"} /></div>
+                        <div><img alt="example" src="/images/slides/2.webp" width={"100%"} /></div>
+                        <div><img alt="example" src="/images/slides/3.webp" width={"100%"} /></div>
                       </Carousel>
                       <button className="carousel_prev" onClick={carousel_prev}><CaretLeftOutlined /></button>
                       <button className="carousel_next" onClick={carousel_next}><CaretRightOutlined /></button>
                     </div>
+                    </Sticky>
                   </div>
                 </div>
               </div>
@@ -215,11 +240,12 @@ export const Scholarships = () => {
                 </div>
 
                 <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <h2 className="blue-text">Eligibility creator</h2>              
+                  <h2 className="blue-text">{t("sco-elt-new")}</h2>              
                   <ul>
-                    <li>Between 18 and 35 years old.</li>
-                    <li>From all countries and territories.</li>
-                    <li>Demonstrable interest in human rights, anti-corruption & civil society</li>
+                    <li>{t("sco-obj1")}</li>
+                    <li>{t("sco-obj2")}</li>
+                    <li>{t("sco-obj3")}</li>
+                    <li>{t("sco-obj4")}</li>
                   </ul>
                 </div>   
 
