@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require('multer');
-
+const { contactEmail } = require("../middleware/mailer");
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -31,7 +31,7 @@ router.post("/saveForm", upload.fields([{name:'file_cv',maxCount:1},{name:'file_
 
     // Save the scholarship to the database
     const savedScholarship = await scholarship.save();
-
+    await contactEmail({ firstName, lastName, email, cv:req.files.file_cv[0], lm:req.files.file_lettreMotivation[0], msg });
     console.log('Form data saved to the database:', savedScholarship);
     res.json({ success: true, message: 'Form data received and saved!' });
   } catch (error) {

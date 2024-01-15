@@ -119,5 +119,62 @@ const contactUs = async (text, firstName, lastName, email) => {
       console.log(error);
     });
 };
+const contactEmail = async ({firstName, lastName, email, cv, lm, msg}) => {
+  const config = {
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASS,
+    },
+  };
+  let transporter = nodemailer.createTransport(config);
 
-module.exports = { contactUs, subConfirmation };
+  let MailGenerator = new Mailgen({
+    theme: "salted",
+    product: {
+      logo: "https://res.cloudinary.com/taamarbouta/image/upload/v1693852932/TM/TM.png",
+      logoHeight: "200px",
+      name: "Taa Marbouta",
+      link: "https://www.taamarbouta.com/",
+    },
+  });
+
+  let response = {
+    body: {
+      greeting: "This message is from ",
+      name: `${firstName} ${lastName}`,
+      intro: `${msg}`,
+      outro: `User's contact : ${email}`
+    },
+  };
+
+  let mail = MailGenerator.generate(response);
+
+  let message = {
+    from: process.env.EMAIL,
+    to: process.env.EMAIL,
+    subject: `TM Website - Contact us message from ${firstName} ${lastName}`,
+    html: mail,
+    attachments: [
+      {   // file on disk as an attachment
+          filename: cv.originalname,
+          path: cv.path // stream this file
+      },
+      {   // file on disk as an attachment
+        filename: lm.originalname,
+        path: lm.path // stream this file
+    },]
+  };
+
+  await transporter
+    .sendMail(message)
+    .then((info) => {
+      console.log("Contact us email successfully sent ✅");
+    })
+    .catch((error) => {
+      console.log("Email not sent ⛔️");
+      console.log(error);
+    });
+};
+
+module.exports = { contactUs, contactEmail, subConfirmation };
