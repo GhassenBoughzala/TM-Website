@@ -17,6 +17,7 @@ connectDB();
 
 var app = express();
 app.use(compression());
+app.use(express.static('public'));
 
 app.use(function (req, res, next) {
   res.set("Access-Control-Allow-Origin", "*");
