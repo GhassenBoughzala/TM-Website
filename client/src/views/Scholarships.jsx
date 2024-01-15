@@ -19,7 +19,7 @@ export const Scholarships = () => {
   const carouselRef = useRef(); 
   const applyNowRef = useRef();
   const [form] = Form.useForm();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   
   const [isApplyNowVisible, setApplyNowVisible] = useState(true);
 
@@ -154,7 +154,7 @@ export const Scholarships = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="page_style overflow-x-hidden overflow-y-scroll scholarships_page"
+          className="page_style scholarships_page"
         >
           <button ref={applyNowRef} onClick={handleApplyNowClick} className={`apply_now ${isApplyNowVisible ? 'opacityShow' : ''}`}>
             {t("apply_now")}
@@ -162,8 +162,10 @@ export const Scholarships = () => {
 
           <div className="container-fluid">
             <div className="full_espace_padding">
+              
               <div className="banner_header">
-                <img src="/images/banner.webp" />
+                <img src="/images/banner.webp" className="banner_header_pc" />
+                <img src="/images/banner_mobile.webp" className="banner_header_mobile" />
               </div>
 
               <div className="box_title">
@@ -174,14 +176,14 @@ export const Scholarships = () => {
                 <button 
                   onClick={handleApplyNowClick} 
                   type="button" 
-                  class="apply_now_static ant-btn css-12jzuas ant-btn-text ant-btn-lg subs-btn"
+                  className={`apply_now_static ant-btn css-12jzuas ant-btn-text ant-btn-lg subs-btn style_${i18n.language}`}
                 ><span>{t("apply_now")}</span></button>
               </div>
 
               <div className="slide_block">
                 <div className="row">
                   
-                  <div className="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+                  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 col-slide">
                     <h3>{t("sco-ovt")}</h3>
                     <div className="parag_style style_link">
                       <p>"{t("sco-ovt-new")}"</p>
@@ -204,7 +206,7 @@ export const Scholarships = () => {
 
                   </div>
 
-                  <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-slide">
+                  <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-slide">
                   <Sticky boundaryElement=".col-slide" hideOnBoundaryHit={false}>
                     <div className="carousel_block">
                       <Carousel
@@ -230,24 +232,24 @@ export const Scholarships = () => {
             </div>
 
             <div className="video_block full_espace_padding">
-              <div className="row">             
+              <div className="row">  
+
+                <div className="col-xs-12">
+                    <h2>{t("sco-abt")}</h2>
+                    <div className="parag_style style_link">
+                      <p>{t("about-ms-1")}</p>
+                      <p>{t("about-ms-2")}</p>
+                      <p>{t("about-ms-3")}</p>
+                      <p>{t("about-ms-4")}</p>
+                    </div>
+                </div>            
                 
-                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div className="col-xs-12">
                   <video ref={videoRef} height="360" controls autoPlay muted>
                     <source src="/images/malek.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                </div>
-
-                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <h2 className="blue-text">{t("sco-elt-new")}</h2>              
-                  <ul>
-                    <li>{t("sco-obj1")}</li>
-                    <li>{t("sco-obj2")}</li>
-                    <li>{t("sco-obj3")}</li>
-                    <li>{t("sco-obj4")}</li>
-                  </ul>
-                </div>   
+                </div>  
 
               </div>
             </div>

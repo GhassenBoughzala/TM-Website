@@ -600,6 +600,9 @@ footer p {
 .scholarships_page .banner_header img {
   width: 100%;
 }
+.scholarships_page .banner_header .banner_header_mobile {
+  display: none;
+}
 .scholarships_page h1 {
   padding: 0;
   font-size: 32px;
@@ -662,6 +665,16 @@ footer p {
   font-size: 28px;
 }
 
+.video_block .parag_style {
+  text-align: justify;
+  margin-bottom: 45px;
+}
+
+.video_block video {
+  margin: auto;
+  display: table;
+}
+
 .slide_block ul {
   padding-left: 20px;
   list-style: decimal;
@@ -680,6 +693,7 @@ footer p {
 }
 
 .slide_block .parag_style {
+  text-align: justify;
   margin-bottom: 35px;
 }
 
@@ -729,11 +743,4 @@ footer p {
 .opacityShow {
   opacity: 0;
   transition: .5s;
-}
-
-.carousel_block.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1020;
 }

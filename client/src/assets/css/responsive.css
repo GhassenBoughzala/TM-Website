@@ -1,0 +1,192 @@
+/*----------------------------------- Responsive -----------------------------------*/
+
+@media screen and (max-width: 455px) {
+  .scholarships_page .full_espace_padding {
+    padding: 60px 0px;
+  }
+
+  .box_title {
+    flex-direction: column;
+  }
+
+  .box_title .apply_now_static {
+    margin: 25px 0;
+    margin-left: initial;
+  }
+
+  .apply_now {
+    top: 15%;
+  }
+  .scholarships_page h1 {
+    font-size: 24px;
+  }
+
+  .scholarships_page h2 {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .box_title .apply_now_static {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .slide_block h3 {
+    font-size: 18px;
+  }
+
+  .slide_block ul li,
+  .scholarships_page .parag_style, .scholarships_page .parag_style p {
+    font-size: 14px;
+  }
+
+  .video_block video {
+    height: initial;
+  }
+}
+
+@media screen and (max-width: 599px) and (min-width: 456px) {
+  .scholarships_page .full_espace_padding {
+    padding: 60px 0px;
+  }
+
+  .apply_now {
+    top: 20%;
+  }
+  .scholarships_page h1 {
+    font-size: 22px;
+  }
+
+  .scholarships_page h2 {
+    font-size: 16px;
+  }
+
+  .box_title .apply_now_static {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .box_title .apply_now_static.style_fr {
+    padding: 0;
+    font-size: 15px;
+  }
+
+  .slide_block h3 {
+    font-size: 18px;
+  }
+
+  .slide_block ul li,
+  .scholarships_page .parag_style, .scholarships_page .parag_style p {
+    font-size: 14px;
+  }
+
+  .video_block video {
+    height: initial;
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 600px) {
+  .scholarships_page h1 {
+    font-size: 24px;
+  }
+
+  .scholarships_page h2 {
+    font-size: 16px;
+  }
+
+  .box_title .apply_now_static {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .slide_block h3 {
+    font-size: 18px;
+  }
+
+  .slide_block ul li,
+  .scholarships_page .parag_style, .scholarships_page .parag_style p {
+    font-size: 14px;
+  }
+  .slide_block .carousel_block {
+    width: 50%;
+    margin: auto;
+    padding-top: 60px;
+  }
+
+  .carousel_prev, .carousel_next {
+    top: 55%;
+  }
+
+  .scholarships_page .carousel_block:hover .carousel_prev, .scholarships_page .carousel_block:hover .carousel_next {
+    top: 50%;
+  }
+
+  .slide_block .carousel_block {
+    width: 80%;
+    padding-top: 25px;
+  }
+
+  .video_block video {
+    height: initial;
+  }
+
+}
+
+@media screen and (max-width: 928px) and (min-width: 768px) {
+  .slide_block .carousel_block {
+    width: 50%;
+    margin: auto;
+    padding-top: 60px;
+  }
+
+  .scholarships_page .carousel_block:hover .carousel_prev, .scholarships_page .carousel_block:hover .carousel_next {
+    top: 55%;
+  }
+}
+
+@media screen and (max-width: 991px) and (min-width: 929px) {
+  .slide_block .carousel_block {
+    width: 50%;
+    margin: auto;
+    padding-top: 60px;
+  }
+
+  .scholarships_page .carousel_block:hover .carousel_prev, .scholarships_page .carousel_block:hover .carousel_next {
+    top: 55%;
+  }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+  .slide_block .col-slide {
+    width: 100%;
+  }
+
+  .slide_block .carousel_block {
+    width: 50%;
+    margin: auto;
+    padding-top: 60px;
+  }
+
+  .scholarships_page .carousel_block:hover .carousel_prev, .scholarships_page .carousel_block:hover .carousel_next {
+    top: 55%;
+  }
+}
+
+@media screen and (max-width: 1365px) and (min-width: 1200px) {
+
+}
+
+@media screen and (max-width: 1440px) and (min-width: 1366px) {
+
+}
+
+@media screen and (max-width: 768px) {
+  .banner_header_pc {
+    display: none;
+  }
+  .scholarships_page .banner_header .banner_header_mobile {
+    display: block;
+  }
+}
+
+/*------------------------------------------------------- End Responsive -------------------------------------------------------*/
