@@ -27,8 +27,18 @@
   }
 
   .box_title .apply_now_static {
-    padding: 10px;
+    padding: 5px;
     font-size: 16px;
+  }
+
+  .box_title .apply_now_static.style_en {
+    height: initial;
+  }
+
+  .box_title .apply_now_static.style_fr {
+    padding: 5px;
+    font-size: 14px;
+    overflow: initial;
   }
 
   .slide_block h3 {
@@ -62,13 +72,18 @@
   }
 
   .box_title .apply_now_static {
-    padding: 10px;
+    padding: 5px;
     font-size: 16px;
   }
 
+  .box_title .apply_now_static.style_en {
+    height: initial;
+  }
+
   .box_title .apply_now_static.style_fr {
-    padding: 0;
-    font-size: 15px;
+    padding: 5px;
+    font-size: 14px;
+    overflow: initial;
   }
 
   .slide_block h3 {
