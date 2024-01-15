@@ -139,7 +139,7 @@ export const Profile = ({ ...props }) => {
               </Button>
             </div>
           )}
-          {su.status === "pending" && (
+          {/* {su.status === "pending" && (
             <div className="col text-center">
               <Button
                 size="small"
@@ -150,10 +150,10 @@ export const Profile = ({ ...props }) => {
                 }}
               >
                 Download Language Test
-                {/* https://drive.google.com/u/0/uc?id=1y7z0gJF9wrrND3Q0oncJS9U3QXQyvZcn&export=download */}
+                //https://drive.google.com/u/0/uc?id=1y7z0gJF9wrrND3Q0oncJS9U3QXQyvZcn&export=download
               </Button>
             </div>
-          )}
+          )} */}
 
           <div className="col">
             {su.status === "request" && (
