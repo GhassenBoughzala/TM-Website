@@ -31,9 +31,22 @@ router.post("/saveForm", upload.fields([{name:'file_cv',maxCount:1},{name:'file_
 
     // Save the scholarship to the database
     const savedScholarship = await scholarship.save();
-    await contactEmail({ firstName, lastName, email, cv:req.files.file_cv[0], lm:req.files.file_lettreMotivation[0], msg });
+    //await contactEmail({ firstName, lastName, email, cv:req.files.file_cv[0], lm:req.files.file_lettreMotivation[0], msg });
+
+    // Contact email and handle errors
+    try {
+      await contactEmail({ firstName, lastName, email, cv: req.files.file_cv[0], lm: req.files.file_lettreMotivation[0], msg });
+      emailSent = true;
+    } catch (emailError) {
+      console.error('Error sending email:', emailError);
+    }
+
     console.log('Form data saved to the database:', savedScholarship);
-    res.json({ success: true, message: 'Form data received and saved!' });
+    if (emailSent) {
+      res.json({ success: true, message: 'Merci.' });
+    } else {
+      res.json({ success: true, message: 'Form data received and saved, but email sending failed.' });
+    }
   } catch (error) {
     console.error('Error saving form data to the database:', error);
     res.status(500).json({ success: false, message: 'Internal Server Error' });

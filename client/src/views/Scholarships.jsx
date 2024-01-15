@@ -7,15 +7,21 @@ import TextArea from "antd/es/input/TextArea";
 import { Button, Form, Input, Upload, Layout, Carousel } from "antd";
 import { CaretLeftOutlined, CaretRightOutlined, UploadOutlined } from "@ant-design/icons";
 import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
+import { toast } from "react-toastify";
 import axios from 'axios';
 
 const { Content } = Layout;
 export const Scholarships = () => {
 
+  const formRef = useRef();
   const videoRef = useRef();
   const carouselRef = useRef(); 
+  const applyNowRef = useRef();
   const [form] = Form.useForm();
   const { t } = useTranslation();
+  
+
+  const [isApplyNowVisible, setApplyNowVisible] = useState(true);
 
   const carousel_prev = () => {
     carouselRef.current.prev();
@@ -46,10 +52,36 @@ export const Scholarships = () => {
     const observer = new IntersectionObserver(callback, options);
     observer.observe(videoElement);
 
+    const formElement = formRef.current;
+    const formOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+    };
+
+    const formCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setApplyNowVisible(true);
+        } else {
+          setApplyNowVisible(false);
+        }
+      });
+    };
+
+    const formObserver = new IntersectionObserver(formCallback, formOptions);
+    formObserver.observe(formElement);
+
     return () => {
       observer.unobserve(videoElement);
+      formObserver.unobserve(formElement);
     };
   }, []); // Run effect only once on mount
+
+  const handleApplyNowClick = () => {
+    // Scroll to the form_page section when Apply Now is clicked
+    formRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const [cvFile, setCvFile] = useState({ fileList: [] });
   const [lettreMotivationFile, setLettreMotivationFile] = useState({ fileList: [] });
@@ -93,6 +125,7 @@ export const Scholarships = () => {
         })
         .then(response => {
           console.log('Server response:', response.data);
+          toast.success(response.data.message);
           // Handle the response from the server as needed
           // For example, you can show a success message to the user
         })
@@ -124,7 +157,10 @@ export const Scholarships = () => {
           transition={{ duration: 1 }}
           className="page_style overflow-x-hidden overflow-y-scroll scholarships_page"
         >
-          
+          <button ref={applyNowRef} onClick={handleApplyNowClick} className={`apply_now ${isApplyNowVisible ? 'opacityShow' : ''}`}>
+            Apply Now
+          </button>
+
           <div className="container-fluid">
             <div className="full_espace_padding">
               <div className="banner_header">
@@ -190,7 +226,7 @@ export const Scholarships = () => {
               </div>
             </div>
 
-            <div className="form_page text-center justify-content-center">
+            <div ref={formRef} className="form_page text-center justify-content-center">
 
                 <img
                   src={`${cloudinaryBaseUrl}/${imageParams}/v1693852960/TM/logo_footer.png`}

@@ -693,3 +693,22 @@ button.url_link span {
 .error-message-upload {
   color: #ff4d4f;
 }
+
+.apply_now {
+  top: 15%;
+  right: 0;
+  transition: .5s;
+  position: fixed;
+
+  background: var(--venice_blue);
+  color: #fff;
+  padding: 5px 10px;
+  font-family: "montserrat_regular", Fallback, sans-serif;
+  z-index: 9;
+  border: 1px solid #000;
+}
+
+.opacityShow {
+  opacity: 0;
+  transition: .5s;
+}
