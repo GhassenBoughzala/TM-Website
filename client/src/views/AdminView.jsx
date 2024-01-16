@@ -15,9 +15,9 @@ import ScholarshipsList from "../components/Admin/ScholarshipsList";
 const { Header, Sider, Content } = Layout;
 export const AdminView = ({ ...props }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const [showCourses, setShowCourses] = useState(false);
+  const [showCourses, setShowCourses] = useState(true);
   const [showUsers, setShowUsers] = useState(false);
-  const [showScholarships, setShowScholarships] = useState(true);
+  const [showScholarships, setShowScholarships] = useState(false);
 
   const {
     token: { colorBgContainer },
