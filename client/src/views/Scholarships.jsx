@@ -22,6 +22,7 @@ export const Scholarships = () => {
   const { t, i18n } = useTranslation();
   
   const [isApplyNowVisible, setApplyNowVisible] = useState(true);
+  const [removeUpload, setRemoveUpload] = useState(false);
 
   const carousel_prev = () => {
     carouselRef.current.prev();
@@ -127,6 +128,12 @@ export const Scholarships = () => {
         .then(response => {
           console.log('Server response:', response.data);
           toast.success(response.data.message);
+          
+          setCvFile({ fileList: [] });
+          setLettreMotivationFile({ fileList: [] });
+          setRemoveUpload(true);
+
+          form.resetFields();
         })
         .catch(error => {
           console.error('Error sending form data to server:', error);
@@ -340,6 +347,7 @@ export const Scholarships = () => {
                           accept='.doc,.docx,application/pdf'
                           beforeUpload={handleBeforeUploadCV}
                           onChange={handleCvUpload}
+                          showUploadList={{ removeUpload }}
                           maxCount={1}
                           listType='file'
                           fileList={cvFile.fileList}
@@ -367,6 +375,7 @@ export const Scholarships = () => {
                           accept='.doc,.docx,application/pdf'
                           beforeUpload={handleBeforeUploadLettre}
                           onChange={handleLettreMotivationUpload}
+                          showUploadList={{ removeUpload }}
                           maxCount={1}
                           listType='file'
                           fileList={lettreMotivationFile.fileList}
