@@ -287,12 +287,12 @@ export const Scholarships = () => {
                     <div className="col-md-6">
                       <div className="form-outline text-start">
                         <Form.Item
-                          label="First name"
+                          label={t("firstName")}
                           name="firstName"
                           rules={[
                             {
                               required: true,
-                              message: "Please input your first name !",
+                              message: `${t("required-msg")} ${t("firstName")}`,
                             },
                           ]}
                         >
@@ -303,12 +303,12 @@ export const Scholarships = () => {
                     <div className="col-md-6">
                       <div className="form-outline text-start">
                         <Form.Item
-                          label="Last name"
+                          label={t("lastName")}
                           name="lastName"
                           rules={[
                             {
                               required: true,
-                              message: "Please input your last name !",
+                              message: `${t("required-msg")} ${t("lastName")}`,
                             },
                           ]}
                         >
@@ -321,12 +321,12 @@ export const Scholarships = () => {
                   <div className="row">
                     <div className="form-outline text-start">
                       <Form.Item
-                        label="Your Email"
+                        label= {t("em")}
                         name="email"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your email !",
+                            message: `${t("required-msg")} ${t("em")}`,
                             type: "email",
                           },
                         ]}
@@ -339,12 +339,12 @@ export const Scholarships = () => {
                   <div className="row">
                     <div className="form-outline text-start">                    
                       <Form.Item
-                        label="Téléversez votre CV"
+                        label={t("cv-titre")}
                         name='file_cv'
                         rules={[
                           {
                             required: true,
-                            message: 'Téléversez votre CV.',
+                            message: t("cv-titre"),
                           },
                         ]}
                       >
@@ -367,12 +367,12 @@ export const Scholarships = () => {
                   <div className="row">
                     <div className="form-outline text-start">                    
                       <Form.Item
-                        label="Téléversez votre Lettre de motivation"
+                        label={t("lm-titre")}
                         name='file_lettreMotivation'
                         rules={[
                           {
                             required: true,
-                            message: 'Téléversez votre lettre de motivation.',
+                            message: t("lm-titre"),
                           },
                         ]}
                       >
@@ -395,12 +395,12 @@ export const Scholarships = () => {
                   <div className="row">
                     <div className="form-outline text-start">
                       <Form.Item
-                        label="Your message"
+                        label={t("msg")}
                         name="msg"
                         rules={[
                           {
                             required: false,
-                            message: "Please input your message !",
+                            message: `${t("required-msg")} ${t("msg")}`,
                           },
                         ]}
                       >
@@ -416,7 +416,7 @@ export const Scholarships = () => {
                         htmltype="submit"
                         onClick={handleFormSubmit}
                       >
-                        Send
+                        {t("send")}
                       </Button>
                     </Form.Item>
                   </div>
