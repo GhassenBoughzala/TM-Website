@@ -222,7 +222,7 @@ export const Scholarships = () => {
                         speed={1500} 
                         slidesToShow={1} 
                         ref={carouselRef}
-                        autoplaySpeed={5000} 
+                        autoplaySpeed={7000} 
                         className="carousel_box"
                       >
                         <div><img alt="example" src="/images/slides/1.webp" width={"100%"} /></div>
