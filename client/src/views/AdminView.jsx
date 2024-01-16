@@ -5,16 +5,19 @@ import {
   MenuUnfoldOutlined,
   StarOutlined,
   UsergroupAddOutlined,
+  MoneyCollectOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import CoursesList from "../components/Admin/CoursesList";
 import UsersList  from "../components/Admin/UsersList";
+import ScholarshipsList from "../components/Admin/ScholarshipsList";
 
 const { Header, Sider, Content } = Layout;
 export const AdminView = ({ ...props }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [showCourses, setShowCourses] = useState(false);
   const [showUsers, setShowUsers] = useState(false);
+  const [showScholarships, setShowScholarships] = useState(true);
 
   const {
     token: { colorBgContainer },
@@ -30,6 +33,11 @@ export const AdminView = ({ ...props }) => {
       key: "2",
       icon: <UsergroupAddOutlined />,
       label: "Users",
+    },
+    {
+      key: "3",
+      icon: <MoneyCollectOutlined />,
+      label: "Bourses",
     },
   ];
 
@@ -49,14 +57,21 @@ export const AdminView = ({ ...props }) => {
             defaultSelectedKeys={["1"]}
             items={items}
             onClick={({ key }) => {
-              if (key === "1") {
-                setShowCourses(true);
-              } else setShowCourses(false);
-
-              if (key === "2") {
-                setShowUsers(true);
-              } else setShowUsers(false);
-            }}
+            if (key === "1") {
+              setShowCourses(true);
+              setShowUsers(false);
+              setShowScholarships(false); // Assurez-vous que showScholarships est mis à false
+            } else if (key === "2") {
+              setShowUsers(true);
+              setShowCourses(false);
+              setShowScholarships(false);
+            } else if (key === "3") {
+              setShowUsers(false);
+              setShowCourses(false);
+              setShowScholarships(true);
+              // Ajoutez ici le code pour afficher la liste des bourses depuis MongoDB
+            }
+          }}
           />
         </Sider>
         <Layout className=" bg-white">
@@ -83,8 +98,9 @@ export const AdminView = ({ ...props }) => {
               minHeight: 280,
             }}
           >
-            {!showUsers && <CoursesList />}
+            {showCourses && <CoursesList />}
             {showUsers && <UsersList />}
+            {showScholarships && <ScholarshipsList />}
           </Content>
         </Layout>
       </Layout>

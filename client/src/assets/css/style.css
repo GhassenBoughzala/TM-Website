@@ -744,3 +744,13 @@ footer p {
   opacity: 0;
   transition: .5s;
 }
+
+.btn_save_upload {
+  color: #fff;
+  border: none;
+  background: var(--venice_blue);
+}
+
+.search_input {
+  margin: 25px 0;
+}

@@ -3,13 +3,16 @@ const express = require("express");
 const router = express.Router();
 const multer = require('multer');
 const { contactEmail } = require("../middleware/mailer");
+const { verifyAccessToken } = require("../middleware/verify-token");
+
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
+    const sanitizedOriginalname = file.originalname.replace(/\s/g, '-');
+    cb(null, Date.now() + '-' + sanitizedOriginalname);
   }
 });
 
@@ -50,6 +53,16 @@ router.post("/saveForm", upload.fields([{name:'file_cv',maxCount:1},{name:'file_
   } catch (error) {
     console.error('Error saving form data to the database:', error);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
+router.get('/getAll', verifyAccessToken, async (req, res) => {
+  try {
+    const scholarships = await Scholarship.find(); // Récupérez toutes les bourses depuis la base de données
+    res.json({ success: true, scholarships });
+  } catch (err) {
+    console.error('Error fetching scholarships:', err);
+    res.status(500).json({ success: false, message: 'Erreur lors de la récupération des bourses depuis la base de données.' });
   }
 });
 
