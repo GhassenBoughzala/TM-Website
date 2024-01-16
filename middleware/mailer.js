@@ -153,7 +153,7 @@ const contactEmail = async ({firstName, lastName, email, cv, lm, msg}) => {
   let message = {
     from: process.env.EMAIL,
     to: process.env.EMAIL,
-    subject: `Scholarship - Contact us from ${firstName} ${lastName}`,
+    subject: `Scholarships - ${firstName} ${lastName}`,
     html: mail,
     attachments: [
       {   // file on disk as an attachment
