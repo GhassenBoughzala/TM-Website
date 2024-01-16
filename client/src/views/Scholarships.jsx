@@ -109,6 +109,7 @@ export const Scholarships = () => {
     return false;
   };
 
+  console.log('cvFile', cvFile);
   const handleFormSubmit = (e) => {
     e.preventDefault();
   
@@ -134,6 +135,7 @@ export const Scholarships = () => {
           setRemoveUpload(true);
 
           form.resetFields();
+          console.log('cvFile1', cvFile);
         })
         .catch(error => {
           console.error('Error sending form data to server:', error);
@@ -144,7 +146,6 @@ export const Scholarships = () => {
       });
   };
  
-
   return (
     <>
       <Helmet>
@@ -178,13 +179,15 @@ export const Scholarships = () => {
               <div className="box_title">
                 <div className="titre_page_one">
                   <h1>{t("sco-abt-new")}</h1>
-                  <h2 className="blue-text">{t("fully-funded")} | <span className="yellow-text">{t("deadline")}: 31/03/2024</span></h2>
+                  <div className="btn_title">
+                    <button 
+                      onClick={handleApplyNowClick} 
+                      type="button" 
+                      className={`apply_now_static style_${i18n.language}`}
+                    >{t("apply_now")}</button>
+                    <h2 className="blue-text"> | <span className="yellow-text">{t("deadline")}: 31/03/2024</span></h2>
+                  </div>
                 </div>
-                <button 
-                  onClick={handleApplyNowClick} 
-                  type="button" 
-                  className={`apply_now_static ant-btn css-12jzuas ant-btn-text ant-btn-lg subs-btn style_${i18n.language}`}
-                ><span>{t("apply_now")}</span></button>
               </div>
 
               <div className="slide_block">
@@ -193,7 +196,8 @@ export const Scholarships = () => {
                   <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 col-slide">
                     <h3>{t("sco-ovt")}</h3>
                     <div className="parag_style style_link">
-                      <p>"{t("sco-ovt-new")}"</p>
+                      <p>{t("sco-ovt-new")}</p>
+                      <p>{t("sco-ovt-new1")}</p>
                     </div>
                     
                     <h3>{t("scholarship_benefits")}</h3>
@@ -222,7 +226,7 @@ export const Scholarships = () => {
                         speed={1500} 
                         slidesToShow={1} 
                         ref={carouselRef}
-                        autoplaySpeed={7000} 
+                        autoplaySpeed={6000} 
                         className="carousel_box"
                       >
                         <div><img alt="example" src="/images/slides/1.webp" width={"100%"} /></div>
@@ -256,6 +260,7 @@ export const Scholarships = () => {
                     <source src="/images/malek.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
+                  <h3>{t("video-txt")}</h3>
                 </div>  
 
               </div>

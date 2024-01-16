@@ -9,16 +9,11 @@
     flex-direction: column;
   }
 
-  .box_title .apply_now_static {
-    margin: 25px 0;
-    margin-left: initial;
-  }
-
   .apply_now {
     top: 15%;
   }
   .scholarships_page h1 {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .scholarships_page h2 {
@@ -64,7 +59,7 @@
     top: 20%;
   }
   .scholarships_page h1 {
-    font-size: 22px;
+    font-size: 28px;
   }
 
   .scholarships_page h2 {
@@ -102,7 +97,7 @@
 
 @media screen and (max-width: 767px) and (min-width: 600px) {
   .scholarships_page h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .scholarships_page h2 {
@@ -157,6 +152,10 @@
   .scholarships_page .carousel_block:hover .carousel_prev, .scholarships_page .carousel_block:hover .carousel_next {
     top: 55%;
   }
+
+  .box_title .apply_now_static {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 991px) and (min-width: 929px) {
@@ -168,6 +167,10 @@
 
   .scholarships_page .carousel_block:hover .carousel_prev, .scholarships_page .carousel_block:hover .carousel_next {
     top: 55%;
+  }
+
+  .box_title .apply_now_static {
+    font-size: 16px;
   }
 }
 
@@ -184,6 +187,10 @@
 
   .scholarships_page .carousel_block:hover .carousel_prev, .scholarships_page .carousel_block:hover .carousel_next {
     top: 55%;
+  }
+
+  .box_title .apply_now_static {
+    font-size: 16px;
   }
 }
 
