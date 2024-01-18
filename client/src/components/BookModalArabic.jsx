@@ -313,6 +313,28 @@ const BookModalArabicCmp = ({ ...props }) => {
         </div>
       </Form>
       </div>
+      
+      <div>
+        <img src="/images/alert.jpg" className="img_alert" />
+        <h2 className="txt_level_1">{t("test-txt")}</h2>
+        <ul className="test_notice">
+          <li>{t("test-txt-1")}</li>
+          <li>{t("test-txt-2")}</li>
+        </ul>
+
+        <Button
+          className="subs-btn mt-5 m-auto btn_download"
+          size="large"
+          type="text"
+          onClick={() => {
+            carouselRef.current.next();
+          }}
+        >
+          {t("btn-test")}
+        </Button>
+
+      </div>
+
       <div>
         <h2 className="txt_level_1">{t("txt_level_1")}</h2>
         <a

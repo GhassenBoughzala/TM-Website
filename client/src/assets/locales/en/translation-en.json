@@ -164,5 +164,10 @@
   "required-msg": "Please input your",
   "cv-titre": "Upload your CV",
   "lm-titre": "Upload your motivation letter (250 words)",
-  "video-txt": "This is a video of Malek Sghiri talking about one of the campaigns he was involved in, with thanks to Nawaat."
+  "video-txt": "This is a video of Malek Sghiri talking about one of the campaigns he was involved in, with thanks to Nawaat.",
+  "test-txt": "Please, note that the placement test is composed of two parts:",
+  "test-txt-1": "the reading, the writing and the grammar part.",
+  "test-txt-2": "the listening part.",
+  "btn-test": "Start",
+  "title-test": "Book Modern Standard Arabic Course"
 }

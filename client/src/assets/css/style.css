@@ -771,3 +771,18 @@ footer p {
 .search_input {
   margin: 25px 0;
 }
+
+.test_notice {
+  list-style: auto;
+  font-size: 16px;
+}
+
+.test_notice li:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+.img_alert {
+  width: 150px;
+  margin: auto;
+  padding-bottom: 15px;
+}

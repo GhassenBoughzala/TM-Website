@@ -171,5 +171,10 @@
   "required-msg": "Veuillez saisir votre",
   "cv-titre": "Téléversez votre CV",
   "lm-titre": "Téléversez votre Lettre de motivation (250 mots)",
-  "video-txt": "Ceci est une vidéo de Malek Sghiri parlant de l'une des campagnes dans laquelle il a été impliqué, Merci à Nawaat"
+  "video-txt": "Ceci est une vidéo de Malek Sghiri parlant de l'une des campagnes dans laquelle il a été impliqué, Merci à Nawaat",
+  "test-txt": "Veuillez noter que le test de niveau est composé de deux parties:",
+  "test-txt-1": "La lecture compréhension, la langue et la production écrite.",
+  "test-txt-2": "La compréhension orale.",
+  "btn-test": "Commencer",
+  "title-test": "Réservez votre cours d’Arabe Standard Moderne"
 }
