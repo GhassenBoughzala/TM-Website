@@ -35,7 +35,7 @@ export const HomeCourses = () => {
         </div>
       </div>
       {/* 2 */}
-      <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-3">
+      {/* <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-3">
         <div
           onClick={() => navTo("/learn-libyan-arabic")}
           className="card embed-responsive  ant-card-hoverable box-shadow"
@@ -57,7 +57,7 @@ export const HomeCourses = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* 3 */}
       <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-3">
         <div

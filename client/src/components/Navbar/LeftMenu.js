@@ -21,10 +21,10 @@ const LeftMenu = ({ ...props }) => {
       label: <span className=" blue-text">Tunisian Arabic</span>,
       key: "/learn-tunisian-arabic",
     },
-    {
-      label: <span className=" blue-text">Libyan Arabic</span>,
-      key: "/learn-libyan-arabic",
-    },
+    // {
+    //   label: <span className=" blue-text">Libyan Arabic</span>,
+    //   key: "/learn-libyan-arabic",
+    // },
     {
       label: <span className=" blue-text">French</span>,
       key: "/learn-french",

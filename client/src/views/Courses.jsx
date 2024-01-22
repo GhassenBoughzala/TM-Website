@@ -68,40 +68,43 @@ export const Courses = ({ ...props }) => {
             <>
               <div className="row">
                 {props.courses?.map((course, index) => {
-                  return (
-                    <Fragment key={shortid.generate() + index}>
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1 }}
-                        className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12"
-                      >
-                        <Card
-                          bodyStyle={{ height: 150 }}
-                          loading={!props.isLoading}
-                          hoverable
-                          onClick={() => {
-                            selectCourse(course);
-                          }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={course.backgroundImage.map((i) =>
-                                !i.base64 ? i.thumbUrl : i.base64
-                              )}
-                              width={"100%"}
-                              height={"auto"}
-                              className="w-50 my-2"
-                            />
-                          }
+                  
+                  if (course._id !== "64c684b713ebbe2aec0e1b1f") {
+                    return (
+                      <Fragment key={shortid.generate() + index}>
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 1 }}
+                          className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12"
                         >
-                          <h2 className="blue-text text-center">
-                            <b> {course.title}</b>
-                          </h2>
-                        </Card>
-                      </motion.div>
-                    </Fragment>
-                  );
+                          <Card
+                            bodyStyle={{ height: 150 }}
+                            loading={!props.isLoading}
+                            hoverable
+                            onClick={() => {
+                              selectCourse(course);
+                            }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={course.backgroundImage.map((i) =>
+                                  !i.base64 ? i.thumbUrl : i.base64
+                                )}
+                                width={"100%"}
+                                height={"auto"}
+                                className="w-50 my-2"
+                              />
+                            }
+                          >
+                            <h2 className="blue-text text-center">
+                              <b> {course.title}</b>
+                            </h2>
+                          </Card>
+                        </motion.div>
+                      </Fragment>
+                    );
+                  }
                 })}
               </div>
             </>
