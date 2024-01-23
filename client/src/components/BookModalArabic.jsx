@@ -293,6 +293,7 @@ const BookModalArabicCmp = ({ ...props }) => {
         <div className="form-outline text-center mt-1">
           <Form.Item>
             <Button
+              id="id_cours_modern_standard_arabic"
               type="primary"
               htmltype="submit"
               onClick={(e) => {

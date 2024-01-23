@@ -58,6 +58,21 @@ export const BookModal = ({ ...props }) => {
     setType("");
   };
 
+  function formatTitle(title) {
+    // Replace spaces with underscores
+    let formattedTitle = title.replace(/\s+/g, '_');
+  
+    // Remove special characters
+    formattedTitle = formattedTitle.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  
+    // Remove non-alphanumeric characters
+    formattedTitle = formattedTitle.replace(/[^a-zA-Z0-9_]/g, '');
+  
+    return 'id_cours_'+formattedTitle.toLowerCase();  // Convert to lowercase
+  }
+
+  const idTitle = formatTitle(props.currentObj.title);
+
   return (
     <Form
       form={form}
@@ -207,7 +222,7 @@ export const BookModal = ({ ...props }) => {
       </div>
       <div className="form-outline text-center mt-1">
         <Form.Item>
-          <Button type="primary" htmltype="submit" onClick={handleFormSubmit}>
+          <Button id={idTitle} type="primary" htmltype="submit" onClick={handleFormSubmit}>
             Confirm
           </Button>
           {type !== "" && (

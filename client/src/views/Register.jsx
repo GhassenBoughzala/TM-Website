@@ -319,6 +319,7 @@ export const Register = ({ ...props }) => {
                     <div className="form-outline text-center">
                       <Form.Item>
                         <Button
+                          id="id_create"
                           type="primary"
                           htmltype="submit"
                           onClick={handleFormSubmit}

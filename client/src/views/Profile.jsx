@@ -80,10 +80,10 @@ export const Profile = ({ ...props }) => {
   }, [props.isLoading, props.isAuth]);
 
   const items = [
-    { title: "Subscription" },
-    { title: "Language Test" },
-    { title: "Payment Request" },
-    { title: "Payment" },
+    { id: "id_subscription", title: "Subscription" },
+    { id: "id_languageTest", title: "Language Test" },
+    { id: "id_paymentRequest", title: "Payment Request" },
+    { id: "id_payment", title: "Payment" },
   ];
   const statusOfSub = (status) => {
     if (status === "pending") return 1;

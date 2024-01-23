@@ -145,6 +145,7 @@ export const ContactUs = ({ ...props }) => {
                   <div className="form-outline text-center">
                     <Form.Item>
                       <Button
+                        id="id_contactus"
                         type="primary"
                         htmltype="submit"
                         onClick={handleFormSubmit}
