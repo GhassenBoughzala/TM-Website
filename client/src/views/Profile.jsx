@@ -162,6 +162,7 @@ export const Profile = ({ ...props }) => {
                   size="small"
                   type="primary"
                   className="mt-3"
+                  id="make_payment"
                   onClick={() => setOpenModal(true)}
                 >
                   Make a payment

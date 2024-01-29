@@ -71,6 +71,31 @@ export const CourseModal = ({ courseExists, ...props }) => {
     }
   }, [props.loadingSub, props.msg]);
 
+  
+  function formatTitle(title) {
+    // Replace spaces with underscores
+    let formattedTitle = title.replace(/\s+/g, '-');
+  
+    // Remove special characters
+    formattedTitle = formattedTitle.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  
+    // Remove non-alphanumeric characters
+    formattedTitle = formattedTitle.replace(/[^a-zA-Z0-9_]/g, '-');
+  
+    return 'book-'+formattedTitle.toLowerCase();  // Convert to lowercase
+  }
+
+  let idTitle = "";
+  if (props.currentObj.title) {
+    if (props.currentObj._id == "64c6849913ebbe2aec0e1b1d") {
+      idTitle = "book-arabic";
+    } else if (props.currentObj._id == "64c684a913ebbe2aec0e1b1e") {
+      idTitle = "book-tunisian";
+    } else {
+      idTitle = formatTitle(props.currentObj.title);
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -86,6 +111,7 @@ export const CourseModal = ({ courseExists, ...props }) => {
               {props.isAuth && (
                 <div className="text-start my-2">
                   <Button
+                    id={idTitle}
                     className="subs-btn"
                     size="large"
                     type="text" 
@@ -132,6 +158,7 @@ export const CourseModal = ({ courseExists, ...props }) => {
               {props.isAuth ? (
                 <div className="text-center my-5">
                   <Button
+                    id={idTitle}
                     className="subs-btn"
                     size="large"
                     type="text"          
