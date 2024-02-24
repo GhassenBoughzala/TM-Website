@@ -34,6 +34,7 @@ const CourseAR = lazy(() => import('./views/courses/CourseAR'));
 const CourseEN = lazy(() => import('./views/courses/CourseEN'));
 const Navbar = lazy(() => import('./components/Navbar/Navbar'));
 const PaymentResult = lazy(() => import('./views/PaymentResult'));
+const PrivacyPolicy = lazy(() => import('./views/PrivacyPolicy'));
 const SubscriptionResult = lazy(() => import('./views/SubscriptionResult'));
 const AdminView = lazy(() => import('./views/AdminView'));
 const Profile = lazy(() => import('./views/Profile'));
@@ -94,6 +95,7 @@ function App() {
                 <Route exact path="/about" element={<Suspense fallback={<Loader/>}> <About/></Suspense>}/>
                 <Route exact path="/contact" element={<Suspense fallback={<Loader/>}> <ContactUs/></Suspense>}/>
                 <Route exact path="/scholarships" element={<Suspense fallback={<Loader/>}> <Scholarships/></Suspense>}/>
+                <Route exact path="/privacy_policy" element={<Suspense fallback={<Loader/>}> <PrivacyPolicy/></Suspense>}/>
 
                 <Route exact path="/login" element={<Suspense fallback={<Loader/>}> <Login/></Suspense>}/>
                 <Route exact path="/register" element={<Suspense fallback={<Loader/>}> <Register/></Suspense>}/>
