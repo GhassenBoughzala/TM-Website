@@ -11,6 +11,7 @@ import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
 import Doc2Pdf from '../../public/images/test/Doc2.pdf';
+import Doc4Pdf from '../../public/images/test/Doc4.pdf';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -415,7 +416,7 @@ const BookModalArabicCmp = ({ ...props }) => {
         </div>
 
         <a
-          href={Doc2Pdf}
+          href={Doc4Pdf}
           download="Test 2"
           target="_blank"
           rel="noreferrer"
