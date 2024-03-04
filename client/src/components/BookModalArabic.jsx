@@ -93,6 +93,7 @@ const BookModalArabicCmp = ({ ...props }) => {
         } else {
           navTo("/subscription");
         }
+        console.log('values', values);
       })     
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
