@@ -101,6 +101,9 @@ function App() {
                 <Route exact path="/cookie_policy" element={<Suspense fallback={<Loader/>}> <CookiePolicy/></Suspense>}/>
                 <Route exact path="/terms_conditions" element={<Suspense fallback={<Loader/>}> <TermsConditions/></Suspense>}/>
 
+                <Route exact path="/payfail" element={<Suspense fallback={<Loader/>}> <PayFail/></Suspense>}/>
+                <Route exact path="/paysuccess" element={<Suspense fallback={<Loader/>}> <PaySuccess/></Suspense>}/>
+
                 <Route exact path="/login" element={<Suspense fallback={<Loader/>}> <Login/></Suspense>}/>
                 <Route exact path="/register" element={<Suspense fallback={<Loader/>}> <Register/></Suspense>}/>
 

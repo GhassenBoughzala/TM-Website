@@ -169,5 +169,8 @@
   "test-txt-1": "the reading, the writing and the grammar part.",
   "test-txt-2": "the listening part.",
   "btn-test": "Start",
-  "title-test": "Book Modern Standard Arabic Course"
+  "title-test": "Book Modern Standard Arabic Course",
+  "pay_success": "The payment has been successfully completed",
+  "pay_fail": "The payment has been refused.",
+  "pay_fail1": "Please contact us at"
 }

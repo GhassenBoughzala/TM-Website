@@ -176,5 +176,8 @@
   "test-txt-1": "La lecture compréhension, la langue et la production écrite.",
   "test-txt-2": "La compréhension orale.",
   "btn-test": "Commencer",
-  "title-test": "Réservez votre cours d’Arabe Standard Moderne"
+  "title-test": "Réservez votre cours d’Arabe Standard Moderne",
+  "pay_success": "Le paiement a été effectué avec succès",
+  "pay_fail": "Le paiement a été refusé.",
+  "pay_fail1": "Merci de nous contacter à l'adresse"
 }

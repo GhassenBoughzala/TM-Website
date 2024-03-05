@@ -22,14 +22,14 @@ router.post('/apiPay', verifyAccessToken, async (req, res) => {
               name: name_cour,
               description: description,
             },
-            unit_amount: price * 100, // Montant en centimes (USD)
+            unit_amount: price * 100, 
           },
           quantity: 1,
         },
       ],
       mode: 'payment',
-      success_url: 'https://www.taamarbouta.com/', // Redirection après un paiement réussi
-      cancel_url: 'https://www.taamarbouta.com/', // Redirection si le paiement est annulé
+      success_url: 'https://www.taamarbouta.com/paysuccess', // Redirection après un paiement réussi
+      cancel_url: 'https://www.taamarbouta.com/payfail', // Redirection si le paiement est annulé
     });
   
     res.json({ id: session.id });
