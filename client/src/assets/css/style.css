@@ -786,3 +786,7 @@ footer p {
   margin: auto;
   padding-bottom: 15px;
 }
+
+.table_style {
+  display: table;
+}

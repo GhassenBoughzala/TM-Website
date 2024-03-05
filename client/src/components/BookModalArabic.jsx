@@ -12,12 +12,19 @@ import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
 import Doc2Pdf from '../../public/images/test/Doc2.pdf';
 import Doc4Pdf from '../../public/images/test/Doc4.pdf';
+import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
 
 const { Option } = Select;
 const { TextArea } = Input;
 
+let TypeValues;
 let levelValues;
+let hoursValues;
+let currencyValues;
 let indexSlide = {idx:0};
+const stripePromise = loadStripe('pk_test_51NY6GVFCnlnePsBKOF4bYfPkaZDZx31ECzpts3G0GHb3zbvJ2cEYtDkYVC9fBAqIThFRfV3Y3Uu1wHM3J1o8TcSk00XQST1kHL');
+
 const BookModalArabicCmp = ({ ...props }) => {
   const { t } = useTranslation();
   const navTo = useNavigate();
@@ -75,7 +82,10 @@ const BookModalArabicCmp = ({ ...props }) => {
     form
       .validateFields()
       .then((values) => {
+        TypeValues = type;
         levelValues = values.level;
+        hoursValues = values.hours;
+        currencyValues = values.currency;
         props.AddSub({
           course: currentObj._id,
           level: values.level,
@@ -93,7 +103,6 @@ const BookModalArabicCmp = ({ ...props }) => {
         } else {
           navTo("/subscription");
         }
-        console.log('values', values);
       })     
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
@@ -135,6 +144,61 @@ const BookModalArabicCmp = ({ ...props }) => {
     setIsModal1Open(false);
     setIsModal2Open(false);
     setIsModal3Open(false);
+  };
+
+  const makePayment = async (event) => {
+    try {
+      
+      let price_cour = 0;
+      if (TypeValues == "Evening") {
+        if (currencyValues == 'GBP') {
+          price_cour = 260;
+        } else if (currencyValues == 'EUR') {
+          price_cour = 300;
+        } else {
+          price_cour = 330;
+        }
+      } else if (TypeValues == "Private") {
+        if (currencyValues == 'GBP') {
+          price_cour = 20;
+        } else if (currencyValues == 'EUR') {
+          price_cour = 23;
+        } else {
+          price_cour = 25;
+        }
+      } else if (TypeValues == "Intensive") {
+        if (currencyValues == 'GBP') {
+          price_cour = 775;
+        } else if (currencyValues == 'EUR') {
+          price_cour = 899;
+        } else {
+          price_cour = 975;
+        }
+      }
+
+      // Passer les valeurs à votre backend
+      const response = await axios.post('/api/api-payment/apiPay', {
+        type: TypeValues,
+        price: price_cour,
+        level: levelValues,
+        hours: hoursValues,
+        currency: currencyValues,
+        name_cour: 'Book Arabic',
+      });
+
+      const session = response.data;
+
+      const stripe = await stripePromise;
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        console.error(result.error.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
   
   return (
@@ -456,6 +520,14 @@ const BookModalArabicCmp = ({ ...props }) => {
         >
           info@taamarbouta.com
         </a>
+        <Button
+          className="subs-btn mt-5 m-auto table_style"
+          size="large"
+          type="text"
+          onClick={makePayment}
+        >
+          Please Pay Here
+        </Button>
       </div>
     </Carousel>
   );

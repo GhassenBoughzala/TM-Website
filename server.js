@@ -11,6 +11,7 @@ const userRoute = require("./controller/user.controller");
 const subsRoute = require("./controller/subscription.controller");
 const contactRoute = require("./controller/contact.controller");
 const sholarshipRoute = require("./controller/sholarship.controller");
+const apiPaymentRoute = require("./controller/apiPayment.controller");
 var compression = require("compression");
 
 connectDB();
@@ -47,6 +48,7 @@ app.use("/api/user", userRoute);
 app.use("/api/subscription", subsRoute);
 app.use("/api/contact", contactRoute);
 app.use("/api/sholarship", sholarshipRoute);
+app.use("/api/api-payment", apiPaymentRoute);
 
 app.use(
   express.json({
