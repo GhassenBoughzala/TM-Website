@@ -22,7 +22,7 @@ router.post('/apiPay', verifyAccessToken, async (req, res) => {
               name: name_cour,
               description: description,
             },
-            unit_amount: price, // Montant en centimes (USD)
+            unit_amount: price * 100, // Montant en centimes (USD)
           },
           quantity: 1,
         },
