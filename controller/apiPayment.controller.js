@@ -28,8 +28,8 @@ router.post('/apiPay', verifyAccessToken, async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: 'http://localhost:3000/', // Redirection après un paiement réussi
-      cancel_url: 'http://localhost:3000/', // Redirection si le paiement est annulé
+      success_url: 'https://www.taamarbouta.com/', // Redirection après un paiement réussi
+      cancel_url: 'https://www.taamarbouta.com/', // Redirection si le paiement est annulé
     });
   
     res.json({ id: session.id });
