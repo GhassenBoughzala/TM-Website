@@ -20,9 +20,9 @@ router.post('/apiPay', verifyAccessToken, async (req, res) => {
             currency: currency,
             product_data: {
               name: name_cour,
-              description: `Level: ${level} - Option: ${type} - ${hours} hours`,
+              description: description,
             },
-            unit_amount: description, // Montant en centimes (USD)
+            unit_amount: price, // Montant en centimes (USD)
           },
           quantity: 1,
         },
