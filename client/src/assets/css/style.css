@@ -790,3 +790,7 @@ footer p {
 .table_style {
   display: table;
 }
+.parag_style_beginner {
+  font-size: 16px;
+  font-weight: 500;
+}

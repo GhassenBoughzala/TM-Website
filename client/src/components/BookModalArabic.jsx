@@ -202,334 +202,355 @@ const BookModalArabicCmp = ({ ...props }) => {
   };
   
   return (
-    <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide.idx}>
-      <div>
-      <Form
-        form={form}
-        className="form"
-        name="basic"
-        layout="vertical"
-        size={"medium"}
-        labelCol={{ span: 20 }}
-        autoComplete="off"
-      >
-        <div className="row">
-          <div className="form-outline text-start">
-            <div className="mb-4">
+    <div>
+      { levelValues !== "Beginner" ?
+      <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide.idx}>
+        <div>
+        <Form
+          form={form}
+          className="form"
+          name="basic"
+          layout="vertical"
+          size={"medium"}
+          labelCol={{ span: 20 }}
+          autoComplete="off"
+        >
+          <div className="row">
+            <div className="form-outline text-start">
+              <div className="mb-4">
+                <Form.Item
+                  label="Select your level"
+                  name="level"
+                  className="mb-0"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please select your level",
+                    },
+                  ]}
+                >
+                  <Select options={options} onChange={levelChange} />
+                </Form.Item>
+                {showLevelMessage && (
+                  <p className="msg_test_level">{t("msg_test_level")}</p>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <Form.Item
+              label="Tell us more about your level :"
+              name="notes"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <TextArea rows={2} />
+            </Form.Item>
+          </div>
+          <div className="row">
+            <Form.Item
+              label="Pick an option"
+              name="type"
+              rules={[
+                {
+                  required: type === "" && true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <div className="row text-start">
+                <div className="col-lg-4 col-xs-12 my-1 text-center">
+                  <Button
+                    type={`${type === "Evening" ? "primary" : "default"}`}
+                    onClick={() => setType("Evening")}
+                  >
+                    Next Evening Class
+                  </Button>
+                </div>
+                <div className="col-lg-4 col-xs-12 my-1 text-center">
+                  <Button
+                    type={`${type === "Private" ? "primary" : "default"}`}
+                    onClick={() => setType("Private")}
+                  >
+                    Private Classes
+                  </Button>
+                </div>
+                <div className="col-lg-4 col-xs-12 my-1 text-center">
+                  <Button
+                    type={`${type === "Intensive" ? "primary" : "default"}`}
+                    onClick={() => setType("Intensive")}
+                  >
+                    Intensive Classes
+                  </Button>
+                </div>
+              </div>
+            </Form.Item>
+          </div>
+          {type === "Intensive" && (
+            <div className="row">
+              <div className="form-outline text-start">
+                {currentObj.sessions.length !== 0 && (
+                  <Form.Item
+                    label="Select your sessions"
+                    name="sessions"
+                    onChange={handleChange}
+                  >
+                    <Select mode="multiple" maxLength={3}>
+                      {currentObj.sessions.map((s, index) => {
+                        return (
+                          <Fragment key={shortid.generate() + index}>
+                            <Option
+                              value={s.startDate}
+                              key={s.id}
+                              label={`${dayjs(s.startDate).format("MMMM")} session`}
+                            >
+                              <p className=" text-dark">
+                                <b className="mx-1">
+                                {dayjs(s.startDate).format("MMM D")}
+                                </b>
+                                <b>- {dayjs(s.endDate).format("MMM D YYYY")}</b>
+                              </p>
+                            </Option>
+                          </Fragment>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+                )}
+              </div>
+            </div>
+          )}
+
+          <div className="row">
+            <div className=" col col-6">
               <Form.Item
-                label="Select your level"
-                name="level"
-                className="mb-0"
+                label="Payment currency"
+                name="currency"
                 rules={[
                   {
                     required: true,
-                    message: "Please select your level",
+                    message: "Currency is required",
                   },
                 ]}
               >
-                <Select options={options} onChange={levelChange} />
+                <Select options={currencies} />
               </Form.Item>
-              {showLevelMessage && (
-                <p className="msg_test_level">{t("msg_test_level")}</p>
-              )}
             </div>
-          </div>
-        </div>
-        <div className="row">
-          <Form.Item
-            label="Tell us more about your level :"
-            name="notes"
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
-          >
-            <TextArea rows={2} />
-          </Form.Item>
-        </div>
-        <div className="row">
-          <Form.Item
-            label="Pick an option"
-            name="type"
-            rules={[
-              {
-                required: type === "" && true,
-                message: "This field is required",
-              },
-            ]}
-          >
-            <div className="row text-start">
-              <div className="col-lg-4 col-xs-12 my-1 text-center">
-                <Button
-                  type={`${type === "Evening" ? "primary" : "default"}`}
-                  onClick={() => setType("Evening")}
-                >
-                  Next Evening Class
-                </Button>
-              </div>
-              <div className="col-lg-4 col-xs-12 my-1 text-center">
-                <Button
-                  type={`${type === "Private" ? "primary" : "default"}`}
-                  onClick={() => setType("Private")}
-                >
-                  Private Classes
-                </Button>
-              </div>
-              <div className="col-lg-4 col-xs-12 my-1 text-center">
-                <Button
-                  type={`${type === "Intensive" ? "primary" : "default"}`}
-                  onClick={() => setType("Intensive")}
-                >
-                  Intensive Classes
-                </Button>
-              </div>
-            </div>
-          </Form.Item>
-        </div>
-        {type === "Intensive" && (
-          <div className="row">
-            <div className="form-outline text-start">
-              {currentObj.sessions.length !== 0 && (
+            <div className=" col col-6">
+              {type === "Private" && (
                 <Form.Item
-                  label="Select your sessions"
-                  name="sessions"
-                  onChange={handleChange}
+                  label="Number of hours"
+                  name="hours"
+                  style={{width: "100%"}}
+                  rules={[
+                    {
+                      required: type === "Private" && true,
+                      message: "This field is required",
+                    },
+                  ]}
                 >
-                  <Select mode="multiple" maxLength={3}>
-                    {currentObj.sessions.map((s, index) => {
-                      return (
-                        <Fragment key={shortid.generate() + index}>
-                          <Option
-                            value={s.startDate}
-                            key={s.id}
-                            label={`${dayjs(s.startDate).format("MMMM")} session`}
-                          >
-                            <p className=" text-dark">
-                              <b className="mx-1">
-                              {dayjs(s.startDate).format("MMM D")}
-                              </b>
-                              <b>- {dayjs(s.endDate).format("MMM D YYYY")}</b>
-                            </p>
-                          </Option>
-                        </Fragment>
-                      );
-                    })}
-                  </Select>
+                  <InputNumber width={"100%"} />
                 </Form.Item>
               )}
             </div>
           </div>
-        )}
-
-        <div className="row">
-          <div className=" col col-6">
-            <Form.Item
-              label="Payment currency"
-              name="currency"
-              rules={[
-                {
-                  required: true,
-                  message: "Currency is required",
-                },
-              ]}
-            >
-              <Select options={currencies} />
+          <div className="form-outline text-center mt-1">
+            <Form.Item>
+              <Button
+                id="id_cours_modern_standard_arabic"
+                type="primary"
+                htmltype="submit"
+                onClick={(e) => {
+                  handleFormSubmit(e);
+                }}
+              >
+                Confirm
+              </Button>
+              {type !== "" && (
+                <Button
+                  type="dashed"
+                  className="mx-2"
+                  icon={<RedoOutlined />}
+                  onClick={() => reset()}
+                ></Button>
+              )}
             </Form.Item>
           </div>
-          <div className=" col col-6">
-            {type === "Private" && (
-              <Form.Item
-                label="Number of hours"
-                name="hours"
-                style={{width: "100%"}}
-                rules={[
-                  {
-                    required: type === "Private" && true,
-                    message: "This field is required",
-                  },
-                ]}
-              >
-                <InputNumber width={"100%"} />
-              </Form.Item>
-            )}
-          </div>
+        </Form>
         </div>
-        <div className="form-outline text-center mt-1">
-          <Form.Item>
-            <Button
-              id="id_cours_modern_standard_arabic"
-              type="primary"
-              htmltype="submit"
-              onClick={(e) => {
-                handleFormSubmit(e);
-              }}
-            >
-              Confirm
-            </Button>
-            {type !== "" && (
-              <Button
-                type="dashed"
-                className="mx-2"
-                icon={<RedoOutlined />}
-                onClick={() => reset()}
-              ></Button>
-            )}
-          </Form.Item>
-        </div>
-      </Form>
-      </div>
-      
-      <div>
-        <img src="/images/alert.jpg" className="img_alert" />
-        <h2 className="txt_level_1">{t("test-txt")}</h2>
-        <ul className="test_notice">
-          <li>{t("test-txt-1")}</li>
-          <li>{t("test-txt-2")}</li>
-        </ul>
-
-        <Button
-          className="subs-btn mt-5 m-auto btn_download"
-          size="large"
-          type="text"
-          onClick={() => {
-            carouselRef.current.next();
-          }}
-        >
-          {t("btn-test")}
-        </Button>
-
-      </div>
-
-      <div>
-        <h2 className="txt_level_1">{t("txt_level_1")}</h2>
-        <a
-          href={Doc2Pdf}
-          download="Test 1"
-          target="_blank"
-          rel="noreferrer"
-          className="btn_download m-auto"
-        >
-          {t("click_here")}
-        </a>
-        <Button
-          className="subs-btn mt-5 m-auto btn_download"
-          size="large"
-          type="text"
-          onClick={() => {
-            carouselRef.current.next();
-          }}
-        >
-          {t("terminer")}
-        </Button>
-      </div>
-      <div>
         
-        <a
-          href="#"
-          className="back_left"
-          size="large"
-          type="text"
-          onClick={() => {
-            carouselRef.current.prev();
-          }}
-        >return
-        </a>
-        <h2 className="txt_level_1">{t("txt_level_2")}</h2>
-        
-        <div className="row">
-          <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <Button className="box_listening" onClick={(event) => { 
-              event.stopPropagation(); // Add this line
-              showModal1();
+        <div>
+          <img src="/images/alert.jpg" className="img_alert" />
+          <h2 className="txt_level_1">{t("test-txt")}</h2>
+          <ul className="test_notice">
+            <li>{t("test-txt-1")}</li>
+            <li>{t("test-txt-2")}</li>
+          </ul>
+
+          <Button
+            className="subs-btn mt-5 m-auto btn_download"
+            size="large"
+            type="text"
+            onClick={() => {
+              carouselRef.current.next();
             }}
           >
-              <img src="images/test/audio.png" alt="IconAudio" />          
-            </Button>
-            <Modal className="modal_test" open={isModal1Open} onCancel={handleCancel} footer={null}>
-            <audio controls ref={audioRef}>
-              <source src="images/test/audio1.mp3" type="audio/mp3" />
-              Your browser does not support the audio tag.
-            </audio>
-            </Modal>
-          </div>
-        
-          <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <Button className="box_listening" onClick={showModal2}>
-              <img src="images/test/video.png" alt="IconVideo" />          
-            </Button>
-            <Modal className="modal_test" open={isModal2Open} onCancel={handleCancel} footer={null}>
-            <video controls ref={videoRef1} width="100%">
-              <source src="images/test/video1.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            </Modal>
-          </div>
-        
-          <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <Button className="box_listening" onClick={showModal3}>
-              <img src="images/test/video.png" alt="IconVideo" />          
-            </Button>
-            <Modal className="modal_test" open={isModal3Open} onCancel={handleCancel} footer={null}>
-              <video controls ref={videoRef2} width="100%">
-                <source src="images/test/video2.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </Modal>
-          </div>
+            {t("btn-test")}
+          </Button>
+
         </div>
 
-        <a
-          href={Doc4Pdf}
-          download="Test 2"
-          target="_blank"
-          rel="noreferrer"
-          className="btn_download m-auto pt-3"
-        >
-          {t("click_here")}
-        </a>
-        <Button
-          className="subs-btn mt-5 m-auto btn_download"
-          size="large"
-          type="text"
-          onClick={() => {
-            carouselRef.current.next();
-          }}
-        >
-          {t("terminer")}
-        </Button>
+        <div>
+          <h2 className="txt_level_1">{t("txt_level_1")}</h2>
+          <a
+            href={Doc2Pdf}
+            download="Test 1"
+            target="_blank"
+            rel="noreferrer"
+            className="btn_download m-auto"
+          >
+            {t("click_here")}
+          </a>
+          <Button
+            className="subs-btn mt-5 m-auto btn_download"
+            size="large"
+            type="text"
+            onClick={() => {
+              carouselRef.current.next();
+            }}
+          >
+            {t("terminer")}
+          </Button>
+        </div>
+        <div>
+          
+          <a
+            href="#"
+            className="back_left"
+            size="large"
+            type="text"
+            onClick={() => {
+              carouselRef.current.prev();
+            }}
+          >return
+          </a>
+          <h2 className="txt_level_1">{t("txt_level_2")}</h2>
+          
+          <div className="row">
+            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <Button className="box_listening" onClick={(event) => { 
+                event.stopPropagation(); // Add this line
+                showModal1();
+              }}
+            >
+                <img src="images/test/audio.png" alt="IconAudio" />          
+              </Button>
+              <Modal className="modal_test" open={isModal1Open} onCancel={handleCancel} footer={null}>
+              <audio controls ref={audioRef}>
+                <source src="images/test/audio1.mp3" type="audio/mp3" />
+                Your browser does not support the audio tag.
+              </audio>
+              </Modal>
+            </div>
+          
+            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <Button className="box_listening" onClick={showModal2}>
+                <img src="images/test/video.png" alt="IconVideo" />          
+              </Button>
+              <Modal className="modal_test" open={isModal2Open} onCancel={handleCancel} footer={null}>
+              <video controls ref={videoRef1} width="100%">
+                <source src="images/test/video1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              </Modal>
+            </div>
+          
+            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <Button className="box_listening" onClick={showModal3}>
+                <img src="images/test/video.png" alt="IconVideo" />          
+              </Button>
+              <Modal className="modal_test" open={isModal3Open} onCancel={handleCancel} footer={null}>
+                <video controls ref={videoRef2} width="100%">
+                  <source src="images/test/video2.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </Modal>
+            </div>
+          </div>
 
-      </div>
+          <a
+            href={Doc4Pdf}
+            download="Test 2"
+            target="_blank"
+            rel="noreferrer"
+            className="btn_download m-auto pt-3"
+          >
+            {t("click_here")}
+          </a>
+          <Button
+            className="subs-btn mt-5 m-auto btn_download"
+            size="large"
+            type="text"
+            onClick={() => {
+              carouselRef.current.next();
+            }}
+          >
+            {t("terminer")}
+          </Button>
+
+        </div>
+        <div>
+          
+          <a
+            href="#"
+            className="back_left"
+            size="large"
+            type="text"
+            onClick={() => {
+              carouselRef.current.prev();
+            }}
+          >return
+          </a>
+          <h2 className="txt_level_1">{t("txt_level_end")}</h2>
+          <a 
+            href="mailto:info@taamarbouta.com"
+            className="btn_download m-auto email_info"
+          >
+            info@taamarbouta.com
+          </a>
+          <Button
+            className="subs-btn mt-5 m-auto table_style"
+            size="large"
+            type="text"
+            onClick={makePayment}
+          >
+            Please Pay Here
+          </Button>
+        </div>
+      </Carousel>
+      : 
       <div>
-        
-        <a
-          href="#"
-          className="back_left"
-          size="large"
-          type="text"
-          onClick={() => {
-            carouselRef.current.prev();
-          }}
-        >return
-        </a>
-        <h2 className="txt_level_1">{t("txt_level_end")}</h2>
-        <a 
-          href="mailto:info@taamarbouta.com"
-          className="btn_download m-auto email_info"
-        >
-          info@taamarbouta.com
-        </a>
-        <Button
-          className="subs-btn mt-5 m-auto table_style"
-          size="large"
-          type="text"
-          onClick={makePayment}
-        >
-          Please Pay Here
-        </Button>
+        <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
+          <div className="pb-5">       
+            <p className="parag_style_beginner">{t("msg_pay")}</p>  
+            <p className="parag_style_beginner">{t("msg_pay1")}</p> 
+            <Button
+              className="subs-btn mt-5 m-auto table_style"
+              size="large"
+              type="text"
+              onClick={makePayment}
+            >
+              Please Pay Here
+            </Button>
+          </div>
+        </Carousel>
       </div>
-    </Carousel>
+      }
+    </div>
   );
 };
 

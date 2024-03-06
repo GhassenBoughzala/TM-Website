@@ -172,5 +172,7 @@
   "title-test": "Book Modern Standard Arabic Course",
   "pay_success": "The payment has been successfully completed",
   "pay_fail": "The payment has been refused.",
-  "pay_fail1": "Please contact us at"
+  "pay_fail1": "Please contact us at",
+  "msg_pay": "We would like to sincerely thank you for enrolling in our course. We are thrilled to have you join us!",
+  "msg_pay1": "Your registration is now confirmed. However, to finalize your enrollment, please complete the required payment."
 }
