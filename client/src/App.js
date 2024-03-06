@@ -40,7 +40,8 @@ const TermsConditions = lazy(() => import('./views/TermsConditions'));
 const SubscriptionResult = lazy(() => import('./views/SubscriptionResult'));
 const AdminView = lazy(() => import('./views/AdminView'));
 const Profile = lazy(() => import('./views/Profile'));
-
+const PaySuccess = lazy(() => import('./views/paySuccess'));
+const PayFail = lazy(() => import('./views/payFail'));
 
 function App() {
   useEffect(() => {
