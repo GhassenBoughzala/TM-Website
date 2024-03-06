@@ -101,7 +101,7 @@ const BookModalArabicCmp = ({ ...props }) => {
         if (levelValues && levelValues !== "Beginner") {  
           indexSlide.idx = 1;
         } else {
-          navTo("/subscription");
+          indexSlide.idx = 1;
         }
       })     
       .catch((errorInfo) => {
