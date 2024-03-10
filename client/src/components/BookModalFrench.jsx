@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-operators */
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import { Button, Form, Select, Input, InputNumber, Carousel, Modal } from "antd";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
@@ -11,15 +11,21 @@ import { currencies } from "../helpers/Constants";
 import shortid from  "shortid";
 import { useTranslation } from "react-i18next";
 import { saveAs } from "file-saver";
-import Doc2Pdf from '../../public/images/test/french/Test-de-niveau.docx';
-import {indexSlide,BookModalArabic}  from "./BookModalArabic";
+import {indexSlide}  from "./BookModalArabic";
+import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
 
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 
+let TypeValues;
 let levelValues;
+let hoursValues;
+let currencyValues;
+let sessionsValues;
+const stripePromise = loadStripe('pk_test_51NY6GVFCnlnePsBKOF4bYfPkaZDZx31ECzpts3G0GHb3zbvJ2cEYtDkYVC9fBAqIThFRfV3Y3Uu1wHM3J1o8TcSk00XQST1kHL');
 
 export const BookModalFrench = ({ ...props }) => {
   const { t } = useTranslation();
@@ -30,29 +36,19 @@ export const BookModalFrench = ({ ...props }) => {
   const carouselRef = useRef(); 
 
   const levelChange = (value) => {
-    // Check if the selected level is not "Beginner"
     setShowLevelMessage(value !== "Beginner");
   };
-  console.log('props', props);
-  /*useEffect(() => {
-    console.log('showLevelMessage', showLevelMessage);
-    if (showLevelMessage !== "Beginner") {
-      if (props.msg === 1) {
-        carouselRef.current.goTo(1);
-        toast.success(t('SubsResult-1'));
-      } else if (props.msg === 0) {
-        props.setOpenModalFrench(false);
-        navTo("/subscription");
-      }
-    }
-  }, [props.msg]);*/
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     form
       .validateFields()
       .then((values) => {
+        TypeValues = type;
         levelValues = values.level;
+        hoursValues = values.hours;
+        currencyValues = values.currency;
+        sessionsValues = values.sessions?.length ?? 0;
         props.AddSub({
           course: currentObj._id,
           level: values.level,
@@ -69,11 +65,9 @@ export const BookModalFrench = ({ ...props }) => {
           indexSlide.idx = 1;
           console.log('getValues inside handleFormSubmit', levelValues);
         } else {
-          navTo("/subscription");
+          indexSlide.idx = 1;
+          //navTo("/subscription");
         }
-        
-        //props.setOpenModal(false);
-        //navTo("/subscription");
       })
       .catch((errorInfo) => {
         toast.warn("Check your fields !");
@@ -110,7 +104,58 @@ export const BookModalFrench = ({ ...props }) => {
     }
   };
 
+  const makePayment = async (event) => {
+    try {
+      
+      let price_cour = 0;
+      if (TypeValues == "Evening") {
+        if (currencyValues == 'GBP') {
+          price_cour = 260;
+        } else if (currencyValues == 'EUR') {
+          price_cour = 300;
+        } else {
+          price_cour = 330;
+        }
+      } else if (TypeValues == "Private") {       
+        if (currencyValues == 'GBP') {
+          price_cour = 18.85 * hoursValues;
+        } else if (currencyValues == 'EUR') {
+          price_cour = 22.15 * hoursValues;
+        } else {
+          price_cour = 24.24 * hoursValues;
+        }
+      }
+
+      // Passer les valeurs à votre backend
+      const response = await axios.post('/api/api-payment/apiPay', {
+        type: TypeValues,
+        price: price_cour,
+        level: levelValues,
+        hours: hoursValues,
+        currency: currencyValues,
+        sessions: sessionsValues,
+        name_cour: 'Book French',
+      });
+
+      const session = response.data;
+
+      const stripe = await stripePromise;
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        console.error(result.error.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
+
+    <div>
+    { levelValues !== "Beginner" ?
     <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef} initialSlide={indexSlide.idx}>
       <div>
       <Form
@@ -329,8 +374,35 @@ export const BookModalFrench = ({ ...props }) => {
         >
           info@taamarbouta.com
         </a>
+        <Button
+          className="subs-btn mt-5 m-auto table_style"
+          size="large"
+          type="text"
+          onClick={makePayment}
+        >
+          Please Pay Here
+        </Button>
       </div>
     </Carousel>
+    : 
+    <div>
+      <Carousel speed={1500} slidesToShow={1} dots={false} ref={carouselRef}>
+        <div className="pb-5">       
+          <p className="parag_style_beginner">{t("msg_pay")}</p>  
+          <p className="parag_style_beginner">{t("msg_pay1")}</p> 
+          <Button
+            className="subs-btn mt-5 m-auto table_style"
+            size="large"
+            type="text"
+            onClick={makePayment}
+          >
+            Please Pay Here
+          </Button>
+        </div>
+      </Carousel>
+    </div>
+    }
+    </div>
   );
 };
 

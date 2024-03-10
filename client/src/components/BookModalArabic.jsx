@@ -87,7 +87,7 @@ const BookModalArabicCmp = ({ ...props }) => {
         levelValues = values.level;
         hoursValues = values.hours;
         currencyValues = values.currency;
-        sessionsValues = values.sessions.length;
+        sessionsValues = values.sessions?.length ?? 0;
         props.AddSub({
           course: currentObj._id,
           level: values.level,
