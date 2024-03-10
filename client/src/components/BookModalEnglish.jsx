@@ -116,7 +116,7 @@ export const BookModalEnglish = ({ ...props }) => {
         hours: hoursValues,
         currency: currencyValues,
         sessions: sessionsValues,
-        name_cour: 'Book Tunisian Arabic',
+        name_cour: 'Book English',
       });
 
       const session = response.data;

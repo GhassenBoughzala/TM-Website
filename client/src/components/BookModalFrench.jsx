@@ -75,7 +75,6 @@ export const BookModalFrench = ({ ...props }) => {
       });
   };
 
-  console.log('courseFrenchExiste', props.courseFrenchExiste);
   const options = [
     { label: "Beginner", value: "Beginner" },
     { label: "Intermediate", value: "Intermediate" },
