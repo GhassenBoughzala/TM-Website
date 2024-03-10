@@ -22,6 +22,7 @@ let TypeValues;
 let levelValues;
 let hoursValues;
 let currencyValues;
+let sessionsValues;
 let indexSlide = {idx:0};
 const stripePromise = loadStripe('pk_test_51NY6GVFCnlnePsBKOF4bYfPkaZDZx31ECzpts3G0GHb3zbvJ2cEYtDkYVC9fBAqIThFRfV3Y3Uu1wHM3J1o8TcSk00XQST1kHL');
 
@@ -86,6 +87,7 @@ const BookModalArabicCmp = ({ ...props }) => {
         levelValues = values.level;
         hoursValues = values.hours;
         currencyValues = values.currency;
+        sessionsValues = values.sessions.length;
         props.AddSub({
           course: currentObj._id,
           level: values.level,
@@ -167,12 +169,32 @@ const BookModalArabicCmp = ({ ...props }) => {
           price_cour = 25 * hoursValues;
         }
       } else if (TypeValues == "Intensive") {
-        if (currencyValues == 'GBP') {
-          price_cour = 775;
-        } else if (currencyValues == 'EUR') {
-          price_cour = 899;
-        } else {
-          price_cour = 975;
+        if (sessionsValues == 1) {
+          if (currencyValues == 'GBP') {
+            price_cour = 775;
+          } else if (currencyValues == 'EUR') {
+            price_cour = 899;
+          } else {
+            price_cour = 975;
+          }
+        }
+        else if (sessionsValues == 2) {
+          if (currencyValues == 'GBP') {
+            price_cour = 1470;
+          } else if (currencyValues == 'EUR') {
+            price_cour = 1730;
+          } else {
+            price_cour = 1900;
+          }
+        }
+        else if (sessionsValues > 2) {
+          if (currencyValues == 'GBP') {
+            price_cour = 735 * sessionsValues;
+          } else if (currencyValues == 'EUR') {
+            price_cour = 865 * sessionsValues;
+          } else {
+            price_cour = 950 * sessionsValues;
+          }
         }
       }
 
@@ -182,6 +204,7 @@ const BookModalArabicCmp = ({ ...props }) => {
         price: price_cour,
         level: levelValues,
         hours: hoursValues,
+        sessions: sessionsValues,
         currency: currencyValues,
         name_cour: 'Book Arabic',
       });

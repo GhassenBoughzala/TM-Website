@@ -6,11 +6,15 @@ const stripe = require('stripe')('sk_test_51NY6GVFCnlnePsBKsPN9yjSkQcNsnHJMcMyN5
 
 router.post('/apiPay', verifyAccessToken, async (req, res) => {
   try {
-    const { name_cour, level, hours, currency, type, price } = req.body;
+    const { name_cour, level, hours, currency, type, price, sessions } = req.body;
     let description = `Level: ${level} - Option: ${type}`;
 
     if (hours) {
       description += ` - ${hours} hours`;
+    }
+
+    if (sessions) {
+      description += ` - ${sessions}`;
     }
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
