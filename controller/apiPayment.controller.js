@@ -14,7 +14,7 @@ router.post('/apiPay', verifyAccessToken, async (req, res) => {
     }
 
     if (sessions) {
-      description += ` - ${sessions}`;
+      description += ` - ${sessions} session(s)`;
     }
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
