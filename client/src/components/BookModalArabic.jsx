@@ -162,7 +162,7 @@ const BookModalArabicCmp = ({ ...props }) => {
         }
       } else if (TypeValues == "Private") {
         if (currencyValues == 'GBP') {
-          price_cour = 20 * hoursValues;
+          price_cour = 19 * hoursValues;
         } else if (currencyValues == 'EUR') {
           price_cour = 23 * hoursValues;
         } else {

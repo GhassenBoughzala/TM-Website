@@ -181,5 +181,5 @@
   "pay_fail": "Le paiement a été refusé.",
   "pay_fail1": "Merci de nous contacter à l'adresse",
   "msg_pay": "Nous tenons à vous remercier sincèrement pour votre inscription à notre cours. Nous sommes ravis de vous accueillir parmi nous !",
-  "msg_pay1": "Votre inscription est désormais confirmée, cependant, pour finaliser votre inscription, veuillez compléter le paiement requis."
+  "msg_pay1": "Afin de confirmer votre inscription, veuillez cliquer ci-dessous pour payer votre cours."
 }
