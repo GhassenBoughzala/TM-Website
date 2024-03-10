@@ -197,14 +197,14 @@ export const BookModalEnglish = ({ ...props }) => {
                   Next Evening Class
                 </Button>
               </div>
-              <div className="col-lg-4 col-xs-12 my-1 text-center">
+              {/* <div className="col-lg-4 col-xs-12 my-1 text-center">
                 <Button
                   type={`${type === "Private" ? "primary" : "default"}`}
                   onClick={() => setType("Private")}
                 >
                   Private Classes
                 </Button>
-              </div>
+              </div> */}
               {/* <div className="col-lg-4 col-xs-12 my-1 text-center">
                 <Button
                   type={`${type === "Intensive" ? "primary" : "default"}`}
