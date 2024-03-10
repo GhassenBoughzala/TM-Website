@@ -141,14 +141,14 @@ export const BookModal = ({ ...props }) => {
                 Private Classes
               </Button>
             </div>
-            <div className="col-lg-4 col-xs-12 my-1 text-center">
+            {/* <div className="col-lg-4 col-xs-12 my-1 text-center">
               <Button
                 type={`${type === "Intensive" ? "primary" : "default"}`}
                 onClick={() => setType("Intensive")}
               >
                 Intensive Classes
               </Button>
-            </div>
+            </div> */}
           </div>
         </Form.Item>
       </div>
