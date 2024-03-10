@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import BookModal from "./BookModal";
 import {indexSlide,BookModalArabic}  from "./BookModalArabic";
 import BookModalFrench  from "./BookModalFrench";
+import BookModalTunisian  from "./BookModalTunisian";
 import shortid from "shortid";
 
 export const CourseModal = ({ courseExists, ...props }) => {
@@ -30,6 +31,7 @@ export const CourseModal = ({ courseExists, ...props }) => {
   const [openModal, setOpenModal] = useState(false);
   const [openModalArabic, setOpenModalArabic] = useState(false);
   const [openModalFrench, setOpenModalFrench] = useState(false);
+  const [openModalTunisian, setOpenModalTunisian] = useState(false);
   const [currentModal, setCurrentModal] = useState("BookModal");
 
   useEffect(() => {
@@ -44,6 +46,11 @@ export const CourseModal = ({ courseExists, ...props }) => {
         setOpenModalArabic(false);
         setOpenModal(false); // Close the default modal if it was open
         setCurrentModal("BookModalFrench");
+      } else if (props.currentObj._id === "64c684a913ebbe2aec0e1b1e") {
+        setOpenModalArabic(false);
+        setOpenModalFrench(false);
+        setOpenModal(false); // Close the default modal if it was open
+        setCurrentModal("BookModalTunisian");
       } else {
         setOpenModal(false);
         setOpenModalArabic(false);
@@ -56,6 +63,7 @@ export const CourseModal = ({ courseExists, ...props }) => {
     setOpenModal(false);
     setOpenModalArabic(false);
     setOpenModalFrench(false);
+    setOpenModalTunisian(false);
     form.resetFields();
   };
 
@@ -126,6 +134,9 @@ export const CourseModal = ({ courseExists, ...props }) => {
                       } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
                         indexSlide.idx = 0;
                         setOpenModalFrench(true);
+                      } else if (props.currentObj._id === "64c684a913ebbe2aec0e1b1e") {
+                        indexSlide.idx = 0;
+                        setOpenModalTunisian(true);
                       } else {
                         setOpenModal(true);
                       }
@@ -173,6 +184,9 @@ export const CourseModal = ({ courseExists, ...props }) => {
                       } else if (props.currentObj._id === "64c684ce13ebbe2aec0e1b20") {
                         indexSlide.idx = 0;
                         setOpenModalFrench(true);
+                      } else if (props.currentObj._id === "64c684a913ebbe2aec0e1b1e") {
+                        indexSlide.idx = 0;
+                        setOpenModalTunisian(true);
                       } else {
                         setOpenModal(true);
                       }
@@ -262,7 +276,8 @@ export const CourseModal = ({ courseExists, ...props }) => {
             <Modal
               open={
                 props.currentObj._id === "64c6849913ebbe2aec0e1b1d" ? openModalArabic :
-                props.currentObj._id === "64c684ce13ebbe2aec0e1b20" ? openModalFrench : openModal
+                props.currentObj._id === "64c684ce13ebbe2aec0e1b20" ? openModalFrench : 
+                props.currentObj._id === "64c684a913ebbe2aec0e1b1e" ? openModalTunisian : openModal
               }
               onCancel={handleCancel}
               width={550}
@@ -295,6 +310,10 @@ export const CourseModal = ({ courseExists, ...props }) => {
 
                   {currentModal === "BookModalFrench" && (
                     <BookModalFrench {...{ currentObj, openModalFrench, setOpenModalFrench }} />
+                  )}
+
+                  {currentModal === "BookModalTunisian" && (
+                    <BookModalTunisian {...{ currentObj, openModalTunisian, setOpenModalTunisian }} />
                   )}
                 </div>
               )}
