@@ -4,8 +4,6 @@ const router = express.Router();
 const { verifyAccessToken } = require("../middleware/verify-token");
 const stripe = require('stripe')('sk_test_51NY6GVFCnlnePsBKsPN9yjSkQcNsnHJMcMyN5ozhEtrd4eknuoQahglsK6vnMArtYYlvSkBYhlcGGcyG62zVP7Gs00JZAuSWIU');
 
-
-
 router.post('/apiPay', verifyAccessToken, async (req, res) => {
   try {
     const { name_cour, level, hours, currency, type, price, sessions } = req.body;
