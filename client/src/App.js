@@ -98,6 +98,7 @@ function App() {
                 <Route exact path="/about" element={<Suspense fallback={<Loader/>}> <About/></Suspense>}/>
                 <Route exact path="/contact" element={<Suspense fallback={<Loader/>}> <ContactUs/></Suspense>}/>
                 <Route exact path="/scholarships" element={<Suspense fallback={<Loader/>}> <Scholarships/></Suspense>}/>
+                
                 <Route exact path="/privacy_policy" element={<Suspense fallback={<Loader/>}> <PrivacyPolicy/></Suspense>}/>
                 <Route exact path="/cookie_policy" element={<Suspense fallback={<Loader/>}> <CookiePolicy/></Suspense>}/>
                 <Route exact path="/terms_conditions" element={<Suspense fallback={<Loader/>}> <TermsConditions/></Suspense>}/>
