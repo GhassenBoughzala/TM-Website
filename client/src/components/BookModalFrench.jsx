@@ -25,7 +25,7 @@ let levelValues;
 let hoursValues;
 let currencyValues;
 let sessionsValues;
-const stripePromise = loadStripe('pk_test_51NY6GVFCnlnePsBKOF4bYfPkaZDZx31ECzpts3G0GHb3zbvJ2cEYtDkYVC9fBAqIThFRfV3Y3Uu1wHM3J1o8TcSk00XQST1kHL');
+const stripePromise = loadStripe('pk_live_51NY6GVFCnlnePsBK29b90yM1VTsCv76vqxRV5DOy74jluwLEPr41eyewI46fCHWfwde0hYJMQ9Sg2v2InWKiOxet00YiIP3NJf');
 
 export const BookModalFrench = ({ ...props }) => {
   const { t } = useTranslation();
