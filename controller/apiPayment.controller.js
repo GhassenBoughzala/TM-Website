@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const { verifyAccessToken } = require("../middleware/verify-token");
-const stripe = require('stripe')('sk_test_51NY6GVFCnlnePsBKsPN9yjSkQcNsnHJMcMyN5ozhEtrd4eknuoQahglsK6vnMArtYYlvSkBYhlcGGcyG62zVP7Gs00JZAuSWIU');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 router.post('/apiPay', verifyAccessToken, async (req, res) => {
   try {
