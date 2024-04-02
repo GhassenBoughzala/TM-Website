@@ -33,7 +33,7 @@ export const Register = ({ ...props }) => {
       warningOnly: true,
       message: "At least minumum 8 characters",
     },
-    {
+    /*{
       pattern: uppercaseRegExp,
       warningOnly: true,
       message: "At least one Uppercase",
@@ -47,7 +47,7 @@ export const Register = ({ ...props }) => {
       pattern: digitsRegExp,
       warningOnly: true,
       message: "At least one digit",
-    },
+    },*/
   ];
   const ArrayOfConfirmationRules = [
     {
