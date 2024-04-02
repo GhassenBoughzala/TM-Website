@@ -794,3 +794,19 @@ footer p {
   font-size: 16px;
   font-weight: 500;
 }
+/*-- legal_esources */
+.legal_esources {
+  padding: 0;
+}
+.legal_esources li:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+.legal_esources a,
+.legal_esources a:hover,
+.legal_esources a:focus {
+  margin: auto;
+  display: table;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+}

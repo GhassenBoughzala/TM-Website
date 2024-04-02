@@ -22,6 +22,7 @@ export const Register = ({ ...props }) => {
   const uppercaseRegExp = /(?=.*?[A-Z])/;
   const lowercaseRegExp = /(?=.*?[a-z])/;
   const digitsRegExp = /(?=.*?[0-9])/;
+  const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
   const minLengthRegExp = /.{8,}/;
   const ArrayOfRules = [
     {
@@ -74,7 +75,7 @@ export const Register = ({ ...props }) => {
     value: country.name,
   })); */
 
-  const handleFormSubmit = () => {
+  /*const handleFormSubmit = () => {
     form
       .validateFields()
       .then((values) => {
@@ -84,7 +85,24 @@ export const Register = ({ ...props }) => {
         toast.error("Register failed !");
         console.log("errorInfo ...", errorInfo);
       });
+  };*/
+
+  const handleFormSubmit = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        console.log("Form values:", values);
+  
+        // Add more logs if needed
+  
+        props.Register(values);
+      })
+      .catch((errorInfo) => {
+        toast.error("Register failed!");
+        console.log("ErrorInfo:", errorInfo);
+      });
   };
+
   const prev_loading = usePrevious(props.isLoading);
   useEffect(() => {
     if (prev_loading && !props.isLoading) {
@@ -267,7 +285,7 @@ export const Register = ({ ...props }) => {
 
                     <div className="row">
                       <div className="col-md-12">
-                        <div className="form-outline text-start">                      
+                        <div className="form-outline text-start">                          
                           <Form.Item
                             label={t("ui")}
                             name="institution"
@@ -312,7 +330,13 @@ export const Register = ({ ...props }) => {
                         </div>
                       </div>
                       <Checkbox onChange={onChangeCheck}>
-                        <span className="text-start">{t("check")}</span>
+                        <span className="text-start">
+                          {t("check")}
+                          <Link to="/terms_conditions">{t("conditions_utilisation")}</Link>
+                          {t("check1")}
+                          <Link to="/privacy_policy">{t("politique_confidentialiter")}</Link>
+                          {t("check2")}
+                          </span>
                       </Checkbox>
                     </div>
 

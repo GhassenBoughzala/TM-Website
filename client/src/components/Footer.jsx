@@ -5,6 +5,7 @@ import {
   FacebookFilled,
   LinkedinFilled,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 const { Footer } = Layout;
 
@@ -16,18 +17,27 @@ export const HomeFooter = () => {
       <div className="container position-sticky fixed-footer">
         <footer className="py-1">
           <div className="row">
-            <div className="col col-lg-6 col-xs-12">
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <h2 className="averiaseriflibre_bold text-start">Taa Marbouta</h2>
               <p className="montserrat_regular text-start text-dark">
                 {t("Footer")}
               </p>
             </div>
 
-            <div className="col col-lg-6 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <h2 className="averiaseriflibre_bold">{t("legal_esources")}</h2>
+              <ul className="legal_esources">
+                <li><Link className="montserrat_regular text-dark pointer" to="/cookie_policy">{t("cookie_policy")}</Link></li>
+                <li><Link className="montserrat_regular text-dark pointer" to="/terms_conditions">{t("conditions_utilisation")}</Link></li>
+                <li><Link className="montserrat_regular text-dark pointer" to="/privacy_policy">{t("politique_confidentialiter")}</Link></li>
+              </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <div>
-                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p
-                    className="montserrat_regular text-start text-dark pointer"
+                    className="montserrat_regular text-end text-dark pointer"
                     onClick={() =>
                       window.open(
                         "https://wa.me/+21624223422",
@@ -39,10 +49,8 @@ export const HomeFooter = () => {
                     <i className="bi bi-telephone-fill mx-1"></i>
                     +216 24 223 422
                   </p>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p
-                    className="montserrat_regular text-start text-dark pointer"
+                    className="montserrat_regular text-end text-dark pointer"
                     onClick={() =>
                       window.open(
                         "https://wa.me/+21622920666",
@@ -54,9 +62,8 @@ export const HomeFooter = () => {
                     <i className="bi bi-telephone-fill mx-1"></i>
                     +216 22 920 666
                   </p>
-                </div>
                 <p
-                  className="montserrat_regular text-start text-dark pointer"
+                  className="montserrat_regular text-end text-dark pointer"
                   onClick={() =>
                     window.open(
                       "mailto:info@taamarbouta.com",
@@ -69,7 +76,7 @@ export const HomeFooter = () => {
                   info@taamarbouta.com
                 </p>
                 <p
-                  className="montserrat_regular text-start text-dark pointer"
+                  className="montserrat_regular text-end text-dark pointer"
                   onClick={() =>
                     window.open(
                       "https://goo.gl/maps/aimTSB3dzKoHUr7c6",
