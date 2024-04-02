@@ -1,6 +1,25 @@
 /*----------------------------------- Responsive -----------------------------------*/
 
 @media screen and (max-width: 455px) {
+  footer h2 {
+    text-align: left;
+  }
+  .legal_esources a, .legal_esources a:hover, .legal_esources a:focus {
+    margin-left: initial;
+  }
+  .slide_block .carousel_block {
+    width: 50%;
+    margin: auto;
+    padding-top: 60px;
+  }
+  footer .text-end {
+    text-align: left !important;
+  }
+  .contact_taamarbouta,
+  .title_legal_esources {
+    margin-top: 15px;
+  }
+  
   .scholarships_page .full_espace_padding {
     padding: 60px 0px;
   }
@@ -51,6 +70,25 @@
 }
 
 @media screen and (max-width: 599px) and (min-width: 456px) {
+  footer h2 {
+    text-align: left;
+  }
+  .legal_esources a, .legal_esources a:hover, .legal_esources a:focus {
+    margin-left: initial;
+  }
+  .slide_block .carousel_block {
+    width: 50%;
+    margin: auto;
+    padding-top: 60px;
+  }
+  footer .text-end {
+    text-align: left !important;
+  }
+  .contact_taamarbouta,
+  .title_legal_esources {
+    margin-top: 15px;
+  }
+
   .scholarships_page .full_espace_padding {
     padding: 60px 0px;
   }
@@ -96,6 +134,25 @@
 }
 
 @media screen and (max-width: 767px) and (min-width: 600px) {
+  footer h2 {
+    text-align: left;
+  }
+  .legal_esources a, .legal_esources a:hover, .legal_esources a:focus {
+    margin-left: initial;
+  }
+  .slide_block .carousel_block {
+    width: 50%;
+    margin: auto;
+    padding-top: 60px;
+  }
+  footer .text-end {
+    text-align: left !important;
+  }
+  .contact_taamarbouta,
+  .title_legal_esources {
+    margin-top: 15px;
+  }
+
   .scholarships_page h1 {
     font-size: 28px;
   }
@@ -143,6 +200,25 @@
 }
 
 @media screen and (max-width: 928px) and (min-width: 768px) {
+  footer h2 {
+    text-align: left;
+  }
+  .legal_esources a, .legal_esources a:hover, .legal_esources a:focus {
+    margin-left: initial;
+  }
+  .slide_block .carousel_block {
+    width: 50%;
+    margin: auto;
+    padding-top: 60px;
+  }
+  footer .text-end {
+    text-align: left !important;
+  }
+  .contact_taamarbouta,
+  .title_legal_esources {
+    margin-top: 15px;
+  }
+
   .slide_block .carousel_block {
     width: 50%;
     margin: auto;
@@ -159,10 +235,23 @@
 }
 
 @media screen and (max-width: 991px) and (min-width: 929px) {
+  footer h2 {
+    text-align: left;
+  }
+  .legal_esources a, .legal_esources a:hover, .legal_esources a:focus {
+    margin-left: initial;
+  }
   .slide_block .carousel_block {
     width: 50%;
     margin: auto;
     padding-top: 60px;
+  }
+  footer .text-end {
+    text-align: left !important;
+  }
+  .contact_taamarbouta,
+  .title_legal_esources {
+    margin-top: 15px;
   }
 
   .scholarships_page .carousel_block:hover .carousel_prev, .scholarships_page .carousel_block:hover .carousel_next {

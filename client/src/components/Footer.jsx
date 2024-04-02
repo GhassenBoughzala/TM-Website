@@ -18,15 +18,15 @@ export const HomeFooter = () => {
         <footer className="py-1">
           <div className="row">
 
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
               <h2 className="averiaseriflibre_bold text-start">Taa Marbouta</h2>
               <p className="montserrat_regular text-start text-dark">
                 {t("Footer")}
               </p>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <h2 className="averiaseriflibre_bold">{t("legal_esources")}</h2>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+              <h2 className="title_legal_esources averiaseriflibre_bold">{t("legal_esources")}</h2>
               <ul className="legal_esources">
                 <li><Link className="montserrat_regular text-dark pointer" to="/cookie_policy">{t("cookie_policy")}</Link></li>
                 <li><Link className="montserrat_regular text-dark pointer" to="/terms_conditions">{t("conditions_utilisation")}</Link></li>
@@ -34,8 +34,8 @@ export const HomeFooter = () => {
               </ul>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+              <div className="contact_taamarbouta">
                   <p
                     className="montserrat_regular text-end text-dark pointer"
                     onClick={() =>
