@@ -89,6 +89,16 @@ const LeftMenu = ({ ...props }) => {
         type="link"
         className="ant-btn-menu text-start"
         onClick={() => {
+          navTo("/ambassadors");
+          props.setOpen(false);
+        }}
+      >
+        Ambassadors
+      </Button>
+      <Button
+        type="link"
+        className="ant-btn-menu text-start"
+        onClick={() => {
           navTo("/about");
           props.setOpen(false);
         }}
