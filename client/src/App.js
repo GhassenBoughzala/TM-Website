@@ -24,6 +24,7 @@ const PageNotFound = lazy(() => import('./views/Page404'));
 const StudentLife = lazy(() => import('./views/StudentLife'));
 const About = lazy(() => import('./views/About'));
 const Scholarships = lazy(() => import('./views/Scholarships'));
+const Ambassadors = lazy(() => import('./views/Ambassadors'));
 const Login = lazy(() => import('./views/Login'));
 const Register = lazy(() => import('./views/Register'));
 const Courses = lazy(() => import('./views/Courses'));
@@ -98,6 +99,7 @@ function App() {
                 <Route exact path="/about" element={<Suspense fallback={<Loader/>}> <About/></Suspense>}/>
                 <Route exact path="/contact" element={<Suspense fallback={<Loader/>}> <ContactUs/></Suspense>}/>
                 <Route exact path="/scholarships" element={<Suspense fallback={<Loader/>}> <Scholarships/></Suspense>}/>
+                <Route exact path="/ambassadors" element={<Suspense fallback={<Loader/>}> <Ambassadors/></Suspense>}/>
                 
                 <Route exact path="/privacy_policy" element={<Suspense fallback={<Loader/>}> <PrivacyPolicy/></Suspense>}/>
                 <Route exact path="/cookie_policy" element={<Suspense fallback={<Loader/>}> <CookiePolicy/></Suspense>}/>

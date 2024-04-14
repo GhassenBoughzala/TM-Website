@@ -810,3 +810,22 @@ footer p {
   text-align: center;
   text-decoration: none;
 }
+
+.info_contact_rc {
+  margin: auto;
+  display: table;
+  padding: 0;
+  padding-top: 45px;
+}
+
+.info_contact_rc li {
+  float: left;
+}
+
+.info_contact_rc li:not(:last-of-type) {
+  margin-right: 15px;
+}
+
+.espace_top {
+  margin-top: 45px;
+}
