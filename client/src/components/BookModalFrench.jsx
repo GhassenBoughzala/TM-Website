@@ -121,7 +121,7 @@ export const BookModalFrench = ({ ...props }) => {
         } else if (currencyValues == 'EUR') {
           price_cour = (22.15 * hoursValues).toFixed(2);
         } else {
-          price_cour = (24.24 * hoursValues).toFixed(2);
+          price_cour = (24.25 * hoursValues).toFixed(2);
         }
       }
 
