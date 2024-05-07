@@ -108,11 +108,11 @@ export const BookModalTunisian = ({ ...props }) => {
         }
       } else if (TypeValues == "Private") {       
         if (currencyValues == 'GBP') {
-          price_cour = 18.85 * hoursValues;
+          price_cour = (18.85 * hoursValues).toFixed(2);
         } else if (currencyValues == 'EUR') {
-          price_cour = 22.15 * hoursValues;
+          price_cour = (22.15 * hoursValues).toFixed(2);
         } else {
-          price_cour = 24.24 * hoursValues;
+          price_cour = (24.24 * hoursValues).toFixed(2);
         }
       }
 

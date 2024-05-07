@@ -162,11 +162,11 @@ const BookModalArabicCmp = ({ ...props }) => {
         }
       } else if (TypeValues == "Private") {
         if (currencyValues == 'GBP') {
-          price_cour = 19 * hoursValues;
+          price_cour = (19 * hoursValues).toFixed(2);
         } else if (currencyValues == 'EUR') {
-          price_cour = 23 * hoursValues;
+          price_cour = (23 * hoursValues).toFixed(2);
         } else {
-          price_cour = 25 * hoursValues;
+          price_cour = (25 * hoursValues).toFixed(2);
         }
       } else if (TypeValues == "Intensive") {
         if (sessionsValues == 1) {
