@@ -178,6 +178,18 @@ export const image2List = [
   "/images/student/Accommodation/2/a5.jpeg",
   "/images/student/Accommodation/2/a8.jpeg",
 ];
+export const partenaireList = [
+  "/images/partenaire/image00001.png",
+  "/images/partenaire/image00002.png",
+  "/images/partenaire/image00003.png",
+  "/images/partenaire/image00004.png",
+  "/images/partenaire/image00005.png",
+  "/images/partenaire/image00006.png",
+  "/images/partenaire/image00007.png",
+  "/images/partenaire/image00009.png",
+  "/images/partenaire/image00010.png",
+  "/images/partenaire/image00011.png",
+];
 
 export const cloudinaryBaseUrl = `https://res.cloudinary.com/taamarbouta/image/upload`;
 export const imageParams = `c_fill,g_auto,f_auto,q_auto`;

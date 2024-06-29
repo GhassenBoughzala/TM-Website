@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { cloudinaryBaseUrl, imageParams } from "../helpers/Constants";
+import { cloudinaryBaseUrl, imageParams, partenaireList } from "../helpers/Constants";
 
 
 const Partners = () => {
@@ -75,6 +75,19 @@ const Partners = () => {
             style={{ width: "80%" }}
           />
         </SwiperSlide>
+          {partenaireList.map((i, index) => {
+            return (                
+              <SwiperSlide>
+                <img
+                  src={i}
+                  alt="Taa Marbouta"
+                  width={727}
+                  height={354}
+                  style={{ width: "80%" }}
+                />
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </>
   );
