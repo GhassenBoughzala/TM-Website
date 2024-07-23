@@ -189,6 +189,7 @@ export const partenaireList = [
   "/images/partenaire/image00009.png",
   "/images/partenaire/image00010.png",
   "/images/partenaire/image00011.png",
+  "/images/partenaire/image00012.png",
 ];
 
 export const cloudinaryBaseUrl = `https://res.cloudinary.com/taamarbouta/image/upload`;
