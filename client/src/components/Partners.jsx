@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { cloudinaryBaseUrl, imageParams, partenaireList } from "../helpers/Constants";
 
-
 const Partners = () => {
   const { t } = useTranslation();
 
