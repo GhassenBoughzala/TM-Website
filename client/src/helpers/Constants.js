@@ -188,7 +188,6 @@ export const partenaireList = [
 export const cloudinaryBaseUrl = `https://res.cloudinary.com/taamarbouta/image/upload`;
 export const imageParams = `c_fill,g_auto,f_auto,q_auto`;
 
-
 /* export const WorkDesc = [
 {
     desc: "",
